@@ -81,6 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
+                    <img src="{{ asset('images/Visabadge-dummy-bg-01.png') }}" />
                     VisaBadge
                 </div>
             </div>
