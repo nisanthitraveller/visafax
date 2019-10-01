@@ -16,3 +16,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')    
     ->name('home');
 Route::get('/backend', 'HomeController@bologin');
+Route::get('/googledoc', 'GoogleController@googledoc');
