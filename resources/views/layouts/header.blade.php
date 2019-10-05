@@ -2,7 +2,7 @@
     <div class="container pt-3 pb-3">
         <div class="row">
             <div class="col-3 logo  align-content-center">
-                <a href="{{ secure_url('/') }}"><img src = "{{ secure_asset('/images/logo.png') }}" /></a>
+                <a href="{{ secure_url('/') }}"><img src = "{{ secure_asset('/images/logo.png') }}" style="width: 116px" /></a>
             </div>
             <div class="col-9 main-nav text-right justify-content-md-center">
                 @guest
