@@ -10,3 +10,6 @@ and open the template in the editor.
 img.media-object {
     border-radius: 0;
 }
+.not-visible{
+    display: none;
+}

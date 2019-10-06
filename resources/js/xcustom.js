@@ -16,6 +16,9 @@
         });
     }
     initSlider();
+    $('.ld-more').click(function () {
+        $('.not-visible, .ld-more').toggle();
+    });
 })(jQuery);
 
 

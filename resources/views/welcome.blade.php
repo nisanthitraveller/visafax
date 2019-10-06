@@ -19,10 +19,10 @@
     <div class="container">
         <div class="col-12">
             <div class="button_box2"> <form class="form-wrapper-2 cf">
-                <form autocomplete="off" id="searchForm" method="post">
-                    <input type="text" class="typeahead" placeholder="Where you want to go?" required>
-                    <button type="submit"><i class="fa fa-angle-right"></i></button> 
-                </form> 
+                    <form autocomplete="off" id="searchForm" method="post">
+                        <input type="text" class="typeahead" placeholder="Where you want to go?" required>
+                        <button type="submit"><i class="fa fa-angle-right"></i></button> 
+                    </form> 
             </div>
         </div>
 
@@ -60,8 +60,8 @@
                 <div class="row">
                     <?php $count = 1; ?>
                     @foreach($countries['Asia-Pacific'] as $country1)
-                    @if($count <= 12)
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
+                    <?php $class = $count <= 12 ? null : 'not-visible'; ?>
+                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch {{$class}}">
                         <div class="media">
                             <a class="media-left" href="{{ url('/') }}/visa/{{strtolower($country1['countryName'])}}">
                                 <img class="media-object" src="https://www.countryflags.io/{{strtolower($country1['countryCode'])}}/shiny/64.png" alt="{{$country1['countryName']}}">
@@ -72,9 +72,8 @@
                                 </div></a>
                         </div>
                     </div>
-                    
+
                     <?php $count++; ?>
-                    @endif
                     @endforeach
                 </div>
 
@@ -87,8 +86,8 @@
                 <div class="row">
                     <?php $count2 = 1; ?>
                     @foreach($countries['Africa'] as $country2)
-                    @if($count2 <= 12)
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
+                    <?php $class = $count2 <= 12 ? null : 'not-visible'; ?>
+                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch {{$class}}">
                         <div class="media">
                             <a class="media-left" href="{{ url('/') }}/visa/{{strtolower($country2['countryName'])}}">
                                 <img class="media-object" src="https://www.countryflags.io/{{strtolower($country2['countryCode'])}}/shiny/64.png" alt="{{$country1['countryName']}}">
@@ -99,9 +98,8 @@
                                 </div></a>
                         </div>
                     </div>
-                    
+
                     <?php $count2++; ?>
-                    @endif
                     @endforeach
                 </div>
 
@@ -112,8 +110,8 @@
                 <div class="row">
                     <?php $count3 = 1; ?>
                     @foreach($countries['North-America'] as $country3)
-                    @if($count3 <= 12)
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
+                    <?php $class = $count3 <= 12 ? null : 'not-visible'; ?>
+                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch {{$class}}">
                         <div class="media">
                             <a class="media-left" href="{{ url('/') }}/visa/{{strtolower($country3['countryName'])}}">
                                 <img class="media-object" src="https://www.countryflags.io/{{strtolower($country3['countryCode'])}}/shiny/64.png" alt="{{$country1['countryName']}}">
@@ -124,9 +122,8 @@
                                 </div></a>
                         </div>
                     </div>
-                    
+
                     <?php $count3++; ?>
-                    @endif
                     @endforeach
                 </div>
 
@@ -137,8 +134,8 @@
                 <div class="row">
                     <?php $count3 = 1; ?>
                     @foreach($countries['South-America'] as $country3)
-                    @if($count3 <= 12)
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
+                    <?php $class = $count3 <= 12 ? null : 'not-visible'; ?>
+                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch {{$class}}">
                         <div class="media">
                             <a class="media-left" href="{{ url('/') }}/visa/{{strtolower($country3['countryName'])}}">
                                 <img class="media-object" src="https://www.countryflags.io/{{strtolower($country3['countryCode'])}}/shiny/64.png" alt="{{$country1['countryName']}}">
@@ -149,9 +146,8 @@
                                 </div></a>
                         </div>
                     </div>
-                    
+
                     <?php $count3++; ?>
-                    @endif
                     @endforeach
                 </div>
 
@@ -162,8 +158,8 @@
                 <div class="row">
                     <?php $count3 = 1; ?>
                     @foreach($countries['Europe'] as $country3)
-                    @if($count3 <= 12)
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
+                    <?php $class = $count3 <= 12 ? null : 'not-visible'; ?>
+                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch {{$class}}">
                         <div class="media">
                             <a class="media-left" href="{{ url('/') }}/visa/{{strtolower($country3['countryName'])}}">
                                 <img class="media-object" src="https://www.countryflags.io/{{strtolower($country3['countryCode'])}}/shiny/64.png" alt="{{$country1['countryName']}}">
@@ -174,9 +170,8 @@
                                 </div></a>
                         </div>
                     </div>
-                    
+
                     <?php $count3++; ?>
-                    @endif
                     @endforeach
                 </div>
 
@@ -185,7 +180,7 @@
 
         </div>
 
-        <a href="#" class="ld-more">Loading More...</a>
+        <a href="javascript:void(0)" class="ld-more">Loading More...</a>
 
     </div>
 </section>
@@ -278,7 +273,7 @@
             <?php
             $image = isset($feed['image']) ? $feed['image'] : secure_url('/') . "images/st1.jpg";
             ?>
-            
+
             <div class="item" onclick="location.href ='{{$feed['url']}}'">
                 <img src="{{$image}}" alt="{{$feed['title']}}" />
                 <div class="item-content">
@@ -295,32 +290,34 @@
 
 </section>
 <section class="tstmnls">
-  <div class="container">
-     <h2>Listen to others</h2>
-      <div class="bg-color">
-     
-       <div class="slider slider-nav">
-    <div><img src="images/test1.jpg"></div>
-    <div><img src="images/test1.jpg"></div>
-    <div><img src="images/test1.jpg"></div>
-    
-  </div>
-<div class="slider slider-for">
-    <div>
-<p>Personalised attention, responsible behaviour & utmost honesty from a travel agent is something of a myth like most of us might have experienced. Well, our experience with visafax, right from the very first interaction was very professional and supporting!</p>
-      <h3>Robert Kart  |  Citizen, Canada</h3></div>
-     <div>
-<p>test content 2</p>
-      <h3>James Bond  |  Citizen, USA</h3></div>
+    <div class="container">
+        <h2>Listen to others</h2>
+        <div class="bg-color">
 
-        <div>
-<p>test 3</p>
-      <h3>Peter Scott  |  Citizen, India</h3></div>
-  </div>
- 
+            <div class="slider slider-nav">
+                <div><img src="images/test1.jpg"></div>
+                <div><img src="images/test1.jpg"></div>
+                <div><img src="images/test1.jpg"></div>
+
+            </div>
+            <div class="slider slider-for">
+                <div>
+                    <p>Personalised attention, responsible behaviour & utmost honesty from a travel agent is something of a myth like most of us might have experienced. Well, our experience with visafax, right from the very first interaction was very professional and supporting!</p>
+                    <h3>Robert Kart  |  Citizen, Canada</h3>
+                </div>
+                <div>
+                    <p>test content 2</p>
+                    <h3>James Bond  |  Citizen, USA</h3>
+                </div>
+                <div>
+                    <p>test 3</p>
+                    <h3>Peter Scott  |  Citizen, India</h3>
+                </div>
+            </div>
 
 
-   </div>
-  </div>
+
+        </div>
+    </div>
 </section>
 @endsection
