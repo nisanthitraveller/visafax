@@ -1,5 +1,3 @@
-
-
 /**
  * @module       RD Navbar
  * @description  Enables RD Navbar Plugin
@@ -17,6 +15,7 @@
             });
         });
     }
+    initSlider();
 })(jQuery);
 
 
@@ -253,21 +252,24 @@ $(document).ready(function () {
  // backdrop: 'static',
  // keyboard: false
  })*/
-$('.slider-for').slick({
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    fade: true,
-    asNavFor: '.slider-nav'
-});
-$('.slider-nav').slick({
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    asNavFor: '.slider-for',
-    dots: true,
-    centerMode: true,
-    focusOnSelect: true
-});
+function initSlider() {
+    console.log('Slider loaded');
+    $('.slider-for').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.slider-nav'
+    });
+    $('.slider-nav').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        asNavFor: '.slider-for',
+        dots: true,
+        centerMode: true,
+        focusOnSelect: true
+    });
+}
 /*var placeholder = "Select a State";
 
  $( ".select2-single, .select2-multiple" ).select2( {
@@ -357,9 +359,11 @@ $(document).on('change', ':file', function () {
     input.trigger('fileselect', [numFiles, label]);
 });
 
-$("#multipleupload").uploadFile({
-    url: "upload.php",
-    multiple: true,
-    dragDrop: true,
-    fileName: "Choose File"
-});
+/*
+ * $("#multipleupload").uploadFile({
+ url: "upload.php",
+ multiple: true,
+ dragDrop: true,
+ fileName: "Choose File"
+ });
+ */

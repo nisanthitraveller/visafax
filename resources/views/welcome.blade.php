@@ -294,4 +294,33 @@
     </div>
 
 </section>
+<section class="tstmnls">
+  <div class="container">
+     <h2>Listen to others</h2>
+      <div class="bg-color">
+     
+       <div class="slider slider-nav">
+    <div><img src="images/test1.jpg"></div>
+    <div><img src="images/test1.jpg"></div>
+    <div><img src="images/test1.jpg"></div>
+    
+  </div>
+<div class="slider slider-for">
+    <div>
+<p>Personalised attention, responsible behaviour & utmost honesty from a travel agent is something of a myth like most of us might have experienced. Well, our experience with visafax, right from the very first interaction was very professional and supporting!</p>
+      <h3>Robert Kart  |  Citizen, Canada</h3></div>
+     <div>
+<p>test content 2</p>
+      <h3>James Bond  |  Citizen, USA</h3></div>
+
+        <div>
+<p>test 3</p>
+      <h3>Peter Scott  |  Citizen, India</h3></div>
+  </div>
+ 
+
+
+   </div>
+  </div>
+</section>
 @endsection
