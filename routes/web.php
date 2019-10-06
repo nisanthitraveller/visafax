@@ -18,6 +18,9 @@ Route::get('/home', 'HomeController@index')
 Route::get('/backend', 'HomeController@bologin');
 Route::get('/googledoc', 'GoogleController@googledoc');
 
+Route::get('/autocomplete', 'HomeController@autocomplete')->name('autocomplete');
+Route::any('/visa/{visaUrl}', 'HomeController@visa');
+
 // Static URLs
 Route::view('/faq', 'faq');
 Route::view('/contact', 'contact');

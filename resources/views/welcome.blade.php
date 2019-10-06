@@ -19,8 +19,8 @@
     <div class="container">
         <div class="col-12">
             <div class="button_box2"> <form class="form-wrapper-2 cf">
-                <form autocomplete="off">
-                    <input type="text" placeholder="Where you want to go?" required>
+                <form autocomplete="off" id="searchForm" method="post">
+                    <input type="text" class="typeahead" placeholder="Where you want to go?" required>
                     <button type="submit"><i class="fa fa-angle-right"></i></button> 
                 </form> 
             </div>
@@ -38,16 +38,16 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs for-cntry" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#asia">Asia</a>
+                <a class="nav-link active" data-toggle="tab" href="#asia">Asia Pacific</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#africa">Africa</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#australia">Australia</a>
+                <a class="nav-link" data-toggle="tab" href="#america1">North America</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#america">America</a>
+                <a class="nav-link" data-toggle="tab" href="#america2">South America</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#europe">Europe</a>
@@ -58,140 +58,24 @@
         <div class="tab-content">
             <div id="asia" class=" tab-pane active">
                 <div class="row">
+                    <?php $count = 1; ?>
+                    @foreach($countries['Asia-Pacific'] as $country1)
+                    @if($count <= 12)
                     <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
                         <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt1.png" alt="">
+                            <a class="media-left" href="{{ url('/') }}/visa/{{strtolower($country1['countryName'])}}">
+                                <img class="media-object" src="https://www.countryflags.io/{{strtolower($country1['countryCode'])}}/shiny/64.png" alt="{{$country1['countryName']}}">
 
                                 <div class="media-body">
-                                    <h4 class="media-heading">Albania</h4>
-                                    <p>From ₹ 3,900</p>
+                                    <h4 class="media-heading">{{$country1['countryName']}}</h4>
+                                    <p>From ₹ {{number_format($country1['visa_cost'])}}</p>
                                 </div></a>
                         </div>
                     </div>
-
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt2.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">Iceland</h4>
-                                    <p>From ₹ 3,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt3.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">Italy</h4>
-                                    <p>From ₹ 3,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt4.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">North Macedonia</h4>
-                                    <p>From ₹ 3,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt5.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">San Marino</h4>
-                                    <p>From ₹ 3,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt6.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">Sweden</h4>
-                                    <p>From ₹ 3,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt7.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">Turkey</h4>
-                                    <p>From ₹ 3,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt8.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">Ukraine</h4>
-                                    <p>From ₹ 3,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt9.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">United Kingdom</h4>
-                                    <p>From ₹ 9000</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt10.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">Scotland</h4>
-                                    <p>From ₹ 2,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt11.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">Luxembourg</h4>
-                                    <p>From ₹ 3,100</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-
+                    
+                    <?php $count++; ?>
+                    @endif
+                    @endforeach
                 </div>
 
             </div>
@@ -201,284 +85,104 @@
             <div id="africa" class="container tab-pane fade"><br>
 
                 <div class="row">
+                    <?php $count2 = 1; ?>
+                    @foreach($countries['Africa'] as $country2)
+                    @if($count2 <= 12)
                     <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
                         <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt1.png" alt="">
+                            <a class="media-left" href="{{ url('/') }}/visa/{{strtolower($country2['countryName'])}}">
+                                <img class="media-object" src="https://www.countryflags.io/{{strtolower($country2['countryCode'])}}/shiny/64.png" alt="{{$country1['countryName']}}">
 
                                 <div class="media-body">
-                                    <h4 class="media-heading">Albania</h4>
-                                    <p>From ₹ 3,900</p>
+                                    <h4 class="media-heading">{{$country2['countryName']}}</h4>
+                                    <p>From ₹ {{number_format($country2['visa_cost'])}}</p>
                                 </div></a>
                         </div>
                     </div>
-
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt2.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">Iceland</h4>
-                                    <p>From ₹ 3,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt3.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">Italy</h4>
-                                    <p>From ₹ 3,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt4.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">North Macedonia</h4>
-                                    <p>From ₹ 3,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt5.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">San Marino</h4>
-                                    <p>From ₹ 3,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt6.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">Sweden</h4>
-                                    <p>From ₹ 3,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt7.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">Turkey</h4>
-                                    <p>From ₹ 3,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt8.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">Ukraine</h4>
-                                    <p>From ₹ 3,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt9.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">United Kingdom</h4>
-                                    <p>From ₹ 9000</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt10.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">Scotland</h4>
-                                    <p>From ₹ 2,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt11.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">Luxembourg</h4>
-                                    <p>From ₹ 3,100</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-
+                    
+                    <?php $count2++; ?>
+                    @endif
+                    @endforeach
                 </div>
 
 
             </div>
-            <div id="australia" class="container tab-pane fade"><br>
+            <div id="america1" class="container tab-pane fade"><br>
 
                 <div class="row">
+                    <?php $count3 = 1; ?>
+                    @foreach($countries['North-America'] as $country3)
+                    @if($count3 <= 12)
                     <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
                         <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt1.png" alt="">
+                            <a class="media-left" href="{{ url('/') }}/visa/{{strtolower($country3['countryName'])}}">
+                                <img class="media-object" src="https://www.countryflags.io/{{strtolower($country3['countryCode'])}}/shiny/64.png" alt="{{$country1['countryName']}}">
 
                                 <div class="media-body">
-                                    <h4 class="media-heading">Albania</h4>
-                                    <p>From ₹ 3,900</p>
+                                    <h4 class="media-heading">{{$country3['countryName']}}</h4>
+                                    <p>From ₹ {{number_format($country3['visa_cost'])}}</p>
                                 </div></a>
                         </div>
                     </div>
-
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt2.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">Iceland</h4>
-                                    <p>From ₹ 3,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt3.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">Italy</h4>
-                                    <p>From ₹ 3,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt4.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">North Macedonia</h4>
-                                    <p>From ₹ 3,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt5.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">San Marino</h4>
-                                    <p>From ₹ 3,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt6.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">Sweden</h4>
-                                    <p>From ₹ 3,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt7.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">Turkey</h4>
-                                    <p>From ₹ 3,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt8.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">Ukraine</h4>
-                                    <p>From ₹ 3,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt9.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">United Kingdom</h4>
-                                    <p>From ₹ 9000</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt10.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">Scotland</h4>
-                                    <p>From ₹ 2,900</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
-                        <div class="media">
-                            <a class="media-left" href="#">
-                                <img class="media-object" src="images/cnt11.png" alt="">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">Luxembourg</h4>
-                                    <p>From ₹ 3,100</p>
-                                </div></a>
-                        </div>
-                    </div>
-
-
+                    
+                    <?php $count3++; ?>
+                    @endif
+                    @endforeach
                 </div>
 
+
             </div>
+            <div id="america2" class="container tab-pane fade"><br>
+
+                <div class="row">
+                    <?php $count3 = 1; ?>
+                    @foreach($countries['South-America'] as $country3)
+                    @if($count3 <= 12)
+                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
+                        <div class="media">
+                            <a class="media-left" href="{{ url('/') }}/visa/{{strtolower($country3['countryName'])}}">
+                                <img class="media-object" src="https://www.countryflags.io/{{strtolower($country3['countryCode'])}}/shiny/64.png" alt="{{$country1['countryName']}}">
+
+                                <div class="media-body">
+                                    <h4 class="media-heading">{{$country3['countryName']}}</h4>
+                                    <p>From ₹ {{number_format($country3['visa_cost'])}}</p>
+                                </div></a>
+                        </div>
+                    </div>
+                    
+                    <?php $count3++; ?>
+                    @endif
+                    @endforeach
+                </div>
+
+
+            </div>
+            <div id="europe" class="container tab-pane fade"><br>
+
+                <div class="row">
+                    <?php $count3 = 1; ?>
+                    @foreach($countries['Europe'] as $country3)
+                    @if($count3 <= 12)
+                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch">
+                        <div class="media">
+                            <a class="media-left" href="{{ url('/') }}/visa/{{strtolower($country3['countryName'])}}">
+                                <img class="media-object" src="https://www.countryflags.io/{{strtolower($country3['countryCode'])}}/shiny/64.png" alt="{{$country1['countryName']}}">
+
+                                <div class="media-body">
+                                    <h4 class="media-heading">{{$country3['countryName']}}</h4>
+                                    <p>From ₹ {{number_format($country3['visa_cost'])}}</p>
+                                </div></a>
+                        </div>
+                    </div>
+                    
+                    <?php $count3++; ?>
+                    @endif
+                    @endforeach
+                </div>
+
+
+            </div>
+
         </div>
 
         <a href="#" class="ld-more">Loading More...</a>
@@ -590,36 +294,4 @@
     </div>
 
 </section>
-
-<!--
-<section class="tstmnls">
-    <div class="container">
-        <h2>Listen to others</h2>
-        <div class="bg-color">
-
-            <div class="slider slider-nav">
-                <div><img src="images/test1.jpg"></div>
-                <div><img src="images/test1.jpg"></div>
-                <div><img src="images/test1.jpg"></div>
-
-            </div>
-            <div class="slider slider-for">
-                <div>
-                    <p>Personalised attention, responsible behaviour & utmost honesty from a travel agent is something of a myth like most of us might have experienced. Well, our experience with visafax, right from the very first interaction was very professional and supporting!</p>
-                    <h3>Robert Kart  |  Citizen, Canada</h3></div>
-                <div>
-                    <p>Personalised attention, responsible behaviour & utmost honesty from a travel agent is something of a myth like most of us might have experienced. Well, our experience with visafax, right from the very first interaction was very professional and supporting!</p>
-                    <h3>Robert Kart  |  Citizen, Canada</h3></div>
-
-                <div>
-                    <p>Personalised attention, responsible behaviour & utmost honesty from a travel agent is something of a myth like most of us might have experienced. Well, our experience with visafax, right from the very first interaction was very professional and supporting!</p>
-                    <h3>Robert Kart  |  Citizen, Canada</h3></div>
-            </div>
-
-
-
-        </div>
-    </div>
-</section>
--->
 @endsection
