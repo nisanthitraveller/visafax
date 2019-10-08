@@ -17,11 +17,18 @@ class VisaController extends Controller
         $this->middleware('auth');
     }
     
+    public function payment($bookingId)
+    {
+        return view('payment')->with(['bookingId' => $bookingId]);
+    }
+    
     public function step1($bookingId)
     {
-        $bookingId = str_replace('-', ' ', $bookingId);
-        $country = Country::where("countryName", $visaUrl)
-                ->first()->toArray();
-        return view('applyvisa')->with(['country' => $country]);
+        return view('step1')->with(['bookingId' => $bookingId]);
+    }
+    
+    public function step2($bookingId)
+    {
+        return view('step1')->with(['bookingId' => $bookingId]);
     }
 }
