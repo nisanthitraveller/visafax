@@ -59,5 +59,6 @@
             });
         </script>
         <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+        @yield('scripts')
     </body>
 </html>
