@@ -29,6 +29,6 @@ class VisaController extends Controller
     
     public function step2($bookingId)
     {
-        return view('step1')->with(['bookingId' => $bookingId]);
+        return view('step2')->with(['bookingId' => $bookingId]);
     }
 }
