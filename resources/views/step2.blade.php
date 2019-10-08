@@ -90,6 +90,8 @@ Visa Payement
         </div>
     </div>
 </div>
+@endsection
+@section('scripts')
 <script type="text/javascript">
     $(window).on('load', function () {
         $('#logind').modal('show');
