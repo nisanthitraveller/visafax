@@ -90,4 +90,35 @@ Visa Payement
         </div>
     </div>
 </section>
+<div class="modal fade popus" id="connect-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <img src="{{url('/')}}/images/modal-img.png">
+                <h3>Your travel documents</h3>
+                <p>We need your travel documents like flight tickets, hotel vouchers & passport copies to prepare your visa application. Can you share them now?</p>
+                <div class="col-sm-12 logind-links">
+                    <a href="#">No, not now</a>
+                    <a href="#">Yes, I can</a>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(window).on('load', function () {
+        $('#connect-modal').modal('show');
+    });
+</script>
 @endsection
