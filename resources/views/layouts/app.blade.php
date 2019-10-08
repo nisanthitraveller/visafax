@@ -18,7 +18,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-css/1.4.6/select2-bootstrap.min.css">
         @include('ga')
         
-        <script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
         <script src="{{ asset('js/google.js') }}" defer></script>
     </head>
     <body>
@@ -59,5 +58,6 @@
                 }
             });
         </script>
+        <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
     </body>
 </html>
