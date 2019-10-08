@@ -1,5 +1,6 @@
 // Render Google Sign-in button
 function renderButton() {
+    console.log('Render button');
     gapi.signin2.render('gSignIn', {
         'scope': 'profile email',
         'width': 240,
