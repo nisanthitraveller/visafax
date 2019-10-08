@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Google_Client;
+use App\User;
 
 class GoogleController extends Controller {
 
@@ -281,6 +282,52 @@ class GoogleController extends Controller {
 
         $response = $service->documents->batchUpdate($documentId, $batchUpdateRequest);
         dd($response);*/
+    }
+    
+    public function tokensignin(Request $input) {
+        $homeDirectory = env('HOMEDRIVE');
+        $client = new Google_Client();  // Specify the CLIENT_ID of the app that accesses the backend
+        $client->setAuthConfig($homeDirectory . 'client_secret.json');
+        $payload = $client->verifyIdToken($input['idtoken']);
+        $return = [];
+        if ($payload) {
+            $return['status'] = true;
+            $userId = $payload['sub'];
+            
+            $finduser = User::where('provider_id', $userId)->first();
+            
+            if ($finduser) {
+                $return['redirect'] = true;
+                $auth = auth()->loginUsingId($finduser->id, true);
+            } else {
+                $return['redirect'] = false;
+                // Insert user data
+                $newUser = User::create([
+                    'name' => $payload['name'],
+                    'email' => $payload['email'],
+                    'provider' => 'google',
+                    'provider_id' => $payload['sub'],
+                    'password' => \Illuminate\Support\Facades\Hash::make('123456'),
+                    'avatar' => $payload['picture'],
+                ]);
+                $auth = auth()->login($newUser, true);
+                
+            }
+            
+        } else {
+            $return['status'] = false;
+        }
+        
+        return json_encode($return);
+    }
+    
+    public function updatemobile(Request $request)
+    {
+        $user = auth()->user();
+        $user->phone = $request['mobile'];
+        $user->save();
+        
+        return json_encode(['success' => true]);
     }
 
 }

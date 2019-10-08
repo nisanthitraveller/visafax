@@ -53,9 +53,9 @@ class HomeController extends Controller
     public function visa($visaUrl)
     {
         $visaUrl = str_replace('-', ' ', $visaUrl);
-        $data = Country::where("countryName", $visaUrl)
+        $country = Country::where("countryName", $visaUrl)
                 ->first()->toArray();
-        dd($data);
+        return view('visa')->with(['country' => $country]);
     }
     
     public function index()

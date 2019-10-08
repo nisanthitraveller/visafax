@@ -19,6 +19,13 @@
     $('.ld-more').click(function () {
         $('.not-visible, .ld-more').toggle();
     });
+    $('.input-group').on('click', '.button-plus', function (e) {
+        incrementValue(e);
+    });
+
+    $('.input-group').on('click', '.button-minus', function (e) {
+        decrementValue(e);
+    });
 })(jQuery);
 
 
@@ -361,6 +368,30 @@ $(document).on('change', ':file', function () {
             label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
     input.trigger('fileselect', [numFiles, label]);
 });
+function incrementValue(e) {
+    e.preventDefault();
+    var fieldName = $(e.target).attr('data-field');
+    var parent = $(e.target).closest('div');
+    var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+    if (!isNaN(currentVal)) {
+        parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
+    } else {
+        parent.find('input[name=' + fieldName + ']').val(1);
+    }
+}
+
+function decrementValue(e) {
+    e.preventDefault();
+    var fieldName = $(e.target).attr('data-field');
+    var parent = $(e.target).closest('div');
+    var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+    if (!isNaN(currentVal) && currentVal > 1) {
+        parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
+    } else {
+        parent.find('input[name=' + fieldName + ']').val(1);
+    }
+}
 
 /*
  * $("#multipleupload").uploadFile({

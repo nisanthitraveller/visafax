@@ -14,13 +14,13 @@
                 @else
                 <div class="dropdown">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                        <img src="images/cnt1.png">
+                        <img src="{{ Auth::user()->avatar }}">
                         <span class="user-title">{{ Auth::user()->name }}</span>
                     </button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#">Profile</a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
+                           onclick="signOut(); event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>

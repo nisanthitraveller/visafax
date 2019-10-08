@@ -19,7 +19,11 @@ Route::get('/backend', 'HomeController@bologin');
 Route::get('/googledoc', 'GoogleController@googledoc');
 
 Route::get('/autocomplete', 'HomeController@autocomplete')->name('autocomplete');
+
 Route::any('/visa/{visaUrl}', 'HomeController@visa');
+Route::any('/applyvisa/payment/{bookingId}', 'VisaController@payment');
+Route::any('/applyvisa/step1/{bookingId}', 'VisaController@step1');
+Route::any('/applyvisa/step2/{bookingId}', 'VisaController@step2');
 
 // Static URLs
 Route::view('/faq', 'faq');
@@ -27,3 +31,7 @@ Route::view('/contact', 'contact');
 Route::view('/about', 'about');
 Route::view('/privacy', 'privacy');
 Route::view('/terms', 'terms');
+
+Route::post('/userdata', 'HomeController@userdata')->name('userdata');
+Route::post('/tokensignin', 'GoogleController@tokensignin')->name('tokensignin');
+Route::get('/updatemobile', 'GoogleController@updatemobile')->name('updatemobile');

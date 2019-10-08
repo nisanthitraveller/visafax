@@ -7,7 +7,8 @@
                       minimum-scale=1.0, maximum-scale=1.0, 
                       user-scalable=no, shrink-to-fit=no">
         <meta name="csrf-token" content="{{ csrf_token()}}">
-        <title>{{ config('app.name', 'VisaBadge') }}</title>
+        <meta name="google-signin-client_id" content="720640930504-5iie69aclsvbithnfr0hakfe0tuanptn.apps.googleusercontent.com">
+        <title>{{ config('app.name', 'VisaBadge') }} - @yield('title')</title>
 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/all.css') }}" rel="stylesheet">
@@ -17,7 +18,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-css/1.4.6/select2-bootstrap.min.css">
         @include('ga')
         
-        
+        <script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
+        <script src="{{ asset('js/google.js') }}" defer></script>
     </head>
     <body>
         <div id="app">
