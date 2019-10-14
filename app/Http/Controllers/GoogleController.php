@@ -184,11 +184,11 @@ class GoogleController extends Controller {
                 foreach ($results as $result) {
                     if ($result instanceof \Google_Service_Exception) {
                         // Handle error
-                        echo '<br />';
-                        echo \GuzzleHttp\json_encode($result);
+                        //echo '<br />';
+                        //echo \GuzzleHttp\json_encode($result);
                     } else {
-                        echo '<br />';
-                        echo "Permission ID: %s\n", $result->id;
+                        //echo '<br />';
+                        //echo "Permission ID: %s\n", $result->id;
                     }
                 }
             } finally {
@@ -252,7 +252,7 @@ class GoogleController extends Controller {
                 $input['userId'] = $finduser->id;
                 $auth = auth()->loginUsingId($finduser->id, true);
                 $parentId = $visaObj->createVisa($input);
-                //$this->googledoc($parentId);
+                $this->googledoc($parentId);
                 
                 
             } else {
@@ -291,6 +291,7 @@ class GoogleController extends Controller {
         $input['userId'] = $user->id;
         $parentId = $visaObj->createVisa($input);
         
+        $this->googledoc($parentId);
         
         $return['status'] = false;
         $return['parentId'] = $parentId;
@@ -306,7 +307,7 @@ class GoogleController extends Controller {
         $input['userId'] = $user->id;
         $parentId = $visaObj->createVisa($input);
         
-        //$this->googledoc($parentId);
+        $this->googledoc($parentId);
         
         $return['status'] = true;
         $return['parentId'] = $parentId;

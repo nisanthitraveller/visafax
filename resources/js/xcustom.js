@@ -413,6 +413,7 @@ function decrementValue(e) {
 }
 
 function createVisa() {
+    openModal();
     var form = $('#visaForm')[0];
     var fd = new FormData(form);
 
@@ -421,12 +422,14 @@ function createVisa() {
     var token = $('meta[name=csrf-token]').attr('content');
 
     xhr.onload = function () {
+        
         var response = xhr.response;
         console.log(response.status);
         console.log(response.redirect);
         if (response.status == false) {
             console.log('Invalid Token');
         } else {
+            closeModal();
             location.href = '/applyvisa/payment/' + response.parentId;
             console.log('redirect true');
         }

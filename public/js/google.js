@@ -3,20 +3,19 @@
 function renderButton() {
     console.log('Render button');
     gapi.signin2.render('my-signin2', {
-    'scope': 'profile email https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.appfolder',
-            'width': 260,
-            'height': 50,
-            'longtitle': true,
-            'theme': 'light',
-            'onsuccess': onSuccess,
-            'onfailure': onFailure
-    }
-    );
+        'scope': 'profile email https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.appfolder',
+        'width': 260,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'light',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+    });
 }
 
 // Sign-in failure callback
 function onFailure(error) {
-    alert(error);
+    console.log(error);
 }
 
 /*function onSuccess(googleUser) {
@@ -31,9 +30,7 @@ function onSuccess(googleUser) {
     var profile = googleUser.getBasicProfile();
     $('#email').val(profile.getEmail());
     if(profile.getId()) {
-        $('.manual-login').remove();
-        $('.btnwhite').remove();
-        $('.please-wait').show();
+        openModal();
     }
     
     var form = $('#visaForm')[0];
@@ -51,6 +48,7 @@ function onSuccess(googleUser) {
         if(response.status == false) {
             console.log('Invalid Token');
         } else {
+            closeModal();
             if(response.redirect == true) {
                 location.href = '/applyvisa/payment/' + response.parentId;
                 console.log('redirect true');
@@ -86,6 +84,7 @@ function saveUserData(userData){
 }
 function updateMobile()
 {
+    openModal();
     var form = $('#visaForm')[0];
     var data = new FormData(form);
     if($('#phone1').val() == '') {
@@ -98,6 +97,7 @@ function updateMobile()
             data: data,
             dataType: 'json',
             success: function (response) {
+                closeModal();
                 console.log(response);
                 location.href = '/applyvisa/payment/' + response.parentId;
             }
@@ -114,4 +114,14 @@ function urlencodeFormData(fd){
         }
     }
     return s;
+}
+
+function openModal() {
+    document.getElementById('loader-modal').style.display = 'block';
+    document.getElementById('fade').style.display = 'block';
+}
+
+function closeModal() {
+    document.getElementById('loader-modal').style.display = 'none';
+    document.getElementById('fade').style.display = 'none';
 }

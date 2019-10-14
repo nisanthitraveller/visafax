@@ -129,4 +129,8 @@ Visa {{$country['countryName']}}
         </div>
     </div>
 </div>
+<div id="fade"></div>
+<div id="loader-modal">
+    <img src="{{url('/')}}/images/loading.gif">
+</div>
 @endsection
