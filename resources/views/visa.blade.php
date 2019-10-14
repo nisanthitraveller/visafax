@@ -35,31 +35,31 @@ Visa {{$country['countryName']}}
 
             <h2>Lets us know your details</h2>
 
-            <form class="your-dts">
+            <form class="your-dts" id="visaForm">
 
                 <label>Country of residence</label>
-                <input type="text" name="residenceCountry" placeholder="India" readonly>
+                <input type="text" name="residenceCountry" value="India" placeholder="India" readonly>
                 <br><br><br>
                 <label>What type of visa you want?</label>
 
                 <div class="col-12">
                     <div class="row">
                         <div class="radio">
-                            <input id="radio-1" name="radio" type="radio" checked>
+                            <input id="radio-1" name="visaType" type="radio" value="Business">
                             <label for="radio-1" class="radio-label"><span>Business</span></label>
                         </div>
 
                         <div class="radio">
-                            <input id="radio-2" name="radio" type="radio">
+                            <input id="radio-2" name="visaType" type="radio" value="Tourist" checked>
                             <label  for="radio-2" class="radio-label"><span>Tourist</span></label>
                         </div>
 
                         <div class="radio">
-                            <input id="radio-3" name="radio" type="radio">
+                            <input id="radio-3" name="visaType" type="radio" value="Employment">
                             <label for="radio-3" class="radio-label"><span>Employment</span></label>
                         </div>
                         <div class="radio">
-                            <input id="radio-4" name="radio" type="radio">
+                            <input id="radio-4" name="visaType" type="radio" value="Student">
                             <label for="radio-4" class="radio-label"><span>Student</span></label>
                         </div>
                     </div>
@@ -81,12 +81,16 @@ Visa {{$country['countryName']}}
 
                     </div>
                 </div>
-
+                <input type="hidden" value="{{$country['id']}}" name="vistingCountry">
             </form>
 
             <div class="col-sm-12 text-center">
-                <a href="javascritp:void(0)" onclick="$('#connect-modal').modal('show');" class="cntue">Continue</a>
-                <a href="javascript:void(0);" onclick="signOut();">Sign out</a>
+                @guest
+                    <a href="javascript:void(0)" onclick="$('#connect-modal').modal('show');" class="cntue">Continue</a>
+                @else
+                <a href="javascript:void(0)" id="create-visa" class="cntue">Continue</a>
+                @endguest
+                <a onclick="signOut();">Sign Out</a>
             </div>
 
         </div>
@@ -109,7 +113,7 @@ Visa {{$country['countryName']}}
                 <h3>Please login to contact you back</h3>
                 <p>We’ll get back to you with the verification status and the further proceedures. So, please update the contact details and wait</p>
                 <div class="col-sm-12 connect-links">
-                    <div id="gSignIn"></div>
+                    <div class="g-signin2" id="my-signin2" data-width="260" data-height="50" data-theme="light" data-longtitle="true" data-onsuccess="onSignIn"></div>
 <!--                    <a href="#"><img src="{{url('/')}}/images/facebook.svg">Connect with Google</a>-->
                 </div>
                 <div class="form-field-cover g-login" style="display: none; margin-top: 30px;">

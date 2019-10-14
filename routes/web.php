@@ -12,7 +12,8 @@
 */
 
 Auth::routes();
-Route::get('/', 'HomeController@welcome')  ;
+Route::get('/', 'HomeController@welcome');
+Route::get('/logout', 'HomeController@logout')->name('logout');
 Route::get('/home', 'HomeController@index')    
     ->name('home');
 Route::get('/backend', 'HomeController@bologin');
@@ -24,6 +25,11 @@ Route::any('/visa/{visaUrl}', 'HomeController@visa');
 Route::any('/applyvisa/payment/{bookingId}', 'VisaController@payment');
 Route::any('/applyvisa/step1/{bookingId}', 'VisaController@step1');
 Route::any('/applyvisa/step2/{bookingId}', 'VisaController@step2');
+Route::any('/applyvisa/step3/{bookingId}', 'VisaController@step3');
+Route::any('/createvisa', 'GoogleController@createvisa');
+Route::any('/testvisa', 'VisaController@testvisa');
+Route::any('/payusubmit', 'VisaController@payusubmit');
+Route::any('/dashboard', 'VisaController@dashboard');
 
 // Static URLs
 Route::view('/faq', 'faq');
@@ -33,5 +39,5 @@ Route::view('/privacy', 'privacy');
 Route::view('/terms', 'terms');
 
 Route::post('/userdata', 'HomeController@userdata')->name('userdata');
-Route::post('/tokensignin', 'GoogleController@tokensignin')->name('tokensignin');
+Route::any('/tokensignin', 'GoogleController@tokensignin')->name('tokensignin');
 Route::get('/updatemobile', 'GoogleController@updatemobile')->name('updatemobile');

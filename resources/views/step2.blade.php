@@ -19,38 +19,72 @@ Visa Payement
         <div class="row">
 
             <h2>Almost done, now upload your passport</h2>
+            
+            <form method="POST" action="{{url('/')}}/applyvisa/step3/{{$bookingId}}" enctype="multipart/form-data" class="your-dts" id="formDetails">
+            @csrf
+            <div class="col-12 qstns">
+                <div class="row align-items-center q-row">
+
+                    <div class="col-8 qs-in">Please share your offer letter of the company where you are currently employed</div>
+                    <div class="col-8 conf-dy-htl">
+                        <div class="upload-btn-wrapper">
+                            <div class="form-group">
+                                <label for="file" class="sr-only">File</label>
+                                <div class="input-group">
+
+                                    <span class="input-group-btn">
+                                        <div class="btn btn-default  custom-file-uploader">
+                                            <input type="file" name="offer_letter" onchange="this.form.filename.value = this.files.length ? this.files[0].name : ''" />
+                                            <span>Choose File</span>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center q-row">
+
+                    <div class="col-8 qs-in"><img src="{{url('/')}}/images/qs2.png">Please share your current residential address</div>
+                    <div class="col-8 conf-dy-htl">
+                        <div class="upload-btn-wrapper">
+                            <div class="form-group">
+                                <label for="file" class="sr-only">File</label>
+                                <div class="input-group">
+
+                                    <span class="input-group-btn">
+                                        <div class="btn btn-default  custom-file-uploader">
+                                            <input type="file" name="address_proof" onchange="this.form.filename.value = this.files.length ? this.files[0].name : ''" />
+                                            <span>Choose File</span>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-sm-12"> <h5>Upload first and last pages of everyones passport</h5></div>
-
+            @foreach($visaDetails as $key => $visaDetail)
             <div class="rows-in">
-                <h4>Traveller 01</h4>
+                <h4>Traveller 0{{$key + 1}}</h4>
                 <div class="row pl-4 pr-4">
-                    <div class="col-md-6 col-sm-6 col-12"><span class="fl-text">First Page</span></div>
-                    <div class="col-md-6 col-sm-6 col-12 text-right chse-2"><span class="fl-text">Last Page</span></div>
+                    <div class="col-md-6 col-sm-6 col-12">
+                        <span class="fl-text">First Page</span>
+                        <input type="file" name="firstpage[{{$key}}]" onchange="this.form.filename.value = this.files.length ? this.files[0].name : ''" />
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-12 text-right chse-2">
+                        <span class="fl-text">Last Page</span>
+                        <input type="file" name="lastpage[{{$key}}]" onchange="this.form.filename.value = this.files.length ? this.files[0].name : ''" />
+                    </div>
                 </div>
             </div>
-
-            <div class="rows-in">
-                <h4>Traveller 02</h4>
-                <div class="row pl-4 pr-4">
-                    <div class="col-md-6 col-sm-6 col-12"><span class="fl-text">First Page</span></div>
-                    <div class="col-md-6 col-sm-6 col-12 text-right chse-2"><span class="fl-text">Last Page</span></div>
-                </div>
-            </div>
-
-
-            <div class="rows-in">
-                <h4>Traveller 03</h4>
-                <div class="row pl-4 pr-4">
-                    <div class="col-md-6 col-sm-6 col-12"><span class="fl-text">First Page</span></div>
-                    <div class="col-md-6 col-sm-6 col-12 text-right chse-2"><span class="fl-text">Last Page</span></div>
-                </div>
-            </div>
-
-
+            @endforeach
+            </form>
             <div class="rows-in no-border ">
 
                 <div class="row ">
-                    <div class="col-md-6 col-sm-6 col-12 add-more"><a href="#"><i class="fa fa-plus"></i> Add More People</a></div>
+                    <!--<div class="col-md-6 col-sm-6 col-12 add-more"><a href="#"><i class="fa fa-plus"></i> Add More People</a></div>-->
 
                 </div>
             </div>
@@ -64,37 +98,4 @@ Visa Payement
         </div>
     </div>
 </section>
-<div class="modal fade popus" id="logind" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                <img src="{{url('/')}}/images/logind.png">
-                <h3>Completed your 1st stage, successfully!</h3>
-                <p>Now wait 3 hours to get back to you, after the verification of your application and the given details</p>
-                <div class="col-sm-12 logind-links">
-                    <a href="#">Go to dashboard</a>
-                    <a href="#">Done</a>
-                </div>
-            </div>
-
-
-
-        </div>
-    </div>
-</div>
-@endsection
-@section('scripts')
-<script type="text/javascript">
-    $(window).on('load', function () {
-        $('#logind').modal('show');
-    });
-</script>
 @endsection

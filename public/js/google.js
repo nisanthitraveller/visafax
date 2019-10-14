@@ -1,49 +1,33 @@
 // Render Google Sign-in button
+
 function renderButton() {
     console.log('Render button');
-    gapi.signin2.render('gSignIn', {
-        'scope': 'profile email',
-        'width': 240,
-        'height': 50,
-        'longtitle': true,
-        'theme': 'dark',
-        'onsuccess': onSuccess,
-        'onfailure': onFailure
-    });
+    gapi.signin2.render('my-signin2', {
+    'scope': 'profile email https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.appfolder',
+            'width': 260,
+            'height': 50,
+            'longtitle': true,
+            'theme': 'light',
+            'onsuccess': onSuccess,
+            'onfailure': onFailure
+    }
+    );
 }
-
-// Sign-in success callback
-/*function onSuccess(googleUser) {
-    // Get the Google profile data (basic)
-    //var profile = googleUser.getBasicProfile();
-    
-    // Retrieve the Google account data
-    gapi.client.load('oauth2', 'v2', function () {
-        var request = gapi.client.oauth2.userinfo.get({
-            'userId': 'me'
-        });
-        request.execute(function (resp) {
-            // Display the user details
-            var profileHTML = '<h3>Welcome '+resp.given_name+'! <a href="javascript:void(0);" onclick="signOut();">Sign out</a></h3>';
-            profileHTML += '<img src="'+resp.picture+'"/><p><b>Google ID: </b>'+resp.id+'</p><p><b>Name: </b>'+resp.name+'</p><p><b>Email: </b>'+resp.email+'</p><p><b>Gender: </b>'+resp.gender+'</p><p><b>Locale: </b>'+resp.locale+'</p><p><b>Google Profile:</b> <a target="_blank" href="'+resp.link+'">click to view profile</a></p>';
-            document.getElementsByClassName("userContent")[0].innerHTML = profileHTML;
-            
-            document.getElementById("gSignIn").style.display = "none";
-            document.getElementsByClassName("userContent")[0].style.display = "block";
-            
-            saveUserData(resp)
-        });
-    });
-}*/
 
 // Sign-in failure callback
 function onFailure(error) {
     alert(error);
 }
 
+/*function onSuccess(googleUser) {
+    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+}*/
+
 
 function onSuccess(googleUser) {
+    console.log('G sigin');
     var id_token = googleUser.getAuthResponse().id_token;
+    var accsTkn = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token;  
     var profile = googleUser.getBasicProfile();
     $('#email').val(profile.getEmail());
     if(profile.getId()) {
@@ -51,6 +35,10 @@ function onSuccess(googleUser) {
         $('.btnwhite').remove();
         $('.please-wait').show();
     }
+    
+    var form = $('#visaForm')[0];
+    var data = new FormData(form);
+    
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
     xhr.open('POST', '/tokensignin');
@@ -64,6 +52,7 @@ function onSuccess(googleUser) {
             console.log('Invalid Token');
         } else {
             if(response.redirect == true) {
+                location.href = '/applyvisa/payment/' + response.parentId;
                 console.log('redirect true');
             } else {
                 $('.please-wait').hide();
@@ -72,7 +61,8 @@ function onSuccess(googleUser) {
             }
         }
     };
-    xhr.send('idtoken=' + id_token);
+    var formParams = urlencodeFormData(data);
+    xhr.send('idtoken=' + id_token + '&accsTkn=' + accsTkn + '&' + formParams);
     //console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
     //console.log('Sign in: '); // Do not send to your backend! Use an ID token instead.
     console.log('Name: ' + profile.getName());
@@ -86,7 +76,6 @@ function signOut() {
     auth2.signOut().then(function () {
         document.getElementsByClassName("userContent")[0].innerHTML = '';
         document.getElementsByClassName("userContent")[0].style.display = "none";
-        document.getElementById("gSignIn").style.display = "block";
     });
     
     auth2.disconnect();
@@ -97,18 +86,32 @@ function saveUserData(userData){
 }
 function updateMobile()
 {
+    var form = $('#visaForm')[0];
+    var data = new FormData(form);
     if($('#phone1').val() == '') {
         $('#phone1').focus();
     } else {
+        data.append( 'mobile', $('#phone1').val());
         jQuery.ajax({
             type: 'GET',
             url: "/updatemobile",
-            data: {mobile: $('#phone1').val()},
+            data: data,
             dataType: 'json',
             success: function (response) {
                 console.log(response);
-                location.href = '/applyvisa/payment/1234';
+                location.href = '/applyvisa/payment/' + response.parentId;
             }
         });
     }
+}
+
+function urlencodeFormData(fd){
+    var s = '';
+    function encode(s){ return encodeURIComponent(s).replace(/%20/g,'+'); }
+    for(var pair of fd.entries()){
+        if(typeof pair[1]=='string'){
+            s += (s?'&':'') + encode(pair[0])+'='+encode(pair[1]);
+        }
+    }
+    return s;
 }

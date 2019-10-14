@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Google_Client;
 use App\User;
+use App\Models\Visa;
 
 class GoogleController extends Controller {
 
@@ -15,20 +16,22 @@ class GoogleController extends Controller {
      * @return Google_Client the authorized client object
      */
     public function getClient() {
+        
         $redirect_uri = \Illuminate\Support\Facades\URL::current();
         define('STDIN', fopen('php://stdin', 'r'));
         $homeDirectory = env('HOMEDRIVE');
         $this->tokenFile = $homeDirectory . 'token.json';
         $client = new Google_Client();
         $client->setApplicationName($this->projectName);
-        $client->setScopes(array('https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/drive.appfolder'));
+        $client->setScopes(array('profile', 'email', 'https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/drive.appfolder'));
         $client->setAuthConfig($homeDirectory . 'client_secret.json');
         $client->setDeveloperKey('AIzaSyBmLkJ0sHCn9LSra5yPnXDYBIyoh4aX5nE');
         $client->setRedirectUri($redirect_uri);
         //dd($client);
         $client->setAccessType('offline');
         $client->setApprovalPrompt('force');
-
+        //$client->setAccessToken($token);
+        //dd($client);
         // Load previously authorized credentials from a file.
         if (file_exists($this->tokenFile)) {
             $accessToken = json_decode(file_get_contents($this->tokenFile), true);
@@ -54,7 +57,7 @@ class GoogleController extends Controller {
         $client->setAccessToken($accessToken);
 
         // Refresh the token if it's expired.
-        if ($client->isAccessTokenExpired()) {
+        /*if ($client->isAccessTokenExpired()) {
             // save refresh token to some variable
             $refreshTokenSaved = $client->getRefreshToken();
 
@@ -73,7 +76,7 @@ class GoogleController extends Controller {
 
             // save to file
             file_put_contents($this->tokenFile, json_encode($accessTokenUpdated));
-        }
+        }*/
         return $client;
     }
 
@@ -100,84 +103,97 @@ class GoogleController extends Controller {
         return $file;
     }
 
-    public function googledoc() {
+    public function googledoc($bookingId) {
+        
+        $visaObj = new Visa();
         $client = $this->getClient();
         $service = new \Google_Service_Drive($client);
         $docService = new \Google_Service_Docs($client);
-        $folderName = 'Nisanth Visa ' . date('d-m-y');
-        //$fileName = 'Nisanth_application_data';
         
+        $visaDetails = $visaObj->getVisa($bookingId);
         
-        $foldID = '1XHrdgXsEpu2Se9HpKKRr043NHOy0woHG';    
-        $folderMetadata = new \Google_Service_Drive_DriveFile(
-                array(
-                    'name' => $folderName,
-                    'mimeType' => 'application/vnd.google-apps.folder'
-                    )
-                );
-        $folder = $service->files->create($folderMetadata, array('fields' => 'id'));
-        
-        $files = $this->retrieveAllFiles($service, $foldID);
-        $variables = ['{{USERINFO_FirstName}}', '{{USERINFO_Surname}}', '{{USERINFO_PassportNo}}', '{{USERINFO_PassportDOE}}', '{{BOOKINGS_CompanyName}}', '{{BOOKINGS_Designation}}'];
-        $values = ['Nisanth', 'Kumar', 'JKLM1234', '2025-10-10', 'VisaBadge Tech Inc', 'CTO'];
-        foreach($files as $file) {
-            $fileName = 'Nisanth_' . $file->name;
-            $copy = new \Google_Service_Drive_DriveFile(array(
-                'name' => $fileName,
-                'parents' => [$folder->id]
-            ));
-            $copy->setParents([$folder->id]);
-            $driveResponse = $service->files->copy($file->id, $copy);
-            $documentCopyId = $driveResponse->id;
-            
-            
-            $requests = array();
-            foreach($variables as $key => $variable) {
-                $requests[] = new \Google_Service_Docs_Request(array(
-                    'replaceAllText' => ['containsText' => ['text' => $variable, 'matchCase' => true], 'replaceText' => $values[$key]],
-                ));
-            }
+        foreach ($visaDetails as $visaDetail) {
+            $folderName = $visaDetail->BookingID;
 
-            $batchUpdateRequest = new \Google_Service_Docs_BatchUpdateDocumentRequest(array(
-                'requests' => $requests
-            ));
-
-            $docService->documents->batchUpdate($documentCopyId, $batchUpdateRequest);
-            
-            
-        }
-        
-        
-        $service->getClient()->setUseBatch(true);
-        
-        try {
-            $batch = $service->createBatch();
-            $emails = ['nisanthkumar.kn@gmail.com', 'shiju.radhakrishnan@itraveller.com', 'binse.abraham@itraveller.com'];
-            foreach($emails as $key => $email) {
-                $userPermission = new \Google_Service_Drive_Permission(
-                        array(
-                            'type' => 'user',
-                            'role' => 'writer',
-                            'emailAddress' => $email
+            $foldID = '1XHrdgXsEpu2Se9HpKKRr043NHOy0woHG';    
+            $folderMetadata = new \Google_Service_Drive_DriveFile(
+                    array(
+                        'name' => $folderName,
+                        'mimeType' => 'application/vnd.google-apps.folder'
                         )
                     );
-                $request = $service->permissions->create($folder->id, $userPermission, array('fields' => 'id'));
-                $batch->add($request, 'user' . ($key + 1));
-            }
-            $results = $batch->execute();
+            $folder = $service->files->create($folderMetadata, array('fields' => 'id'));
 
-            foreach ($results as $result) {
-                if ($result instanceof \Google_Service_Exception) {
-                    // Handle error
-                    echo '<br />';
-                    echo \GuzzleHttp\json_encode($result);
-                } else {
-                    echo '<br />';
-                    echo "Permission ID: %s\n", $result->id;
+            $files = $this->retrieveAllFiles($service, $foldID);
+            $variables = ['{{USERINFO_FirstName}}', '{{USERINFO_Surname}}', '{{BOOKINGS_VisitingCountry}}', '{{USERINFO_CurrentNationality}}', '{{USERINFO_PhoneNo}}', '{{USERINFO_EmailID}}', '{{USERINFO_CityOfResidence}}'];
+            
+            $values = [
+                $visaDetail->FirstName, 
+                $visaDetail->Surname, 
+                $visaDetail->countryName, 
+                $visaDetail->CurrentNationality,
+                $visaDetail->PhoneNo,
+                $visaDetail->EmailID,
+                $visaDetail->CityOfResidence
+            ];
+            foreach($files as $file) {
+                $fileName = $visaDetail->BookingID . $file->name;
+                $copy = new \Google_Service_Drive_DriveFile(array(
+                    'name' => $fileName,
+                    'parents' => [$folder->id]
+                ));
+                $copy->setParents([$folder->id]);
+                $driveResponse = $service->files->copy($file->id, $copy);
+                $documentCopyId = $driveResponse->id;
+
+
+                $requests = array();
+                foreach($variables as $key => $variable) {
+                    $requests[] = new \Google_Service_Docs_Request(array(
+                        'replaceAllText' => ['containsText' => ['text' => $variable, 'matchCase' => true], 'replaceText' => $values[$key]],
+                    ));
                 }
+
+                $batchUpdateRequest = new \Google_Service_Docs_BatchUpdateDocumentRequest(array(
+                    'requests' => $requests
+                ));
+
+                $docService->documents->batchUpdate($documentCopyId, $batchUpdateRequest);
+
             }
-        } finally {
-            $service->getClient()->setUseBatch(false);
+
+
+            $service->getClient()->setUseBatch(true);
+
+            try {
+                $batch = $service->createBatch();
+                $emails = ['nisanthkumar.kn@gmail.com', 'shiju.radhakrishnan@itraveller.com', 'binse.abraham@itraveller.com'];
+                foreach($emails as $key => $email) {
+                    $userPermission = new \Google_Service_Drive_Permission(
+                            array(
+                                'type' => 'user',
+                                'role' => 'writer',
+                                'emailAddress' => $email
+                            )
+                        );
+                    $request = $service->permissions->create($folder->id, $userPermission, array('fields' => 'id'));
+                    $batch->add($request, 'user' . ($key + 1));
+                }
+                $results = $batch->execute();
+
+                foreach ($results as $result) {
+                    if ($result instanceof \Google_Service_Exception) {
+                        // Handle error
+                        echo '<br />';
+                        echo \GuzzleHttp\json_encode($result);
+                    } else {
+                        echo '<br />';
+                        echo "Permission ID: %s\n", $result->id;
+                    }
+                }
+            } finally {
+                $service->getClient()->setUseBatch(false);
+            }
         }
         
         //return ['file_name' => $fileName, 'file_id' => $file->id];
@@ -197,99 +213,30 @@ class GoogleController extends Controller {
         return $results;
     }
     
-    public function googledoc1() {
-        // Get the API client and construct the service object.
-        $client = $this->getClient();
-        $service = new \Google_Service_Docs($client);
-        $driveService = new \Google_Service_Drive($client);
-        //$title = 'My Document';
-        //$document = new \Google_Service_Docs_Document(array(
-        //    'title' => $title
-        //));
-        //$document = $service->documents->create($document);
-        // Prints the title of the requested doc:
-        // https://docs.google.com/document/d/195j9eDD3ccgjQRttHhJPymLJUCOUjs-jmwTrekvdjFE/edit
-        $documentId = '1w6i-roBu1bYxy8qjqmp_1Nc8gZSaIujlXRAWoEs3sSM';
-        //$service->getClient()->setUseBatch(true);
-        //$doc = $service->documents->get($documentId);
-        $driveService->getClient()->setUseBatch(true);
-        
-        try {
-            $batch = $driveService->createBatch();
-
-            $userPermission = new \Google_Service_Drive_Permission(array(
-                'type' => 'user',
-                'role' => 'writer',
-                'emailAddress' => 'nisanthkumar.kn@gmail.com'
-            ));
-            $request = $driveService->permissions->create($documentId, $userPermission, array('fields' => 'id'));
-            $batch->add($request, 'user');
-            /*$domainPermission = new Google_Service_Drive_Permission(array(
-                'type' => 'domain',
-                'role' => 'reader',
-                'domain' => 'example.com'
-            ));
-            $request = $driveService->permissions->create(
-                $fileId, $domainPermission, array('fields' => 'id'));
-            $batch->add($request, 'domain');*/
-            $results = $batch->execute();
-
-            foreach ($results as $result) {
-                if ($result instanceof \Google_Service_Exception) {
-                    // Handle error
-                    dd($result);
-                } else {
-                    dd("Permission ID: %s\n", $result->id);
-                }
-            }
-        } finally {
-            $driveService->getClient()->setUseBatch(false);
-        }
-
-        /*$batch = $driveService->createBatch();
-
-        $userPermission = new \Google_Service_Drive_Permission(array(
-            'type' => 'user',
-            'role' => 'viewer',
-            'emailAddress' => 'nisanthkumar.kn@gmail.com'
-        ));
-
-
-        $request = $driveService->permissions->create($documentId, $userPermission, array('fields' => 'id'));
-
-        $batch->add($request, 'user');
-        $results = $batch->execute();
-        dd($results);
-        foreach ($results as $result) {
-            if ($result instanceof \Google_Service_Exception) {
-                // Handle error
-                dd($result);
-            } else {
-                dd("Permission ID: %s\n", $result->id);
-            }
-        }*/
-
-        //printf("The document title is: %s\n", $doc->getTitle());
-
-        /*$requests = array();
-        $requests[] = new \Google_Service_Docs_Request(array(
-            'replaceAllText' => ['containsText' => ['text' => '{{customer}}', 'matchCase' => true], 'replaceText' => 'Nisanth Kumar'],
-        ));
-
-        $batchUpdateRequest = new \Google_Service_Docs_BatchUpdateDocumentRequest(array(
-            'requests' => $requests
-        ));
-
-        $response = $service->documents->batchUpdate($documentId, $batchUpdateRequest);
-        dd($response);*/
-    }
-    
     public function tokensignin(Request $input) {
+        
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+        header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
+        
+        $visaObj = new Visa();
+        
         $homeDirectory = env('HOMEDRIVE');
+        $tokenFile = $homeDirectory . 'token.json';
+        //if (!file_exists($tokenFile)) {
+            //mkdir(dirname($tokenFile), 0700, true);
+            file_put_contents($tokenFile, json_encode($input['accsTkn']));
+        //}
+
+        
         $client = new Google_Client();  // Specify the CLIENT_ID of the app that accesses the backend
         $client->setAuthConfig($homeDirectory . 'client_secret.json');
         $payload = $client->verifyIdToken($input['idtoken']);
+        
+        
+        
         $return = [];
+        //$return['input'] = $input;
         if ($payload) {
             $return['status'] = true;
             $userId = $payload['sub'];
@@ -298,12 +245,23 @@ class GoogleController extends Controller {
             
             if ($finduser) {
                 $return['redirect'] = true;
+                $finduser->first_name = $payload['given_name'];
+                $finduser->last_name = $payload['family_name'];
+                $finduser->save();
+                
+                $input['userId'] = $finduser->id;
                 $auth = auth()->loginUsingId($finduser->id, true);
+                $parentId = $visaObj->createVisa($input);
+                //$this->googledoc($parentId);
+                
+                
             } else {
                 $return['redirect'] = false;
                 // Insert user data
                 $newUser = User::create([
                     'name' => $payload['name'],
+                    'first_name' => $payload['given_name'],
+                    'last_name' => $payload['family_name'],
                     'email' => $payload['email'],
                     'provider' => 'google',
                     'provider_id' => $payload['sub'],
@@ -318,16 +276,42 @@ class GoogleController extends Controller {
             $return['status'] = false;
         }
         
+        $return['parentId'] = $parentId;
+        
         return json_encode($return);
     }
     
     public function updatemobile(Request $request)
     {
+        $visaObj = new Visa();
         $user = auth()->user();
         $user->phone = $request['mobile'];
         $user->save();
         
-        return json_encode(['success' => true]);
+        $input['userId'] = $user->id;
+        $parentId = $visaObj->createVisa($input);
+        
+        
+        $return['status'] = false;
+        $return['parentId'] = $parentId;
+        
+        return json_encode($return);
+    }
+    
+    public function createvisa(Request $input)
+    {
+        $visaObj = new Visa();
+        $user = auth()->user();
+        
+        $input['userId'] = $user->id;
+        $parentId = $visaObj->createVisa($input);
+        
+        //$this->googledoc($parentId);
+        
+        $return['status'] = true;
+        $return['parentId'] = $parentId;
+        
+        return json_encode($return);
     }
 
 }

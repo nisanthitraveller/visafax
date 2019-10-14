@@ -5,6 +5,7 @@
 ;
 (function ($) {
     var o = $('.rd-navbar');
+
     if (o.length > 0) {
         // include('../js/jquery.rd-navbar.js');
 
@@ -26,6 +27,24 @@
     $('.input-group').on('click', '.button-minus', function (e) {
         decrementValue(e);
     });
+
+    $('#create-visa').click(function () {
+        createVisa();
+    });
+    $('#pay-button').click(function () {
+        PayUValidateDesktop();
+    });
+
+    $('.price-check').change(function () {
+        var price = 0;
+        $('.price-check:checked').each(function () {
+            price += isNaN(parseInt($(this).val())) ? 0 : parseInt($(this).val());
+        });
+        console.log(price);
+        $('#amount').val(price);
+        $('#pay-button').text('Pay ₹' + price + '/-');
+    });
+
 })(jQuery);
 
 
@@ -281,13 +300,13 @@ function initSlider() {
     });
 }
 /*var placeholder = "Select a State";
-
+ 
  $( ".select2-single, .select2-multiple" ).select2( {
  placeholder: placeholder,
  width: null,
  containerCssClass: ':all:'
  } );
-
+ 
  $( ".select2-allow-clear" ).select2( {
  allowClear: true,
  placeholder: placeholder,
@@ -341,13 +360,13 @@ $(document).ready(function () {
 
 
 /*$(".change-color-switch").bootstrapSwitch();
-
+ 
  $(document).ready(function(){
-
-
+ 
+ 
  $('.change-color-switch').on('switchChange.bootstrapSwitch', function (e, data) {
  var state=$(this).bootstrapSwitch('state');//returns true or false
-
+ 
  if(state)
  {
  // $(".book-state").show();
@@ -391,6 +410,109 @@ function decrementValue(e) {
     } else {
         parent.find('input[name=' + fieldName + ']').val(1);
     }
+}
+
+function createVisa() {
+    var form = $('#visaForm')[0];
+    var fd = new FormData(form);
+
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+    var token = $('meta[name=csrf-token]').attr('content');
+
+    xhr.onload = function () {
+        var response = xhr.response;
+        console.log(response.status);
+        console.log(response.redirect);
+        if (response.status == false) {
+            console.log('Invalid Token');
+        } else {
+            location.href = '/applyvisa/payment/' + response.parentId;
+            console.log('redirect true');
+        }
+    };
+    xhr.open("POST", "/createvisa");
+    xhr.setRequestHeader("x-csrf-token", token);
+    xhr.send(fd);
+
+}
+
+function PayUValidateDesktop() {
+    var status = 0;
+    var frm = document.PayUTransaction;
+    var aName = Array();
+
+
+    aName['amount'] = 'Amount';
+    aName['firstname'] = 'Billing Name';
+    aName['email'] = 'Billing Email';
+    aName['phone'] = 'Billing Phone Number';
+    aName['productinfo'] = 'Product Information';
+
+    for (var i = 0; i < frm.elements.length; i++) {
+
+        if (frm.elements[i].name == 'amount') {
+            if (!validateNumeric(frm.elements[i].value)) {
+                alert("Amount should be NUMERIC");
+                frm.elements[i].focus();
+                status = 1;
+            }
+        }
+
+        if ((frm.elements[i].name == 'firstname'))
+        {
+            if (validateNumeric(frm.elements[i].value)) {
+                alert("Enter your FirstName");
+                frm.elements[i].focus();
+                status = 1;
+            }
+        }
+
+        if (frm.elements[i].name == 'email') {
+            if (!validateEmail(frm.elements[i].value)) {
+                alert("Invalid input for " + aName[frm.elements[i].name]);
+                frm.elements[i].focus();
+                status = 1;
+            }
+        }
+
+        if ((frm.elements[i].name == 'phone')) {
+            if (!validateNumeric(frm.elements[i].value)) {
+                alert("Enter a Valid CONTACT NUMBER");
+                frm.elements[i].focus();
+                status = 1;
+            }
+        }
+    }
+    if (status == 0) {
+        var token = $('meta[name=csrf-token]').attr('content');
+        $.ajax({
+            type: 'POST',
+            url: "/payusubmit",
+            data: $('#PayUTransaction').serialize(),
+            headers: {"x-csrf-token": token},
+            success: function (data) {
+                $("#submitpayment").html(data);
+                $('#PayUForm').submit();
+            }
+        });
+    }
+}
+
+function validateNumeric(numValue) {
+    if (!numValue.toString().match(/^[-]?\d*\.?\d*$/))
+        return false;
+    return true;
+}
+
+function validateEmail(email) {
+    //Validating the email field
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (!email.match(re)) {
+        return (false);
+    }
+    return(true);
 }
 
 /*

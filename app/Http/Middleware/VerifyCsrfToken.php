@@ -19,6 +19,7 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        'applyvisa/step1/*',
+        'https://secure.payu.in/*',
     ];
 }
