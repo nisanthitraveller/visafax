@@ -90,15 +90,14 @@ function updateMobile()
     if($('#phone1').val() == '') {
         $('#phone1').focus();
     } else {
-        fd.append('mobile', $('#phone1').val());
         openModal();
+        var token = $('meta[name=csrf-token]').attr('content');
         $.ajax({
             type: 'GET',
             dataType: 'json',
-            contentType: false,
             url: "/updatemobile",
-            data: fd,
-            processData: false,
+            data: $('#visaForm').serialize() + "&mobile=" + $('#phone1').val(),
+            headers: {"x-csrf-token": token},
             success: function (response) {
                 closeModal();
                 console.log(response);
