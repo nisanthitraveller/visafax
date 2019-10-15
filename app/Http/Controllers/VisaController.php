@@ -130,7 +130,7 @@ class VisaController extends Controller
         return $contents;
     }
     
-    public function getGoogleClient() {
+    public function getGoogleClient($request) {
         
         $redirect_uri = \Illuminate\Support\Facades\URL::current();
         define('STDIN', fopen('php://stdin', 'r'));
@@ -148,9 +148,9 @@ class VisaController extends Controller
         //$client->setAccessToken($token);
         //dd($client);
         // Load previously authorized credentials from a file.
-        //if (file_exists($this->tokenFile) && $client->getRefreshToken() != null) {
-        //    $accessToken = json_decode(file_get_contents($this->tokenFile), true);
-        //} else {
+        if (file_exists($this->tokenFile)) {
+            $accessToken = json_decode(file_get_contents($this->tokenFile), true);
+        } else {
             $oldaccessToken = json_decode(file_get_contents($this->tokenFile), true);
             // Request authorization from the user.
             $authUrl = $client->createAuthUrl();
@@ -158,7 +158,6 @@ class VisaController extends Controller
 
             if (null !== (request('code'))) {
                 $authCode = request('code');
-                dd($authCode);
                 // Exchange authorization code for an access token.
                 $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
                 header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
@@ -167,14 +166,11 @@ class VisaController extends Controller
                 } else {
                     exit('No code found');
                 }
-        //}
+        }
         
-        /*if ($client->isAccessTokenExpired()) {
-            $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
-            $newAccessToken = $client->getAccessToken();
-            $accessToken = array_merge($accessToken, $newAccessToken);
-            file_put_contents($this->tokenFile, json_encode($accessToken));
-        }*/
+        if ($client->isAccessTokenExpired()) {
+            dd('token expired');
+        }
         
         $client->setAccessToken($accessToken);
         return $client;
