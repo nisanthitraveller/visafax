@@ -99,7 +99,6 @@ class VisaController extends Controller
         $user = auth()->user();
         
         $allVisa = $visaObj->getAllMyVisa($user->id);
-        dd($allVisa);
         $bookingId = $allVisa[0]['id'];
         if($request['bookingID']) {
             $bookingId = $request['bookingID'];
