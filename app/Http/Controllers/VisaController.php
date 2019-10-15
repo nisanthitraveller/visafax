@@ -148,7 +148,7 @@ class VisaController extends Controller
         //$client->setAccessToken($token);
         //dd($client);
         // Load previously authorized credentials from a file.
-        if (file_exists($this->tokenFile)) {
+        if (file_exists($this->tokenFile) && $client->getRefreshToken() != null) {
             
             $accessToken = json_decode(file_get_contents($this->tokenFile), true);
         } else {
