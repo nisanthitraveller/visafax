@@ -174,7 +174,7 @@ class VisaController extends Controller
         }
         
         if ($client->isAccessTokenExpired()) {
-            
+            dd($client->getRefreshToken());
             $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
             $newAccessToken = $client->getAccessToken();
             $accessToken = array_merge($accessToken, $newAccessToken);
