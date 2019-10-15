@@ -174,24 +174,11 @@ class VisaController extends Controller
         }
         
         if ($client->isAccessTokenExpired()) {
-            // save refresh token to some variable
-            $refreshTokenSaved = $client->getRefreshToken();
-
-            // update access token
-            $client->fetchAccessTokenWithRefreshToken($refreshTokenSaved);
-
-            // pass access token to some variable
-            $accessTokenUpdated = $client->getAccessToken();
-
-            // append refresh token
-            $accessTokenUpdated['refresh_token'] = $refreshTokenSaved;
-
-            //Set the new acces token
-            $accessToken = $refreshTokenSaved;
-            $client->setAccessToken($accessToken);
-
-            // save to file
-            file_put_contents($this->tokenFile, json_encode($accessTokenUpdated));
+            
+            $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
+            $newAccessToken = $client->getAccessToken();
+            $accessToken = array_merge($accessToken, $newAccessToken);
+            file_put_contents($this->tokenFile, json_encode($accessToken));
         }
         
         $client->setAccessToken($accessToken);
