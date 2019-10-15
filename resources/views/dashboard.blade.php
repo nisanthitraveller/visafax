@@ -151,6 +151,7 @@ Visa Payement
                 <?php $count = 1 ?>
                 @foreach($files $k => $fileBulk)
                 @foreach($fileBulk as $key => $file)
+                @if(!empty($file))
                 <div class="doc-list">
                     <div class="row">
                         <div class="col-md-8 col-sm-6 col-6 doc-cols">
@@ -173,6 +174,7 @@ Visa Payement
                     </div>
                 </div>
                 <?php $count++ ?>
+                @endif
                 @endforeach
                 @endforeach
                 
