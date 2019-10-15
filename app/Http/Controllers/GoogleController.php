@@ -115,7 +115,7 @@ class GoogleController extends Controller {
         foreach ($visaDetails as $visaDetail) {
             $folderName = $visaDetail->BookingID;
 
-            $foldID = '1XHrdgXsEpu2Se9HpKKRr043NHOy0woHG';    
+            $foldID = $visaDetail->folderID;    
             $folderMetadata = new \Google_Service_Drive_DriveFile(
                     array(
                         'name' => $folderName,
@@ -137,7 +137,8 @@ class GoogleController extends Controller {
                 $visaDetail->CityOfResidence
             ];
             foreach($files as $file) {
-                $fileName = $visaDetail->BookingID . $file->name;
+                $visaObj->updateDriveID($visaDetail->BookingID, $folder->id);
+                $fileName = $file->name . ' ' . $visaDetail->FirstName . ' ' . $visaDetail->Surname . ' ' . $visaDetail->BookingID;
                 $copy = new \Google_Service_Drive_DriveFile(array(
                     'name' => $fileName,
                     'parents' => [$folder->id]
@@ -161,7 +162,6 @@ class GoogleController extends Controller {
                 $docService->documents->batchUpdate($documentCopyId, $batchUpdateRequest);
 
             }
-
 
             $service->getClient()->setUseBatch(true);
 
@@ -195,11 +195,6 @@ class GoogleController extends Controller {
                 $service->getClient()->setUseBatch(false);
             }
         }
-        
-        //return ['file_name' => $fileName, 'file_id' => $file->id];
-        
-        //$this->retrieveAllFiles($service, $folder->id);
-        //$this->retrieveAllFiles($service, '1GtpHTYzB3N3bZaVgW0CYGwDQx_zzMb9v');
     }
     
     function retrieveAllFiles($service, $folderId) {

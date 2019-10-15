@@ -45,20 +45,11 @@ Visa Payement
                 </div>
                 <div class="row align-items-center q-row">
 
-                    <div class="col-8 qs-in"><img src="{{url('/')}}/images/qs2.png">Please share your current residential address</div>
+                    <div class="col-8 qs-in">Please share your current residential address</div>
                     <div class="col-8 conf-dy-htl">
                         <div class="upload-btn-wrapper">
                             <div class="form-group">
-                                <label for="file" class="sr-only">File</label>
-                                <div class="input-group">
-
-                                    <span class="input-group-btn">
-                                        <div class="btn btn-default  custom-file-uploader">
-                                            <input type="file" name="address_proof" onchange="this.form.filename.value = this.files.length ? this.files[0].name : ''" />
-                                            <span>Choose File</span>
-                                        </div>
-                                    </span>
-                                </div>
+                                <textarea class="form-control" rows="5" id="address_proof"></textarea>
                             </div>
                         </div>
                     </div>

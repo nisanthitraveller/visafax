@@ -63,6 +63,10 @@ class VisaController extends Controller
             $visaObj->uploadFile($bookingId . '-' . str_replace(' ', '', $hotelFile->getClientOriginalName()), 'address_proof', $bookingId);
         }
         
+        if ($request->has('address_proof')) {
+            $visaObj->uploadFile(null, $request['address_proof'], $bookingId);
+        }
+        
         if ($request->hasFile('firstpage')) {
             $firstFiles = $request->file('firstpage');
             foreach($firstFiles as $firstFile) {
@@ -78,8 +82,8 @@ class VisaController extends Controller
             }
         }
         
+        
         $visaDetails = $visaObj->getVisa($bookingId);
-        dd($visaDetails);
         return view('step3')->with(['bookingId' => $bookingId, 'visaDetails' => $visaDetails]);
     }
     
@@ -90,7 +94,12 @@ class VisaController extends Controller
     }
     
     public function dashboard() {
+        $visaObj = new Visa();
+        $user = auth()->user();
         
+        $allVisa = $visaObj->getAllMyVisa($user->id);
+        dd($allVisa);
+        return view('dashboard')->with(['allVisa' => $allVisa]);
     }
     
     public function payusubmit(Request $request) {

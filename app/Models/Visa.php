@@ -70,7 +70,7 @@ class Visa {
 //            ->leftJoin('pay_slip', 'bookings.id', '=', 'pay_slip.BookingID')
             ->where('bookings.id', $parentId)
             ->orWhere('bookings.ParentID', $parentId)
-            ->select(['bookings.*', 'countries.countryName', 'user_info.*'])
+            ->select(['bookings.*', 'countries.countryName', 'countries.DriveID as folderID', 'user_info.*'])
             ->get();
         return $bookings;
     }
@@ -125,6 +125,32 @@ class Visa {
                 'text' => $text
             ]
         );
+    }
+    
+    public function updateDriveID($parentId, $driveId) {
+        DB::table('bookings')
+              ->where('id', $parentId)
+              ->update(['DriveID' => $driveId]);
+    }
+    
+    public function getAllMyVisa($userId) {
+        $bookings = DB::table('bookings')
+            ->join('user_info', 'bookings.user_id', '=', 'user_info.id')
+            ->join('countries', 'bookings.VisitingCountry', '=', 'countries.id')
+//            ->leftJoin('booking_documents', 'bookings.id', '=', 'booking_documents.BookingID')
+//            ->leftJoin('flights', 'bookings.id', '=', 'flights.BookingID')
+//            ->leftJoin('hotels', 'bookings.id', '=', 'hotels.BookingID')
+//            ->leftJoin('hotel_booking', 'bookings.id', '=', 'hotel_booking.BookingID')
+//            ->leftJoin('insurance', 'bookings.id', '=', 'insurance.BookingID')
+//            ->leftJoin('itr', 'bookings.id', '=', 'itr.BookingID')
+//            ->leftJoin('offer_letter', 'bookings.id', '=', 'offer_letter.BookingID')
+//            ->leftJoin('old_visa', 'bookings.id', '=', 'old_visa.BookingID')
+//            ->leftJoin('passport', 'bookings.id', '=', 'passport.BookingID')
+//            ->leftJoin('pay_slip', 'bookings.id', '=', 'pay_slip.BookingID')
+            ->where('user_info.user_id', $userId)
+            ->select(['bookings.*', 'countries.countryName', 'countries.DriveID as folderID', 'user_info.*'])
+            ->get();
+        return $bookings;
     }
 
 }
