@@ -84,35 +84,13 @@ function saveUserData(userData){
 }
 function updateMobile()
 {
-    openModal();
     var form = $('#visaForm')[0];
     var data = new FormData(form);
 
-    var xhr = new XMLHttpRequest();
-    xhr.responseType = 'json';
-    var token = $('meta[name=csrf-token]').attr('content');
-
-    xhr.onload = function () {
-        
-        var response = xhr.response;
-        console.log(response.status);
-        console.log(response.redirect);
-        if (response.status == false) {
-            console.log('Invalid Token');
-        } else {
-            closeModal();
-            location.href = '/applyvisa/payment/' + response.parentId;
-            console.log('redirect true');
-        }
-    };
-    xhr.open("POST", "/createvisa");
-    xhr.setRequestHeader("x-csrf-token", token);
-    xhr.send(fd);
-    
-    
     if($('#phone1').val() == '') {
         $('#phone1').focus();
     } else {
+        openModal();
         data.append( 'mobile', $('#phone1').val());
         $.ajax({
             type: 'GET',
