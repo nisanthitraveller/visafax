@@ -149,7 +149,6 @@ class VisaController extends Controller
         //dd($client);
         // Load previously authorized credentials from a file.
         if (file_exists($this->tokenFile) && $client->getRefreshToken() != null) {
-            
             $accessToken = json_decode(file_get_contents($this->tokenFile), true);
         } else {
             // Request authorization from the user.
@@ -160,15 +159,13 @@ class VisaController extends Controller
                 $authCode = request('code');
                 // Exchange authorization code for an access token.
                 $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
+                $newAccessToken = $client->getAccessToken();
                 header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
-                if (!file_exists(dirname($this->tokenFile))) {
-                    mkdir(dirname($this->tokenFile), 0700, true);
+                $accessToken = array_merge($accessToken, $newAccessToken);
+                    file_put_contents($this->tokenFile, json_encode($accessToken));
+                } else {
+                    exit('No code found');
                 }
-                
-                file_put_contents($this->tokenFile, json_encode($accessToken));
-            } else {
-                exit('No code found');
-            }
         }
         
         if ($client->isAccessTokenExpired()) {
