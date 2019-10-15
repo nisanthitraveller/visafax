@@ -91,7 +91,7 @@ function updateMobile()
         $('#phone1').focus();
     } else {
         data.append( 'mobile', $('#phone1').val());
-        jQuery.ajax({
+        $.ajax({
             type: 'GET',
             url: "/updatemobile",
             data: data,
