@@ -174,7 +174,6 @@ class VisaController extends Controller
         }
         
         if ($client->isAccessTokenExpired()) {
-            dd('token expired');
             // save refresh token to some variable
             $refreshTokenSaved = $client->getRefreshToken();
 
