@@ -84,30 +84,50 @@ function saveUserData(userData){
 }
 function updateMobile()
 {
+    openModal();
+    var form = $('#visaForm')[0];
+    var data = new FormData(form);
+
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+    var token = $('meta[name=csrf-token]').attr('content');
+
+    xhr.onload = function () {
+        
+        var response = xhr.response;
+        console.log(response.status);
+        console.log(response.redirect);
+        if (response.status == false) {
+            console.log('Invalid Token');
+        } else {
+            closeModal();
+            location.href = '/applyvisa/payment/' + response.parentId;
+            console.log('redirect true');
+        }
+    };
+    xhr.open("POST", "/createvisa");
+    xhr.setRequestHeader("x-csrf-token", token);
+    xhr.send(fd);
+    
+    
     if($('#phone1').val() == '') {
         $('#phone1').focus();
     } else {
-        openModal();
-        var form = $('#visaForm')[0];
-        var fd = new FormData(form);
-        fd.append( 'mobile', $('#phone1').val());
-        var xhr = new XMLHttpRequest();
-        xhr.responseType = 'json';
-        var token = $('meta[name=csrf-token]').attr('content');
-
-        xhr.onload = function () {
-
-            var response = xhr.response;
-            console.log(response.status);
-            console.log(response.redirect);
-            closeModal();
-            console.log(response);
-            location.href = '/applyvisa/payment/' + response.parentId;
-        };
-        xhr.open("GET", "/updatemobile");
-        xhr.setRequestHeader("x-csrf-token", token);
-        xhr.send(fd);
-    
+        data.append( 'mobile', $('#phone1').val());
+        $.ajax({
+            type: 'GET',
+            url: "/updatemobile",
+            data: data,
+            dataType: 'json',
+            cache : false,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                closeModal();
+                console.log(response);
+                location.href = '/applyvisa/payment/' + response.parentId;
+            }
+        });
     }
 }
 
