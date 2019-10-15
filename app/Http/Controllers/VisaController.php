@@ -168,12 +168,12 @@ class VisaController extends Controller
                 }
         }
         
-        if ($client->isAccessTokenExpired()) {
+        /*if ($client->isAccessTokenExpired()) {
             $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
             $newAccessToken = $client->getAccessToken();
             $accessToken = array_merge($accessToken, $newAccessToken);
             file_put_contents($this->tokenFile, json_encode($accessToken));
-        }
+        }*/
         
         $client->setAccessToken($accessToken);
         return $client;
