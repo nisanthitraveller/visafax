@@ -151,7 +151,6 @@ class VisaController extends Controller
         if (file_exists($this->tokenFile)) {
             
             $accessToken = json_decode(file_get_contents($this->tokenFile), true);
-            dd($accessToken);
         } else {
             dd('No token file');
             // Request authorization from the user.
