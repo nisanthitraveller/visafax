@@ -9,6 +9,7 @@ use Google_Client;
 
 class VisaController extends Controller
 {
+    private $projectName = 'VisaBadge';
     /**
      * Create a new controller instance.
      *

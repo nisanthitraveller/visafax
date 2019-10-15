@@ -9,7 +9,7 @@ use App\Models\Visa;
 
 class GoogleController extends Controller {
 
-    private $projectName = 'Quickstart';
+    private $projectName = 'VisaBadge';
 
     /**
      * Returns an authorized API client.
