@@ -84,7 +84,8 @@ function saveUserData(userData){
 }
 function updateMobile()
 {
-    var fd = $('#visaForm').serialize();
+    var form = $('#visaForm')[0];
+    var fd = new FormData(form);
     var token = $('meta[name=csrf-token]').attr('content');
     if($('#phone1').val() == '') {
         $('#phone1').focus();
