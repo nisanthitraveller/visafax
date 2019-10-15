@@ -163,13 +163,27 @@ class VisaController extends Controller
                 header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
                 $accessToken = array_merge($oldaccessToken, $accessToken);
                     file_put_contents($this->tokenFile, json_encode($accessToken));
-                } else {
-                    exit('No code found');
-                }
+            } else {
+                exit('No code found');
+            }
         }
         $client->setAccessToken($accessToken);
         if ($client->isAccessTokenExpired()) {
-           dd('token expired');
+           $oldaccessToken = json_decode(file_get_contents($this->tokenFile), true);
+            // Request authorization from the user.
+            $authUrl = $client->createAuthUrl();
+            header('Location: ' . filter_var($authUrl, FILTER_SANITIZE_URL));
+
+            if (null !== (request('code'))) {
+                $authCode = request('code');
+                // Exchange authorization code for an access token.
+                $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
+                header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
+                $accessToken = array_merge($oldaccessToken, $accessToken);
+                    file_put_contents($this->tokenFile, json_encode($accessToken));
+            } else {
+                exit('No code found');
+            }
         }
         
         
