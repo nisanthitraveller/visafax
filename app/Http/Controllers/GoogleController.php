@@ -287,8 +287,8 @@ class GoogleController extends Controller {
         $user->phone = $request['mobile'];
         $user->save();
         
-        $input['userId'] = $user->id;
-        $parentId = $visaObj->createVisa($input);
+        $request['userId'] = $user->id;
+        $parentId = $visaObj->createVisa($request);
         
         $this->googledoc($parentId);
         
