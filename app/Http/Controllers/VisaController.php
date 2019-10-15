@@ -97,7 +97,7 @@ class VisaController extends Controller
     public function dashboard(Request $request) {
         $visaObj = new Visa();
         $user = auth()->user();
-        
+        dd($user->id);
         $allVisa = $visaObj->getAllMyVisa($user->id);
         $bookingId = $allVisa[0]['id'];
         if($request['bookingID']) {
