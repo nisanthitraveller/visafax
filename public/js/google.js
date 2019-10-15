@@ -94,10 +94,10 @@ function updateMobile()
         openModal();
         $.ajax({
             type: 'GET',
+            dataType: 'json',
+            contentType: false,
             url: "/updatemobile",
             data: fd,
-            dataType: 'json',
-            headers: {"x-csrf-token": token},
             processData: false,
             success: function (response) {
                 closeModal();
