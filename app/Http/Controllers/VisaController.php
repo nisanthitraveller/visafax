@@ -158,9 +158,10 @@ class VisaController extends Controller
 
             if (null !== (request('code'))) {
                 $authCode = request('code');
+                dd($authCode);
                 // Exchange authorization code for an access token.
                 $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
-                //header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
+                header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
                 $accessToken = array_merge($oldaccessToken, $accessToken);
                     file_put_contents($this->tokenFile, json_encode($accessToken));
                 } else {
