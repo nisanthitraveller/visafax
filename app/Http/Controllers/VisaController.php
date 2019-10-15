@@ -148,9 +148,9 @@ class VisaController extends Controller
         //$client->setAccessToken($token);
         //dd($client);
         // Load previously authorized credentials from a file.
-        if (file_exists($this->tokenFile) && $client->getRefreshToken() != null) {
-            $accessToken = json_decode(file_get_contents($this->tokenFile), true);
-        } else {
+        //if (file_exists($this->tokenFile) && $client->getRefreshToken() != null) {
+        //    $accessToken = json_decode(file_get_contents($this->tokenFile), true);
+        //} else {
             $oldaccessToken = json_decode(file_get_contents($this->tokenFile), true);
             // Request authorization from the user.
             $authUrl = $client->createAuthUrl();
@@ -166,7 +166,7 @@ class VisaController extends Controller
                 } else {
                     exit('No code found');
                 }
-        }
+        //}
         
         /*if ($client->isAccessTokenExpired()) {
             $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
