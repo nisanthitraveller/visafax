@@ -130,7 +130,7 @@ class VisaController extends Controller
         return $contents;
     }
     
-    public function getGoogleClient() {
+    public function getGoogleClient($newCode = false) {
         
         $redirect_uri = \Illuminate\Support\Facades\URL::current();
         define('STDIN', fopen('php://stdin', 'r'));
@@ -168,9 +168,9 @@ class VisaController extends Controller
                 }
         }
         
-        if ($client->isAccessTokenExpired()) {
-            dd('token expired');
-        }
+        //if ($client->isAccessTokenExpired()) {
+        //    dd('token expired');
+        //}
         
         $client->setAccessToken($accessToken);
         return $client;
