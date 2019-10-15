@@ -84,15 +84,19 @@ function saveUserData(userData){
 }
 function updateMobile()
 {
+    var fd = $('#visaForm').serialize();
+    var token = $('meta[name=csrf-token]').attr('content');
     if($('#phone1').val() == '') {
         $('#phone1').focus();
     } else {
+        fd.append('mobile', $('#phone1').val());
         openModal();
         $.ajax({
             type: 'GET',
             url: "/updatemobile",
-            data: {mobile: $('#phone1').val()},
+            data: fd,
             dataType: 'json',
+            headers: {"x-csrf-token": token},
             success: function (response) {
                 closeModal();
                 console.log(response);
