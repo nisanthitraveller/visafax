@@ -98,6 +98,7 @@ function updateMobile()
             data: fd,
             dataType: 'json',
             headers: {"x-csrf-token": token},
+            processData: false,
             success: function (response) {
                 closeModal();
                 console.log(response);
