@@ -93,13 +93,33 @@ class VisaController extends Controller
         dd($visaDetails);
     }
     
-    public function dashboard() {
+    public function dashboard(Request $request) {
         $visaObj = new Visa();
+        $googleController = new App\Http\Controllers\GoogleController();
         $user = auth()->user();
         
         $allVisa = $visaObj->getAllMyVisa($user->id);
-        dd($allVisa);
-        return view('dashboard')->with(['allVisa' => $allVisa]);
+        $bookingId = $allVisa[0]['id'];
+        if($request['bookingID']) {
+            $bookingId = $request['bookingID'];
+        }
+        
+        $client = $googleController->getClient();
+        $service = new \Google_Service_Drive($client);
+        
+        $visaDetails = $visaObj->getVisa($bookingId);
+        
+        if($visaDetails[0]['user_id'] != $user->id) {
+            die('No booking found!');
+        }
+        
+        foreach ($visaDetails as $key => $visaDetail) {
+            $foldID = $visaDetail->folderID;    
+
+            $files[$key] = $googleController->retrieveAllFiles($service, $foldID);
+        }
+        dd($files);
+        return view('dashboard')->with(['allVisa' => $allVisa, 'files' => $files]);
     }
     
     public function payusubmit(Request $request) {

@@ -3,7 +3,7 @@
 Visa Payement
 @endsection
 @section('content')
-<section class="banner inner-payment" style="background-image: url(images/hero-home.jpg);">
+<section class="banner inner-payment">
 
     <div class="container">
         <div class="col-sm-12 pt-4 pb-4">
@@ -29,24 +29,14 @@ Visa Payement
                             <div id="collapseOne" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="panel-body">
                                     <ul>
+                                        @foreach($allVisa as $visa)
                                         <li class="active">
-                                            <a href="#">
-                                                <span class="title-ac">Switzerland visa</span>
-                                                <span class="id-ac">ID: 4585 2569</span>
+                                            <a href="{{url('/')}}/dashboard?bookingID={{$visa['id']}}">
+                                                <span class="title-ac">{{$visa['countryName']}} visa</span>
+                                                <span class="id-ac">ID: {{$visa['id']}}</span>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="title-ac">Australian visa</span>
-                                                <span class="id-ac">ID: 4585 2563</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="title-ac">Singapore visa</span>
-                                                <span class="id-ac">ID: 8562 3649</span>
-                                            </a>
-                                        </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
