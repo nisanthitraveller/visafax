@@ -84,18 +84,14 @@ function saveUserData(userData){
 }
 function updateMobile()
 {
-    var form = $('#visaForm')[0];
-    var data = new FormData(form);
-
     if($('#phone1').val() == '') {
         $('#phone1').focus();
     } else {
         openModal();
-        data.append( 'mobile', $('#phone1').val());
         $.ajax({
             type: 'GET',
             url: "/updatemobile",
-            data: data,
+            data: {mobile: $('#phone1').val()},
             dataType: 'json',
             cache : false,
             processData: false,
