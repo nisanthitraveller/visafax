@@ -149,13 +149,17 @@ class VisaController extends Controller
         //dd($client);
         // Load previously authorized credentials from a file.
         if (file_exists($this->tokenFile)) {
+            
             $accessToken = json_decode(file_get_contents($this->tokenFile), true);
+            dd($accessToken);
         } else {
+            dd('No token file');
             // Request authorization from the user.
             $authUrl = $client->createAuthUrl();
             header('Location: ' . filter_var($authUrl, FILTER_SANITIZE_URL));
 
             if (null !== (request('code'))) {
+                dd('new token creation');
                 $authCode = request('code');
                 // Exchange authorization code for an access token.
                 $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
@@ -163,12 +167,35 @@ class VisaController extends Controller
                 if (!file_exists(dirname($this->tokenFile))) {
                     mkdir(dirname($this->tokenFile), 0700, true);
                 }
-
+                
                 file_put_contents($this->tokenFile, json_encode($accessToken));
             } else {
                 exit('No code found');
             }
         }
+        
+        if ($client->isAccessTokenExpired()) {
+            dd('token expired');
+            // save refresh token to some variable
+            $refreshTokenSaved = $client->getRefreshToken();
+
+            // update access token
+            $client->fetchAccessTokenWithRefreshToken($refreshTokenSaved);
+
+            // pass access token to some variable
+            $accessTokenUpdated = $client->getAccessToken();
+
+            // append refresh token
+            $accessTokenUpdated['refresh_token'] = $refreshTokenSaved;
+
+            //Set the new acces token
+            $accessToken = $refreshTokenSaved;
+            $client->setAccessToken($accessToken);
+
+            // save to file
+            file_put_contents($this->tokenFile, json_encode($accessTokenUpdated));
+        }
+        
         $client->setAccessToken($accessToken);
         return $client;
     }
