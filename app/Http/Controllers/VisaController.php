@@ -167,12 +167,12 @@ class VisaController extends Controller
                     exit('No code found');
                 }
         }
-        
-        //if ($client->isAccessTokenExpired()) {
-        //    dd('token expired');
-        //}
-        
         $client->setAccessToken($accessToken);
+        if ($client->isAccessTokenExpired()) {
+           dd('token expired');
+        }
+        
+        
         return $client;
     }
     
