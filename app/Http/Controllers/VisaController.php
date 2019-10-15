@@ -152,7 +152,6 @@ class VisaController extends Controller
             
             $accessToken = json_decode(file_get_contents($this->tokenFile), true);
         } else {
-            dd('No token file');
             // Request authorization from the user.
             $authUrl = $client->createAuthUrl();
             header('Location: ' . filter_var($authUrl, FILTER_SANITIZE_URL));
@@ -174,7 +173,6 @@ class VisaController extends Controller
         }
         
         if ($client->isAccessTokenExpired()) {
-            dd($client->getRefreshToken());
             $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
             $newAccessToken = $client->getAccessToken();
             $accessToken = array_merge($accessToken, $newAccessToken);
