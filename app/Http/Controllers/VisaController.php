@@ -120,7 +120,7 @@ class VisaController extends Controller
 
             $files[$key] = $this->retrieveDriveFiles($service, $foldID);
         }
-        return view('dashboard')->with(['allVisa' => $allVisa, 'files' => $files]);
+        return view('dashboard')->with(['allVisa' => $allVisa, 'files' => $files, 'visaDetails' => $visaDetails]);
     }
     
     public function payusubmit(Request $request) {

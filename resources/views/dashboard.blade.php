@@ -33,7 +33,7 @@ Visa Payement
                                         <li class="active">
                                             <a href="{{url('/')}}/dashboard?bookingID={{$visa['id']}}">
                                                 <span class="title-ac">{{$visa['countryName']}} visa</span>
-                                                <span class="id-ac">ID: {{$visa['id']}}</span>
+                                                <span class="id-ac">ID: {{$visa['BookingID']}}</span>
                                             </a>
                                         </li>
                                         @endforeach
@@ -141,10 +141,10 @@ Visa Payement
                             <div class="do-ic"><img src="images/doc1.png"> From 16 Sep</div>
                         </div>
                         <div class="col-md-4 col-sm-4 col-4 row-dta">
-                            <div class="do-ic"><img src="images/doc2.png"> 4 prople</div>
+                            <div class="do-ic"><img src="images/doc2.png"> {{count($visaDetails)}} prople</div>
                         </div>
                         <div class="col-md-4 col-sm-4 col-4 row-dta">
-                            <div class="do-ic"><img src="images/doc3.png"> Business visa</div>
+                            <div class="do-ic"><img src="images/doc3.png"> {{$visaDetails[0]->VisaType}}</div>
                         </div>
                     </div>
                 </div>
@@ -202,11 +202,4 @@ Visa Payement
 
     </div>
 </section>
-@endsection
-@section('scripts')
-<script type="text/javascript">
-    $(window).on('load', function () {
-        $('#logind').modal('show');
-    });
-</script>
 @endsection
