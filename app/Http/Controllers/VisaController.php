@@ -130,7 +130,7 @@ class VisaController extends Controller
         return $contents;
     }
     
-    public function getGoogleClient($request) {
+    public function getGoogleClient() {
         
         $redirect_uri = \Illuminate\Support\Facades\URL::current();
         define('STDIN', fopen('php://stdin', 'r'));
