@@ -83,7 +83,7 @@ Visa Payement
 
             <div class="col-sm-12 text-center">
                 <a href="{{url('/')}}/applyvisa/step1/1234" class="bck-btn">Back</a>
-                <a href="{{url('/')}}/applyvisa/step2/1234" class="cntue">Continue</a>
+                <a href="#" onclick="$('#formDetails').submit()" class="cntue">Continue</a>
             </div>
 
         </div>
