@@ -148,14 +148,13 @@ Visa Payement
                         </div>
                     </div>
                 </div>
-                <?php $count = 1 ?>
                 @foreach($files $k => $fileBulk)
                 @foreach($fileBulk as $key => $file)
                 @if(!empty($file))
                 <div class="doc-list">
                     <div class="row">
                         <div class="col-md-8 col-sm-6 col-6 doc-cols">
-                            <div class="dos-name"><a target="_blank" href="{{$file->webViewLink}}"> {{$count}}. {{$file->name}}</a></div>
+                            <div class="dos-name"><a target="_blank" href="{{$file->webViewLink}}"> {{$key}}. {{$file->name}}</a></div>
                         </div>
                         <div class="col-md-3 col-sm-4 col-4 doc-col-2">
                             <div class="up-btn"> <img src="images/upload-active.png">
@@ -173,7 +172,6 @@ Visa Payement
                         </div>
                     </div>
                 </div>
-                <?php $count++ ?>
                 @endif
                 @endforeach
                 @endforeach
