@@ -120,7 +120,6 @@ class VisaController extends Controller
 
             $files[$key] = $this->retrieveDriveFiles($service, $foldID);
         }
-        dd($files);
         return view('dashboard')->with(['allVisa' => $allVisa, 'files' => $files]);
     }
     
