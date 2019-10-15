@@ -45,6 +45,28 @@
         $('#pay-button').text('Pay ₹' + price + '/-');
     });
 
+    $('.panel-collapse').on('show.bs.collapse', function () {
+        $(this).siblings('.panel-heading').addClass('active');
+    });
+
+    $('.panel-collapse').on('hide.bs.collapse', function () {
+        $(this).siblings('.panel-heading').removeClass('active');
+    });
+
+    $('.ui.dropdown').dropdown({
+        on: 'hover'
+    });
+    $('.up-sucess-btn')
+            .popup({
+                inline: true
+            });
+
+    $('.collapse').on('show.bs.collapse', function () {
+        $('.collapse.show').each(function () {
+            $(this).collapse('hide');
+        });
+    });
+
 })(jQuery);
 
 
@@ -300,13 +322,13 @@ function initSlider() {
     });
 }
 /*var placeholder = "Select a State";
- 
+
  $( ".select2-single, .select2-multiple" ).select2( {
  placeholder: placeholder,
  width: null,
  containerCssClass: ':all:'
  } );
- 
+
  $( ".select2-allow-clear" ).select2( {
  allowClear: true,
  placeholder: placeholder,
@@ -360,13 +382,13 @@ $(document).ready(function () {
 
 
 /*$(".change-color-switch").bootstrapSwitch();
- 
+
  $(document).ready(function(){
- 
- 
+
+
  $('.change-color-switch').on('switchChange.bootstrapSwitch', function (e, data) {
  var state=$(this).bootstrapSwitch('state');//returns true or false
- 
+
  if(state)
  {
  // $(".book-state").show();
@@ -422,7 +444,7 @@ function createVisa() {
     var token = $('meta[name=csrf-token]').attr('content');
 
     xhr.onload = function () {
-        
+
         var response = xhr.response;
         console.log(response.status);
         console.log(response.redirect);
