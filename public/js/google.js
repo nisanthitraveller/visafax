@@ -93,8 +93,6 @@ function updateMobile()
             url: "/updatemobile",
             data: {mobile: $('#phone1').val()},
             dataType: 'json',
-            cache : false,
-            processData: false,
             success: function (response) {
                 closeModal();
                 console.log(response);
