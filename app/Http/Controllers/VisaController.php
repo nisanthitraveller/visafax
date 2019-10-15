@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Country;
 use App\Models\Visa;
+use Google_Client;
 
 class VisaController extends Controller
 {
@@ -95,7 +96,6 @@ class VisaController extends Controller
     
     public function dashboard(Request $request) {
         $visaObj = new Visa();
-        $googleController = new App\Http\Controllers\GoogleController();
         $user = auth()->user();
         
         $allVisa = $visaObj->getAllMyVisa($user->id);
@@ -104,7 +104,7 @@ class VisaController extends Controller
             $bookingId = $request['bookingID'];
         }
         
-        $client = $googleController->getClient();
+        $client = $this->getGoogleClient();
         $service = new \Google_Service_Drive($client);
         
         $visaDetails = $visaObj->getVisa($bookingId);
@@ -116,7 +116,7 @@ class VisaController extends Controller
         foreach ($visaDetails as $key => $visaDetail) {
             $foldID = $visaDetail->folderID;    
 
-            $files[$key] = $googleController->retrieveAllFiles($service, $foldID);
+            $files[$key] = $this->retrieveDriveFiles($service, $foldID);
         }
         dd($files);
         return view('dashboard')->with(['allVisa' => $allVisa, 'files' => $files]);
@@ -126,5 +126,59 @@ class VisaController extends Controller
         $view = view('PayUSubmitPayment')->with(array('data' => $request));
         $contents = $view->render();
         return $contents;
+    }
+    
+    public function getGoogleClient() {
+        
+        $redirect_uri = \Illuminate\Support\Facades\URL::current();
+        define('STDIN', fopen('php://stdin', 'r'));
+        $homeDirectory = env('HOMEDRIVE');
+        $this->tokenFile = $homeDirectory . 'token.json';
+        $client = new Google_Client();
+        $client->setApplicationName($this->projectName);
+        $client->setScopes(array('profile', 'email', 'https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/drive.appfolder'));
+        $client->setAuthConfig($homeDirectory . 'client_secret.json');
+        $client->setDeveloperKey('AIzaSyBmLkJ0sHCn9LSra5yPnXDYBIyoh4aX5nE');
+        $client->setRedirectUri($redirect_uri);
+        //dd($client);
+        $client->setAccessType('offline');
+        $client->setApprovalPrompt('force');
+        //$client->setAccessToken($token);
+        //dd($client);
+        // Load previously authorized credentials from a file.
+        if (file_exists($this->tokenFile)) {
+            $accessToken = json_decode(file_get_contents($this->tokenFile), true);
+        } else {
+            // Request authorization from the user.
+            $authUrl = $client->createAuthUrl();
+            header('Location: ' . filter_var($authUrl, FILTER_SANITIZE_URL));
+
+            if (null !== (request('code'))) {
+                $authCode = request('code');
+                // Exchange authorization code for an access token.
+                $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
+                header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
+                if (!file_exists(dirname($this->tokenFile))) {
+                    mkdir(dirname($this->tokenFile), 0700, true);
+                }
+
+                file_put_contents($this->tokenFile, json_encode($accessToken));
+            } else {
+                exit('No code found');
+            }
+        }
+        $client->setAccessToken($accessToken);
+        return $client;
+    }
+    
+    function retrieveDriveFiles($service, $folderId) {
+        $optParams = array(
+            'pageSize' => 999,
+            'fields' => 'nextPageToken, files',
+            'q' => "'".$folderId."' in parents and mimeType = 'application/vnd.google-apps.document'"
+          );
+        $results = $service->files->listFiles($optParams);
+        
+        return $results;
     }
 }
