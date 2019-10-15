@@ -99,7 +99,6 @@ function updateMobile()
             dataType: 'json',
             cache : false,
             processData: false,
-            contentType: false,
             success: function (response) {
                 closeModal();
                 console.log(response);
