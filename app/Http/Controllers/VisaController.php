@@ -111,7 +111,7 @@ class VisaController extends Controller
         
         $visaDetails = $visaObj->getVisa($bookingId);
         
-        if($visaDetails[0]['user_id'] != $user->id) {
+        if($visaDetails[0]->user_id != $user->id) {
             die('No booking found!');
         }
         
