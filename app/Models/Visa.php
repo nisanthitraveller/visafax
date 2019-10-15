@@ -149,7 +149,8 @@ class Visa {
 //            ->leftJoin('pay_slip', 'bookings.id', '=', 'pay_slip.BookingID')
             ->where('user_info.user_id', $userId)
             ->select(['bookings.*', 'countries.countryName', 'countries.DriveID as folderID', 'user_info.*'])
-            ->get();
+            ->get()
+            ->toArray();
         return $bookings;
     }
 
