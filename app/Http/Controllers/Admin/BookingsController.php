@@ -54,6 +54,7 @@ class BookingsController extends Controller
         unset($user['updated_at']);
         unset($user['user_id']);
         unset($user['id']);
+        unset($user['VisitingCountry']);
         if(!empty($request['VisaType'])) {
             $model = Bookings::findOrFail($bookingId);
             $model->fill($request->toArray());
