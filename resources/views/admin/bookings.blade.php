@@ -21,15 +21,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($bookings as $booking)
+                    @foreach($bookings as $k => $booking)
                     <tr>
-                        <td>1</td>
+                        <td>{{$k + 1}}</td>
                         <td>{{$booking->BookingID}}</td>
-                        <td>{{$booking->country()->countryName}}</td>
-                        <td>{{$booking->user()->PassportNo}}</td>
-                        <td>{{$booking->user()->FirstName}}</td>
-                        <td>{{$booking->user()->EmailID}}</td>
-                        <td>{{$booking->user()->PhoneNo}}</td>
+                        <td>{{$booking['country']['countryName']}}</td>
+                        <td>{{$booking['user']['PassportNo']}}</td>
+                        <td>{{$booking['user']['FirstName']}}</td>
+                        <td>{{$booking['user']['EmailID']}}</td>
+                        <td>{{$booking['user']['PhoneNo']}}</td>
                         <td>
                             <a href="{!! route('admin.editbooking', [$booking->id]) !!}" class='btn btn-default btn-xs'>
                                 Booking Info

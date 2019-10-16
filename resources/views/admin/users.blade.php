@@ -20,9 +20,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($users as $user)
+                    @foreach($users as $k => $user)
                     <tr>
-                        <td>1</td>
+                        <td>{{$k + 1}}</td>
                         <td>{{$user->FirstName}}</td>
                         <td>{{$user->Surname}}</td>
                         <td>{{$user->CityOfResidence}}</td>
