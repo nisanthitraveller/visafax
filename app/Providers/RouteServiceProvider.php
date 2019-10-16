@@ -76,7 +76,6 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapBORoutes()
     {
         Route::prefix('bo')
-             ->middleware('is_admin')
              ->namespace($this->namespace)
              ->group(base_path('routes/admin.php'));
     }

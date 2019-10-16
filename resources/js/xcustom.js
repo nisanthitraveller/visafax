@@ -53,13 +53,12 @@
         $(this).siblings('.panel-heading').removeClass('active');
     });
 
-    $('.ui.dropdown').dropdown({
+    /*$('.ui.dropdown').dropdown({
         on: 'hover'
     });
-    $('.up-sucess-btn')
-            .popup({
-                inline: true
-            });
+    $('.up-sucess-btn').popup({
+        inline: true
+    });*/
 
     $('.collapse').on('show.bs.collapse', function () {
         $('.collapse.show').each(function () {

@@ -144,7 +144,7 @@ Visa Payement
                             <div class="do-ic"><img src="images/doc2.png"> {{count($visaDetails)}} prople</div>
                         </div>
                         <div class="col-md-4 col-sm-4 col-4 row-dta">
-                            <div class="do-ic"><img src="images/doc3.png"> {{$visaDetails[0]->VisaType}}</div>
+                            <div class="do-ic"><img src="images/doc3.png"> {{$visaDetails[0]->VisaType}} visa</div>
                         </div>
                     </div>
                 </div>

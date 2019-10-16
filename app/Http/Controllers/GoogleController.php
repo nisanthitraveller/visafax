@@ -248,7 +248,7 @@ class GoogleController extends Controller {
                 $auth = auth()->loginUsingId($finduser->id, true);
                 $parentId = $visaObj->createVisa($input);
                 $return['parentId'] = $parentId;
-                $this->googledoc($parentId);
+                //$this->googledoc($parentId);
                 
                 
             } else {
@@ -285,7 +285,7 @@ class GoogleController extends Controller {
         $request['userId'] = $user->id;
         $parentId = $visaObj->createVisa($request);
         
-        $this->googledoc($parentId);
+        //$this->googledoc($parentId);
         
         $return['status'] = false;
         $return['parentId'] = $parentId;
@@ -301,7 +301,7 @@ class GoogleController extends Controller {
         $input['userId'] = $user->id;
         $parentId = $visaObj->createVisa($input);
         
-        $this->googledoc($parentId);
+        //$this->googledoc($parentId);
         
         $return['status'] = true;
         $return['parentId'] = $parentId;

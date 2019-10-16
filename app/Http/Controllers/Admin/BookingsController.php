@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
-use \App\Models\UserInfo;
+use \App\Models\Bookings;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class BookingsController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -42,25 +42,25 @@ class UserController extends Controller
 
     public function get()
     {
-        $userInfoObj = new UserInfo();
-        $users = $userInfoObj->getList();
-        return view('admin.users')->with(['users' => $users]);
+        $bookingObj = new Bookings();
+        $bookings = $bookingObj->getList();
+        return view('admin.bookings')->with(['bookings' => $bookings]);
     }
     
-    public function edituser($userId, Request $request)
+    public function editbooking($bookingId, Request $request)
     {
-        $user = UserInfo::where("id", $userId)->first()->toArray();
+        $user = Bookings::where("id", $bookingId)->first()->toArray();
         unset($user['created_at']);
         unset($user['updated_at']);
         unset($user['user_id']);
         unset($user['id']);
-        if(!empty($request['FirstName'])) {
-            $model = UserInfo::findOrFail($userId);
+        if(!empty($request['VisaType'])) {
+            $model = Bookings::findOrFail($bookingId);
             $model->fill($request->toArray());
             $model->save();
             return redirect()->back();
         }
         
-        return view('admin.edituser')->with(['user' => $user]);
+        return view('admin.editbooking')->with(['user' => $user]);
     }
 }
