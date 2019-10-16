@@ -23,12 +23,14 @@ class Bookings extends Model
     }
 
     function getList() {
-        $bookings = Bookings::latest()->get();
+        $bookings = Bookings::latest()->with('user')->with('country')->get();
         return $bookings;
     }
     
     function getBooking($bookingId) {
         $booking = Bookings::where('id', $bookingId)
+            ->with('user')
+            ->with('country')
             ->first()
             ->toArray();
         return $booking;
