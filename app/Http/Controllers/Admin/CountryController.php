@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use \App\Models\Country;
+use \App\Models\DocumentType;
+use \App\Models\Document;
 use Illuminate\Http\Request;
 
 class CountryController extends Controller
@@ -62,5 +64,46 @@ class CountryController extends Controller
         }
         
         return view('admin.editcountry')->with(['country' => $country]);
+    }
+    
+    public function countrydocument($Id, Request $request)
+    {
+        
+        $documentTypeObj = new DocumentType();
+        $documentTypes = $documentTypeObj->getList();
+        $countryDocuments = Document::where('country_id', $Id)->select('document_type', 'document_id')->get()->toArray();
+        $documentTypeId = [];
+        $driveId = [];
+        foreach($countryDocuments as $key => $countryDocument) {
+            $documentTypeId[$key+1] = $countryDocument['document_type'];
+            $driveId[$key+1] = $countryDocument['document_id'];
+        }
+        //dd($countryDocuments);
+        $country = Country::where("id", $Id)->first();
+        if(!empty($request['countryName'])) {
+            $docIds = array_values(array_filter($request['document_id']));
+            // Delete unselected values
+            Document::whereNotIn('id', $request['document_type'])->where('country_id', $Id)->delete(); 
+            
+            foreach($request['document_type'] as $k => $documentType) {
+                
+                $findRow = Document::where('country_id', $Id)->where('document_type', $documentType)->first();
+                if($findRow) {
+                    $findRow->document_id = $docIds[$k];
+                    $findRow->save();
+                } else {
+                    $documentObj = new Document();
+                    $documentObj->country_id = request('country_id');
+                    $documentObj->document_type = $documentType;
+                    $documentObj->document_id = $docIds[$k];
+                    $documentObj->status = 1;
+                    $documentObj->save();
+                }
+                
+            }
+            return redirect('/bo/countries')->with('status', 'Country updated!');
+        }
+        
+        return view('admin.countrydocument')->with(['country' => $country, 'documentTypes' => $documentTypes, 'documentTypeId' => $documentTypeId, 'driveId' => $driveId]);
     }
 }
