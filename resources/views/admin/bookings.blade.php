@@ -1,11 +1,11 @@
-@extends('layouts.admin')
+@extends('layouts.adminitr')
 
 @section('content')
-<div class="container">
-    <div class="container">
+<div class="container-fluid">
+    <div class="card">
         <h2>Bookings</h2>
-        <div class="table-responsive-sm">          
-            <table class="table table-bordered table-striped">
+        <div class="container-fluid">          
+            <table class="display compact table-bordered table-hover table-striped table-condensed" id="listTable">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -17,6 +17,7 @@
                         <th>Phone #</th>
                         <th>Booking Info</th>
                         <th>Assign Documents</th>
+                        <th>Hotels</th>
                         <th>View Documents</th>
                     </tr>
                 </thead>
@@ -31,12 +32,13 @@
                         <td>{{$booking['user']['EmailID']}}</td>
                         <td>{{$booking['user']['PhoneNo']}}</td>
                         <td>
-                            <a href="{!! route('admin.editbooking', [$booking->id]) !!}" class='btn btn-default btn-xs'>
+                            <a href="{!! route('admin.editbooking', [$booking->id]) !!}">
                                 Booking Info
                             </a>
                         </td>
-                        <td></td>
-                        <td></td>
+                        <td>Assign Documents</td>
+                        <th>Hotels</th>
+                        <td>View Documents</td>
                     </tr>
                     @endforeach
                 </tbody>

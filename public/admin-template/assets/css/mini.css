@@ -1,0 +1,181 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11 Feb, 2018, 7:09:18 PM
+    Author     : nisanthkumar
+*/
+.sidebar .user .profile-dropdown .sidebar-mini,
+.sidebar .user .profile-dropdown .sidebar-normal {
+    margin-right: 0;
+    font-size: 14px;
+}
+.sidebar-mini .sidebar .sidebar-wrapper .nav .nav-item:hover .collapse .nav-item .nav-link {
+    padding: 5px 15px;
+}
+
+.sidebar .sidebar-wrapper .nav [data-toggle="collapse"]~div>ul>li>a .sidebar-mini,
+.sidebar .sidebar-wrapper .user .info [data-toggle="collapse"]~div>ul>li>a .sidebar-mini {
+    text-transform: uppercase;
+    float: left;
+    width: 30px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+.sidebar .nav .nav-item .nav-link .sidebar-mini {
+    padding-left: 5px !important;
+    opacity: .86 !important;
+}
+.sidebar-mini .visible-on-sidebar-regular {
+    display: none !important;
+}
+.sidebar-mini .visible-on-sidebar-mini {
+    display: inline-block !important;
+}
+.sidebar-mini .sidebar {
+    width: 80px;
+    display: block;
+    font-weight: 200;
+    z-index: 3;
+    position: fixed;
+}
+.sidebar-mini .sidebar .logo a.logo-mini {
+    opacity: 1;
+}
+.sidebar-mini .sidebar .logo a.logo-normal {
+    opacity: 0;
+    -webkit-transform: translate3d(-25px, 0, 0);
+    -moz-transform: translate3d(-25px, 0, 0);
+    -o-transform: translate3d(-25px, 0, 0);
+    -ms-transform: translate3d(-25px, 0, 0);
+    transform: translate3d(-25px, 0, 0);
+}
+.sidebar-mini .sidebar .sidebar-wrapper {
+    overflow: inherit;
+    width: 80px;
+    box-shadow: none;
+}
+.sidebar-mini .sidebar .sidebar-wrapper .nav [data-toggle="collapse"]~div>ul>li>a .sidebar-normal,
+.sidebar-mini .sidebar .sidebar-wrapper .user .info [data-toggle="collapse"]~div>ul>li>a .sidebar-normal,
+.sidebar-mini .sidebar .sidebar-wrapper .user .info>a>span,
+.sidebar-mini .sidebar .sidebar-wrapper>.nav li>a p {
+    -webkit-transform: translate3d(-25px, 0, 0);
+    -moz-transform: translate3d(-25px, 0, 0);
+    -o-transform: translate3d(-25px, 0, 0);
+    -ms-transform: translate3d(-25px, 0, 0);
+    transform: translate3d(-25px, 0, 0);
+    opacity: 0;
+}
+.sidebar-mini .sidebar .info .collapse .nav li>a {
+    margin: 0;
+    border-radius: 0;
+}
+.sidebar-mini .sidebar .info .caret {
+    opacity: 0;
+}
+.sidebar-mini .sidebar .info [data-toggle="collapse"]~div>ul>li:last-child>a {
+    margin-bottom: 5px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+.sidebar-mini .sidebar .info [data-toggle="collapse"]~div>ul>li:first-child>a {
+    margin-top: 5px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.sidebar-mini .sidebar .nav .nav-item .nav-link .sidebar-mini {
+    padding-left: 30px !important;
+}
+.sidebar-mini .sidebar:hover {
+    width: 260px;
+}
+.sidebar-mini .sidebar:hover .logo a.logo-normal {
+    opacity: 1;
+    -webkit-transform: translate3d(0px, 0, 0);
+    -moz-transform: translate3d(0px, 0, 0);
+    -o-transform: translate3d(0px, 0, 0);
+    -ms-transform: translate3d(0px, 0, 0);
+    transform: translate3d(0px, 0, 0);
+}
+.sidebar-mini .sidebar:hover .nav-item [data-toggle="collapse"]~div .nav .sidebar-normal {
+    left: 0;
+}
+.sidebar-mini .sidebar:hover .caret {
+    opacity: 1;
+}
+.sidebar-mini .sidebar:hover .sidebar-wrapper {
+    width: 260px;
+}
+.sidebar-mini .sidebar:hover .sidebar-wrapper>.nav li>a p,
+.sidebar-mini .sidebar:hover .sidebar-wrapper>.nav [data-toggle="collapse"]~div>ul>li>a .sidebar-normal,
+.sidebar-mini .sidebar:hover .sidebar-wrapper .user .info [data-toggle="collapse"]~div>ul>li>a .sidebar-normal,
+.sidebar-mini .sidebar:hover .sidebar-wrapper .user .info>a>p,
+.sidebar-mini .sidebar:hover .sidebar-wrapper>.nav li>a .caret,
+.sidebar-mini .sidebar:hover .sidebar-wrapper .user .info a span {
+    -webkit-transform: translate3d(0px, 0, 0);
+    -moz-transform: translate3d(0px, 0, 0);
+    -o-transform: translate3d(0px, 0, 0);
+    -ms-transform: translate3d(0px, 0, 0);
+    transform: translate3d(0px, 0, 0);
+    opacity: 1;
+}
+.sidebar-mini .sidebar:hover .sidebar-wrapper>.nav li.active>a:not([data-toggle="collapse"]):before,
+.sidebar-mini .sidebar:hover .sidebar-wrapper>.nav li.active>a:not([data-toggle="collapse"]):after {
+    opacity: 0;
+}
+.sidebar-mini .sidebar:hover .nav .nav-item .nav-link .sidebar-mini {
+    margin-right: 5px !important;
+}
+.sidebar-mini .sidebar:hover .sidebar-normal {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 5px 15px 0px;
+    border-radius: 4px;
+    color: #FFFFFF;
+    opacity: .86;
+}
+.sidebar-mini .main-panel {
+    width: calc(100% - 80px);
+    margin-left: 80px;
+}
+.sidebar-mini .wrapper {
+    height: auto;
+}
+.sidebar-mini .sidebar,
+.sidebar-mini .main-panel {
+    overflow: visible;
+    max-height: none;
+    height: auto;
+}
+.sidebar-mini .navbar-fixed {
+    width: calc(100% - 0px) !important;
+}
+.visible-on-sidebar-mini {
+    display: none !important;
+}
+.sidebar-mini .sidebar .sidebar-wrapper>.nav [data-toggle="collapse"]~div>ul>li>a .sidebar-normal,
+.sidebar-mini .sidebar .sidebar-wrapper .user .info [data-toggle="collapse"]~div>ul>li>a .sidebar-normal,
+.sidebar-mini .sidebar .sidebar-wrapper .user .info>a>span,
+.sidebar-mini .sidebar .sidebar-wrapper>.nav li>a span,
+.sidebar-mini .sidebar .sidebar-wrapper>.nav li>a .caret {
+    -webkit-transform: translate3d(-25px, 0, 0);
+    -moz-transform: translate3d(-25px, 0, 0);
+    -o-transform: translate3d(-25px, 0, 0);
+    -ms-transform: translate3d(-25px, 0, 0);
+    transform: translate3d(-25px, 0, 0);
+    opacity: 0;
+}
+.sidebar-mini .sidebar .logo a.logo-mini {
+    opacity: 1;
+}
+.sidebar-mini .sidebar .logo a.logo-normal {
+    opacity: 0;
+}
+.textbox-small {
+    width: 85px;
+}
+.textbox-medium {
+    width: 100px;
+}

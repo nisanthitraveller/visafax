@@ -1,8 +1,8 @@
-@extends('layouts.admin')
+@extends('layouts.adminitr')
 
 @section('content')
-<div class="container">
-    <div class="container">
+<div class="container-fluid">
+    <div class="card">
         <h2>Edit Booking</h2>
         <div class="table-responsive-sm">          
             <form method="post">

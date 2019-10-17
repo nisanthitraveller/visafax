@@ -1,11 +1,11 @@
-@extends('layouts.admin')
+@extends('layouts.adminitr')
 
 @section('content')
-<div class="container">
-    <div class="container">
+<div class="container-fluid">
+    <div class="card">
         <h2>Users</h2>
-        <div class="table-responsive-sm">          
-            <table class="table table-bordered table-striped">
+        <div class="container-fluid">          
+            <table class="display compact table-bordered table-hover table-striped table-condensed" id="listTable">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -31,7 +31,7 @@
                         <td>{{$user->EmailID}}</td>
                         <td>{{$user->PhoneNo}}</td>
                         <td>
-                            <a href="{!! route('admin.edituser', [$user->id]) !!}" class='btn btn-default btn-xs'>
+                            <a href="{!! route('admin.edituser', [$user->id]) !!}">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </td>
