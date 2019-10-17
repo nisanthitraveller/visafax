@@ -62,6 +62,16 @@ $requests = explode('/', Request::path());
                                 <p>Bookings</p>
                             </a>
                         </li>
+                        <li <?php if ($requests[1] == 'documenttypes') { ?> class="active" <?php } ?> >
+                            <a href="{{ secure_url('/') }}/bo/documenttypes">
+                                <p>Document Types</p>
+                            </a>
+                        </li>
+                        <li <?php if ($requests[1] == 'countries') { ?> class="active" <?php } ?> >
+                            <a href="{{ secure_url('/') }}/bo/countries">
+                                <p>Countries</p>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

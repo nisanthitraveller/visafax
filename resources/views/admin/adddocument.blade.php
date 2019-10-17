@@ -3,17 +3,15 @@
 @section('content')
 <div class="container-fluid">
     <div class="card">
-        <h2>Edit Booking</h2>
+        <h2>Add New</h2>
         <div class="table-responsive-sm">          
             <form method="post">
-                @foreach($user as $key => $data)
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label" for="form{{$key}}">{{$key}}:</label>
+                    <label class="col-sm-2 col-form-label" for="formType">Type:</label>
                     <div class="col-sm-10">
-                        <input type="text" value="{{$data}}" name="{{$key}}" class="form-control" id="form{{$key}}">
+                        <input type="text" value="" required="" name="type" class="form-control" id="formType">
                     </div>
                 </div>
-                @endforeach
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>

@@ -3,10 +3,10 @@
 @section('content')
 <div class="container-fluid">
     <div class="card">
-        <h2>Edit Booking</h2>
+        <h2>Edit Document Name</h2>
         <div class="table-responsive-sm">          
             <form method="post">
-                @foreach($user as $key => $data)
+                @foreach($documentType as $key => $data)
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="form{{$key}}">{{$key}}:</label>
                     <div class="col-sm-10">
