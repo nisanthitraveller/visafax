@@ -19,7 +19,10 @@
                     <div class="col-sm-10">
                         <input type="file" class="form-control" name="icon" />
                     </div>
-                            
+                    <label class="col-sm-2 col-form-label">Default Price:</label>
+                    <div class="col-sm-10">
+                        <input type="text" value="" required="" name="default_price" class="form-control">
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
