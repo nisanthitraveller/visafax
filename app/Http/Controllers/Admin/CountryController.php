@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use \App\Models\Country;
 use \App\Models\DocumentType;
 use \App\Models\Document;
+use \App\Models\PricingMaster;
+use \App\Models\Pricing;
+
 use Illuminate\Http\Request;
 
 class CountryController extends Controller
@@ -105,5 +108,45 @@ class CountryController extends Controller
         }
         
         return view('admin.countrydocument')->with(['country' => $country, 'documentTypes' => $documentTypes, 'documentTypeId' => $documentTypeId, 'driveId' => $driveId]);
+    }
+    
+    public function countryprice($Id, Request $request)
+    {
+        
+        $pricingTypeObj = new PricingMaster();
+        $pricingTypes = $pricingTypeObj->getList();
+        $countryPrices = Pricing::where('country_id', $Id)->select('plan_id', 'price')->get()->toArray();
+        $priceId = [];
+        $price = [];
+        foreach($countryPrices as $key => $countryDocument) {
+            $priceId[$key+1] = $countryDocument['plan_id'];
+            $price[$key+1] = $countryDocument['price'];
+        }
+        //dd($countryDocuments);
+        $country = Country::where("id", $Id)->first();
+        if(!empty($request['countryName'])) {
+            $docIds = array_values(array_filter($request['price']));
+            // Delete unselected values
+            Document::whereNotIn('id', $request['plan_id'])->where('country_id', $Id)->delete(); 
+            
+            foreach($request['plan_id'] as $k => $documentType) {
+                
+                $findRow = Pricing::where('country_id', $Id)->where('plan_id', $documentType)->first();
+                if($findRow) {
+                    $findRow->price = $docIds[$k];
+                    $findRow->save();
+                } else {
+                    $pricingObj = new Pricing();
+                    $pricingObj->country_id = request('country_id');
+                    $pricingObj->plan_id = $documentType;
+                    $pricingObj->price = $docIds[$k];
+                    $pricingObj->save();
+                }
+                
+            }
+            return redirect('/bo/countries')->with('status', 'Country updated!');
+        }
+        
+        return view('admin.countryprice')->with(['country' => $country, 'pricingTypes' => $pricingTypes, 'priceId' => $priceId, 'price' => $price]);
     }
 }

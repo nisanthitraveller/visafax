@@ -24,3 +24,7 @@ Route::any('/editbooking/{bookingId}', 'Admin\BookingsController@editbooking')->
 Route::get('/documenttypes', 'Admin\DocumentsController@documenttypes')->name('admin.documenttypes');
 Route::any('/editdocumenttype/{Id}', 'Admin\DocumentsController@editdocumenttype')->name('admin.editdocumenttype');
 Route::any('/adddocumenttype', 'Admin\DocumentsController@adddocumenttype')->name('admin.adddocumenttype');
+
+Route::get('/pricingtypes', 'Admin\PricingController@pricingtypes')->name('admin.pricingtypes');
+Route::any('/editpricingtype/{Id}', 'Admin\PricingController@editpricingtype')->name('admin.editpricingtype');
+Route::any('/addpricingtype', 'Admin\PricingController@addpricingtype')->name('admin.addpricingtype');

@@ -72,6 +72,11 @@ $requests = explode('/', Request::path());
                                 <p>Countries</p>
                             </a>
                         </li>
+                        <li <?php if ($requests[1] == 'pricingtypes') { ?> class="active" <?php } ?> >
+                            <a href="{{ secure_url('/') }}/bo/pricingtypes">
+                                <p>Pricing Master</p>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
