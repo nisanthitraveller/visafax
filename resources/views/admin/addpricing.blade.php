@@ -5,7 +5,7 @@
     <div class="card">
         <h2>Add New</h2>
         <div class="table-responsive-sm">          
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Title:</label>
                     <div class="col-sm-10">
