@@ -13,7 +13,7 @@
             <table class="display compact table-bordered table-hover table-striped table-condensed" id="listTable">
                 <thead>
                     <tr>
-                        <td colspan="3">
+                        <td colspan="4">
                             <a href="{!! route('admin.addpricingtype') !!}" class="btn btn-danger">
                                 Add New
                             </a>
