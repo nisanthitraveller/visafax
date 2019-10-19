@@ -272,8 +272,7 @@ class GoogleController extends Controller {
         return json_encode($return);
     }
     
-    public function updatemobile(Request $request)
-    {
+    public function updatemobile(Request $request) {
         $visaObj = new Visa();
         $user = auth()->user();
         $user->phone = $request['mobile'];
@@ -290,8 +289,7 @@ class GoogleController extends Controller {
         return json_encode($return);
     }
     
-    public function createvisa(Request $input)
-    {
+    public function createvisa(Request $input) {
         $visaObj = new Visa();
         $user = auth()->user();
         
@@ -351,11 +349,12 @@ class GoogleController extends Controller {
             '{{USERINFO_FirstName}}' => $booking['user']['FirstName'], 
             '{{USERINFO_Surname}}' => $booking['user']['Surname'],
             '{{USERINFO_PassportNo}}' => $booking['user']['PassportNo'],
-            '{{USERINFO_PassportDOE}}' => $booking['user']['PassportDOE'],
+            '{{USERINFO_PassportDOE}}' => date('d M Y', strtotime($booking['user']['PassportDOE'])),
             '{{USERINFO_Address}}' => $booking['user']['Address'],
             '{{USERINFO_CurrentNationality}}' => $booking['user']['CurrentNationality'], 
             '{{USERINFO_PhoneNo}}' => $booking['user']['PhoneNo'], 
             '{{USERINFO_EmailID}}' => $booking['user']['EmailID'], 
+            '{{USERINFO_DOB}}' => date('d M Y', strtotime($booking['user']['DOB'])), 
             '{{USERINFO_CityOfResidence}}' => $booking['user']['CityOfResidence'],
             
             '{{BOOKINGS_ConsulateAddress}}' => $booking['ConsulateAddress'],
@@ -369,7 +368,6 @@ class GoogleController extends Controller {
             '{{BOOKINGS_CompanyPhone}}' => $booking['CompanyPhone'],
             '{{BOOKINGS_VisitingCompanyName}}' => $booking['VisitingCompanyName'],
             '{{BOOKINGS_AuthorisedSignatoryName}}' => $booking['AuthorisedSignatoryName'],
-            '{{BOOKINGS_AuthorisedSignatoryDesignation}}' => $booking['AuthorisedSignatoryDesignation'],
             '{{BOOKINGS_AuthorisedSignatoryDesignation}}' => $booking['AuthorisedSignatoryDesignation'],
             '{{BOOKINGS_VisitingCompanyAuthorisedPerson}}' => $booking['VisitingCompanyAuthorisedPerson'],
             '{{BOOKINGS_VisitingCompanyAuthorisedDesignation}}' => $booking['VisitingCompanyAuthorisedDesignation'],
@@ -392,13 +390,13 @@ class GoogleController extends Controller {
         
         $strHotel = null;
         if(!empty($booking['hotels'])) {
-            $strHotel .= 'During our stay, we will be staying at the following locations. \n';
+            $strHotel .= 'During our stay, we will be staying at the following locations. ' . "\n";
             foreach($booking['hotels'] as $hotel) {
-                $strHotel .= 'From: ' . date('d M Y', strtotime($hotel['DateFrom'])) . '\n';
-                $strHotel .= 'To: ' . date('d M Y', strtotime($hotel['DateTo'])) . '\n';
-                $strHotel .= 'Place: ' . $hotel['Place'] . '\n';
-                $strHotel .= 'Hotel Name: ' . $hotel['HotelName'] . '\n';
-                $strHotel .= 'Address: ' . $hotel['HotelAddress'] . '\n';
+                $strHotel .= 'From: ' . date('d M Y', strtotime($hotel['DateFrom']))  . "\n";
+                $strHotel .= 'To: ' . date('d M Y', strtotime($hotel['DateTo']))  . "\n";
+                $strHotel .= 'Place: ' . $hotel['Place'] . "\n";
+                $strHotel .= 'Hotel Name: ' . $hotel['HotelName'] . "\n";
+                $strHotel .= 'Address: ' . $hotel['HotelAddress'] . "\n";
                 $strHotel .= 'Phone: ' . $hotel['Phone'] . '\n';
 
             }
