@@ -19,6 +19,7 @@
                     </button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="{{ secure_url('/dashboard') }}">Dashboard</a>
                         <a class="dropdown-item" href="{{ secure_url('/logout') }}"
                            onclick="signOut(); event.preventDefault();
                                     document.getElementById('logout-form').submit();">
