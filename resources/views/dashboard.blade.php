@@ -141,41 +141,45 @@ Visa Payement
                             <div class="do-ic"><img src="images/doc1.png"> From 16 Sep</div>
                         </div>
                         <div class="col-md-4 col-sm-4 col-4 row-dta">
-                            <div class="do-ic"><img src="images/doc2.png"> {{count($visaDetails)}} prople</div>
+                            <div class="do-ic"><img src="images/doc2.png"> {{count($visaDetails['child']) + 1}} prople</div>
                         </div>
                         <div class="col-md-4 col-sm-4 col-4 row-dta">
-                            <div class="do-ic"><img src="images/doc3.png"> {{$visaDetails[0]->VisaType}} visa</div>
+                            <div class="do-ic"><img src="images/doc3.png"> {{$visaDetails['VisaType']}} visa</div>
                         </div>
                     </div>
                 </div>
                 <?php $count = 1 ?>
-                @foreach($files as $k => $fileBulk)
-                @foreach($fileBulk as $key => $file)
-                @if(!empty($file))
+                @foreach($documents as $k => $document)
                 <div class="doc-list">
                     <div class="row">
                         <div class="col-md-8 col-sm-6 col-6 doc-cols">
-                            <div class="dos-name"><a target="_blank" href="{{$file->webViewLink}}"> {{$count}}. {{$file->name}}</a></div>
+                            <div class="dos-name"><a target="_blank" href="{{$document['link']}}"> {{$count}}. {{$document['type']}}</a></div>
                         </div>
                         <div class="col-md-3 col-sm-4 col-4 doc-col-2">
-                            <div class="up-btn"> <img src="images/upload-active.png">
+                            @if($document['drive'] == false)
+                            <div class="up-btn"> 
+                                <img src="images/upload-active.png">
                                 <input type="file" name="file" id="file" class="inputfile">
                                 <label for="file" class="up-doc">Upload</label>
                             </div>
+                            @endif
                         </div>
                         <div class="col-md-1 col-sm-2 col-2 doc-col-3">
                             <div class="up-sucess-btn" data-position="top right" data-tooltip="Verification done"  data-inverted="">
-
-                                <span class="up-succss">
-                                    <i class="fa fa-check"></i>
-                                </span>
+                                @if($document['status'] == 1)
+                                    <span class="up-succss">
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                @else
+                                    <span class="up-progrs">
+                                        <i class="fa fa-clock"></i>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
-                <?php $count++ ?>
-                @endif
-                @endforeach
+                <?php $count++; ?>
                 @endforeach
                 
                 <div class="col-sm-12 pay-dets">

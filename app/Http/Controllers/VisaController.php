@@ -106,97 +106,32 @@ class VisaController extends Controller
             $bookingId = $request['bookingID'];
         }
         
-        $client = $this->getGoogleClient();
-        $service = new \Google_Service_Drive($client);
+        $booking = \App\Models\Bookings::where("id", $bookingId)->with('child')->first()->toArray();
         
-        $visaDetails = $visaObj->getVisa($bookingId);
-        
-        if($visaDetails[0]->user_id != $user->id) {
-            die('No booking found!');
+        $assignedDocuments = \App\Models\BookingDocument::where('BookingID', $bookingId)->get()->toArray();
+        $documents = [];
+        foreach ($assignedDocuments as $assignedDocument) {
+            $documentType = \App\Models\DocumentType::where('id', $assignedDocument['DocumentID'])->first()->toArray();
+            $documents[$assignedDocument['DocumentID']]['status'] = $assignedDocument['status'];
+            $documents[$assignedDocument['DocumentID']]['type'] = $documentType['type'];
+            $documents[$assignedDocument['DocumentID']]['drive'] = false;
+            if($assignedDocument['DriveId'] != null) {
+                $documents[$assignedDocument['DocumentID']]['link'] = 'https://docs.google.com/document/d/' . $assignedDocument['DriveId'];
+                $documents[$assignedDocument['DocumentID']]['drive'] = true;
+            } else if($assignedDocument['pdf'] != null) {
+                $documents[$assignedDocument['DocumentID']]['link'] = url('/') . '/uploads/' . $assignedDocument['pdf'];
+            } else {
+                $documents[$assignedDocument['DocumentID']]['link'] = '#';
+            }
         }
         
-        foreach ($visaDetails as $key => $visaDetail) {
-            $foldID = $visaDetail->folderID;    
-
-            $files[$key] = $this->retrieveDriveFiles($service, $foldID);
-        }
-        return view('dashboard')->with(['allVisa' => $allVisa, 'files' => $files, 'visaDetails' => $visaDetails]);
+        
+        return view('dashboard')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents]);
     }
     
     public function payusubmit(Request $request) {
         $view = view('PayUSubmitPayment')->with(array('data' => $request));
         $contents = $view->render();
         return $contents;
-    }
-    
-    public function getGoogleClient($newCode = false) {
-        
-        $redirect_uri = \Illuminate\Support\Facades\URL::current();
-        define('STDIN', fopen('php://stdin', 'r'));
-        $homeDirectory = env('HOMEDRIVE');
-        $this->tokenFile = $homeDirectory . 'token.json';
-        $client = new Google_Client();
-        $client->setApplicationName($this->projectName);
-        $client->setScopes(array('profile', 'email', 'https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/drive.appfolder'));
-        $client->setAuthConfig($homeDirectory . 'client_secret.json');
-        $client->setDeveloperKey('AIzaSyBmLkJ0sHCn9LSra5yPnXDYBIyoh4aX5nE');
-        $client->setRedirectUri($redirect_uri);
-        //dd($client);
-        $client->setAccessType('offline');
-        $client->setApprovalPrompt('force');
-        //$client->setAccessToken($token);
-        //dd($client);
-        // Load previously authorized credentials from a file.
-        if (file_exists($this->tokenFile)) {
-            $accessToken = json_decode(file_get_contents($this->tokenFile), true);
-        } else {
-            $oldaccessToken = json_decode(file_get_contents($this->tokenFile), true);
-            // Request authorization from the user.
-            $authUrl = $client->createAuthUrl();
-            header('Location: ' . filter_var($authUrl, FILTER_SANITIZE_URL));
-
-            if (null !== (request('code'))) {
-                $authCode = request('code');
-                // Exchange authorization code for an access token.
-                $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
-                header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
-                $accessToken = array_merge($oldaccessToken, $accessToken);
-                    file_put_contents($this->tokenFile, json_encode($accessToken));
-            } else {
-                exit('No code found');
-            }
-        }
-        $client->setAccessToken($accessToken);
-        if ($client->isAccessTokenExpired()) {
-           $oldaccessToken = json_decode(file_get_contents($this->tokenFile), true);
-            // Request authorization from the user.
-            $authUrl = $client->createAuthUrl();
-            header('Location: ' . filter_var($authUrl, FILTER_SANITIZE_URL));
-
-            if (null !== (request('code'))) {
-                $authCode = request('code');
-                // Exchange authorization code for an access token.
-                $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
-                header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
-                $accessToken = array_merge($oldaccessToken, $accessToken);
-                    file_put_contents($this->tokenFile, json_encode($accessToken));
-            } else {
-                exit('No code found');
-            }
-        }
-        
-        
-        return $client;
-    }
-    
-    function retrieveDriveFiles($service, $folderId) {
-        $optParams = array(
-            'pageSize' => 999,
-            'fields' => 'nextPageToken, files',
-            'q' => "'".$folderId."' in parents and mimeType = 'application/vnd.google-apps.document'"
-          );
-        $results = $service->files->listFiles($optParams);
-        
-        return $results;
     }
 }

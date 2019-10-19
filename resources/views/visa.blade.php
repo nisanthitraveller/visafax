@@ -90,7 +90,6 @@ Visa {{$country['countryName']}}
                 @else
                 <a href="javascript:void(0)" id="create-visa" class="cntue">Continue</a>
                 @endguest
-                <a onclick="signOut();">Sign Out</a>
             </div>
 
         </div>
