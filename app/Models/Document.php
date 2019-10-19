@@ -14,5 +14,13 @@ class Document extends Model
     const UPDATED_AT = 'updated_at';
     
     protected $fillable = ['country_id', 'document_type'];
+    
+    public function country() {
+        return $this->belongsTo(Country::class, 'country_id', 'id');
+    }
+    
+    public function documenttype() {
+        return $this->belongsTo(DocumentType::class, 'document_type', 'id');
+    }
 
 }

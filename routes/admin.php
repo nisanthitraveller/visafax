@@ -20,6 +20,13 @@ Route::any('/country/price/{Id}', 'Admin\CountryController@countryprice')->name(
 
 Route::get('/bookings', 'Admin\BookingsController@get')->name('admin.bookings');
 Route::any('/editbooking/{bookingId}', 'Admin\BookingsController@editbooking')->name('admin.editbooking');
+Route::get('/assigndoc/{bookingId}', 'Admin\BookingsController@assigndoc')->name('admin.assigndoc');
+Route::get('/viewdocument/{bookingId}', 'Admin\BookingsController@viewdocument')->name('admin.viewdoc');
+Route::post('/submitdoc', 'GoogleController@submitdoc')->name('admin.submitdoc');
+
+Route::get('/hotels/{bookingId}', 'Admin\HotelsController@hotels')->name('admin.hotels');
+Route::any('/edithotel/{bookingId}', 'Admin\HotelsController@edithotel')->name('admin.edithotel');
+Route::any('/addhotel/{bookingId}', 'Admin\HotelsController@addhotel')->name('admin.addhotel');
 
 Route::get('/documenttypes', 'Admin\DocumentsController@documenttypes')->name('admin.documenttypes');
 Route::any('/editdocumenttype/{Id}', 'Admin\DocumentsController@editdocumenttype')->name('admin.editdocumenttype');

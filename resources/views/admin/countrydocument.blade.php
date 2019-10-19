@@ -19,10 +19,10 @@
                         <div class="col-sm-2">
                             <?php $key = array_search($documentType->id, $documentTypeId) ?>
                             <?php $checked = ($key !== false) ? 'checked' : null; ?>
-                            <input type="checkbox" {{$checked}} value="{{$documentType->id}}" name="document_type[]" class="form-control" id="form{{$k}}">
+                            <input type="checkbox" {{$checked}} value="{{$documentType->id}}" name="document_type[{{$documentType->id}}]" class="form-control" id="form{{$k}}">
                         </div>
                         <div class="col-sm-8">
-                            <input type="text" placeholder="Drive ID" value="<?php if($key !== false) { echo $driveId[$key]; }?>" name="document_id[]" class="form-control">
+                            <input type="text" placeholder="Drive ID" value="<?php if($key !== false) { echo $driveId[$key]; }?>" name="document_id[{{$documentType->id}}]" class="form-control">
                         </div>
                     </div>
                 @endforeach

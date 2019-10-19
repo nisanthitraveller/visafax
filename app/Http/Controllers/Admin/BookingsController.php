@@ -7,6 +7,10 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use \App\Models\Bookings;
 use Illuminate\Http\Request;
+use \App\Models\Country;
+use \App\Models\DocumentType;
+use \App\Models\Document;
+use App\Models\BookingDocument;
 
 class BookingsController extends Controller
 {
@@ -68,5 +72,33 @@ class BookingsController extends Controller
         }
         
         return view('admin.editbooking')->with(['user' => $user]);
+    }
+    
+    public function assigndoc($bookingId)
+    {
+        $booking = Bookings::where("id", $bookingId)->with('user')->with('country')->with('hotels')->with('child')->first()->toArray();
+        $countryDocuments = Document::where('country_id', $booking['VisitingCountry'])->with('documenttype')->select('document_type', 'document_id')->get()->toArray();
+        $assignedDocuments = BookingDocument::where('BookingID', $bookingId)->select(['DocumentID'])->get()->toArray();
+        $selected = [];
+        foreach ($assignedDocuments as $assignedDocument) {
+            $selected[] = $assignedDocument['DocumentID'];
+        }
+        return view('admin.assigndoc')->with(['booking' => $booking, 'countryDocuments' => $countryDocuments, 'selected' => $selected]);
+    }
+    
+    public function viewdocument($bookingId) {
+        $booking = Bookings::where("id", $bookingId)->with('user')->with('country')->with('hotels')->with('child')->first()->toArray();
+        $countryDocuments = Document::where('country_id', $booking['VisitingCountry'])->with('documenttype')->select('document_type', 'document_id')->get()->toArray();
+        $assignedDocuments = BookingDocument::where('BookingID', $bookingId)->select(['DocumentID', 'DriveId'])->get()->toArray();
+        $selected = [];
+        $driveId = [];
+        foreach ($assignedDocuments as $assignedDocument) {
+            $selected[] = $assignedDocument['DocumentID'];
+            if($assignedDocument['DriveId'] != null) {
+                $driveId[$assignedDocument['DriveId']] = $assignedDocument['DocumentID'];
+            }
+        }
+        
+        return view('admin.viewdoc')->with(['booking' => $booking, 'countryDocuments' => $countryDocuments, 'selected' => $selected, 'driveId' => $driveId]);
     }
 }

@@ -10,7 +10,7 @@ $requests = explode('/', Request::path());
         <meta name="description" content="">
         <meta name="author" content="">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
+        <meta name="google-signin-client_id" content="720640930504-5iie69aclsvbithnfr0hakfe0tuanptn.apps.googleusercontent.com">
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <link rel="shortcut icon" href="{{ asset('images/fav-icon.png') }}">
@@ -34,11 +34,41 @@ $requests = explode('/', Request::path());
         @yield('styles')
         <style type="text/css">
             .card {padding: 15px}
+            #fade {
+                display: none;
+                position:absolute;
+                top: 0%;
+                left: 0%;
+                width: 100%;
+                height: 100%;
+                background-color: #ababab;
+                z-index: 1001;
+                -moz-opacity: 0.8;
+                opacity: .70;
+                filter: alpha(opacity=80);
+            }
+
+            #loader-modal {
+                display: none;
+                position: absolute;
+                top: 45%;
+                left: 45%;
+                width: 64px;
+                height: 64px;
+                padding:30px 15px 0px;
+                border: 3px solid #ababab;
+                box-shadow:1px 1px 10px #ababab;
+                border-radius:20px;
+                background-color: white;
+                z-index: 1002;
+                text-align:center;
+                overflow: auto;
+            }
         </style>
         <script>
             var baseUrl = "{{url('/')}}";
         </script>
-
+        <script src="{{ asset('js/googleadmin.js') }}" defer></script>
         @yield('headscript')
     </head>
     <body class="sidebar-mini">
@@ -194,6 +224,7 @@ $requests = explode('/', Request::path());
             format: 'Y-m-dPH:i:00'
         });
     </script>
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
     @yield('scripts')
 
 </html>

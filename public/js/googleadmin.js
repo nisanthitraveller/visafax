@@ -3,7 +3,7 @@
 function renderButton() {
     console.log('Render button');
     gapi.signin2.render('my-signin2', {
-        'scope': 'profile email',
+        'scope': 'profile email https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.appfolder',
         'width': 260,
         'height': 50,
         'longtitle': true,
@@ -18,9 +18,9 @@ function onFailure(error) {
     console.log(error);
 }
 
-/*function onSuccess(googleUser) {
+function onSignIn(googleUser) {
     console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-}*/
+}
 
 
 function onSuccess(googleUser) {
@@ -28,17 +28,14 @@ function onSuccess(googleUser) {
     var id_token = googleUser.getAuthResponse().id_token;
     var accsTkn = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token;  
     var profile = googleUser.getBasicProfile();
-    $('#email').val(profile.getEmail());
-    if(profile.getId()) {
-        openModal();
-    }
+    openModal();
     
     var form = $('#visaForm')[0];
     var data = new FormData(form);
     
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
-    xhr.open('POST', '/tokensignin');
+    xhr.open('POST', '/bo/submitdoc' );
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
     xhr.onload = function () {
@@ -49,14 +46,8 @@ function onSuccess(googleUser) {
             console.log('Invalid Token');
         } else {
             closeModal();
-            if(response.redirect == true) {
-                location.href = '/applyvisa/payment/' + response.parentId;
-                console.log('redirect true');
-            } else {
-                $('.please-wait').hide();
-                $('.g-login').show();
-                $('#phone1').focus();
-            }
+            location.href = '/bo/bookings';
+            console.log('redirect true');
         }
     };
     var formParams = urlencodeFormData(data);
@@ -77,32 +68,6 @@ function signOut() {
     });
     
     auth2.disconnect();
-}
-
-function saveUserData(userData){
-    $.post('/userdata', { oauth_provider:'google', userData: JSON.stringify(userData) });
-}
-function updateMobile()
-{
-    if($('#phone1').val() == '') {
-        $('#phone1').focus();
-    } else {
-        $('#connect-modal').modal('hide');
-        openModal();
-        var token = $('meta[name=csrf-token]').attr('content');
-        $.ajax({
-            type: 'GET',
-            dataType: 'json',
-            url: "/updatemobile",
-            data: $('#visaForm').serialize() + "&mobile=" + $('#phone1').val(),
-            headers: {"x-csrf-token": token},
-            success: function (response) {
-                closeModal();
-                console.log(response);
-                location.href = '/applyvisa/payment/' + response.parentId;
-            }
-        });
-    }
 }
 
 function urlencodeFormData(fd){

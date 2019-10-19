@@ -78,13 +78,17 @@ class CountryController extends Controller
         $documentTypeId = [];
         $driveId = [];
         foreach($countryDocuments as $key => $countryDocument) {
-            $documentTypeId[$key+1] = $countryDocument['document_type'];
-            $driveId[$key+1] = $countryDocument['document_id'];
+            $documentTypeId[$key] = $countryDocument['document_type'];
+            $driveId[$key] = $countryDocument['document_id'];
         }
-        //dd($countryDocuments);
+        
         $country = Country::where("id", $Id)->first();
         if(!empty($request['countryName'])) {
-            $docIds = array_values(array_filter($request['document_id']));
+            $docIds = $request['document_id'];
+            //echo '<pre>';print_r($request['document_type']);
+            //print_r($documentTypeId);
+            //echo '</pre>';
+            //dd($docIds);
             // Delete unselected values
             Document::whereNotIn('id', $request['document_type'])->where('country_id', $Id)->delete(); 
             
@@ -98,7 +102,7 @@ class CountryController extends Controller
                     $documentObj = new Document();
                     $documentObj->country_id = request('country_id');
                     $documentObj->document_type = $documentType;
-                    $documentObj->document_id = $docIds[$k];
+                    $documentObj->document_id = isset($docIds[$k]) ? $docIds[$k] : null;
                     $documentObj->status = 1;
                     $documentObj->save();
                 }

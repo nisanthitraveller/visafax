@@ -13,6 +13,9 @@
                         @if($key == 'description')
                             <textarea id="form{{$key}}" class="ckeditor form-control" name="{{$key}}">{{$data}}</textarea>
                         @elseif($key == 'icon')
+                            @if($data != '')
+                                <img src="{{url('/')}}/uploads/{{$data}}" />
+                            @endif
                             <input type="file" class="form-control" name="icon" />
                         @elseif($key == 'status')
                             <select class="form-control" id="form{{$key}}" name="{{$key}}">

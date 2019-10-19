@@ -127,7 +127,17 @@ class Visa {
         );
     }
     
-    public function updateDriveID($parentId, $driveId) {
+    public function updateDriveID($parentId, $driveId, $docId) {
+        DB::table('booking_documents')->insert(
+                [
+                    'BookingID' => $parentId,
+                    'DocumentId' => $docId,
+                    'DriveId' => $driveId,
+                ]
+        );
+    }
+    
+    public function updateDriveIDBooking($parentId, $driveId) {
         DB::table('bookings')
               ->where('id', $parentId)
               ->update(['DriveID' => $driveId]);

@@ -183,9 +183,6 @@ class GoogleController extends Controller {
 
                 foreach ($results as $result) {
                     if ($result instanceof \Google_Service_Exception) {
-                        // Handle error
-                        //echo '<br />';
-                        //echo \GuzzleHttp\json_encode($result);
                     } else {
                         //echo '<br />';
                         //echo "Permission ID: %s\n", $result->id;
@@ -201,7 +198,7 @@ class GoogleController extends Controller {
         $optParams = array(
             'pageSize' => 999,
             'fields' => 'nextPageToken, files',
-            'q' => "'".$folderId."' in parents and mimeType = 'application/vnd.google-apps.document'"
+            'q' => "'".$folderId."' in parents and mimeType = 'application/vnd.google-apps.document' or mimeType = 'application/pdf'"
           );
         $results = $service->files->listFiles($optParams);
         
@@ -307,6 +304,184 @@ class GoogleController extends Controller {
         $return['parentId'] = $parentId;
         
         return json_encode($return);
+    }
+    
+    public function submitdoc(Request $input) {
+        $visaObj = new Visa();
+        $countryObj = new \App\Models\Country();
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+        header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
+        
+        $homeDirectory = env('HOMEDRIVE');
+        $tokenFile = $homeDirectory . 'token.json';
+        file_put_contents($tokenFile, json_encode($input['accsTkn']));
+
+        
+        $client = $this->getClient();
+        $client->setAuthConfig($homeDirectory . 'client_secret.json');
+        $client->verifyIdToken($input['idtoken']);
+        
+        $service = new \Google_Service_Drive($client);
+        $docService = new \Google_Service_Docs($client);
+        $booking = \App\Models\Bookings::where("id", $input['bookingId'])->with('user')->with('country')->with('hotels')->with('child')->first()->toArray();
+        $countryDocuments = \App\Models\Document::where('country_id', $booking['VisitingCountry'])->with('documenttype')->select('document_type', 'document_id')->get()->toArray();
+        $documentTypeId = $documentTypeName = $driveId = [];
+        foreach($countryDocuments as $countryDocument) {
+            $documentTypeId[] = $countryDocument['document_type'];
+            $documentTypeName[] = $countryDocument['documenttype']['type'];
+            $driveId[] = $countryDocument['document_id'];
+        }
+        if($booking['DriveID'] == null) {
+            $folderName = $booking['BookingID'];
+            $folderMetadata = new \Google_Service_Drive_DriveFile(
+                array(
+                    'name' => $folderName,
+                    'mimeType' => 'application/vnd.google-apps.folder'
+                    )
+                );
+            $folder = $service->files->create($folderMetadata, array('fields' => 'id'));
+            $bookingDriveID = $folder->id;
+            $visaObj->updateDriveIDBooking($input['bookingId'], $bookingDriveID);
+        } else {
+            $bookingDriveID = $booking['DriveID'];
+        }
+        $variables = [
+            '{{Current_Date}}' => date('d.m.Y'),
+            '{{USERINFO_FirstName}}' => $booking['user']['FirstName'], 
+            '{{USERINFO_Surname}}' => $booking['user']['Surname'],
+            '{{USERINFO_PassportNo}}' => $booking['user']['PassportNo'],
+            '{{USERINFO_PassportDOE}}' => $booking['user']['PassportDOE'],
+            '{{USERINFO_Address}}' => $booking['user']['Address'],
+            '{{USERINFO_CurrentNationality}}' => $booking['user']['CurrentNationality'], 
+            '{{USERINFO_PhoneNo}}' => $booking['user']['PhoneNo'], 
+            '{{USERINFO_EmailID}}' => $booking['user']['EmailID'], 
+            '{{USERINFO_CityOfResidence}}' => $booking['user']['CityOfResidence'],
+            
+            '{{BOOKINGS_ConsulateAddress}}' => $booking['ConsulateAddress'],
+            '{{BOOKINGS_VisitingCountry}}' => $booking['VisitingCountry'],
+            '{{BOOKINGS_CompanyName}}' => $booking['CompanyName'],
+            '{{BOOKINGS_Designation}}' => $booking['Designation'],
+            '{{BOOKINGS_EmployeeID}}' => $booking['EmployeeID'],
+            '{{BOOKINGS_CompanyLocation}}' => $booking['CompanyLocation'],
+            '{{BOOKINGS_JoiningDate}}' => $booking['JoiningDate'],
+            '{{BOOKINGS_VisitingOfficeAddress}}' => $booking['VisitingOfficeAddress'],
+            '{{BOOKINGS_CompanyPhone}}' => $booking['CompanyPhone'],
+            '{{BOOKINGS_VisitingCompanyName}}' => $booking['VisitingCompanyName'],
+            '{{BOOKINGS_AuthorisedSignatoryName}}' => $booking['AuthorisedSignatoryName'],
+            '{{BOOKINGS_AuthorisedSignatoryDesignation}}' => $booking['AuthorisedSignatoryDesignation'],
+            '{{BOOKINGS_AuthorisedSignatoryDesignation}}' => $booking['AuthorisedSignatoryDesignation'],
+            '{{BOOKINGS_VisitingCompanyAuthorisedPerson}}' => $booking['VisitingCompanyAuthorisedPerson'],
+            '{{BOOKINGS_VisitingCompanyAuthorisedDesignation}}' => $booking['VisitingCompanyAuthorisedDesignation'],
+            '{{BOOKINGS_SchoolName}}' => $booking['SchoolName'],
+            '{{BOOKINGS_Class}}' => $booking['Class'],
+            '{{BOOKINGS_StudentID}}' => $booking['StudentID'],
+            '{{BOOKINGS_SchoolAuthorisedDesignation}}' => $booking['SchoolAuthorisedDesignation'],
+            '{{BOOKINGS_SchoolAuthorisedName}}' => $booking['SchoolAuthorisedName'],
+            '{{BOOKINGS_SchoolAuthorisedPhone}}' => $booking['SchoolAuthorisedPhone'],
+            '{{BOOKINGS_VisitingCountry}}' => $booking['country']['countryName']
+            
+            ];
+        $str = null;
+        if(!empty($booking['child'])) {
+            foreach($booking['child'] as $child) {
+                $user = \App\Models\UserInfo::where("id", $child['user_id'])->first()->toArray();
+                $str .= $user['FirstName']. ' ' . $user['Surname'] . ', holding passport issued by Republic of India, having passport number ' . $user['PassportNo'];
+            }
+        }
+        
+        $strHotel = null;
+        if(!empty($booking['hotels'])) {
+            $strHotel .= 'During our stay, we will be staying at the following locations. \n';
+            foreach($booking['hotels'] as $hotel) {
+                $strHotel .= 'From: ' . date('d M Y', strtotime($hotel['DateFrom'])) . '\n';
+                $strHotel .= 'To: ' . date('d M Y', strtotime($hotel['DateTo'])) . '\n';
+                $strHotel .= 'Place: ' . $hotel['Place'] . '\n';
+                $strHotel .= 'Hotel Name: ' . $hotel['HotelName'] . '\n';
+                $strHotel .= 'Address: ' . $hotel['HotelAddress'] . '\n';
+                $strHotel .= 'Phone: ' . $hotel['Phone'] . '\n';
+
+            }
+            $hotelCountry = \App\Models\Country::where("id", $booking['hotels'][0]['Country'])->first();
+            $variables['{{HOTEL_From}}'] = date('d M Y', strtotime($booking['hotels'][0]['DateFrom']));
+            $variables['{{HOTEL_To}}'] = date('d M Y', strtotime($booking['hotels'][0]['DateTo']));
+            $variables['{{HOTEL_HotelName}}'] = $booking['hotels'][0]['HotelName'];
+            $variables['{{HOTEL_Address}}'] = $booking['hotels'][0]['HotelAddress'];
+            $variables['{{HOTEL_Country}}'] = $hotelCountry['countryName'];
+            $variables['{{HOTEL_Placce}}'] = $booking['hotels'][0]['Place'];
+        }
+        
+        $variables['{{HOTEL_BOOKINGS}}'] = $strHotel;
+        $variables['{{USERINFO_OtherTravellers}}'] = $str;
+        
+        
+        
+        foreach($input['document_type'] as $documentType) {
+            $key = array_search($documentType, $documentTypeId);
+            if($key !== false) {
+                if($driveId[$key] != null) {
+                    $fileName = $documentTypeName[$key] . ' ' . $booking['user']['FirstName'] . ' ' . $booking['user']['Surname'] . ' ' . $booking['BookingID'];
+                    $copy = new \Google_Service_Drive_DriveFile(array(
+                        'name' => $fileName,
+                        'parents' => [$bookingDriveID]
+                    ));
+                    $copy->setParents([$bookingDriveID]);
+                    $driveResponse = $service->files->copy($driveId[$key], $copy);
+                    $documentCopyId = $driveResponse->id;
+                    
+                    //Replacing texts
+                    $requests = array();
+                    foreach($variables as $variable => $value) {
+                        $requests[] = new \Google_Service_Docs_Request(array(
+                            'replaceAllText' => ['containsText' => ['text' => $variable, 'matchCase' => false], 'replaceText' => $value],
+                        ));
+                    }
+
+                    $batchUpdateRequest = new \Google_Service_Docs_BatchUpdateDocumentRequest(array(
+                        'requests' => $requests
+                    ));
+                    if($documentCopyId != null) {
+                        $docService->documents->batchUpdate($documentCopyId, $batchUpdateRequest);
+                    }
+                    
+                } else {
+                    $documentCopyId = null;
+                }
+                $visaObj->updateDriveID($input['bookingId'], $documentCopyId, $documentType);
+                
+            }
+        }
+        
+        $service->getClient()->setUseBatch(true);
+
+        try {
+            $batch = $service->createBatch();
+            $emails = ['nisanthkumar.kn@gmail.com', 'shiju.radhakrishnan@itraveller.com', 'binse.abraham@itraveller.com'];
+            foreach($emails as $key2 => $email) {
+                $userPermission = new \Google_Service_Drive_Permission(
+                        array(
+                            'type' => 'user',
+                            'role' => 'writer',
+                            'emailAddress' => $email
+                        )
+                    );
+                $request = $service->permissions->create($bookingDriveID, $userPermission, array('fields' => 'id'));
+                $batch->add($request, 'user' . ($key2 + 1));
+            }
+            $results = $batch->execute();
+
+            foreach ($results as $result) {
+                if ($result instanceof \Google_Service_Exception) {
+                } else {
+                    //echo '<br />';
+                    //echo "Permission ID: %s\n", $result->id;
+                }
+            }
+        } finally {
+            $service->getClient()->setUseBatch(false);
+        }
+        
+        return json_encode(['success' => true]);
     }
 
 }

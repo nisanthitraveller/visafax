@@ -36,9 +36,22 @@
                                 Booking Info
                             </a>
                         </td>
-                        <td>Assign Documents</td>
-                        <th>Hotels</th>
-                        <td>View Documents</td>
+                        <td>
+                            <a href="{!! route('admin.assigndoc', [$booking->id]) !!}">
+                                Assign Documents
+                            </a>
+                        </td>
+                        <th>
+                            <a href="{!! route('admin.hotels', [$booking->id]) !!}">
+                                Hotels
+                            </a>
+                        </th>
+                        <td>
+                            <a href="{!! route('admin.viewdoc', [$booking->id]) !!}">
+                                View Documents
+                            </a>
+                            
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

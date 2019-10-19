@@ -21,6 +21,14 @@ class Bookings extends Model
     public function country() {
         return $this->belongsTo(Country::class, 'VisitingCountry', 'id');
     }
+    
+    public function child() {
+        return $this->hasMany(Bookings::class, 'ParentID', 'id');
+    }
+    
+    public function hotels() {
+        return $this->hasMany(Hotels::class, 'BookingID', 'id');
+    }
 
     function getList() {
         $bookings = Bookings::latest()->with('user')->with('country')->get();
