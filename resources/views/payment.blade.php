@@ -60,6 +60,7 @@ Visa Payement
                     <input name="amount1" type="hidden" id="amount" value="1500"/>
                     <input name="amount" type="hidden" id="amount1" value="1"/>
                     <input name="udf1" type="hidden" id="udf1" value=""/>
+                    <input name="udf1" type="hidden" id="udf2" value="{{$payLater}}"/>
                     <input name="txnid" type="hidden" id="reference_no" value="VB-{{$bookingId}}"/>
                     <input name="key" type="hidden" id="description" value="kjLO4t"/>
                     <input type="hidden" name="firstname" value="{{ Auth::user()->name }}">

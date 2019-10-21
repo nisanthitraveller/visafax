@@ -13,6 +13,21 @@ Visa Payement
 </section>
 <section class="dashboard">
     <div class="container">
+        @if($response['payStat'] == 'Payment Failed')
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Failed!</strong> Payment failed, please try later.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @elseif($response['payStat'] == 'Payment Success')
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> Please complete the process.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
         <div class="row">
             <div class="col-xl-4 col-md-4 col-sm-4 left-sidebar">
 

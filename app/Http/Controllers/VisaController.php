@@ -45,8 +45,13 @@ class VisaController extends Controller
             $response['plan_id'] = $data['udf1'];
             $response['payment_response'] = 'Online Payment (PayU) [' . $data['mode'] . ']';
             $response['payment_date'] = date('Y-m-d H:i:s');
+            $response['amount_paid'] = $data['amount'];
             
             $bookingObj->updatePayment($bookingId, $response);
+            
+            if($data['udf2'] == true) {
+                return redirect('/dashboard')->with(['bookingId' => $bookingId, 'response' => $response]);
+            }
         }
         return view('step1')->with(['bookingId' => $bookingId, 'response' => $response]);
     }
