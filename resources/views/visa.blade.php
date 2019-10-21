@@ -95,41 +95,4 @@ Visa {{$country['countryName']}}
         </div>
     </div>
 </section>
-
-<div class="modal fade popus" id="connect-modal">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                <img src="{{url('/')}}/images/modal-img.png">
-                <h3>Please login to contact you back</h3>
-                <p>We’ll get back to you with the verification status and the further proceedures. So, please update the contact details and wait</p>
-                <div class="col-sm-12 connect-links">
-                    <div class="g-signin2" id="my-signin2" data-width="260" data-height="50" data-theme="light" data-longtitle="true" data-onsuccess="onSignIn"></div>
-<!--                    <a href="#"><img src="{{url('/')}}/images/facebook.svg">Connect with Google</a>-->
-                </div>
-                <div class="form-field-cover g-login" style="display: none; margin-top: 30px;">
-                    <input id="phone1" name="phone" type="number" required="" />
-                    <label>Mobile no:</label>
-                </div>
-                <button class="btnlogin g-login" style="display: none" onclick="updateMobile()">Login</button>
-                <div class="userContent" style="display: none;"></div>
-            </div>
-
-
-
-        </div>
-    </div>
-</div>
-<div id="fade"></div>
-<div id="loader-modal">
-    <img src="{{url('/')}}/images/loading.gif">
-</div>
 @endsection

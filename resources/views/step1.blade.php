@@ -14,6 +14,21 @@ Visa Payement
 
 <section class="deals">
     <div class="container">
+        @if($response['payStat'] == 'Payment Failed')
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Failed!</strong> Payment failed, please try later.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @elseif($response['payStat'] == 'Payment Success')
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> Please complete the process.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
         <div class="row">
             <h2>Lets us know your details</h2>
             <form method="POST" action="{{url('/')}}/applyvisa/step2/{{$bookingId}}" enctype="multipart/form-data" class="your-dts" id="formDetails">

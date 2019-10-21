@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Country;
+use App\Models\Pricing;
 use App\Models\Visa;
+use App\Models\Bookings;
 use Google_Client;
 
 class VisaController extends Controller
 {
-    private $projectName = 'VisaBadge';
+    //private $projectName = 'VisaBadge';
     /**
      * Create a new controller instance.
      *
@@ -23,12 +24,31 @@ class VisaController extends Controller
     public function payment($bookingId)
     {
         $payLater = request('paylater') ? false : true;
-        return view('payment')->with(['bookingId' => $bookingId, 'payLater' => $payLater]);
+        $booking = Bookings::where("id", $bookingId)->first()->toArray();
+        $countryPrices = Pricing::where('country_id', $booking['VisitingCountry'])->with('master')->select('plan_id', 'price')->get()->toArray();
+        return view('payment')->with(['bookingId' => $bookingId, 'payLater' => $payLater, 'countryPrices' => $countryPrices]);
     }
     
-    public function step1($bookingId)
+    public function step1($bookingId, Request $data)
     {
-        return view('step1')->with(['bookingId' => $bookingId]);
+        $bookingObj = new Bookings();
+        $response['payStat'] = null;
+        if (isset($data['mihpayid'])) {
+            if ($data['status'] == 'success') {
+                $response['paid'] = 1;
+                $response['payStat'] = 'Payment Success';
+            } else {
+                $response['paid'] = 0;
+                $response['payStat'] = 'Payment Failed';
+            }
+            
+            $response['plan_id'] = $data['udf1'];
+            $response['payment_response'] = 'Online Payment (PayU) [' . $data['mode'] . ']';
+            $response['payment_date'] = date('Y-m-d H:i:s');
+            
+            $bookingObj->updatePayment($bookingId, $response);
+        }
+        return view('step1')->with(['bookingId' => $bookingId, 'response' => $response]);
     }
     
     public function step2($bookingId, Request $request)
@@ -52,6 +72,7 @@ class VisaController extends Controller
     public function step3($bookingId, Request $request)
     {
         $visaObj = new Visa();
+        $user = auth()->user();
         $destinationPath = 'uploads';
         
         if ($request->hasFile('offer_letter')) {
@@ -66,7 +87,7 @@ class VisaController extends Controller
         }
         
         if ($request->has('address_proof')) {
-            $visaObj->uploadFile(null, $request['address_proof'], $bookingId);
+            $visaObj->updateAddress($user->id, $request['address_proof'], $bookingId);
         }
         
         if ($request->hasFile('firstpage')) {

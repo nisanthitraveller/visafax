@@ -693,8 +693,8 @@ section.deals{
 padding-top: 20px;
 }
 
-section.payment-screen{
-	margin-bottom: 70px;
+section.payment-screen {
+    margin-bottom: 80px;
 }
 
 form.your-dts label {
@@ -1854,12 +1854,18 @@ padding-bottom: 10px;
 .visa-bdge span.user-active {
     background: #f0637d;
 }
-.time-list-wrapper {
+/* .time-list-wrapper {
     overflow-y: scroll;
     overflow-x: hidden;
     height: 500px;
+    padding-bottom: 50px;
+} */
+.time-list-wrapper {
+    /* overflow-y: scroll; */
+    /* overflow-x: hidden; */
+    /* height: 500px; */
+    padding-bottom: 80px;
 }
-
 .mr-15{
 	margin-right: 15px;
 }
@@ -1867,18 +1873,123 @@ padding-bottom: 10px;
     padding-right: 15px;
 }
 
-body::-webkit-scrollbar {
-    width: 1em;
+/* .time-list-wrapper::-webkit-scrollbar {
+    width: .53em;
+ background:#f6f6f6 !important;
 }
  
-body::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+
+body .time-list-wrapper ::-webkit-scrollbar-thumb{
+	cursor:pointer;border-radius:5px;
+	background:#dddddd !important;
+} */
+
+/*
+ *  STYLE 7
+ */
+
+body .time-list-wrapper::-webkit-scrollbar-track
+{
+	
+	background-color: #f6f6f6;
+	border-radius: 30px;
 }
- 
-body::-webkit-scrollbar-thumb {
-  background-color: #ddd;
-  outline: 0px solid slategrey;
+
+body .time-list-wrapper::-webkit-scrollbar
+{
+	width: 8px;
+	background-color: #f6f6f6;
 }
+
+body .time-list-wrapper::-webkit-scrollbar-thumb
+{
+	border-radius: 30px;
+	background-color: #ddd;
+}
+
+footer.pt-5.ftr.chat-ftr{
+	margin-top: 0;
+}
+
+section.chat-search {
+    background: #fff;
+    box-shadow: 0px -1px 7px #ddd;
+    margin-top: 0;
+    padding: 24px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+section.chat-search .ui.icon.input {
+    width: 100%;
+    position: relative;
+   
+}
+
+section.chat-search .ui.icon.input input.prompt {
+    border: 1px solid #dbdbdb;
+    height: 43px;
+    padding-right: 126px !important;
+}
+button.search-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: 0;
+    background: #4f6dce;
+    color: #fff;
+    font-size: 15px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    height: 43px;
+    padding: 0 30px;
+}
+
+
+section.chat-search .ui.icon.input input.prompt::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #888888;
+}
+section.chat-search .ui.icon.input input.prompt::-moz-placeholder { /* Firefox 19+ */
+  color: #888888;
+}
+section.chat-search .ui.icon.input input.prompt:-ms-input-placeholder { /* IE 10+ */
+  color: #888888;
+}
+section.chat-search .ui.icon.input input.prompt:-moz-placeholder { /* Firefox 18- */
+  color: #888888;
+}
+
+ul.typeahead.dropdown-menu {
+    position: static;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 100%;
+    padding: 0 0;
+    margin: -2px 0 0 0px;
+    font-size: 0.9rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 0;
+    border-radius: 0;
+    left: 1px;
+    border: 0;
+    outline: 0;
+}
+span.doc-title {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 12px;
+    background: #f6f6f6;
+    padding: 4px 6px;
+    border-radius: 6px;
+}
+
 
 
 @media(max-width: 767px){
@@ -1893,15 +2004,53 @@ padding-left: 15px;
 .row-dta{
     padding-left: 10px;
     padding-right: 10px;
+    text-align: center;
+    margin-top: 20px;
 }
 .do-ic{
     font-size: 14px;
 }
+
+.row-dta.cm-pading.bck-dash {
+    position: absolute;
+    top: -19px;
+    text-align: left;
+    left: 0px;
+}
+.mr-15 {
+    margin-right: 0;
+    margin-left: 0;
+}
 }
 @media(max-width: 575px){
-h2 {
-    font-size: 15px;
+
+.ft-qlinks ul li a {
+    font-size: 14px;
+    padding-left: 15px;
+    padding: 0 8px 4px;
+}
+ul.social li a {
+   
+    margin: 10px 11px;
+}
+footer.pt-5.ftr {
+    padding-top: 26px !important;
+}
+button.search-btn {
+   
+    padding: 0 12px;
+}
+.row-dta.cm-pading.bck-dash {
   
+    left: 0;
+}
+.visa-time {
+    padding-right: 25px;
+}
+
+h2 {
+    font-size: 16px !important;
+    letter-spacing: .53px;
 }
 .content-r-pad{
 	padding-right:15px;
@@ -1983,8 +2132,30 @@ margin-top: 15px;
 text-align: left !important;
 margin-top: 15px;
 }
+.row-dta {
+    padding-left: 7px;
+    padding-right: 7px;
+   
+}
 }
 @media(max-width: 480px){
+
+.time-list .doc-cols {
+    max-width: 100%;
+    flex: auto;
+}
+.visa-bdge {
+  
+    padding-left: 0;
+}
+
+.time-list .doc-col-2 {
+    max-width: 100%;
+    flex: auto;
+    text-align: right;
+    margin-top: 8px;
+}
+
 .qs-in {
 
 display: block;

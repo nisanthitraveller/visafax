@@ -14,5 +14,9 @@ class Pricing extends Model
     const UPDATED_AT = 'updated_at';
     
     protected $fillable = ['country_id', 'plan_id', 'price'];
+    
+    public function master() {
+        return $this->belongsTo(PricingMaster::class, 'plan_id', 'id');
+    }
 
 }

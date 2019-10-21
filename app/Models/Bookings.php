@@ -43,5 +43,12 @@ class Bookings extends Model
             ->toArray();
         return $booking;
     }
+    
+    public function updatePayment($parentId, $data) {
+        unset($data['payStat']);
+        DB::table('bookings')
+              ->where('id', $parentId)
+              ->update($data);
+    }
 
 }

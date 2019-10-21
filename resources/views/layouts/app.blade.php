@@ -1,3 +1,6 @@
+<?php
+$requests = explode('/', Request::path());
+?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -8,6 +11,7 @@
                       user-scalable=no, shrink-to-fit=no">
         <meta name="csrf-token" content="{{ csrf_token()}}">
         <meta name="google-signin-client_id" content="720640930504-5iie69aclsvbithnfr0hakfe0tuanptn.apps.googleusercontent.com">
+        <meta name="google-site-verification" content="4WYUMGCZRrrmwc9spzf18mOu_Wrn3ROb-DhkhG-iecU" />
         <title>{{ config('app.name', 'VisaBadge') }} - @yield('title')</title>
 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -24,7 +28,9 @@
         <div id="app">
             @include('layouts.header')
             @yield('content')
-            @include('layouts.footer')
+            @if(isset($requests[1]) && $requests[1] != 'payment')
+                @include('layouts.footer')
+            @endif
         </div>
         
         <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
@@ -58,7 +64,7 @@
                 }
             });
         </script>
-        <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+        <script src="https://apis.google.com/js/platform.js?onload=onLoadGoogleCallback" async defer></script>
         @yield('scripts')
     </body>
 </html>

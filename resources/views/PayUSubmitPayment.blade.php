@@ -5,20 +5,21 @@
 $SALT = 'drPHqXTg';
 $hash = null;
 // Hash Sequence
-$hashSequence = "key|txnid|amount|productinfo|firstname|email";
+$hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1";
 $hashVarsSeq = explode('|', $hashSequence);
 $hash_string = '';
 foreach ($hashVarsSeq as $hash_var) {
     $hash_string .= isset($data[$hash_var]) ? $data[$hash_var] : '';
     $hash_string .= '|';
 }
-$hash_string .= '||||||||||';
+$hash_string .= '|||||||||';
 $hash_string .= $SALT;
 $hash .= strtolower(hash('sha512', $hash_string));
 ?>
 <form action="https://secure.payu.in/_payment" method="post" id="PayUForm" name="PayUForm">
     @csrf
     <input type="hidden" name="key" value="<?php echo $data['key']; ?>" />
+    <input type="hidden" name="udf1" value="<?php echo $data['udf1']; ?>" />
     <input type="hidden" name="hash" value="<?php echo $hash; ?>"/>
     <input type="hidden" name="txnid" value="<?php echo $data['txnid']; ?>" />
     <input type="hidden" name="amount" value="<?php echo $data['amount']; ?>" />

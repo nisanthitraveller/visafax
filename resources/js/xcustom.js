@@ -37,11 +37,14 @@
 
     $('.price-check').change(function () {
         var price = 0;
+        var planId = '';
         $('.price-check:checked').each(function () {
-            price += isNaN(parseInt($(this).val())) ? 0 : parseInt($(this).val());
+            price += isNaN(parseInt($(this).attr('data-price'))) ? 0 : parseInt($(this).attr('data-price'));
+            planId += $(this).val() + '-';
         });
         console.log(price);
         $('#amount').val(price);
+        $('#udf1').val(planId);
         $('#pay-button').text('Pay ₹' + price + '/-');
     });
 

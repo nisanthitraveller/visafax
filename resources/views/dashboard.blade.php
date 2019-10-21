@@ -22,7 +22,7 @@ Visa Payement
                             <div class="panel-heading active" role="tab" id="headingOne">
                                 <h4 class="panel-title">
                                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Ongoing orders
+                                        Visa Applications
                                     </a>
                                 </h4>
                             </div>
@@ -32,8 +32,8 @@ Visa Payement
                                         @foreach($allVisa as $visa)
                                         <li class="active">
                                             <a href="{{url('/')}}/dashboard?bookingID={{$visa['id']}}">
-                                                <span class="title-ac">{{$visa['countryName']}} visa</span>
-                                                <span class="id-ac">ID: {{$visa['BookingID']}}</span>
+                                                <span class="title-ac">{{$visa['countryName']}} {{$visa['BookingID']}}</span>
+                                                <span class="id-ac">on {{date('d M, y', strtotime($visa['created_at']))}}</span>
                                             </a>
                                         </li>
                                         @endforeach
@@ -42,67 +42,26 @@ Visa Payement
                             </div>
                         </div>
                         <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingTwo">
-                                <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Completed orders
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                <div class="panel-body">
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <span class="title-ac">Switzerland visa</span>
-                                                <span class="id-ac">ID: 4585 2569</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="title-ac">Australian visa</span>
-                                                <span class="id-ac">ID: 4585 2563</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="title-ac">Singapore visa</span>
-                                                <span class="id-ac">ID: 8562 3649</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingThree">
                                 <h4 class="panel-title">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Payment history
+                                        Payment History
                                     </a>
                                 </h4>
                             </div>
                             <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                 <div class="panel-body">
                                     <ul>
-                                        <li>
-                                            <a href="#">
-                                                <span class="title-ac">Switzerland visa</span>
-                                                <span class="id-ac">ID: 4585 2569</span>
+                                        @foreach($allVisa as $visa)
+                                        @if($visa['paid'] == 1)
+                                        <li class="active">
+                                            <a href="{{url('/')}}/dashboard?bookingID={{$visa['id']}}">
+                                                <span class="title-ac">{{$visa['countryName']}} {{$visa['BookingID']}}</span>
+                                                <span class="id-ac">on {{date('d M, y', strtotime($visa['created_at']))}}</span>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="title-ac">Australian visa</span>
-                                                <span class="id-ac">ID: 4585 2563</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="title-ac">Singapore visa</span>
-                                                <span class="id-ac">ID: 8562 3649</span>
-                                            </a>
-                                        </li>
+                                        @endif
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
@@ -115,36 +74,18 @@ Visa Payement
                     <div class="col-md-6 col-sm-7 col-9">
                         <h2>Needed documents</h2>
                     </div>
-                    <div class="col-md-6 col-sm-5 col-3 link text-right">
-
-                        <div class="doc-need  ui right pointing dropdown">
-                            <div class="btn-link">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                            <div class="menu">
-
-                                <div class="item"><a href="#">Cancel Application</a></div>
-                                <div class="item "><a href="#">Buy add-on services</a></div>
-                                <div class="item"><a href="#">Report an issue</a></div>
-
-
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="row-bg">
                     <div class="row">
 
                         <div class="col-md-4 col-sm-4 col-4 row-dta">
-                            <div class="do-ic"><img src="images/doc1.png"> From 16 Sep</div>
+                            <div class="do-ic"><img src="{{url('/')}}/images/doc1.png">On {{date('d M, y', strtotime($visaDetails['created_at']))}}</div>
                         </div>
                         <div class="col-md-4 col-sm-4 col-4 row-dta">
-                            <div class="do-ic"><img src="images/doc2.png"> {{count($visaDetails['child']) + 1}} prople</div>
+                            <div class="do-ic"><img src="{{url('/')}}/images/doc2.png"> {{count($visaDetails['child']) + 1}} people</div>
                         </div>
                         <div class="col-md-4 col-sm-4 col-4 row-dta">
-                            <div class="do-ic"><img src="images/doc3.png"> {{$visaDetails['VisaType']}} visa</div>
+                            <div class="do-ic"><img src="{{url('/')}}/images/doc3.png"> {{$visaDetails['VisaType']}} visa</div>
                         </div>
                     </div>
                 </div>
@@ -153,12 +94,13 @@ Visa Payement
                 <div class="doc-list">
                     <div class="row">
                         <div class="col-md-8 col-sm-6 col-6 doc-cols">
-                            <div class="dos-name"><a target="_blank" href="{{$document['link']}}"> {{$count}}. {{$document['type']}}</a></div>
+                            <?php $link = ($visaDetails['paid'] == 1) ? $document['link'] : url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID']); ?>
+                            <div class="dos-name"><a target="_blank" href="{{$link}}"> {{$count}}. {{$document['type']}}</a></div>
                         </div>
                         <div class="col-md-3 col-sm-4 col-4 doc-col-2">
                             @if($document['drive'] == false)
                             <div class="up-btn"> 
-                                <img src="images/upload-active.png">
+                                <img src="{{url('/')}}/images/upload-active.png">
                                 <input type="file" name="file" id="file" class="inputfile">
                                 <label for="file" class="up-doc">Upload</label>
                             </div>
@@ -181,25 +123,21 @@ Visa Payement
                 </div>
                 <?php $count++; ?>
                 @endforeach
-                
+                <div>&nbsp;</div>
+                @if($visaDetails['paid'] == 1)
                 <div class="col-sm-12 pay-dets">
                     <div class="row">
-                        <div class="col-md-8 pay-dets-in">
+                        <div class="col-md-12 pay-dets-in">
                             <h4>Payment details</h4>
-                            <p>Basic plan of 1,900  |  Paid on 16 Sep</p>
-                        </div>
-                        <div class="col-md-4 sub-btn-dash">
-
-                            <a href="#" class="cntue">Upgrade</a>
-
-
+                            <p>Amount paid {{number_format($visaDetails['amount_paid'])}}  |  Paid on {{date('d M, y', strtotime($visaDetails['payment_date']))}}</p>
+                            <p>Mode of payment {{$visaDetails['payment_response']}}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 text-left down-bnch">
-
+                @endif
+<!--                <div class="col-sm-12 text-left down-bnch">
                     <a href="#" class="cntue">Download as a bunch</a>
-                </div>
+                </div>-->
 
             </div>
         </div>

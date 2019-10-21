@@ -116,22 +116,21 @@ class CountryController extends Controller
     
     public function countryprice($Id, Request $request)
     {
-        
         $pricingTypeObj = new PricingMaster();
         $pricingTypes = $pricingTypeObj->getList();
         $countryPrices = Pricing::where('country_id', $Id)->select('plan_id', 'price')->get()->toArray();
         $priceId = [];
         $price = [];
         foreach($countryPrices as $key => $countryDocument) {
-            $priceId[$key+1] = $countryDocument['plan_id'];
-            $price[$key+1] = $countryDocument['price'];
+            $priceId[$key + 1] = $countryDocument['plan_id'];
+            $price[$key + 1] = $countryDocument['price'];
         }
         //dd($countryDocuments);
         $country = Country::where("id", $Id)->first();
         if(!empty($request['countryName'])) {
             $docIds = array_values(array_filter($request['price']));
             // Delete unselected values
-            Document::whereNotIn('id', $request['plan_id'])->where('country_id', $Id)->delete(); 
+            Pricing::whereNotIn('id', $request['plan_id'])->where('country_id', $Id)->delete(); 
             
             foreach($request['plan_id'] as $k => $documentType) {
                 

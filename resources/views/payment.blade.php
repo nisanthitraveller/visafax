@@ -16,169 +16,66 @@ Visa Payement
 <section class="deals payment-screen">
     <div class="container">
         <form>
-            <div class="col-sm-12 pay-wrap pay-active">
-
-                <div class="row">
-                    <div class="col-md-1 col-sm-1 col-6 chk-pay ">
-                        <div class="md-checkbox">
-                            <input id="vis" class="price-check" checked="" readonly="" value="1500" type="checkbox">
-                            <label for="vis"></label>
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-2 col-sm-2 col-6 text-right pay-set pl-1"><span class="py-price">₹1,500/-</span></div>
-
-                    <div class="col-md-9 col-sm-9 col-12 vis-content pl-0 pr-0">
-
-                        <div class="row">
-                            <div class="col-md-1 col-sm-1 col-2"> <i class="pay-ic"><img src="{{url('/')}}/images/pic1.png"></i></div>
-
-
-                            <div class="col-md-11 col-sm-11 col-10">
-                                <h4>Visa document preparation</h4>
-                                <p>Assistance in preparing the documents, as per the requirements of the Embassy - the documents will be available on the dashboard, from where you can download or fetch as an email</p>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-1 col-sm-1 col-2"> <i class="pay-ic"><img src="{{url('/')}}/images/pic2.png"></i></div>
-
-
-                            <div class="col-md-11 col-sm-11 col-10">
-                                <h4>Document verification</h4>
-                                <p>All the documents relevant for the visa application will be verified & confirmed by our operations team to ensure that they are complete as per the standards</p>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-1 col-sm-1 col-2"> <i class="pay-ic"><img src="{{url('/')}}/images/pic3.png"></i></div>
-
-
-                            <div class="col-md-11 col-sm-11 col-10">
-                                <h4>Support - on chat and mail</h4>
-                                <p>Chat based support (10 AM to 6 PM, Mon to Fri), in clearing doubts, while preparing the visa documents</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
+            @foreach($countryPrices as $key => $countryPrice)
             <div class="col-sm-12 pay-wrap">
                 <div class="row">
                     <div class="col-md-1 col-sm-1 col-6 chk-pay ">
                         <div class="md-checkbox">
-                            <input id="em" class="price-check" value="500" type="checkbox">
-                            <label for="em"></label>
+                            @if($key == 0)
+                                <input type="hidden" name="plan_id[]" value="{{$countryPrice['plan_id']}}" />
+                                <input id="em{{$countryPrice['plan_id']}}" checked="" data-price="{{$countryPrice['price']}}" readonly="" disabled="" class="price-check" value="{{$countryPrice['plan_id']}}" type="checkbox">
+                            @else
+                                <input name="plan_id[]" id="em{{$countryPrice['plan_id']}}" data-price="{{$countryPrice['price']}}" class="price-check" value="{{$countryPrice['plan_id']}}" type="checkbox">
+                            @endif
+                            <label for="em{{$countryPrice['plan_id']}}"></label>
                         </div>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 text-right pay-set pl-1"><span class="py-price">₹500/-</span></div>
+                    <div class="col-md-2 col-sm-2 col-6 text-right pay-set pl-1"><span class="py-price">₹{{number_format($countryPrice['price'])}}/-</span></div>
                     <div class="col-md-9 col-sm-9 col-12 vis-content pl-0 pr-0">
                         <div class="row">
-                            <div class="col-md-1 col-sm-1 col-2"> <i class="pay-ic"><img src="{{url('/')}}/images/pic4.png"></i></div>
+                            <div class="col-md-1 col-sm-1 col-2"> 
+                                <i class="pay-ic">
+                                    @if(empty($countryPrice['master']['icon']))
+                                        <img src="{{url('/')}}/images/pic4.png">
+                                    @else
+                                        <img src="{{url('/')}}/uploads/{{$countryPrice['master']['icon']}}">
+                                    @endif
+                                </i>
+                            </div>
                             <div class="col-md-11 col-sm-11 col-10">
-                                <h4>Embassy appointment</h4>
-                                <p>Assistance in booking the appointment based on the preferred time slots, subject to availability</p>
+                                <h4>{{$countryPrice['master']['title']}}</h4>
+                                <p>{{strip_tags($countryPrice['master']['description'])}}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
-            <div class="col-sm-12 pay-wrap">
-                <div class="row">
-                    <div class="col-md-1 col-sm-1 col-6 chk-pay ">
-                        <div class="md-checkbox">
-                            <input id="ded" class="price-check" value="500" type="checkbox">
-                            <label for="ded"></label>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2 col-sm-2 col-6 text-right pay-set pl-1"><span class="py-price">₹500/-</span></div>
-                    <div class="col-md-9 col-sm-9 col-12 vis-content pl-0 pr-0">
-                        <div class="row">
-                            <div class="col-md-1 col-sm-1 col-2"> <i class="pay-ic"><img src="{{url('/')}}/images/pic5.png"></i></div>
-                            <div class="col-md-11 col-sm-11 col-10">
-                                <h4>Dedicated & personalised support - on phone</h4>
-                                <p>Personalised and dedicated account manager support, between 10 to 6 PM, Mon to Fri, who can be accessed on phone, to clear any queries, doubts associated with the visa application process and filing.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-sm-12 pay-wrap">
-                <div class="row">
-                    <div class="col-md-1 col-sm-1 col-6 chk-pay ">
-                        <div class="md-checkbox">
-                            <input id="sub" class="price-check" value="1000" type="checkbox">
-                            <label for="sub"></label>
-                        </div>
-                    </div>
-                    <div class="col-md-2 col-sm-2 col-6 text-right pay-set pl-1"><span class="py-price">₹1,000/-</span></div>
-                    <div class="col-md-9 col-sm-9 col-12 vis-content pl-0 pr-0">
-                        <div class="row">
-                            <div class="col-md-1 col-sm-1 col-2"> <i class="pay-ic"><img src="{{url('/')}}/images/pic6.png"></i></div>
-                            <div class="col-md-11 col-sm-11 col-10">
-                                <h4>Submission at the Embassy</h4>
-                                <p>Manual submission of documents at the Embassy, by VisaBadge person, on your behalf.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-12 pay-wrap">
-                <div class="row">
-                    <div class="col-md-1 col-sm-1 col-6 chk-pay ">
-                        <div class="md-checkbox">
-                            <input id="per" class="price-check" value="3000" type="checkbox">
-                            <label for="per"></label>
-                        </div>
-                    </div>
-                    <div class="col-md-2 col-sm-2 col-6 text-right pay-set pl-1"><span class="py-price">₹3,000/-</span></div>
-                    <div class="col-md-9 col-sm-9 col-12 vis-content pl-0 pr-0">
-                        <div class="row">
-                            <div class="col-md-1 col-sm-1 col-2"> <i class="pay-ic"><img src="{{url('/')}}/images/pic7.png"></i></div>
-                            <div class="col-md-11 col-sm-11 col-10">
-                                <h4>Personalised assistance at Embassy</h4>
-                                <p>Personal assistance at the Embassy, while visiting for document submission, personal interview or finger print scanning</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </form>
 
-
-        <div class="col-sm-12 text-right">
-            <form  method="post" name="PayUTransaction" id="PayUTransaction" class="formPay">
-                <input name="amount" type="hidden" id="amount" value="1500"/>
-                <input name="amount1" type="hidden" id="amount1" value="1"/>
-                <input name="txnid" type="hidden" id="reference_no" value="VB-{{$bookingId}}"/>
-                <input name="key" type="hidden" id="description" value="kjLO4t"/>
-                <input type="hidden" name="firstname" value="{{ Auth::user()->name }}">
-                <input type="hidden" name="email" value="{{ Auth::user()->email }}">
-                <input type="hidden" name="phone" value="{{ Auth::user()->phone }}">
-                <input type="hidden" name="productinfo" value="VB Payment" >
-                <input type="hidden" name="surl" value="{{url('/')}}/applyvisa/step1/{{$bookingId}}">
-                <input type="hidden" name="furl" value="{{url('/')}}/applyvisa/step1/{{$bookingId}}">
-            </form>
-            <a href="#" class="bck-btn">Go back</a>
-            @if($payLater == true)
-            <a href="{{url('/')}}/applyvisa/step1/{{$bookingId}}" class="bck-btn">Pay later</a>
-            @endif
-            <a href="javascript: void(0)" id="pay-button" data-href="{{url('/')}}/applyvisa/step1/{{$bookingId}}" class="cntue">Pay ₹1,500/-</a>
+        <div class="col-sm-12 text-right pay-last-btn">
+            <div class="container">
+                <form  method="post" name="PayUTransaction" id="PayUTransaction" class="formPay">
+                    <input name="amount1" type="hidden" id="amount" value="1500"/>
+                    <input name="amount" type="hidden" id="amount1" value="1"/>
+                    <input name="udf1" type="hidden" id="udf1" value=""/>
+                    <input name="txnid" type="hidden" id="reference_no" value="VB-{{$bookingId}}"/>
+                    <input name="key" type="hidden" id="description" value="kjLO4t"/>
+                    <input type="hidden" name="firstname" value="{{ Auth::user()->name }}">
+                    <input type="hidden" name="email" value="{{ Auth::user()->email }}">
+                    <input type="hidden" name="phone" value="{{ Auth::user()->phone }}">
+                    <input type="hidden" name="productinfo" value="VB Payment" >
+                    <input type="hidden" name="surl" value="{{url('/')}}/applyvisa/step1/{{$bookingId}}">
+                    <input type="hidden" name="furl" value="{{url('/')}}/applyvisa/step1/{{$bookingId}}">
+                </form>
+                <a href="#" class="bck-btn no-bg">Go back</a>
+                @if($payLater == true)
+                <a href="{{url('/')}}/applyvisa/step1/{{$bookingId}}" class="bck-btn">Pay later</a>
+                @endif
+                <a href="javascript: void(0)" id="pay-button" data-href="{{url('/')}}/applyvisa/step1/{{$bookingId}}" class="cntue">Pay ₹1,500/-</a>
+            </div>
         </div>
-
     </div>
     <div id="submitpayment" style="display: none"></div>
 </section>

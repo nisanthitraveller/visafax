@@ -243,8 +243,12 @@ class GoogleController extends Controller {
                 
                 $input['userId'] = $finduser->id;
                 $auth = auth()->loginUsingId($finduser->id, true);
-                $parentId = $visaObj->createVisa($input);
-                $return['parentId'] = $parentId;
+                if($input['vistingCountry'] != null) {
+                    $parentId = $visaObj->createVisa($input);
+                    $return['parentId'] = $parentId;
+                } else {
+                    $return['parentId'] = 0;
+                }
                 //$this->googledoc($parentId);
                 
                 

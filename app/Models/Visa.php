@@ -143,6 +143,14 @@ class Visa {
               ->update(['DriveID' => $driveId]);
     }
     
+    public function updateAddress($userId, $address, $parentId) {
+        DB::table('user_info as a')
+                ->where('a.user_id', $userId)
+                ->where('c.id', $parentId)
+                ->join('bookings as c', 'a.id', '=', 'c.user_id')
+                ->update(['Address' => $address]);
+    }
+    
     public function getAllMyVisa($userId) {
         $bookings = DB::table('bookings')
             ->join('user_info', 'bookings.user_id', '=', 'user_info.id')
@@ -159,6 +167,7 @@ class Visa {
 //            ->leftJoin('pay_slip', 'bookings.id', '=', 'pay_slip.BookingID')
             ->where('user_info.user_id', $userId)
             ->select(['bookings.*', 'countries.countryName', 'countries.DriveID as folderID', 'user_info.FirstName', 'user_info.Surname', 'user_info.FirstName'])
+            ->orderBy('bookings.id', 'DESC')
             ->get()
             ->toArray();
         return $bookings;

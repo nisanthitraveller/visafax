@@ -8,30 +8,39 @@
                 @guest
                 <ul>
                     <li class="active"><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
-                    <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                    <li><a href="javascript: void(0)" onclick="$('#connect-modal').modal('show')">{{ __('Sign In') }}</a></li>
                 </ul>
-
+                <form id="visaForm" action="{{ secure_url('/logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
                 @else
-                <div class="dropdown">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                        <img src="{{ Auth::user()->avatar }}">
-                        <span class="user-title">{{ Auth::user()->name }}</span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Profile</a>
-                        <a class="dropdown-item" href="{{ secure_url('/dashboard') }}">Dashboard</a>
-                        <a class="dropdown-item" href="{{ secure_url('/logout') }}"
-                           onclick="signOut(); event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
+                <ul>
+                    <li class="active">
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                <img src="{{ Auth::user()->avatar }}">
+                                <span class="user-title">{{ Auth::user()->name }}</span>
+                            </button>
+                            <div class="dropdown-menu">
 
-                        <form id="logout-form" action="{{ secure_url('/logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
+                                <a class="dropdown-item" href="{{ secure_url('/logout') }}"
+                                   onclick="signOut(); event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                    {{ __('Sign out') }}
+                                </a>
 
-                    </div>
-                </div>
+                                <form id="logout-form" action="{{ secure_url('/logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="{{ route('my-visas') }}">{{ __('My Visas') }}</a>
+                    </li>
+                </ul>
+                
                 @endguest
             </div>
 

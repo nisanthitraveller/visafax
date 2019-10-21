@@ -49,7 +49,7 @@ Visa Payement
                     <div class="col-8 conf-dy-htl">
                         <div class="upload-btn-wrapper">
                             <div class="form-group">
-                                <textarea class="form-control" rows="5" id="address_proof"></textarea>
+                                <textarea class="form-control" name="address_proof" rows="5" id="address_proof"></textarea>
                             </div>
                         </div>
                     </div>
