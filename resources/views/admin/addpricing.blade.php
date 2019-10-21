@@ -7,20 +7,20 @@
         <div class="table-responsive-sm">          
             <form method="post" enctype="multipart/form-data">
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Title:</label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-4 col-form-label">Title:</label>
+                    <div class="col-sm-8">
                         <input type="text" value="" required="" name="title" class="form-control" id="formType">
                     </div>
-                    <label class="col-sm-2 col-form-label" for="formType">Description:</label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-4 col-form-label" for="formType">Description:</label>
+                    <div class="col-sm-8">
                         <textarea name="description" class="form-control ckeditor"></textarea>
                     </div>
-                    <label class="col-sm-2 col-form-label" for="formType">Icon:</label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-4 col-form-label" for="formType">Icon:</label>
+                    <div class="col-sm-8">
                         <input type="file" class="form-control" name="icon" />
                     </div>
-                    <label class="col-sm-2 col-form-label">Default Price:</label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-4 col-form-label">Default Price:</label>
+                    <div class="col-sm-8">
                         <input type="text" value="" required="" name="default_price" class="form-control">
                     </div>
                 </div>

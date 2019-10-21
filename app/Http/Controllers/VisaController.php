@@ -132,6 +132,8 @@ class VisaController extends Controller
             $bookingId = $request['bookingID'];
         }
         
+        $response['payStat'] = null;
+        
         $booking = \App\Models\Bookings::where("id", $bookingId)->with('child')->first()->toArray();
         
         $assignedDocuments = \App\Models\BookingDocument::where('BookingID', $bookingId)->get()->toArray();
@@ -152,7 +154,7 @@ class VisaController extends Controller
         }
         
         
-        return view('dashboard')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents]);
+        return view('dashboard')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response]);
     }
     
     public function payusubmit(Request $request) {

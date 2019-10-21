@@ -8,9 +8,18 @@
             <form method="post">
                 @foreach($hotel as $key => $data)
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label" for="form{{$key}}">{{$key}}:</label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-4 col-form-label" for="form{{$key}}">{{$key}}:</label>
+                    <div class="col-sm-8">
+                        @if($key == 'Country')
+                        <select name="Country" class="form-control">
+                            @foreach($countries as $country)
+                                <option value="{{$country->id}}">{{$country->countryName}}</option>
+                            @endforeach 
+                        </select>
+                        @else
+                        
                         <input type="text" value="{{$data}}" name="{{$key}}" class="form-control" id="form{{$key}}">
+                        @endif
                     </div>
                 </div>
                 @endforeach

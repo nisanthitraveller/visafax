@@ -50,6 +50,7 @@ class HotelsController extends Controller
     
     public function addhotel($bookingId, Request $request)
     {
+        $countries = Country::all();
         if(!empty($request['BookingID'])) {
             $hotelsObj = new Hotels();
             $hotelsObj->fill($request->toArray());
@@ -57,12 +58,13 @@ class HotelsController extends Controller
             return redirect('/bo/hotels/' . $bookingId)->with('status', 'Created!');
         }
         
-        return view('admin.addhotel')->with(['bookingId' => $bookingId]);
+        return view('admin.addhotel')->with(['bookingId' => $bookingId, 'countries' => $countries]);
     }
     
     public function edithotel($bookingId, Request $request)
     {
         $hotel = Hotels::where("id", $bookingId)->first()->toArray();
+        $countries = Country::all();
         unset($hotel['created_at']);
         unset($hotel['updated_at']);
         unset($hotel['id']);
@@ -75,7 +77,7 @@ class HotelsController extends Controller
             return redirect()->back();
         }
         
-        return view('admin.edithotel')->with(['hotel' => $hotel]);
+        return view('admin.edithotel')->with(['hotel' => $hotel, 'countries' => $countries]);
     }
     
     public function assigndoc($bookingId)

@@ -8,8 +8,8 @@
             <form method="post" enctype="multipart/form-data">
                 @foreach($pricingType as $key => $data)
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label" for="form{{$key}}">{{$key}}:</label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-4 col-form-label" for="form{{$key}}">{{$key}}:</label>
+                    <div class="col-sm-8">
                         @if($key == 'description')
                             <textarea id="form{{$key}}" class="ckeditor form-control" name="{{$key}}">{{$data}}</textarea>
                         @elseif($key == 'icon')

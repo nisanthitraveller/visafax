@@ -8,8 +8,8 @@
             <form method="post">
                 @foreach($documentType as $key => $data)
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label" for="form{{$key}}">{{$key}}:</label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-4 col-form-label" for="form{{$key}}">{{$key}}:</label>
+                    <div class="col-sm-8">
                         <input type="text" value="{{$data}}" name="{{$key}}" class="form-control" id="form{{$key}}">
                     </div>
                 </div>

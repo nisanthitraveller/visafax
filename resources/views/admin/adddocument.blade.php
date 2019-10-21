@@ -7,8 +7,8 @@
         <div class="table-responsive-sm">          
             <form method="post">
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label" for="formType">Type:</label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-4 col-form-label" for="formType">Type:</label>
+                    <div class="col-sm-8">
                         <input type="text" value="" required="" name="type" class="form-control" id="formType">
                     </div>
                 </div>

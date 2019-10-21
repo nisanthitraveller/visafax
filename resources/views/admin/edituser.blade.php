@@ -8,9 +8,12 @@
             <form method="post">
                 @foreach($user as $key => $data)
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label" for="form{{$key}}">{{$key}}:</label>
-                    <div class="col-sm-10">
-                        <input type="text" value="{{$data}}" name="{{$key}}" class="form-control" id="form{{$key}}">
+                    <label class="col-sm-4 col-form-label" for="form{{$key}}">{{$key}}:</label>
+                    <div class="col-sm-8">
+                        <?php
+                            $calClass = (in_array($key, ['PassportDOI', 'PassportDOE', 'DOB'])) ? 'datepicker' : null;
+                        ?>
+                        <input type="text" value="{{$data}}" name="{{$key}}" class="form-control {{$calClass}}" id="form{{$key}}">
                     </div>
                 </div>
                 @endforeach
