@@ -28,7 +28,7 @@ $requests = explode('/', Request::path());
         <div id="app">
             @include('layouts.header')
             @yield('content')
-            @if(isset($requests[1]) && $requests[1] != 'payment')
+            @if(!isset($requests[1]) || (isset($requests[1]) && $requests[1] != 'payment'))
                 @include('layouts.footer')
             @endif
         </div>
