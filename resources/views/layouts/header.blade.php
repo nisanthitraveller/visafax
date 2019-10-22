@@ -10,7 +10,7 @@
                     <li class="active"><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
                     <li><a href="javascript: void(0)" onclick="$('#connect-modal').modal('show')">{{ __('Sign In') }}</a></li>
                 </ul>
-                <form id="visaForm" action="{{ secure_url('/logout') }}" method="POST" style="display: none;">
+                <form id="loginForm" action="{{ secure_url('/logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
                 @else
