@@ -40,10 +40,10 @@ function onSuccess(googleUser) {
     var accsTkn = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token;
     var profile = googleUser.getBasicProfile();
     openModal();
-    if($('#loginForm').length) {
-        var form = $('#loginForm')[0];
-    } else {
+    if($('#visaForm').length) {
         var form = $('#visaForm')[0];
+    } else {
+        var form = $('#loginForm')[0];
     }
     var data = new FormData(form);
 
