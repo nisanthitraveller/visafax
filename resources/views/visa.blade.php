@@ -4,7 +4,7 @@ Visa {{$country['countryName']}}
 @endsection
 @section('content')
 <!-- style="background-image: url(images/hero-home.jpg);"-->
-<section class="banner inner-1">
+<section class="banner inner-1" style="background-image: url({{url('/')}}/images/hero-home.png);">
     <div class="container">
         <div class="col-sm-12">
             <div class="row align-items-center justify-content-center pt-4">

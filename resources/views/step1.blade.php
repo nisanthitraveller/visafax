@@ -4,7 +4,7 @@ Visa Payement
 @endsection
 @section('content')
 <!-- style="background-image: url(images/hero-home.jpg);"-->
-<section class="banner inner-payment">
+<section class="banner inner-payment" style="background-image: url({{url('/')}}/images/hero-home.png);">
     <div class="container">
         <div class="col-sm-12 pt-4 pb-4">
             <h2>Pay now to proceed verification</h2>
