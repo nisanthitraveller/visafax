@@ -410,7 +410,7 @@ class GoogleController extends Controller {
             $variables['{{HOTEL_HotelName}}'] = $booking['hotels'][0]['HotelName'];
             $variables['{{HOTEL_Address}}'] = $booking['hotels'][0]['HotelAddress'];
             $variables['{{HOTEL_Country}}'] = $hotelCountry['countryName'];
-            $variables['{{HOTEL_Placce}}'] = $booking['hotels'][0]['Place'];
+            $variables['{{HOTEL_Place}}'] = $booking['hotels'][0]['Place'];
         }
         
         $variables['{{HOTEL_BOOKINGS}}'] = $strHotel;
@@ -458,18 +458,17 @@ class GoogleController extends Controller {
 
         try {
             $batch = $service->createBatch();
-            $emails = ['nisanthkumar.kn@gmail.com', 'shiju.radhakrishnan@itraveller.com', 'binse.abraham@itraveller.com'];
-            foreach($emails as $key2 => $email) {
-                $userPermission = new \Google_Service_Drive_Permission(
-                        array(
-                            'type' => 'user',
-                            'role' => 'writer',
-                            'emailAddress' => $email
-                        )
-                    );
-                $request = $service->permissions->create($bookingDriveID, $userPermission, array('fields' => 'id'));
-                $batch->add($request, 'user' . ($key2 + 1));
-            }
+            //$emails = ['nisanthkumar.kn@gmail.com', 'shiju.radhakrishnan@itraveller.com', 'binse.abraham@itraveller.com'];
+            //foreach($emails as $key2 => $email) {
+            $userPermission = new \Google_Service_Drive_Permission(
+                    array(
+                        'type' => 'anyone',
+                        'role' => 'writer',
+                    )
+                );
+            $request = $service->permissions->create($bookingDriveID, $userPermission, array('fields' => 'id'));
+            $batch->add($request, 'user');
+            //}
             $results = $batch->execute();
 
             foreach ($results as $result) {

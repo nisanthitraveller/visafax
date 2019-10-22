@@ -174,26 +174,25 @@ $requests = explode('/', Request::path());
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip();
                 $('[data-toggle="popover"]').popover();
-                $("#datepicker1, #datepicker2, .datepicker").datepicker({
-                    dateFormat: 'yy-mm-dd',
+                $(".datepicker").datepicker({
+                    dateFormat: 'dd/mm/yy',
                     changeMonth: true,
-                    changeYear: true
+                    changeYear: true,
+                    yearRange: "-100:+0"
                 });
                 
-                jQuery('.dp3').datepicker({
-                    dateFormat: 'dd-mm-yy',
+                $(".datepicker2").datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    changeMonth: true,
                     changeYear: true,
-                    yearRange: '1900:<?=date('Y')?>',
-                    maxDate: new Date,
-                    onSelect: function () {
-                    }
+                    minDate: "+1d"
                 });
-                jQuery('.dp2').datepicker({
-                    dateFormat: 'yy-mm-dd',
+                
+                $(".datepicker3").datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    changeMonth: true,
                     changeYear: true,
-                    yearRange: '<?=date('Y')?>:2050',
-                    onSelect: function () {
-                    }
+                    yearRange: "-30:+30"
                 });
 
                 $(document).on('click', function (e) {

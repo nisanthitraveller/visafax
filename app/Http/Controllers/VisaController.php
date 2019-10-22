@@ -32,6 +32,7 @@ class VisaController extends Controller
     public function step1($bookingId, Request $data)
     {
         $bookingObj = new Bookings();
+        $visaObj = new Visa();
         $response['payStat'] = null;
         if (isset($data['mihpayid'])) {
             if ($data['status'] == 'success') {
@@ -53,22 +54,35 @@ class VisaController extends Controller
                 return redirect('/dashboard')->with(['bookingId' => $bookingId, 'response' => $response]);
             }
         }
-        return view('step1')->with(['bookingId' => $bookingId, 'response' => $response]);
+        $visaDetails = $visaObj->getVisa($bookingId);
+        return view('step1')->with(['bookingId' => $bookingId, 'response' => $response, 'visaDetails' => $visaDetails]);
     }
     
     public function step2($bookingId, Request $request)
     {
         $visaObj = new Visa();
+        $documentTypes = \App\Models\DocumentType::select(['id', 'type'])->get()->toArray();
+        $data = [];
+        foreach($documentTypes as $documentType) {
+            $data[$documentType['id']] = $documentType['type'];
+        }
         $destinationPath = 'uploads';
         if ($request->hasFile('flightfile')) {
-            $flightFile = $request->file('flightfile');
-            $flightFile->move($destinationPath, $bookingId . '-' . str_replace(' ', '', $flightFile->getClientOriginalName()));
-            $visaObj->uploadFile($bookingId . '-' . str_replace(' ', '', $flightFile->getClientOriginalName()), 'flights', $bookingId);
+            
+            $flightFiles = $request->file('flightfile');
+            $key = array_search('Flight Tickets', $data);
+            foreach($flightFiles as $k => $flightFile) {
+                $flightFile->move($destinationPath, $k.$bookingId . '-' . str_replace(' ', '', $flightFile->getClientOriginalName()));
+                $visaObj->uploadFile($k.$bookingId . '-' . str_replace(' ', '', $flightFile->getClientOriginalName()), 'flights', $bookingId, $key);
+            }
         }
         if ($request->hasFile('hotelfile')) {
-            $hotelFile = $request->file('hotelfile');
-            $hotelFile->move($destinationPath, $bookingId . '-' . str_replace(' ', '', $hotelFile->getClientOriginalName()));
-            $visaObj->uploadFile($bookingId . '-' . str_replace(' ', '', $hotelFile->getClientOriginalName()), 'hotels', $bookingId);
+            $hotelFiles = $request->file('hotelfile');
+            $key1 = array_search('Hotel Vouchers', $data);
+            foreach($hotelFiles as $k1 => $hotelFile) {
+                $hotelFile->move($destinationPath, $k1.$bookingId . '-' . str_replace(' ', '', $hotelFile->getClientOriginalName()));
+                $visaObj->uploadFile($k1.$bookingId . '-' . str_replace(' ', '', $hotelFile->getClientOriginalName()), 'hotels', $bookingId, $key1);
+            }
         }
         $visaDetails = $visaObj->getVisa($bookingId);
         return view('step2')->with(['bookingId' => $bookingId, 'visaDetails' => $visaDetails]);
@@ -78,17 +92,21 @@ class VisaController extends Controller
     {
         $visaObj = new Visa();
         $user = auth()->user();
+        $documentTypes = \App\Models\DocumentType::select(['id', 'type'])->get()->toArray();
+        $data = [];
+        foreach($documentTypes as $documentType) {
+            $data[$documentType['id']] = $documentType['type'];
+        }
         $destinationPath = 'uploads';
         
         if ($request->hasFile('offer_letter')) {
-            $flightFile = $request->file('offer_letter');
-            $flightFile->move($destinationPath, $bookingId . '-' . str_replace(' ', '', $flightFile->getClientOriginalName()));
-            $visaObj->uploadFile($bookingId . '-' . str_replace(' ', '', $flightFile->getClientOriginalName()), 'offer_letter', $bookingId);
-        }
-        if ($request->hasFile('address_proof')) {
-            $hotelFile = $request->file('address_proof');
-            $hotelFile->move($destinationPath, $bookingId . '-' . str_replace(' ', '', $hotelFile->getClientOriginalName()));
-            $visaObj->uploadFile($bookingId . '-' . str_replace(' ', '', $hotelFile->getClientOriginalName()), 'address_proof', $bookingId);
+            $flightFiles = $request->file('offer_letter');
+            
+            $key = array_search('Offer Letter', $data);
+            foreach($flightFiles as $k => $flightFile) {
+                $flightFile->move($destinationPath, $k.$bookingId . '-' . str_replace(' ', '', $flightFile->getClientOriginalName()));
+                $visaObj->uploadFile($k.$bookingId . '-' . str_replace(' ', '', $flightFile->getClientOriginalName()), 'offer_letter', $bookingId, $key);
+            }
         }
         
         if ($request->has('address_proof')) {
@@ -97,19 +115,21 @@ class VisaController extends Controller
         
         if ($request->hasFile('firstpage')) {
             $firstFiles = $request->file('firstpage');
-            foreach($firstFiles as $firstFile) {
-                $firstFile->move($destinationPath, $bookingId . '-' . str_replace(' ', '', $firstFile->getClientOriginalName()));
-                $visaObj->uploadFile($bookingId . '-' . str_replace(' ', '', $firstFile->getClientOriginalName()), 'passport', $bookingId, 'first_page');
+            $key1 = array_search('Passport Copies', $data);
+            
+            foreach($firstFiles as $k1 => $firstFile) {
+                $firstFile->move($destinationPath, $k1.$bookingId . '-' . str_replace(' ', '', $firstFile->getClientOriginalName()));
+                $visaObj->uploadFile($k1.$bookingId . '-' . str_replace(' ', '', $firstFile->getClientOriginalName()), 'passport', $bookingId, $key1);
             }
         }
         if ($request->hasFile('lastpage')) {
             $lastFiles = $request->file('lastpage');
-            foreach($lastFiles as $lastFile) {
-                $lastFile->move($destinationPath, $bookingId . '-' . str_replace(' ', '', $lastFile->getClientOriginalName()));
-                $visaObj->uploadFile($bookingId . '-' . str_replace(' ', '', $lastFile->getClientOriginalName()), 'passport', $bookingId, 'last_page');
+            $key2 = array_search('Passport Copies', $data);
+            foreach($lastFiles as $k2 => $lastFile) {
+                $lastFile->move($destinationPath, $k2.$bookingId . '-' . str_replace(' ', '', $lastFile->getClientOriginalName()));
+                $visaObj->uploadFile($k2.$bookingId . '-' . str_replace(' ', '', $lastFile->getClientOriginalName()), 'passport', $bookingId, $key2);
             }
         }
-        
         
         $visaDetails = $visaObj->getVisa($bookingId);
         return view('step3')->with(['bookingId' => $bookingId, 'visaDetails' => $visaDetails]);

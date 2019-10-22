@@ -7,7 +7,6 @@
             <div class="col-9 main-nav text-right justify-content-md-center">
                 @guest
                 <ul>
-                    <li class="active"><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
                     <li><a href="javascript: void(0)" onclick="$('#connect-modal').modal('show')">{{ __('Sign In') }}</a></li>
                 </ul>
                 <form id="loginForm" action="{{ secure_url('/logout') }}" method="POST" style="display: none;">
@@ -37,7 +36,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="{{ route('my-visas') }}">{{ __('My Visas') }}</a>
+                        <a href="{{ route('my-visas') }}" class="my-visa">{{ __('My Visas') }}</a>
                     </li>
                 </ul>
                 

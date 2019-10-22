@@ -53,7 +53,7 @@ Visa Payement
                 <p>Now wait 3 hours to get back to you, after the verification of your application and the given details</p>
                 <div class="col-sm-12 logind-links">
                     <a href="{{url('/')}}/dashboard">Go to dashboard</a>
-                    <a href="#">Done</a>
+                    <a href="{{url('/')}}/dashboard">Done</a>
                 </div>
             </div>
 

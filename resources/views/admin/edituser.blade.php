@@ -11,9 +11,10 @@
                     <label class="col-sm-4 col-form-label" for="form{{$key}}">{{$key}}:</label>
                     <div class="col-sm-8">
                         <?php
-                            $calClass = (in_array($key, ['PassportDOI', 'PassportDOE', 'DOB'])) ? 'datepicker' : null;
+                            $calClass = (in_array($key, ['PassportDOI', 'PassportDOE'])) ? 'datepicker3' : null;
+                            $calClass2 = (in_array($key, ['DOB'])) ? 'datepicker' : null;
                         ?>
-                        <input type="text" value="{{$data}}" name="{{$key}}" class="form-control {{$calClass}}" id="form{{$key}}">
+                        <input type="text" value="{{$data}}" name="{{$key}}" class="form-control {{$calClass}} {{$calClass2}}" id="form{{$key}}">
                     </div>
                 </div>
                 @endforeach

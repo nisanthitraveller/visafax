@@ -66,7 +66,9 @@ class BookingsController extends Controller
         unset($user['DriveID']);
         if(!empty($request['VisaType'])) {
             $model = Bookings::findOrFail($bookingId);
-            $model->fill($request->toArray());
+            $data = $request->toArray();
+            $data['JoiningDate'] = implode("-", array_reverse(explode("/", $data['JoiningDate'])));
+            $model->fill($data);
             $model->save();
             return redirect()->back();
         }

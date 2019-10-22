@@ -17,7 +17,9 @@
                             @endforeach 
                         </select>
                         @else
-                        
+                        <?php
+                            $calClass = (in_array($key, ['DateFrom', 'DateTo'])) ? 'datepicker2' : null;
+                        ?>
                         <input type="text" value="{{$data}}" name="{{$key}}" class="form-control" id="form{{$key}}">
                         @endif
                     </div>

@@ -41,18 +41,18 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label" for="formType">Date From:</label>
+                    <label class="col-sm-4 col-form-label">Date From:</label>
                     <div class="col-sm-8">
-                        <input type="text" value="" required="" name="DateFrom" class="form-control datepicker" id="formType">
+                        <input type="text" value="" required="" name="DateFrom" class="form-control datepicker2" id="">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="formType">Date To:</label>
                     <div class="col-sm-8">
-                        <input type="text" value="" required="" name="DateTo" class="form-control datepicker" id="formType">
+                        <input type="text" value="" required="" name="DateTo" class="form-control datepicker2" id="">
                     </div>
                 </div>
-                <input type="hidden" required="" name="BookingID" value="{{$bookingId}}" class="form-control" id="formType">
+                <input type="hidden" required="" name="BookingID" value="{{$bookingId}}" class="form-control" id="">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>

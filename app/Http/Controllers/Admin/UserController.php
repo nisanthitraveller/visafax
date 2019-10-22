@@ -56,7 +56,11 @@ class UserController extends Controller
         unset($user['id']);
         if(!empty($request['FirstName'])) {
             $model = UserInfo::findOrFail($userId);
-            $model->fill($request->toArray());
+            $data = $request->toArray();
+            $data['PassportDOI'] = implode("-", array_reverse(explode("/", $data['PassportDOI'])));
+            $data['PassportDOE'] = implode("-", array_reverse(explode("/", $data['PassportDOE'])));
+            $data['DOB'] = implode("-", array_reverse(explode("/", $data['DOB'])));
+            $model->fill($data);
             $model->save();
             return redirect()->back();
         }

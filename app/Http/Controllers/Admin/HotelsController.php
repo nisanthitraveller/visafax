@@ -53,7 +53,10 @@ class HotelsController extends Controller
         $countries = Country::all();
         if(!empty($request['BookingID'])) {
             $hotelsObj = new Hotels();
-            $hotelsObj->fill($request->toArray());
+            $data = $request->toArray();
+            $data['DateFrom'] = implode("-", array_reverse(explode("/", $data['DateFrom'])));
+            $data['DateTo'] = implode("-", array_reverse(explode("/", $data['DateTo'])));
+            $hotelsObj->fill($data);
             $hotelsObj->save();
             return redirect('/bo/hotels/' . $bookingId)->with('status', 'Created!');
         }
@@ -72,7 +75,10 @@ class HotelsController extends Controller
         unset($hotel['BookingID']);
         if(!empty($request['HotelName'])) {
             $model = Hotels::findOrFail($bookingId);
-            $model->fill($request->toArray());
+            $data = $request->toArray();
+            $data['DateFrom'] = implode("-", array_reverse(explode("/", $data['DateFrom'])));
+            $data['DateTo'] = implode("-", array_reverse(explode("/", $data['DateTo'])));
+            $model->fill($data);
             $model->save();
             return redirect()->back();
         }

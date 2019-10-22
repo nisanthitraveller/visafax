@@ -110,7 +110,7 @@ class Visa {
         return $bookings;
     }
     
-    public function uploadFile($fileName, $table, $parentId, $text = null) {
+    public function uploadFile($fileName, $table, $parentId, $documentID, $text = null) {
         DB::table('visa_logs')->insert(
                 [
                     'booking_id' => $parentId,
@@ -118,11 +118,12 @@ class Visa {
                     'user_name' => 'VisaBadge',
                 ]
         );
-        DB::table($table)->insert(
+        DB::table('booking_documents')->insert(
             [
                 'BookingID' => $parentId,
                 'pdf' => $fileName,
-                'text' => $text
+                'Body' => $text,
+                'DocumentID' => $documentID,
             ]
         );
     }

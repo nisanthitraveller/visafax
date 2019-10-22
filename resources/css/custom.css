@@ -46,3 +46,7 @@ img.media-object {
 #app {
     min-height: 300px;
 }
+.my-visa {
+    font-size: 13px !important;
+    padding-left: 15px !important;
+}

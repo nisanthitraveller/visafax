@@ -7,7 +7,7 @@ Visa Payement
 <section class="banner inner-payment" style="background-image: url({{url('/')}}/images/hero-home.png);">
     <div class="container">
         <div class="col-sm-12 pt-4 pb-4">
-            <h2>Pay now to proceed verification</h2>
+            <h2>Upload flights and hotel details</h2>
         </div>
     </div>
 </section>
@@ -46,18 +46,20 @@ Visa Payement
                         </div>
                         <div class="col-8 conf-dy" style="display: none;">
                             <div class="upload-btn-wrapper">
+                                @foreach($visaDetails as $key => $visaDetail)
                                 <div class="form-group">
-                                    <label for="file" class="sr-only">File</label>
+                                    <label for="file" class="sr-only">Flight ticket {{$key + 1}}</label>
                                     <div class="input-group">
 
                                         <span class="input-group-btn">
                                             <div class="btn btn-default  custom-file-uploader">
-                                                <input type="file" name="flightfile" onchange="this.form.filename.value = this.files.length ? this.files[0].name : ''" />
+                                                <input type="file" name="flightfile[]" onchange="this.form.filename.value = this.files.length ? this.files[0].name : ''" />
                                                 <span>Choose File</span>
                                             </div>
                                         </span>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
 
@@ -80,18 +82,20 @@ Visa Payement
                         </div>
                         <div class="col-8 conf-dy-htl" style="display: none;">
                             <div class="upload-btn-wrapper">
+                                @foreach($visaDetails as $key => $visaDetail)
                                 <div class="form-group">
-                                    <label for="file" class="sr-only">File</label>
+                                    <label for="file" class="sr-only">Hotel booking {{$key + 1}}</label>
                                     <div class="input-group">
 
                                         <span class="input-group-btn">
                                             <div class="btn btn-default  custom-file-uploader">
-                                                <input type="file" name="hotelfile" onchange="this.form.filename.value = this.files.length ? this.files[0].name : ''" />
+                                                <input type="file" name="hotelfile[]" onchange="this.form.filename.value = this.files.length ? this.files[0].name : ''" />
                                                 <span>Choose File</span>
                                             </div>
                                         </span>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

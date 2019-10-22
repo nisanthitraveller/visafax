@@ -36,16 +36,7 @@
     });
 
     $('.price-check').change(function () {
-        var price = 0;
-        var planId = '';
-        $('.price-check:checked').each(function () {
-            price += isNaN(parseInt($(this).attr('data-price'))) ? 0 : parseInt($(this).attr('data-price'));
-            planId += $(this).val() + '-';
-        });
-        console.log(price);
-        $('#amount').val(price);
-        $('#udf1').val(planId);
-        $('#pay-button').text('Pay ₹' + price + '/-');
+        priceCheck();
     });
 
     $('.panel-collapse').on('show.bs.collapse', function () {
@@ -68,6 +59,8 @@
             $(this).collapse('hide');
         });
     });
+    
+    priceCheck();
 
 })(jQuery);
 
@@ -540,6 +533,21 @@ function validateEmail(email) {
         return (false);
     }
     return(true);
+}
+
+function priceCheck() {
+    var price = 0;
+    var planId = '';
+    if($('.price-check').length) {
+        $('.price-check:checked').each(function () {
+            price += isNaN(parseInt($(this).attr('data-price'))) ? 0 : parseInt($(this).attr('data-price'));
+            planId += $(this).val() + '-';
+        });
+        console.log(price);
+        $('#amount').val(price);
+        $('#udf1').val(planId);
+        $('#pay-button').text('Pay ₹' + price + '/-');
+    }
 }
 
 /*

@@ -6,13 +6,11 @@ Visa Payement
 <section class="banner inner-payment" style="background-image: url({{url('/')}}/images/hero-home.png);">
     <div class="container">
         <div class="col-sm-12 pt-4 pb-4">
-            <h2>Pay now to proceed verification</h2>
+            <h2>Upload offer letter, address and passport details</h2>
         </div>
 
     </div>
 </section>
-
-
 
 <section class="deals pasp-up">
     <div class="container">
@@ -28,18 +26,20 @@ Visa Payement
                     <div class="col-8 qs-in">Please share your offer letter of the company where you are currently employed</div>
                     <div class="col-8 conf-dy-htl">
                         <div class="upload-btn-wrapper">
+                            @foreach($visaDetails as $key => $visaDetail)
                             <div class="form-group">
-                                <label for="file" class="sr-only">File</label>
+                                <label for="file" class="sr-only">Offer letter {{$key + 1}}</label>
                                 <div class="input-group">
 
                                     <span class="input-group-btn">
                                         <div class="btn btn-default  custom-file-uploader">
-                                            <input type="file" name="offer_letter" onchange="this.form.filename.value = this.files.length ? this.files[0].name : ''" />
+                                            <input type="file" name="offer_letter[]" onchange="this.form.filename.value = this.files.length ? this.files[0].name : ''" />
                                             <span>Choose File</span>
                                         </div>
                                     </span>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -80,9 +80,8 @@ Visa Payement
                 </div>
             </div>
 
-
             <div class="col-sm-12 text-center">
-                <a href="{{url('/')}}/applyvisa/step1/1234" class="bck-btn">Back</a>
+                <a href="#" class="bck-btn">Back</a>
                 <a href="#" onclick="$('#formDetails').submit()" class="cntue">Continue</a>
             </div>
 

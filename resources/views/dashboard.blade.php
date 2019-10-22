@@ -48,6 +48,7 @@ Visa Payement
                                         <li class="active">
                                             <a href="{{url('/')}}/dashboard?bookingID={{$visa['id']}}">
                                                 <span class="title-ac">{{$visa['countryName']}} {{$visa['BookingID']}}</span>
+                                                <span class="id-ac">{{$visa['FirstName']}} {{$visa['Surname']}}</span>
                                                 <span class="id-ac">on {{date('d M, y', strtotime($visa['created_at']))}}</span>
                                             </a>
                                         </li>
@@ -109,7 +110,7 @@ Visa Payement
                 <div class="doc-list">
                     <div class="row">
                         <div class="col-md-8 col-sm-6 col-6 doc-cols">
-                            <?php $link = ($visaDetails['paid'] == 1) ? $document['link'] : url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID']); ?>
+                            <?php $link = ($visaDetails['paid'] == 1 || $document['drive'] == false) ? $document['link'] : url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID']); ?>
                             <div class="dos-name"><a target="_blank" href="{{$link}}"> {{$count}}. {{$document['type']}}</a></div>
                         </div>
                         <div class="col-md-3 col-sm-4 col-4 doc-col-2">

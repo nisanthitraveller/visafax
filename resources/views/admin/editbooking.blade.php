@@ -15,7 +15,7 @@
                             if($key == 'Duration') {
                                 $type = 'number';
                             }
-                            $calClass = ($key == 'JoiningDate') ? 'datepicker' : null;
+                            $calClass = ($key == 'JoiningDate') ? 'datepicker2' : null;
                         ?>
                         <input type="{{$type}}" value="{{$data}}" name="{{$key}}" class="form-control {{$calClass}}" id="form{{$key}}">
                     </div>
