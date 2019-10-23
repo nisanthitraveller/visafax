@@ -12,8 +12,6 @@ Visa Payement
     </div>
 </section>
 
-
-
 <section class="deals pasp-up">
     <div class="container">
         <div class="row">

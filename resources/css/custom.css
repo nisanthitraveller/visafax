@@ -54,3 +54,6 @@ section.search input:focus {
     outline: 0;
     box-shadow: none;
 }
+.left-sidebar .panel-body ul li.active a span.id-ac {
+    font-size: 12px !important;
+}

@@ -20,7 +20,7 @@
         <div class="col-12">
             <div class="button_box2"> <form class="form-wrapper-2 cf">
                     <form autocomplete="off" id="searchForm" method="post">
-                        <input type="text" class="typeahead" placeholder="Where you want to go?" required>
+                        <input type="text" class="typeahead" placeholder="Where do you want to go?" required>
                         <button type="submit"><i class="fa fa-angle-right"></i></button> 
                     </form> 
             </div>

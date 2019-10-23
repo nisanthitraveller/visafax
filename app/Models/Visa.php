@@ -10,6 +10,7 @@ class Visa {
     public function createVisa($data) {
         
         $user = auth()->user();
+        $lastId = \Illuminate\Support\Facades\DB::table('bookings')->max('id');
         
         $parentId = 0;
         for ($persons = 1; $persons <= $data['persons']; $persons++):
@@ -26,7 +27,7 @@ class Visa {
                         'PhoneNo' => $user->phone,
                     ]
             );
-            $bookingID = (strlen($id) < 3) ? 'VB' . '000' . $id : 'VB' . $id;
+            $bookingID = (strlen($lastId + 1) < 3) ? 'VB' . '000' . ($lastId + 1) . '-' . $persons : 'VB' . ($lastId + 1) . '-' . $persons;
             
             $bookingInsertedId = DB::table('bookings')->insertGetId(
                     [
@@ -70,7 +71,7 @@ class Visa {
 //            ->leftJoin('pay_slip', 'bookings.id', '=', 'pay_slip.BookingID')
             ->where('bookings.id', $parentId)
             ->orWhere('bookings.ParentID', $parentId)
-            ->select(['bookings.*', 'countries.countryName', 'countries.DriveID as folderID', 'user_info.*'])
+            ->select(['bookings.*', 'bookings.id as visaID', 'countries.countryName', 'countries.DriveID as folderID', 'user_info.*'])
             ->get();
         return $bookings;
     }

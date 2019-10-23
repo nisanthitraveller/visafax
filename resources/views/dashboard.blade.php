@@ -48,8 +48,7 @@ Visa Payement
                                         <li class="active">
                                             <a href="{{url('/')}}/dashboard?bookingID={{$visa['id']}}">
                                                 <span class="title-ac">{{$visa['countryName']}} {{$visa['BookingID']}}</span>
-                                                <span class="id-ac">{{$visa['FirstName']}} {{$visa['Surname']}}</span>
-                                                <span class="id-ac">on {{date('d M, y', strtotime($visa['created_at']))}}</span>
+                                                <span class="id-ac">{{$visa['FirstName']}} {{$visa['Surname']}} on {{date('d.m.y', strtotime($visa['created_at']))}}</span>
                                             </a>
                                         </li>
                                         @endforeach
@@ -57,7 +56,7 @@ Visa Payement
                                 </div>
                             </div>
                         </div>
-                        <div class="panel panel-default">
+                        <?php /* <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingThree">
                                 <h4 class="panel-title">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -81,7 +80,7 @@ Visa Payement
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div>*/ ?> 
                     </div>
                 </div>
             </div>
