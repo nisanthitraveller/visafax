@@ -50,3 +50,7 @@ img.media-object {
     font-size: 13px !important;
     padding-left: 15px !important;
 }
+section.search input:focus {
+    outline: 0;
+    box-shadow: none;
+}
