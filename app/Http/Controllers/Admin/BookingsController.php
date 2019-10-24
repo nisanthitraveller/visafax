@@ -88,19 +88,22 @@ class BookingsController extends Controller
         return view('admin.assigndoc')->with(['booking' => $booking, 'countryDocuments' => $countryDocuments, 'selected' => $selected]);
     }
     
-    public function viewdocument($bookingId) {
+    public function viewdocument($bookingId, Request $request) {
         $booking = Bookings::where("id", $bookingId)->with('user')->with('country')->with('hotels')->with('child')->first()->toArray();
-        $countryDocuments = Document::where('country_id', $booking['VisitingCountry'])->with('documenttype')->select('document_type', 'document_id')->get()->toArray();
-        $assignedDocuments = BookingDocument::where('BookingID', $bookingId)->select(['DocumentID', 'DriveId'])->get()->toArray();
-        $selected = [];
-        $driveId = [];
-        foreach ($assignedDocuments as $assignedDocument) {
-            $selected[] = $assignedDocument['DocumentID'];
-            if($assignedDocument['DriveId'] != null) {
-                $driveId[$assignedDocument['DriveId']] = $assignedDocument['DocumentID'];
-            }
+        $assignedDocuments = BookingDocument::where('BookingID', $bookingId)->with('documenttype')->select(['DocumentID', 'DriveId', 'pdf', 'status', 'id'])->get()->toArray();
+        
+        $destinationPath = 'uploads';
+        
+        if($request['status']) {
+            BookingDocument::where('id', $request['id'])->update(['status' => $request['status']]);
+        }
+        if ($request->hasFile('pdf')) {
+            $pdfFile = $request->file('pdf');
+            $pdfFile->move($destinationPath, $booking['BookingID'] . '-' . str_replace(' ', '', $pdfFile->getClientOriginalName()));
+            BookingDocument::where('id', $request['id'])->update(['pdf' => $booking['BookingID'] . '-' . str_replace(' ', '', $pdfFile->getClientOriginalName())]);
+            return redirect()->back();
         }
         
-        return view('admin.viewdoc')->with(['booking' => $booking, 'countryDocuments' => $countryDocuments, 'selected' => $selected, 'driveId' => $driveId]);
+        return view('admin.viewdoc')->with(['booking' => $booking, 'assignedDocuments' => $assignedDocuments]);
     }
 }

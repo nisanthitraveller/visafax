@@ -5,37 +5,46 @@
     <div class="card">
         <h2>Assign Document</h2>
         <div class="table-responsive-sm">
+            
             <table class="display compact table-bordered table-hover table-striped table-condensed" id="listTable">
                 
                 <tbody>
-                    @foreach($countryDocuments as $k => $documentType)
-                    <?php $checked = in_array($documentType['document_type'], $selected) ? 'checked' : null; ?>
-                    <?php $driveKey = array_search($documentType['document_type'], $driveId) ?>
-                    @if($checked != null)
+                    @foreach($assignedDocuments as $k => $documentType)
                     <tr>
                         <td>{{$k+1}}</td>
                         <td>{{$documentType['documenttype']['type']}}</td>
                         <td>
-                            <select>
-                                <option value="0">Verification Ongoing</option>
-                                <option value="1">Verified</option>
-                            </select>
+                            <form method="GET" enctype="multipart/form-data" class="your-dts">
+                                <select name="status" onchange="$(this).parents('form:first').submit()">
+                                    <option value="0" <?php echo ($documentType['status'] == 0) ? 'selected' : null; ?>>Verification Ongoing</option>
+                                    <option value="1" <?php echo ($documentType['status'] == 1) ? 'selected' : null; ?>>Verified</option>
+                                </select>
+                                <input type="hidden" name="id" value="{{$documentType['id']}}" />
+                            </form>
                         </td>
                         <td>
-                            @if($driveKey === false)
-                                Upload
-                            @endif
+                            <form method="POST" enctype="multipart/form-data" class="your-dts">
+                                <input type="file" name="pdf" style="float: left" />
+                                <input type="hidden" name="id" value="{{$documentType['id']}}" />
+                                @if($documentType['DriveId'] == '' && $documentType['pdf'] == '')
+                                    <button style="float: left">Upload</button>
+                                @elseif($documentType['DriveId'] == '' && $documentType['pdf'] != '')
+                                    <button style="float: left">Upload New</button>
+                                @endif
+                            </form>
                         </td>
                         <td>
-                            @if($driveKey !== false)
-                            <a target="_blank" href="https://docs.google.com/document/d/{{$driveKey}}">View</a>
+                            @if($documentType['DriveId'] == '' && $documentType['pdf'] != '')
+                                <a target="_blank" href="{{url('/')}}/uploads/{{$documentType['pdf']}}">View</a>
+                            @elseif($documentType['DriveId'] != '')
+                                <a target="_blank" href="https://docs.google.com/document/d/{{$documentType['DriveId']}}">View</a>
                             @endif
                         </td>
                     </tr>
-                    @endif
                     @endforeach
                 </tbody>
             </table>
+            </form>
         </div>
     </div>
 </div>

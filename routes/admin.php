@@ -21,7 +21,7 @@ Route::any('/country/price/{Id}', 'Admin\CountryController@countryprice')->name(
 Route::get('/bookings', 'Admin\BookingsController@get')->name('admin.bookings');
 Route::any('/editbooking/{bookingId}', 'Admin\BookingsController@editbooking')->name('admin.editbooking');
 Route::get('/assigndoc/{bookingId}', 'Admin\BookingsController@assigndoc')->name('admin.assigndoc');
-Route::get('/viewdocument/{bookingId}', 'Admin\BookingsController@viewdocument')->name('admin.viewdoc');
+Route::any('/viewdocument/{bookingId}', 'Admin\BookingsController@viewdocument')->name('admin.viewdoc');
 Route::post('/submitdoc', 'GoogleController@submitdoc')->name('admin.submitdoc');
 
 Route::get('/hotels/{bookingId}', 'Admin\HotelsController@hotels')->name('admin.hotels');

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-Visa Payement
+Visa Payment
 @endsection
 @section('content')
 <section class="banner inner-payment" style="background-image: url({{url('/')}}/images/hero-home.png);">

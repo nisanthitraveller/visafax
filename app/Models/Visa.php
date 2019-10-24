@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\File;
+
 class Visa {
 
     public function createVisa($data) {
         
         $user = auth()->user();
         $lastId = \Illuminate\Support\Facades\DB::table('bookings')->max('id');
-        
+        $countryDocuments = Document::where('country_id', $data['vistingCountry'])->select('document_type', 'document_id', 'pdf')->get()->toArray();
         $parentId = 0;
         for ($persons = 1; $persons <= $data['persons']; $persons++):
             
@@ -41,8 +43,25 @@ class Visa {
             if($persons == 1) {
                 $parentId = $bookingInsertedId;
             }
+            //  echo '<pre>';print_r($countryDocuments);die;
+            foreach($countryDocuments as $countryDocument) {
+                if($countryDocument['document_id'] == null) {
+                    $pdf = null;
+                    if(isset($countryDocument['pdf']) && $countryDocument['pdf'] != null) {
+                        File::copy('uploads/' . $countryDocument['pdf'], 'uploads/' . time() . $countryDocument['pdf']);
+                        $pdf = $countryDocument['document_type'].$countryDocument['pdf'];
+                    }
+                    DB::table('booking_documents')->insertGetId([
+                        'DocumentID' => $countryDocument['document_type'],
+                        'BookingID' => $bookingInsertedId,
+                        'pdf' => $pdf
+                    ]);
+                }
+            }
             
         endfor;
+        
+        
         
         $id = DB::table('visa_logs')->insertGetId(
                 [

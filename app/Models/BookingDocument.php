@@ -15,4 +15,7 @@ class BookingDocument extends Model
     
     protected $fillable = ['DocumentID', 'DriveId'];
 
+    public function documenttype() {
+        return $this->belongsTo(DocumentType::class, 'DocumentID', 'id');
+    }
 }
