@@ -23,6 +23,7 @@
                             </form>
                         </td>
                         <td>
+                            @if($documentType['DriveId'] == '')
                             <form method="POST" enctype="multipart/form-data" class="your-dts">
                                 <input type="file" name="pdf" style="float: left" />
                                 <input type="hidden" name="id" value="{{$documentType['id']}}" />
@@ -32,6 +33,7 @@
                                     <button style="float: left">Upload New</button>
                                 @endif
                             </form>
+                            @endif
                         </td>
                         <td>
                             @if($documentType['DriveId'] == '' && $documentType['pdf'] != '')
