@@ -66,7 +66,7 @@ Visa Payement
                     <input name="persons" type="hidden" id="persons" value="{{count($booking['child']) + 1}}"/>
                     <input name="udf1" type="hidden" id="udf1" value=""/>
                     <input name="udf2" type="hidden" id="udf2" value="{{$payLater}}"/>
-                    <input name="txnid" type="hidden" id="reference_no" value="VB-{{$bookingId}}"/>
+                    <input name="txnid" type="hidden" id="reference_no" value="{{$booking['BookingID']}}"/>
                     <input name="key" type="hidden" id="description" value="kjLO4t"/>
                     <input type="hidden" name="firstname" value="{{ Auth::user()->name }}">
                     <input type="hidden" name="email" value="{{ Auth::user()->email }}">
