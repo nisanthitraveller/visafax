@@ -154,33 +154,37 @@ class VisaController extends Controller
         
         $allVisa = $visaObj->getAllMyVisa($user->id);
         $allVisa = json_decode(json_encode($allVisa), True);
+        $destinationPath = 'uploads';
         $bookingId = $allVisa[0]['id'];
         if($request['bookingID']) {
             $bookingId = $request['bookingID'];
         }
         
-        $response['payStat'] = null;
-        
-        $booking = \App\Models\Bookings::where("id", $bookingId)->with('child')->first()->toArray();
-        
-        $assignedDocuments = \App\Models\BookingDocument::where('BookingID', $bookingId)->get()->toArray();
-        $documents = [];
-        foreach ($assignedDocuments as $assignedDocument) {
-            $documentType = \App\Models\DocumentType::where('id', $assignedDocument['DocumentID'])->first()->toArray();
-            $documents[$assignedDocument['DocumentID']]['status'] = $assignedDocument['status'];
-            $documents[$assignedDocument['DocumentID']]['type'] = $documentType['type'];
-            $documents[$assignedDocument['DocumentID']]['drive'] = false;
-            if($assignedDocument['DriveId'] != null) {
-                $documents[$assignedDocument['DocumentID']]['link'] = 'https://docs.google.com/document/d/' . $assignedDocument['DriveId'];
-                $documents[$assignedDocument['DocumentID']]['drive'] = true;
-            } else if($assignedDocument['pdf'] != null) {
-                $documents[$assignedDocument['DocumentID']]['link'] = url('/') . '/uploads/' . $assignedDocument['pdf'];
-            } else {
-                $documents[$assignedDocument['DocumentID']]['link'] = '#';
+        if($request['docType']) {
+            \App\Models\BookingDocument::where('BookingID', $request['visaID'])->where('DocumentID', $request['docType'])->delete();
+            $pdfFiles = $request->file('booking_documents');
+            foreach($pdfFiles as $pdfFile) {
+                $pdfFile->move($destinationPath, time() . $request['visaID'] . '-' . str_replace(' ', '', $pdfFile->getClientOriginalName()));
+                \App\Models\BookingDocument::insert([
+                    'DocumentID' => $request['docType'],
+                    'BookingID' => $request['visaID'],
+                    'pdf' => time() . $request['visaID'] . '-' . str_replace(' ', '', $pdfFile->getClientOriginalName())
+                ]);
             }
+            return redirect()->back();
         }
         
+        $response['payStat'] = null;
         
+        $booking = \App\Models\Bookings::where("id", $bookingId)->with('user')->with('child')->first()->toArray();
+        
+        $assignedDocuments = \App\Models\BookingDocument::where('BookingID', $bookingId)->with('documenttype')->get()->toArray();
+        
+        $documents = [];
+        foreach ($assignedDocuments as $assignedDocument) {
+            $documents[$assignedDocument['DocumentID']][] = $assignedDocument;
+        }
+        //dd($documents);
         return view('dashboard')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response]);
     }
     

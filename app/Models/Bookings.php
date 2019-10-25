@@ -29,6 +29,10 @@ class Bookings extends Model
     public function hotels() {
         return $this->hasMany(Hotels::class, 'BookingID', 'id');
     }
+    
+    public function documents() {
+        return $this->hasMany(Document::class, 'BookingID', 'id');
+    }
 
     function getList() {
         $bookings = Bookings::latest()->with('user')->with('country')->get();

@@ -56,7 +56,8 @@ Visa Payement
                                 </div>
                             </div>
                         </div>
-                        <?php /* <div class="panel panel-default">
+                        <?php 
+                        /* <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingThree">
                                 <h4 class="panel-title">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -84,7 +85,7 @@ Visa Payement
                     </div>
                 </div>
             </div>
-            <div class="col-xl-8 col-md-8 col-sm-8 right-sidebar">
+            <div class="col-xl-8 col-md-8 col-sm-8 right-sidebar" id="document-listing">
                 <div class="row mb-2">
                     <div class="col-md-6 col-sm-7 col-9">
                         <h2>Needed documents</h2>
@@ -92,32 +93,51 @@ Visa Payement
                 </div>
                 <div class="row-bg">
                     <div class="row">
-
+                        <div class="col-md-4 col-sm-4 col-4 row-dta">
+                            <div class="do-ic"><img src="{{url('/')}}/images/doc2.png"> {{$visaDetails['user']['FirstName']}} {{$visaDetails['user']['Surname']}}</div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-4 row-dta">
+                            <div class="do-ic"><img src="{{url('/')}}/images/doc3.png"> {{$visaDetails['BookingID']}}</div>
+                        </div>
                         <div class="col-md-4 col-sm-4 col-4 row-dta">
                             <div class="do-ic"><img src="{{url('/')}}/images/doc1.png">On {{date('d M, y', strtotime($visaDetails['created_at']))}}</div>
-                        </div>
-                        <div class="col-md-4 col-sm-4 col-4 row-dta">
-                            <div class="do-ic"><img src="{{url('/')}}/images/doc2.png"> {{count($visaDetails['child']) + 1}} people</div>
-                        </div>
-                        <div class="col-md-4 col-sm-4 col-4 row-dta">
-                            <div class="do-ic"><img src="{{url('/')}}/images/doc3.png"> {{$visaDetails['VisaType']}} visa</div>
                         </div>
                     </div>
                 </div>
                 <?php $count = 1 ?>
-                @foreach($documents as $k => $document)
+                @foreach($documents as $k => $document1)
+                <?php $document = $document1[0]; ?>
                 <div class="doc-list">
                     <div class="row">
                         <div class="col-md-8 col-sm-6 col-6 doc-cols">
-                            <?php $link = ($visaDetails['paid'] == 1 || $document['drive'] == false) ? $document['link'] : url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID']); ?>
-                            <div class="dos-name"><a target="_blank" href="{{$link}}"> {{$count}}. {{$document['type']}}</a></div>
+                            @if($visaDetails['paid'] == 1 && $document['DriveId'] != '')
+                                <div class="dos-name"><a target="_blank" href="{{'https://docs.google.com/document/d/' . $document['DriveId']}}"> {{$count}}. {{$document['documenttype']['type']}}</a></div>
+                            @elseif($visaDetails['paid'] == 0 && $document['DriveId'] != '')
+                                <div class="dos-name"><a target="_blank" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}"> {{$count}}. {{$document['documenttype']['type']}}</a></div>
+                            @elseif($document['DriveId'] == '' && count($document1) == 1)
+                                <div class="dos-name"><a href="{{url('/') . '/uploads/' . $document['pdf']}}"> {{$count}}. {{$document['documenttype']['type']}}</a></div>
+                            @elseif($document['DriveId'] == '' && count($document1) > 1)
+                                <div class="dos-name">
+                                    <a data-toggle="collapse" href="#connect-modal{{$k}}" role="button" aria-expanded="false" aria-controls="connect-modal{{$k}}"> {{$count}}. {{$document['documenttype']['type']}}</a>
+                                    <div class="collapse" id="connect-modal{{$k}}">
+                                        <div>
+                                            <ol>
+                                                @foreach($document1 as $k2 => $document2)
+                                                <li>
+                                                    <a target="_blank" href="{{url('/') . '/uploads/' . $document2['pdf']}}">File {{$k2 + 1}}</a>
+                                                </li>
+                                                @endforeach
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                         <div class="col-md-3 col-sm-4 col-4 doc-col-2">
-                            @if($document['drive'] == false)
+                            @if($document['DriveId'] == '')
                             <div class="up-btn"> 
                                 <img src="{{url('/')}}/images/upload-active.png">
-                                <input type="file" name="file" id="file" class="inputfile">
-                                <label for="file" class="up-doc">Upload</label>
+                                <label for="file" class="up-doc" onclick="$('#docTYpe').val({{$k}}); $('.right-sidebar').toggle()">Upload</label>
                             </div>
                             @endif
                         </div>
@@ -173,6 +193,46 @@ Visa Payement
                     <a href="#" class="cntue">Download as a bunch</a>
                 </div>-->
 
+            </div>
+            <div class="col-xl-8 col-md-8 col-sm-8 right-sidebar" id="file-upload" style="display: none">
+                <div class="row mb-2">
+                    <div class="col-md-6 col-sm-7 col-9">
+                        <h2>Upload Files</h2>
+                    </div>
+                </div>
+                <div class="row-bg">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-4 row-dta">
+                            <div class="do-ic"><img src="{{url('/')}}/images/doc2.png"> {{$visaDetails['user']['FirstName']}} {{$visaDetails['user']['Surname']}}</div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-4 row-dta">
+                            <div class="do-ic"><img src="{{url('/')}}/images/doc3.png"> {{$visaDetails['BookingID']}}</div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-4 row-dta">
+                            <div class="do-ic"><img src="{{url('/')}}/images/doc1.png">On {{date('d M, y', strtotime($visaDetails['created_at']))}}</div>
+                        </div>
+                    </div>
+                </div>
+                <form method="post" enctype="multipart/form-data">
+                    @csrf
+                    @for($i=1; $i<=10; $i++)
+                        <div class="doc-list">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-4 col-4 doc-cols">File {{$i}}</div>
+                                <div class="col-md-3 col-sm-4 col-4 doc-col-2">
+                                    <input type="file" name="booking_documents[]" />
+                                </div>
+                            </div>
+                        </div>
+                    @endfor
+                    <div class="doc-list">
+                        <div class="row">
+                            <input type="hidden" id="docTYpe" name="docType" />
+                            <input type="hidden" id="visaID" name="visaID" value="{{$visaDetails['id']}}" />
+                            <button class="btn btn-dark pull-right">Submit</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 
