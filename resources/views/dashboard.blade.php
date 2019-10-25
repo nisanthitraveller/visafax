@@ -45,7 +45,8 @@ Visa Payement
                                 <div class="panel-body">
                                     <ul>
                                         @foreach($allVisa as $visa)
-                                        <li class="active">
+                                        <?php $class = ($visa['id'] == $visaDetails['id']) ? 'active' : null; ?>
+                                        <li class="{{$class}}">
                                             <a href="{{url('/')}}/dashboard?bookingID={{$visa['id']}}">
                                                 <span class="title-ac">{{$visa['countryName']}} {{$visa['BookingID']}}</span>
                                                 <span class="id-ac">{{$visa['FirstName']}} {{$visa['Surname']}} on {{date('d.m.y', strtotime($visa['created_at']))}}</span>
