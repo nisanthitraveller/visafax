@@ -447,7 +447,7 @@ function createVisa() {
             console.log('Invalid Token');
         } else {
             closeModal();
-            location.href = '/applyvisa/payment/' + response.parentId;
+            location.href = '/dashboard';
             console.log('redirect true');
         }
     };

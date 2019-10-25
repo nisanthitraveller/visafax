@@ -106,8 +106,9 @@ function updateMobile()
             headers: {"x-csrf-token": token},
             success: function (response) {
                 closeModal();
+                $('#connect-modal-signup').modal('show');
                 console.log(response);
-                location.href = '/applyvisa/payment/' + response.parentId;
+                //location.href = '/applyvisa/payment/' + response.parentId;
             }
         });
     }
