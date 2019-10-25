@@ -333,8 +333,8 @@
                 <h3>Welcome back, {{Auth::user()->name}}!</h3>
                 <p>Do you want to visit My Visas page to view your old visa applications or create a new visa application?</p>
                 <div class="col-sm-12 logind-links">
-                    <a href="#" onclick="$('#connect-modal').modal('hide');">Get New Visa</a>
-                    <a href="{{url('/')}}/dashboard" onclick="$('#connect-modal').modal('hide');">Go to My Visas</a>
+                    <a href="#" onclick="$('#connect-modal').modal('hide'); $('.typeahead').focus()">Get New Visa</a>
+                    <a href="{{url('/')}}/dashboard">Go to My Visas</a>
                 </div>
             </div>
         </div>
