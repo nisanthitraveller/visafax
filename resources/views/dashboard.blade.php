@@ -138,7 +138,7 @@ Visa Payement
                             @if($document['DriveId'] == '')
                             <div class="up-btn"> 
                                 <img src="{{url('/')}}/images/upload-active.png">
-                                <?php $text = (count($document1) >= 1) ? 'Upload New' : 'Upload'; ?>
+                                <?php $text = (count($document1) >= 1 && $document['pdf'] != '') ? 'Upload New' : 'Upload'; ?>
                                 <label for="file" class="up-doc" onclick="$('#docTYpe').val({{$k}}); $('.right-sidebar').toggle()">{{$text}}</label>
                             </div>
                             @endif
