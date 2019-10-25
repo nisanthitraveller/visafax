@@ -7,7 +7,8 @@ Visa Payement
 <section class="banner inner-payment" style="background-image: url({{url('/')}}/images/hero-home.png);">
     <div class="container">
         <div class="col-sm-12 pt-4 pb-4">
-            <h2>Pay now to proceed verification</h2>
+            <h2>Make payment</h2>
+            <p>Your visa application is ready to review – please make payment, before you proceed!</p>
         </div>
 
     </div>
@@ -15,6 +16,9 @@ Visa Payement
 
 <section class="deals payment-screen">
     <div class="container">
+        <div class="col-sm-12 text-justify">
+            We’ve prepared your visa documents and it’s ready to be reviewed by you. To start reviewing them, please choose the preferred services from below and make payment.
+        </div>
         <form>
             @foreach($countryPrices as $key => $countryPrice)
             <div class="col-sm-12 pay-wrap">
@@ -59,8 +63,9 @@ Visa Payement
                 <form  method="post" name="PayUTransaction" id="PayUTransaction" class="formPay">
                     <input name="amount1" type="hidden" id="amount" value="1500"/>
                     <input name="amount" type="hidden" id="amount1" value="1"/>
+                    <input name="persons" type="hidden" id="persons" value="{{count($booking['child']) + 1}}"/>
                     <input name="udf1" type="hidden" id="udf1" value=""/>
-                    <input name="udf1" type="hidden" id="udf2" value="{{$payLater}}"/>
+                    <input name="udf2" type="hidden" id="udf2" value="{{$payLater}}"/>
                     <input name="txnid" type="hidden" id="reference_no" value="VB-{{$bookingId}}"/>
                     <input name="key" type="hidden" id="description" value="kjLO4t"/>
                     <input type="hidden" name="firstname" value="{{ Auth::user()->name }}">
@@ -71,10 +76,12 @@ Visa Payement
                     <input type="hidden" name="furl" value="{{url('/')}}/applyvisa/step1/{{$bookingId}}">
                 </form>
                 <a href="#" class="bck-btn no-bg">Go back</a>
-                @if($payLater == true)
-                <a href="{{url('/')}}/applyvisa/step1/{{$bookingId}}" class="bck-btn">Pay later</a>
+                @if(!empty($countryPrices))
+                    @if($payLater == true)
+                        <a href="{{url('/')}}/applyvisa/step1/{{$bookingId}}" class="bck-btn">Pay later</a>
+                    @endif
+                    <a href="javascript: void(0)" id="pay-button" data-href="{{url('/')}}/applyvisa/step1/{{$bookingId}}" class="cntue">Pay ₹1,500/-</a>
                 @endif
-                <a href="javascript: void(0)" id="pay-button" data-href="{{url('/')}}/applyvisa/step1/{{$bookingId}}" class="cntue">Pay ₹1,500/-</a>
             </div>
         </div>
     </div>

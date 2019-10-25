@@ -61,11 +61,7 @@ function onSuccess(googleUser) {
         } else {
             closeModal();
             if (response.redirect == true) {
-                if (response.parentId != 0) {
-                    location.href = '/applyvisa/payment/' + response.parentId;
-                } else {
-                    location.href = '/dashboard';
-                }
+                $('#connect-modal-signup').modal('show');
                 console.log('redirect true');
             } else {
                 $('.please-wait').hide();

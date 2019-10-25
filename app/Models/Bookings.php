@@ -49,6 +49,9 @@ class Bookings extends Model
         DB::table('bookings')
               ->where('id', $parentId)
               ->update($data);
+        DB::table('bookings')
+              ->where('ParentID', $parentId)
+              ->update($data);
     }
 
 }

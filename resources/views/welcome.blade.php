@@ -7,8 +7,8 @@
         <div class="col-sm-12">
             <div class="row align-items-center justify-content-center pt-5">
                 <div class="card-body">
-                    <h1>Go, like in your dream</h1>
-                    <p>Get solutions for all your visa related issues</p>
+                    <h1>Apply visas, like a cake-walk!</h1>
+                    <p>Visa document preparation, verification & Embassy submissions</p>
                 </div>
             </div>
         </div>
@@ -319,4 +319,35 @@
         </div>
     </div>
 </section>
+@if (!Auth::guest())
+<div class="modal fade popus" id="connect-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <img src="{{url('/')}}/images/modal-img.png">
+                <h3>Welcome back, {{Auth::user()->name}}!</h3>
+                <p>Do you want to visit My Visas page to view your old visa applications or create a new visa application?</p>
+                <div class="col-sm-12 logind-links">
+                    <a href="#" onclick="$('#connect-modal').modal('hide');">Get New Visa</a>
+                    <a href="{{url('/')}}/dashboard" onclick="$('#connect-modal').modal('hide');">Go to My Visas</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 @endsection
+@if (!Auth::guest())
+@section('scripts')
+<script type="text/javascript">
+    $(window).on('load', function () {
+        $('#connect-modal').modal('show');
+    });
+</script>
+@endsection
+@endif

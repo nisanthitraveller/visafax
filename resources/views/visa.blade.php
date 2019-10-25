@@ -33,7 +33,7 @@ Visa {{$country['countryName']}}
     <div class="container">
         <div class="row">
 
-            <h2>Lets us know your details</h2>
+            <h2>Start your visa application – please provide below information</h2>
 
             <form class="your-dts" id="visaForm">
 
@@ -54,14 +54,14 @@ Visa {{$country['countryName']}}
                             <label  for="radio-2" class="radio-label"><span>Tourist</span></label>
                         </div>
 
-                        <div class="radio">
+<!--                        <div class="radio">
                             <input id="radio-3" name="visaType" type="radio" value="Employment">
                             <label for="radio-3" class="radio-label"><span>Employment</span></label>
                         </div>
                         <div class="radio">
                             <input id="radio-4" name="visaType" type="radio" value="Student">
                             <label for="radio-4" class="radio-label"><span>Student</span></label>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
 
@@ -95,4 +95,23 @@ Visa {{$country['countryName']}}
         </div>
     </div>
 </section>
+<div class="modal fade popus" id="connect-modal-signup" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <img src="{{url('/')}}/images/modal-img.png">
+                <h3>Sign up successful – please upload your travel documents</h3>
+                <p>Thanks for signing up on VisaBadge. Now, please share your travel documents to prepare your visa application</p>
+                <div class="col-sm-12 logind-links">
+                    <a href="{{url('/')}}/dashboard">Upload My Travel Documents</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

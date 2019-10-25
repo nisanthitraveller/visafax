@@ -139,6 +139,11 @@ Visa Payement
                 <?php $count++; ?>
                 @endforeach
                 <div>&nbsp;</div>
+                @if($count <= 7)
+                <p>
+                    Your remaining visa documents will be updated here. After you have shared your above travel documents, we will quickly prepare your remaining visa documents and upload them here – usually in less than couple of hours. 
+                </p>
+                @endif
                 @if($visaDetails['paid'] == 1)
                 <div class="col-sm-12 pay-dets">
                     <div class="row">
@@ -146,6 +151,20 @@ Visa Payement
                             <h4>Payment details</h4>
                             <p>Amount paid {{number_format($visaDetails['amount_paid'])}}  |  Paid on {{date('d M, y', strtotime($visaDetails['payment_date']))}}</p>
                             <p>Mode of payment {{$visaDetails['payment_response']}}</p>
+                        </div>
+                    </div>
+                </div>
+                @else
+                <div class="col-sm-12 pay-dets">
+                    <div class="row">
+                        <div class="col-md-12 pay-dets-in">
+                            <p>
+                                @if($visaDetails['ParentID'] == 0)
+                                    <a href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}">Make Payment</a>
+                                @else
+                                    <a href="{{url('/') . '/applyvisa/payment/' . $visaDetails['ParentID'] . '?paylater=' . md5($visaDetails['BookingID'])}}">Make Payment</a>
+                                @endif
+                            </p>
                         </div>
                     </div>
                 </div>

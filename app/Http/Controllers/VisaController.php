@@ -24,9 +24,9 @@ class VisaController extends Controller
     public function payment($bookingId)
     {
         $payLater = request('paylater') ? false : true;
-        $booking = Bookings::where("id", $bookingId)->first()->toArray();
+        $booking = Bookings::where("id", $bookingId)->with('child')->first()->toArray();
         $countryPrices = Pricing::where('country_id', $booking['VisitingCountry'])->with('master')->select('plan_id', 'price')->orderBy('plan_id', 'asc')->get()->toArray();
-        return view('payment')->with(['bookingId' => $bookingId, 'payLater' => $payLater, 'countryPrices' => $countryPrices]);
+        return view('payment')->with(['bookingId' => $bookingId, 'payLater' => $payLater, 'countryPrices' => $countryPrices, 'booking' => $booking]);
     }
     
     public function step1($bookingId, Request $data)
@@ -50,12 +50,12 @@ class VisaController extends Controller
             
             $bookingObj->updatePayment($bookingId, $response);
             
-            if($data['udf2'] == true) {
+            //if($data['udf2'] == true) {
                 return redirect('/dashboard')->with(['bookingId' => $bookingId, 'response' => $response]);
-            }
+            //}
         }
-        $visaDetails = $visaObj->getVisa($bookingId);
-        return view('step1')->with(['bookingId' => $bookingId, 'response' => $response, 'visaDetails' => $visaDetails]);
+        //$visaDetails = $visaObj->getVisa($bookingId);
+        //return view('step1')->with(['bookingId' => $bookingId, 'response' => $response, 'visaDetails' => $visaDetails]);
     }
     
     public function step2($bookingId, Request $request)

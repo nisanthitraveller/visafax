@@ -43,6 +43,7 @@ class Visa {
             if($persons == 1) {
                 $parentId = $bookingInsertedId;
             }
+            
             //  echo '<pre>';print_r($countryDocuments);die;
             foreach($countryDocuments as $countryDocument) {
                 if($countryDocument['document_id'] == null) {
