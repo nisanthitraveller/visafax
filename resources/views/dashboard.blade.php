@@ -110,7 +110,7 @@ Visa Payement
                 <?php $document = $document1[0]; ?>
                 <div class="doc-list">
                     <div class="row">
-                        <div class="col-md-8 col-sm-6 col-6 doc-cols">
+                        <div class="col-md-6 col-sm-6 col-6 doc-cols">
                             @if($visaDetails['paid'] == 1 && $document['DriveId'] != '')
                                 <div class="dos-name"><a target="_blank" href="{{'https://docs.google.com/document/d/' . $document['DriveId']}}"> {{$count}}. {{$document['documenttype']['type']}}</a></div>
                             @elseif($visaDetails['paid'] == 0 && $document['DriveId'] != '')
@@ -134,7 +134,7 @@ Visa Payement
                                 </div>
                             @endif
                         </div>
-                        <div class="col-md-3 col-sm-4 col-4 doc-col-2">
+                        <div class="col-md-4 col-sm-4 col-4 doc-col-2">
                             @if($document['DriveId'] == '')
                             <div class="up-btn"> 
                                 <img src="{{url('/')}}/images/upload-active.png">
