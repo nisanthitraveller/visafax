@@ -42,6 +42,13 @@
                                 <a target="_blank" href="https://docs.google.com/document/d/{{$documentType['DriveId']}}">View</a>
                             @endif
                         </td>
+                        <td>
+                            <form method="POST" class="your-dts">
+                                @csrf
+                                <input type="hidden" name="delete" value="{{$documentType['id']}}" />
+                                <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -96,6 +96,11 @@ class BookingsController extends Controller
         
         if($request['status']) {
             BookingDocument::where('id', $request['id'])->update(['status' => $request['status']]);
+            return redirect()->back();
+        }
+        if($request['delete']) {
+            BookingDocument::where('id', $request['delete'])->delete();
+            return redirect()->back();
         }
         if ($request->hasFile('pdf')) {
             $pdfFile = $request->file('pdf');
