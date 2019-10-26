@@ -482,7 +482,7 @@ class GoogleController extends Controller {
         } finally {
             $service->getClient()->setUseBatch(false);
         }
-        Mail::send('mail.mail-assign', $booking, function($message) use($booking) {
+        Mail::send('mail.mail-assign', ['booking' => $booking], function($message) use($booking) {
            $message->to($booking['user']['EmailID'], $booking['user']['FirstName'] .' ' . $booking['user']['Surname'])
                     ->cc('operations@visabadge.com')
                     ->bcc(['shiju.radhakrishnan@itraveller.com', 'nisanth.kumar@itraveller.com'])
