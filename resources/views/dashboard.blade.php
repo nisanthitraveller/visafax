@@ -242,12 +242,12 @@ Visa Documents
                     @endfor
                     <div class="doc-list add-file">
                         <div class="row">
-                            <div class="col-md-6 col-sm-6 col-6 doc-cols text-right">
+                            <div class="col-md-6 col-sm-6 col-6 doc-cols">
                                 <input type="hidden" id="docTYpe" name="docType" />
                                 <input type="hidden" id="visaID" name="visaID" value="{{$visaDetails['id']}}" />
                                 <button type='button' class="btn btn-light pull-right add_more">Add More Files</button>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-6 doc-cols">
+                            <div class="col-md-6 col-sm-6 col-6 doc-cols text-right">
                                 <button class="btn btn-secondary">Submit</button>
                             </div>
                         </div>
