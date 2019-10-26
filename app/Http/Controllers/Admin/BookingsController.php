@@ -68,6 +68,7 @@ class BookingsController extends Controller
             $model = Bookings::findOrFail($bookingId);
             $data = $request->toArray();
             $data['JoiningDate'] = implode("-", array_reverse(explode("/", $data['JoiningDate'])));
+            $data['payment_date'] = implode("-", array_reverse(explode("/", $data['payment_date'])));
             $model->fill($data);
             $model->save();
             return redirect()->back();
