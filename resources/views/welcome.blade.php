@@ -81,8 +81,6 @@ Apply visas
 
             </div>
 
-
-
             <div id="africa" class="container tab-pane fade"><br>
 
                 <div class="row">
@@ -97,7 +95,8 @@ Apply visas
                                 <div class="media-body">
                                     <h4 class="media-heading">{{substr($country2['countryName'], 0, 15)}}</h4>
                                     <p>From ₹ {{number_format($country2['visa_cost'])}}</p>
-                                </div></a>
+                                </div>
+                            </a>
                         </div>
                     </div>
 
@@ -121,14 +120,14 @@ Apply visas
                                 <div class="media-body">
                                     <h4 class="media-heading">{{substr($country3['countryName'], 0, 15)}}</h4>
                                     <p>From ₹ {{number_format($country3['visa_cost'])}}</p>
-                                </div></a>
+                                </div>
+                            </a>
                         </div>
                     </div>
 
                     <?php $count3++; ?>
                     @endforeach
                 </div>
-
 
             </div>
             <div id="america2" class="container tab-pane fade"><br>
@@ -145,7 +144,8 @@ Apply visas
                                 <div class="media-body">
                                     <h4 class="media-heading">{{substr($country3['countryName'], 0, 15)}}</h4>
                                     <p>From ₹ {{number_format($country3['visa_cost'])}}</p>
-                                </div></a>
+                                </div>
+                            </a>
                         </div>
                     </div>
 
@@ -153,10 +153,8 @@ Apply visas
                     @endforeach
                 </div>
 
-
             </div>
             <div id="europe" class="container tab-pane fade"><br>
-
                 <div class="row">
                     <?php $count3 = 1; ?>
                     @foreach($countries['Europe'] as $country3)
@@ -175,12 +173,8 @@ Apply visas
                     <?php $count3++; ?>
                     @endforeach
                 </div>
-
-
             </div>
-
         </div>
-
         <a href="javascript:void(0)" class="ld-more">Load More...</a>
 
     </div>
@@ -191,9 +185,7 @@ Apply visas
     <div class="container">
         <div class="sm-div">
             <h3>What's VisaBadge?</h3>
-
             <div class="row">
-
                 <div class="col-md-6 col-sm-6 col-12 intro-text"><img src="images/intro-img.png"></div>
                 <div class="col-md-6 col-sm-6 col-12 intro-text pt-1">
                     <p>VisaBadge is a sleek online tool to simplify your visa document preparation, verification, submissions & stamping. On VisaBadge, you can submit your travel documents online and generate your completed application form, along with all the supporting documents, online. Instantly. You can also book your appointments with the Embassies & track the processing. Read more about us here.</p>
@@ -207,7 +199,6 @@ Apply visas
     <div class="container">
         <div class="bg-color">
             <h2>Why Visabadge?</h2>
-
             <div class="row mt-4">
                 <div class="col-md-4 col-sm-12 wht-in">
                     <img src="images/ic1.png">
@@ -230,7 +221,6 @@ Apply visas
 </section>
 
 <section class="who-we">
-
     <div class="container">
         <div class="row">
             <h2>How it works?</h2>
@@ -252,17 +242,13 @@ Apply visas
                 <img src="images/wh3.png">
                 <h4>Submit documents for Embassy approvals</h4>
             </div>
-
         </div>
-
     </div>
 </section>
 
 <section class="more-stories">
     <div class="container">
-
         <h2>Read more stories from us</h2>
-
         <div class="stories owl-carousel owl-theme">
             @if(!empty($feeds['items']))
             <?php $countFeed = 0; ?>
@@ -276,7 +262,7 @@ Apply visas
                 <img src="{{$image}}" alt="{{$feed['title']}}" />
                 <div class="item-content">
                     <h4>{{$feed['title']}}</h4>
-                    <p>{{substr($feed['content_text'], 0, 150)}}...<a href="{{$feed['url']}}">Read More</a></p>
+                    <p>{{substr($feed['content_text'], 0, 150)}}&nbsp;&nbsp;&nbsp;<a href="{{$feed['url']}}">Read More</a></p>
                 </div>
             </div>
             <?php $countFeed++; ?>
@@ -291,7 +277,6 @@ Apply visas
     <div class="container">
         <h2>Listen to others</h2>
         <div class="bg-color">
-
             <div class="slider slider-nav">
                 <div>
                     <img src="images/test1.jpg">
@@ -305,7 +290,6 @@ Apply visas
                     <img src="images/test1.jpg">
                     <div class="no_pic">AR</div>
                 </div>
-
             </div>
             <div class="slider slider-for">
                 <div>
@@ -321,9 +305,6 @@ Apply visas
                     <h3>Aditya Raghavan, Bangalore</h3>
                 </div>
             </div>
-
-
-
         </div>
     </div>
 </section>
