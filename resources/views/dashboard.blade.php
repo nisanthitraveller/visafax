@@ -120,7 +120,10 @@ Visa Documents
                 </div>
                 <?php $count = 1 ?>
                 @foreach($documents as $k => $document1)
-                <?php $document = $document1[0]; ?>
+                <?php 
+                    $document = $document1[0];
+                    $toolTip = App\Models\Document::where('country_id', $visaDetails['VisitingCountry'])->where('document_type', $document['DocumentID'])->select('body_business as tooltip')->first()->toArray();
+                ?>
                 <div class="doc-list">
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-6 doc-cols">
@@ -156,18 +159,18 @@ Visa Documents
                             <div class="up-btn"> 
                                 <img src="{{url('/')}}/images/upload-active.png">
                                 <?php $text = (count($document1) >= 1 && $document['pdf'] != '') ? 'Upload New' : 'Upload'; ?>
-                                <label for="file" class="up-doc" onclick="$('#docTYpe').val({{$k}}); $('.right-sidebar').toggle()">{{$text}}</label>
+                                <label data-toggle="tooltip" data-placement="top" title="{{$toolTip['tooltip']}}" for="file" class="up-doc" onclick="$('#docTYpe').val({{$k}}); $('.right-sidebar').toggle()">{{$text}}</label>
                             </div>
                             @endif
                         </div>
                         <div class="col-md-1 col-sm-2 col-2 doc-col-3">
-                            <div class="up-sucess-btn" data-position="top right" data-tooltip="Verification done"  data-inverted="">
+                            <div class="up-sucess-btn" data-position="top right">
                                 @if($document['status'] == 1)
-                                    <span class="up-succss">
+                                    <span class="up-succss" data-toggle="tooltip" data-placement="top" title="Verified">
                                         <i class="fa fa-check"></i>
                                     </span>
                                 @else
-                                    <span class="up-progrs">
+                                    <span class="up-progrs" data-toggle="tooltip" data-placement="top" title="Verification Ongoing">
                                         <i class="fa fa-clock"></i>
                                     </span>
                                 @endif
@@ -322,10 +325,11 @@ Visa Documents
 @section('scripts')
 <script>
 $(document).ready(function(){
-  $('.add_more').click(function(e){
-    e.preventDefault();
-    $(".file-upload").clone().insertBefore(".add-file");
-  });
+    $('[data-toggle="tooltip"]').tooltip()
+    $('.add_more').click(function(e){
+        e.preventDefault();
+        $(".file-upload").clone().insertBefore(".add-file");
+    });
 });
 </script>
 @endsection

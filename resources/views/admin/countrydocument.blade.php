@@ -15,13 +15,16 @@
                 </div>
                 @foreach($documentTypes as $k => $documentType)
                     <div class="form-group row">
-                        <label class="col-sm-4 col-form-label" for="form{{$k}}">{{$documentType->type}}</label>
-                        <div class="col-sm-2">
+                        <label class="col-sm-3 col-form-label" for="form{{$k}}">{{$documentType->type}}</label>
+                        <div class="col-sm-1">
                             <?php $key = array_search($documentType->id, $documentTypeId) ?>
                             <?php $checked = ($key !== false) ? 'checked' : null; ?>
                             <input type="checkbox" {{$checked}} value="{{$documentType->id}}" name="document_type[{{$documentType->id}}]" class="form-control" id="form{{$k}}">
                         </div>
                         <div class="col-sm-3">
+                            <input type="text" placeholder="Tooltip" value="<?php if($key !== false) { echo $tooltip[$key]; }?>"  name="body_business[{{$documentType->id}}]" class="form-control" />
+                        </div>
+                        <div class="col-sm-2">
                             <input type="text" placeholder="Drive ID" value="<?php if($key !== false) { echo $driveId[$key]; }?>" name="document_id[{{$documentType->id}}]" class="form-control">
                         </div>
                         <div class="col-sm-3">
