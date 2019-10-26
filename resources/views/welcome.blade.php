@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+Apply visas
+@endsection
 @section('content')
 <!-- style="background-image: url(images/hero-home.jpg);" -->
 <section class="banner" style="background-image: url({{url('/')}}/images/hero-home.png);">

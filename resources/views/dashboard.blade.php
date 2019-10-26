@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('title')
-Visa Payement
+Visa Documents
 @endsection
 @section('content')
 <section class="banner inner-payment">
 
     <div class="container">
         <div class="col-sm-12 pt-4 pb-4">
-            <h2>Dashboard</h2>
+            <h2>Your Visa Documents</h2>
         </div>
     </div>
 </section>
@@ -161,9 +161,10 @@ Visa Payement
                 <?php $count++; ?>
                 @endforeach
                 <div>&nbsp;</div>
-                @if($count <= 7)
+                @if($count <= 10)
                 <p>
-                    Your remaining visa documents will be updated here. After you have shared your above travel documents, we will quickly prepare your remaining visa documents and upload them here – usually in less than couple of hours. 
+                    <b>Your remaining visa documents will be updated here.</b>
+                    <br /> After you have shared your above travel documents, we will quickly prepare your remaining visa documents and upload them here – usually in less than couple of hours. 
                 </p>
                 @endif
                 @if($visaDetails['paid'] == 1)
