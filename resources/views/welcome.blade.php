@@ -181,7 +181,7 @@ Apply visas
 
         </div>
 
-        <a href="javascript:void(0)" class="ld-more">Loading More...</a>
+        <a href="javascript:void(0)" class="ld-more">Load More...</a>
 
     </div>
 </section>
@@ -190,13 +190,13 @@ Apply visas
 <section class="intro">
     <div class="container">
         <div class="sm-div">
-            <h3>Why visafax?</h3>
+            <h3>What's VisaBadge?</h3>
 
             <div class="row">
 
                 <div class="col-md-6 col-sm-6 col-12 intro-text"><img src="images/intro-img.png"></div>
                 <div class="col-md-6 col-sm-6 col-12 intro-text pt-1">
-                    <p>We, at visafax, know and adhere to the fact that holidays and vacations are a time for a change; to be out and about exploring new places, meeting new people and just soaking in the good times. An international holiday trip that you have been planning for years to come gives you access to this.</p>
+                    <p>VisaBadge is a sleek online tool to simplify your visa document preparation, verification, submissions & stamping. On VisaBadge, you can submit your travel documents online and generate your completed application form, along with all the supporting documents, online. Instantly. You can also book your appointments with the Embassies & track the processing. Read more about us here.</p>
                 </div>
             </div>
         </div>
@@ -206,22 +206,22 @@ Apply visas
 <section class="wht-mke">
     <div class="container">
         <div class="bg-color">
-            <h2>What make us different?</h2>
+            <h2>Why Visabadge?</h2>
 
             <div class="row mt-4">
                 <div class="col-md-4 col-sm-12 wht-in">
                     <img src="images/ic1.png">
-                    <h4>Simple</h4>
+                    <h4>Fully Online</h4>
                 </div>
 
                 <div class="col-md-4 col-sm-12 wht-in">
                     <img src="images/ic2.png">
-                    <h4>Instant</h4>
+                    <h4>Instant & Convenient</h4>
                 </div>
 
                 <div class="col-md-4 col-sm-12 wht-in">
                     <img src="images/ic3.png">
-                    <h4>Low cost</h4>
+                    <h4>Value For Money</h4>
                 </div>
 
             </div>
@@ -232,28 +232,25 @@ Apply visas
 <section class="who-we">
 
     <div class="container">
-
-
-
         <div class="row">
             <h2>How it works?</h2>
             <div class="col-12">
-                <p>We, at visafax, know and adhere to the fact that holidays and vacations are a time for a change; to be out and about exploring new places, meeting new people and just soaking in the good times.</p>
+                <p>Our endeavour has always been to make your visa applications simpler. At VisaBadge, we allow you to sign up & submit your travel documents like flight tickets, hotel vouchers etc, online. We verify them and prepare your visa documents like application forms, cover letters, NOCs etc. All of them shall be verified by you on VisaBadge.com, before we go ahead with the submissions at Embassy.</p>
             </div>
             <div class="clearfix"></div>
             <div class="col-md-4 col-sm-12 wht-in">
                 <img src="images/wh1.png">
-                <h4>Give details</h4>
+                <h4>You submit your tickets, vouchers</h4>
             </div>
 
             <div class="col-md-4 col-sm-12 wht-in">
                 <img src="images/wh2.png">
-                <h4>Verify documents</h4>
+                <h4>VisaBadge prepares & verifies your application</h4>
             </div>
 
             <div class="col-md-4 col-sm-12 wht-in">
                 <img src="images/wh3.png">
-                <h4>Receive visa</h4>
+                <h4>Submit documents for Embassy approvals</h4>
             </div>
 
         </div>
@@ -296,23 +293,32 @@ Apply visas
         <div class="bg-color">
 
             <div class="slider slider-nav">
-                <div><img src="images/test1.jpg"></div>
-                <div><img src="images/test1.jpg"></div>
-                <div><img src="images/test1.jpg"></div>
+                <div>
+                    <img src="images/test1.jpg">
+                    <div class="no_pic">SP</div>
+                </div>
+                <div>
+                    <img src="images/test1.jpg">
+                    <div class="no_pic">PG</div>
+                </div>
+                <div>
+                    <img src="images/test1.jpg">
+                    <div class="no_pic">AR</div>
+                </div>
 
             </div>
             <div class="slider slider-for">
                 <div>
-                    <p>Personalised attention, responsible behaviour & utmost honesty from a travel agent is something of a myth like most of us might have experienced. Well, our experience with visafax, right from the very first interaction was very professional and supporting!</p>
-                    <h3>Robert Kart  |  Citizen, Canada</h3>
+                    <p>One of the major challenges in visa processing is the preparation of documents. VisaBadge makes is really a cake-walk. After submitting the documents online, I received all the documents on My Visas page, fully prepared. 100% hassle free.</p>
+                    <h3>Sai Padmanabhan, New Delhi</h3>
                 </div>
                 <div>
-                    <p>test content 2</p>
-                    <h3>James Bond  |  Citizen, USA</h3>
+                    <p>Did my Schengen visa application through VisaBadge and the process was quick and seamless. The entire bunch of documents needed was prepared instantly online and the interview process with Embassy was scheduled by VisaBadge directly. Strongly recommend them for making visa processing simpler.</p>
+                    <h3>Priyank Gupta, Mumbai</h3>
                 </div>
                 <div>
-                    <p>test 3</p>
-                    <h3>Peter Scott  |  Citizen, India</h3>
+                    <p>Availed end to end services from document preparation, verification, appointment booking, submissions and tracking from VisaBadge for my last trip to the UK. Everything was online, except the interview with the Embassy and found that the services are really competitive for the quality of experience. Strongly recommend to go with Visabadge!</p>
+                    <h3>Aditya Raghavan, Bangalore</h3>
                 </div>
             </div>
 

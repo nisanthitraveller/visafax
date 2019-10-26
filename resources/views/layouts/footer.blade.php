@@ -62,5 +62,6 @@
         <div class="row text-center">
             <p>&COPY; {{date('Y')}} - All rights reserved.</p>
         </div>
+        <a href="https://api.whatsapp.com/send?phone=919074294969&text=Hello VisaBadge" class="chat"><img src="{{secure_url('images/whatsapp.png')}}" width="32" /></a>
     </div>
 </footer>
