@@ -276,7 +276,7 @@ Apply visas
                 <img src="{{$image}}" alt="{{$feed['title']}}" />
                 <div class="item-content">
                     <h4>{{$feed['title']}}</h4>
-                    <p>{{substr($feed['content_text'], 0, 150)}}<a href="{{$feed['url']}}">Read More</a></p>
+                    <p>{{substr($feed['content_text'], 0, 150)}}...<a href="{{$feed['url']}}">Read More</a></p>
                 </div>
             </div>
             <?php $countFeed++; ?>

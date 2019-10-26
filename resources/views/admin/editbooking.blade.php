@@ -15,7 +15,8 @@
                             if($key == 'Duration') {
                                 $type = 'number';
                             }
-                            $calClass = ($key == 'JoiningDate') ? 'datepicker2' : null;
+                            $calClass = (in_array($key, ['JoiningDate', 'payment_date'])) ? 'datepicker2' : null;
+                            $data = (in_array($key, ['JoiningDate', 'payment_date'])) ? date('d/m/Y', strtotime($data)) : $data;
                         ?>
                         <input type="{{$type}}" value="{{$data}}" name="{{$key}}" class="form-control {{$calClass}}" id="form{{$key}}">
                     </div>

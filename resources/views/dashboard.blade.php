@@ -321,25 +321,21 @@ Visa Documents
 </div>
 @endif
 @endsection
-@if(isset($request['popup']) && $request['popup'] == 1)
 @section('scripts')
+@if(isset($request['popup']) && $request['popup'] == 1)
 <script type="text/javascript">
     $(window).on('load', function () {
         $('#connect-modal-signup').modal('show');
     });
 </script>
-@endsection
 @endif
 @if(isset($request['popup']) && $request['popup'] == 2)
-@section('scripts')
 <script type="text/javascript">
     $(window).on('load', function () {
         $('#connect-modal-signup2').modal('show');
     });
 </script>
-@endsection
 @endif
-@section('scripts')
 <script>
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip()

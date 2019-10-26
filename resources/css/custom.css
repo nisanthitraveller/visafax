@@ -62,6 +62,14 @@ section.deals h2{
 }
 section.deals{
     min-height: 280px;
+    line-height: 25px;
+}
+section.deals ol {
+    list-style: decimal;
+}
+section.deals strong {
+    margin: 15px 0 5px 0;
+    display: block;
 }
 section.banner.inner-payment h2{
     font-weight: bold;
@@ -97,4 +105,12 @@ section.banner.inner-payment h2{
   bottom: 30px;
   right: 30px;
   color: #888;
+}
+.connect-links input {
+    border: 0;
+    border-bottom: 1px solid #91abff;
+    width: 50%;
+}
+.connect-links button {
+    width: 50%;
 }

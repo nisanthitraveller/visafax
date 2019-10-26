@@ -60,9 +60,9 @@ class BookingsController extends Controller
         unset($user['id']);
         unset($user['VisitingCountry']);
         unset($user['ParentID']);
-        unset($user['paid']);
+        unset($user['plan_id']);
         unset($user['payment_response']);
-        unset($user['payment_date']);
+        //unset($user['payment_date']);
         unset($user['DriveID']);
         if(!empty($request['VisaType'])) {
             $model = Bookings::findOrFail($bookingId);

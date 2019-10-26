@@ -17,11 +17,35 @@
                     <!--<div class="g-signin2" id="my-signin2" data-width="260" data-height="50" data-theme="light" data-longtitle="true" data-onsuccess="onSignIn"></div>-->
                     <a href="javascript:void(0)" id="googleSignIn"><img src="{{url('/')}}/images/search.svg">Connect with Google</a>
                 </div>
-                <div class="form-field-cover g-login" style="display: none; margin-top: 30px;">
-                    <input id="phone1" name="phone" type="number" required="" />
-                    <label>Mobile no:</label>
+                <div class="userContent" style="display: none;"></div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+<div class="modal fade popus" id="connect-modal-mobile">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <img src="{{url('/')}}/images/modal-img.png">
+                <h3>Share your contact number</h3>
+                <p>Share your mobile number that can be added to your visa application form, which the Embassy officials may use to reach you directly.</p>
+                <div class="col-sm-12 connect-links">
+                    <input id="phone1" name="phone" type="number" placeholder="Enter mobile number" />
                 </div>
-                <button class="btnlogin g-login" style="display: none" onclick="updateMobile()">Login</button>
+                <div class="col-sm-12 connect-links">
+                    <button class="btn btn-primary btn-lg" onclick="updateMobile()">Login</button>
+                </div>
+                
                 <div class="userContent" style="display: none;"></div>
             </div>
 
@@ -62,6 +86,6 @@
         <div class="row text-center">
             <p>&COPY; {{date('Y')}} - All rights reserved.</p>
         </div>
-        <a target="_blank" href="https://api.whatsapp.com/send?phone=919074294969&text=Hello VisaBadge" class="chat"><img src="{{secure_url('images/whatsapp.png')}}" width="32" /></a>
+        <a target="_blank" href="https://api.whatsapp.com/send?phone=919074294969&text=Hello VisaBadge" class="chat"><img src="{{secure_url('images/whatsapp.png')}}" width="64" /></a>
     </div>
 </footer>

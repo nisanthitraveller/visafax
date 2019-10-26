@@ -11,14 +11,14 @@
                         <th>#</th>
                         <th>Booking ID</th>
                         <th>Country</th>
-                        <th>Passport #</th>
                         <th>First Name</th>
                         <th>Email ID</th>
                         <th>Phone #</th>
-                        <th>Booking Info</th>
-                        <th>Assign Documents</th>
+                        <th>Info</th>
+                        <th>Assign</th>
                         <th>Hotels</th>
-                        <th>View Documents</th>
+                        <th>View</th>
+                        <th>User</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,18 +27,17 @@
                         <td>{{$k + 1}}</td>
                         <td>{{$booking->BookingID}}</td>
                         <td>{{$booking['country']['countryName']}}</td>
-                        <td>{{$booking['user']['PassportNo']}}</td>
                         <td>{{$booking['user']['FirstName']}}</td>
                         <td>{{$booking['user']['EmailID']}}</td>
                         <td>{{$booking['user']['PhoneNo']}}</td>
                         <td>
                             <a href="{!! route('admin.editbooking', [$booking->id]) !!}">
-                                Booking Info
+                                Info
                             </a>
                         </td>
                         <td>
                             <a href="{!! route('admin.assigndoc', [$booking->id]) !!}">
-                                Assign Documents
+                                Assign
                             </a>
                         </td>
                         <th>
@@ -48,9 +47,13 @@
                         </th>
                         <td>
                             <a href="{!! route('admin.viewdoc', [$booking->id]) !!}">
-                                View Documents
+                                View
                             </a>
-                            
+                        </td>
+                        <td>
+                            <a href="{!! route('admin.edituser', [$booking->user_id]) !!}">
+                                User
+                            </a>
                         </td>
                     </tr>
                     @endforeach
