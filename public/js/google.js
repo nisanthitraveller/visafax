@@ -61,6 +61,7 @@ function onSuccess(googleUser) {
         } else {
             closeModal();
             if (response.redirect == true) {
+                $('#connect-modal').modal('hide');
                 $('#connect-modal-signup').modal('show');
                 console.log('redirect true');
             } else {
