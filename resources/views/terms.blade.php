@@ -1,15 +1,68 @@
 @extends('layouts.app')
-
+@section('title')
+Terms & Conditions
+@endsection
 @section('content')
-<!-- style="background-image: url(images/hero-home.jpg);" -->
-<section class="banner" style="background-image: url({{url('/')}}/images/hero-home.png);">
+<section class="banner inner-payment" style="background-image: url({{url('/')}}/images/hero-home.png);">
     <div class="container">
         <div class="col-sm-12">
             <div class="row align-items-center justify-content-center pt-5">
                 <div class="card-body">
-                    <h1>Terms</h1>
-                    <p>Terms and conditions</p>
+                    <h1>Terms & Conditions</h1>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="deals">
+    <div class="container">
+        <div class="row">
+            <div><strong>General Terms of VisaBadge,</strong></div>
+            <div>
+                <ol>
+                    <li>Our terms &amp; conditions abide by the Information &amp; Technology Act, 2000, 2008 &amp; 2011, in accordance with Rule 3-1 (intermediaries guidelines) requiring rules &amp; regulations, privacy policy &amp; T&amp;C for the usage of&nbsp;<a href="http://visabadge.com/" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://visabadge.com&amp;source=gmail&amp;ust=1572172598187000&amp;usg=AFQjCNGaijvxFwejTO2_lh2WZfcDVkzeIw">visabadge.com</a>&nbsp;and its associated properties</li>
+                    <li>This is an electronic document, which doesn't need a physical signature</li>
+                    <li>Usage of its properties is solely governed by the T&amp;C captured here as well as the privacy policy&nbsp;</li>
+                    <li>Visit to any of its properties shall be deemed to signify the user's unequivocal acceptance of its T&amp;Cs</li>
+                    <li>User agreed that the T&amp;Cs mentioned constitute a legally binding agreement between user and VisaBadge</li>
+                    <li>VisaBadge reserves exclusive right to amend or modify the T&amp;Cs anytime, without the permission from user</li>
+                    <li><strong>Eligibility</strong>: Then user represents &amp; warrants that s/he is competent &amp; eligible to enter into legally binding agreements, as determined&nbsp;by the provisions of Indian Contract Act 1872.</li>
+                    <li><strong>Termination</strong>: User agrees that the company reserves the right to unilaterally&nbsp;terminate the user's access to its properties</li>
+                    <li>Visabadge provides visa consulting services to users, for visiting various countries, but the content in the website is not guaranteed to be accurate and up-to-date. User agrees to perform check on the accuracy of the information and VissBadge stands to bear no liability against any damages occurred due to this</li>
+                    <li>The User agrees and acknowledges that he/she is a restricted user of this Website, and that he/she,</li>
+                    <ol>
+                        <li>is bound not to cut, copy, distribute, modify, recreate, reverse engineer, distribute, disseminate, post, publish or create derivative works from, transfer, or sell any information or software obtained from the Website. Any such use / limited use of the Website will only be allowed with the prior express written permission of the Company. For the removal of doubt, it is clarified that unlimited or wholesale reproduction, copying of the content for commercial or non-commercial purposes and unwarranted modification of data and information contained on the Website is expressly prohibited.</li>
+                        <li>agrees not to access (or attempt to access) the Website and/or the materials or services by any means other than through the interface provided by the Website. The use of deep-link, robot, spider or other automatic device, program, algorithm or methodology, or any similar or equivalent manual process, to access, acquire, copy or monitor any portion of the Website or its content, or in any way reproduce or circumvent the navigational structure or presentation of the Website, materials or any content, or to obtain or attempt to obtain any materials, documents or information through any means not specifically made available through the Website will lead to suspension or termination of the User&rsquo;s access to the Website, as detailed in Section 11 hereinbelow. The User acknowledges and agrees that by accessing or using the Website or any of the services provided therein, he/she may be exposed to content that he/she may consider offensive, indecent or otherwise objectionable. The Company disclaims any and all liabilities arising in relation to such offensive content on the Website.</li>
+                        <li>In places where Website permits the User to post or upload data/information, the User undertakes to ensure that such material is not offensive or objectionable, and is in accordance with applicable laws. The User expressly agrees that any such material that is deemed to be objectionable/offensive may be removed from the Website immediately and without notice, and further that the User&rsquo;s access to the Website may also be permanently revoked, at the sole discretion of the Company</li>
+                    </ol>
+                    <li>Further undertakes not to:</li>
+                    <ol>
+                        <li>Abuse, harass, threaten, defame, disillusion, erode, abrogate, demean or otherwise violate the legal rights of any other person or entity;</li>
+                        <li>Engage in any activity that interferes with or disrupts access to the Website or the services provided therein (or the servers and networks which are connected to the Website);</li>
+                        <li>Impersonate any person or entity, or falsely state or otherwise misrepresent his/her affiliation with a person or entity</li>
+                        <li>Publish, post, disseminate, any information which is grossly harmful, harassing, blasphemous, defamatory, obscene, pornographic, paedophilic,&nbsp;libellous, invasive of another's privacy, hateful, or racially, ethnically objectionable, disparaging, relating or encouraging money laundering or gambling, or otherwise unlawful in any manner whatever under any law, rule or regulation currently in force; or unlawfully threatening or unlawfully harassing including but not limited to "indecent representation of women" within the meaning of the Indecent Representation of Women (Prohibition) Act, 1986;</li>
+                        <li>Post any image/file/data that infringes the copyright, patent or trademark of another person or legal entity;</li>
+                        <li>Upload or distribute files that contain viruses, corrupted files, or any other similar software or programs that may damage the operation of the Website,</li>
+                        <li>Download any file posted/uploaded by another user of the Website that</li>
+                        <li>the User is aware, or should reasonably be aware, cannot be legally distributed in such a manner;</li>
+                        <li>Probe, scan or test the vulnerability of the Website or any network connected to the Website, nor breach the security or authentication measures on the Website or any network connected to the Website. The User may not reverse look-up, trace or seek to trace any information relating to any other user of, or&nbsp;visitor&nbsp;to, the Website, or any other customer of the Website, including any user account maintained on the Website not operated/managed by the User, or exploit the Website or information made available or offered by or through the Website, in any manner;</li>
+                        <li>Disrupt or interfere with the security of, or otherwise cause harm to, the Website, systems resources, accounts, passwords, servers or networks connected to or accessible through the Websites or any affiliated or linked Websites;</li>
+                        <li>Collect or store data about other users of the Website.</li>
+                        <li>Use the Website or any material or content therein for any purpose that is unlawful or prohibited by these Terms, or to solicit the performance of any illegal activity or other activity which infringes the rights of this Website or any other third party(ies);</li>
+                        <li>Violate any code of conduct or&nbsp;guidelines&nbsp;which may be applicable for or to any particular product or service offered on the Website;</li>
+                        <li>Violate any applicable laws, rules or regulations currently in force within or outside India;</li>
+                        <li>Violate any portion of these Terms or the Policy, including but not limited to any applicable additional terms of the Website contained herein or elsewhere, whether made by amendment, modification, or otherwise;</li>
+                        <li>Threaten the unity, integrity, defence, security or sovereignty of India, friendly relations with foreign states, or public order, or&nbsp;causes&nbsp;incitement to the commission of any cognizable offence, or prevent the investigation of any offence, or insult any other nation.</li>
+                        <li>Publish, post, or disseminate information that is false, inaccurate or misleading;</li>
+                        <li>Directly or indirectly offer, attempt to offer, trade, or attempt to trade, any item the dealing of which is prohibited or restricted in any manner under the provisions of any applicable law, rule, regulation or guideline for the time being in force</li>
+                        <li>Commit any act that causes the Company to lose (in whole or in part) the services of its internet service provider ("<strong>ISP</strong>") or in any manner disrupts the services of any other supplier/service provider of the Company /Website;</li>
+                        <li>Engage in advertising to, or solicitation of, other users of the Website to buy or sell any products or services not currently displayed on the Website. The User may not transmit any chain letters or unsolicited commercial or junk email/messages to other users via the Website or through any other internet based platform infringing the reputation of the company or its products. It shall be a violation of these Terms to use any information obtained from the Website in order to harass, abuse, or harm another person, or in order to contact, advertise to, solicit, or sell to another user of the Website without the&nbsp;express&nbsp;prior written consent of the Company</li>
+                    </ol>
+                    <li><strong>Indemnity &amp; Limitations:</strong>&nbsp;The User hereby expressly agrees to defend, indemnify and hold harmless the Website and the Company, its parent, subsidiaries, affiliates, employees, directors, officers, agents and their successors and assigns and against any and all claims, liabilities, damages, losses, costs and expenses, including attorney's fees, caused by or arising out of claims based upon the User's actions or inactions, including but not limited to any warranties, representations or undertakings, or in relation to the non-fulfillment of any of the User&rsquo;s obligations under this Agreement, or arising out of the User's infringement of any applicable laws, rules and regulations, including but not limited to infringement of intellectual property rights, payment of statutory dues and taxes, claims of libel, defamation, violation of rights of privacy or publicity, loss of service by other subscribers, or the infringement of any other rights of a third party.&nbsp;In no event shall the Company/Website be liable to compensate the User or any third party for any special, incidental, indirect, consequential or punitive damages whatsoever, including those resulting from loss of use, data or profits, whether or not foreseeable, and whether or not the Company /Website had been advised of the possibility of such damages, or based on any theory of liability, including breach of contract or warranty, negligence or other tortuous action, or any other claim arising out of or in connection with the User&rsquo;s use of or access to the Website and/or the products, services or materials contained therein.&nbsp;The limitations and exclusions in this section apply to the maximum extent permitted by applicable law, and the Parties expressly agree that in the event of any statute, rule, regulation or amendment coming into force that would result in the Company Website incurring any form of liability whatsoever, these Terms and the Policy will stand terminated one (1) day before the coming into effect of such statute, rule, regulation or amendment. It is further agreed to by the Parties that the contents of this Section shall survive even after the termination or&nbsp;expiration&nbsp;of the Terms and/or Policy.</li>
+                    <li>Intellectual Property Rights:&nbsp;Unless expressly agreed to in writing, nothing contained herein shall give the User a right to use any of the Website trade names, trademarks, service marks, logos, domain names, information, questions, answers, solutions, reports and other distinctive brand features, save according to the provisions of these Terms. All logos, trademarks, brand names, service marks, domain names, including materials, designs, and graphics created by and developed by the Website and other distinctive brand features of the Website are the property of the Company. Furthermore, with respect to the Website created by the Company the Company shall be the exclusive owner of all the designs, graphics and the like, related to the Website.</li>
+                    <li>Force Majeure: Neither the Company nor the Website shall be liable for damages for any delay or failure to perform its obligations hereunder if such delay or failure is due to causes beyond its control or without its fault or negligence, due to Force Majeure events including but not limited to acts of war, acts of God, earthquake, riot, sabotage, labour shortage or dispute, Internet interruption, technical failure, breakage of sea cable, hacking, piracy, cheating, illegal or unauthorized. </li>
+                    <li>Dispute Resolution: The Parties expressly agree that the Terms, Policy and any other agreements entered into between the Parties are governed by the laws, rules and regulations of India, and that the Courts at Kochi, Kerala shall have exclusive jurisdiction over any disputes arising between the Parties</li>
+                </ol>
             </div>
         </div>
     </div>

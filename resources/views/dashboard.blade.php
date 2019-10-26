@@ -202,7 +202,7 @@ Visa Documents
                 ?>
                 <div class="col-sm-12 pay-dets">
                     <div class="row">
-                        <div class="col-md-12 pay-dets-in">
+                        <div class="col-md-6 pay-dets-in">
                             @if(!empty($countryPrices))
                             <p>
                                 Billing Amount: {{number_format($countryPrices['price'] * (count($booking['child']) + 1))}}/-
@@ -211,11 +211,13 @@ Visa Documents
                             <p>
                                 Amount Paid: 0/-
                             </p>
+                        </div>
+                        <div class="col-md-6 pay-dets-in text-right">
                             <p>
                                 @if($visaDetails['ParentID'] == 0)
-                                    <a class="btn btn-outline-success" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}">Make Payment</a>
+                                    <a class="btn btn-outline-primary" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}">Make Payment</a>
                                 @else
-                                    <a class="btn btn-outline-success" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['ParentID'] . '?paylater=' . md5($visaDetails['BookingID'])}}">Make Payment</a>
+                                    <a class="btn btn-outline-primary" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['ParentID'] . '?paylater=' . md5($visaDetails['BookingID'])}}">Make Payment</a>
                                 @endif
                             </p>
                         </div>
