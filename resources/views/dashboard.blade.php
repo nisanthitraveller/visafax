@@ -88,7 +88,7 @@ Visa Documents
             </div>
             <div class="col-xl-8 col-md-8 col-sm-8 right-sidebar" id="document-listing">
                 <div class="row mb-2">
-                    <div class="col-md-6 col-sm-7 col-9">
+                    <div class="col-md-12 col-sm-7 col-9">
                         <?php $count1 = 0; ?>
                         @foreach($documents as $document11)
                             @foreach($document11 as $document22)
@@ -128,8 +128,12 @@ Visa Documents
                                 <div class="dos-name"><a target="_blank" href="{{'https://docs.google.com/document/d/' . $document['DriveId']}}"> {{$count}}. {{$document['documenttype']['type']}}</a></div>
                             @elseif($visaDetails['paid'] == 0 && $document['DriveId'] != '')
                                 <div class="dos-name"><a target="_blank" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}"> {{$count}}. {{$document['documenttype']['type']}}</a></div>
-                            @elseif($document['DriveId'] == '' && count($document1) == 1 && $document['pdf'] != '')
-                                <div class="dos-name"><a href="{{url('/') . '/uploads/' . $document['pdf']}}"> {{$count}}. {{$document['documenttype']['type']}}</a></div>
+                            @elseif($document['DriveId'] == '' && count($document1) == 1)
+                                @if($document['pdf'] != '')
+                                    <div class="dos-name"><a href="{{url('/') . '/uploads/' . $document['pdf']}}"> {{$count}}. {{$document['documenttype']['type']}}</a></div>
+                                @else
+                                    <div class="dos-name"><a href="javascript:void(0)" title="No files uploaded"> {{$count}}. {{$document['documenttype']['type']}}</a></div>
+                                @endif
                             @elseif($document['DriveId'] == '' && count($document1) > 1)
                                 <div class="dos-name">
                                     <a data-toggle="collapse" href="#connect-modal{{$k}}" role="button" aria-expanded="false" aria-controls="connect-modal{{$k}}"> {{$count}}. {{$document['documenttype']['type']}}</a>
