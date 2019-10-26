@@ -487,7 +487,7 @@ class GoogleController extends Controller {
             $message->to($booking['user']['EmailID'], $booking['user']['FirstName'] .' ' . $booking['user']['Surname'])
                     ->cc('operations@visabadge.com')
                     ->bcc(['shiju.radhakrishnan@itraveller.com', 'nisanth.kumar@itraveller.com'])
-                    ->subject('VisaBadge: Document generated for Booking ID' . $booking['BookingID']);
+                    ->subject('VisaBadge: Document generated for Booking ID ' . $booking['BookingID']);
         });
         return json_encode(['success' => true]);
     }
