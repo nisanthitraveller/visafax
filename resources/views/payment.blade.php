@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-Visa Payement
+Visa Payment
 @endsection
 @section('content')
 <!-- style="background-image: url(images/hero-home.jpg);"-->
@@ -16,7 +16,7 @@ Visa Payement
 
 <section class="deals payment-screen">
     <div class="container">
-        <div class="col-sm-12 text-justify">
+        <div class="col-sm-12 text-justify card" style="padding: 10px; margin-bottom: 10px; background-color: #fafafa;">
             We’ve prepared your visa documents and it’s ready to be reviewed by you. To start reviewing them, please choose the preferred services from below and make payment.
         </div>
         <form>
@@ -80,7 +80,7 @@ Visa Payement
                     @if($payLater == true)
                         <a href="{{url('/')}}/applyvisa/step1/{{$bookingId}}" class="bck-btn">Pay later</a>
                     @endif
-                    <a href="javascript: void(0)" id="pay-button" data-href="{{url('/')}}/applyvisa/step1/{{$bookingId}}" class="cntue">Pay ₹1,500/-</a>
+                    <a href="javascript: void(0)" id="pay-button" data-href="{{url('/')}}/applyvisa/step1/{{$bookingId}}" class="cntue">Pay ₹1,500/- <span style="font-size: 12px">{{count($booking['child']) + 1}} person(s)</span></a>
                 @endif
             </div>
         </div>

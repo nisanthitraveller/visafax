@@ -89,19 +89,32 @@ Visa Documents
             <div class="col-xl-8 col-md-8 col-sm-8 right-sidebar" id="document-listing">
                 <div class="row mb-2">
                     <div class="col-md-6 col-sm-7 col-9">
-                        <h2>Needed documents</h2>
+                        <?php $count1 = 0; ?>
+                        @foreach($documents as $document11)
+                            @foreach($document11 as $document22)
+                                @if($document22['DriveId'] != '')
+                                    <?php $count1++; ?>
+                                @endif
+                            @endforeach
+                        @endforeach
+                        @if($count1 == 0)
+                        <p>
+                            <b>Your remaining visa documents will be updated here.</b>
+                            <br /> After you have shared your above travel documents, we will quickly prepare your remaining visa documents and upload them here – usually in less than couple of hours. 
+                        </p>
+                        @endif
                     </div>
                 </div>
                 <div class="row-bg">
                     <div class="row">
-                        <div class="col-md-4 col-sm-4 col-4 row-dta">
+                        <div class="col-md-5 col-sm-5 col-5 row-dta">
                             <div class="do-ic"><img src="{{url('/')}}/images/doc2.png"> {{$visaDetails['user']['FirstName']}} {{$visaDetails['user']['Surname']}}</div>
                         </div>
                         <div class="col-md-4 col-sm-4 col-4 row-dta">
                             <div class="do-ic"><img src="{{url('/')}}/images/doc3.png"> {{$visaDetails['BookingID']}}</div>
                         </div>
-                        <div class="col-md-4 col-sm-4 col-4 row-dta">
-                            <div class="do-ic"><img src="{{url('/')}}/images/doc1.png">On {{date('d M, y', strtotime($visaDetails['created_at']))}}</div>
+                        <div class="col-md-3 col-sm-3 col-3 row-dta">
+                            <div class="do-ic"><img src="{{url('/')}}/images/doc1.png">{{date('d.m.y', strtotime($visaDetails['created_at']))}}</div>
                         </div>
                     </div>
                 </div>
@@ -115,7 +128,7 @@ Visa Documents
                                 <div class="dos-name"><a target="_blank" href="{{'https://docs.google.com/document/d/' . $document['DriveId']}}"> {{$count}}. {{$document['documenttype']['type']}}</a></div>
                             @elseif($visaDetails['paid'] == 0 && $document['DriveId'] != '')
                                 <div class="dos-name"><a target="_blank" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}"> {{$count}}. {{$document['documenttype']['type']}}</a></div>
-                            @elseif($document['DriveId'] == '' && count($document1) == 1)
+                            @elseif($document['DriveId'] == '' && count($document1) == 1 && $document['pdf'] != '')
                                 <div class="dos-name"><a href="{{url('/') . '/uploads/' . $document['pdf']}}"> {{$count}}. {{$document['documenttype']['type']}}</a></div>
                             @elseif($document['DriveId'] == '' && count($document1) > 1)
                                 <div class="dos-name">
@@ -161,12 +174,7 @@ Visa Documents
                 <?php $count++; ?>
                 @endforeach
                 <div>&nbsp;</div>
-                @if($count <= 11)
-                <p>
-                    <b>Your remaining visa documents will be updated here.</b>
-                    <br /> After you have shared your above travel documents, we will quickly prepare your remaining visa documents and upload them here – usually in less than couple of hours. 
-                </p>
-                @endif
+                
                 @if($visaDetails['paid'] == 1)
                 <div class="col-sm-12 pay-dets">
                     <div class="row">

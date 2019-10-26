@@ -447,7 +447,8 @@ function createVisa() {
             console.log('Invalid Token');
         } else {
             closeModal();
-            location.href = '/dashboard';
+            $('#connect-modal-signup').modal('show');
+            //location.href = '/dashboard';
             console.log('redirect true');
         }
     };
