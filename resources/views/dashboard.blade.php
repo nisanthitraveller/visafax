@@ -161,7 +161,7 @@ Visa Documents
                 <?php $count++; ?>
                 @endforeach
                 <div>&nbsp;</div>
-                @if($count <= 10)
+                @if($count <= 11)
                 <p>
                     <b>Your remaining visa documents will be updated here.</b>
                     <br /> After you have shared your above travel documents, we will quickly prepare your remaining visa documents and upload them here – usually in less than couple of hours. 
