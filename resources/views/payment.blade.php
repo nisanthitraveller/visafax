@@ -80,7 +80,7 @@ Visa Payment
                     @if($payLater == true)
                         <a href="{{url('/')}}/applyvisa/step1/{{$bookingId}}" class="bck-btn">Pay later</a>
                     @endif
-                    <a href="javascript: void(0)" id="pay-button" data-href="{{url('/')}}/applyvisa/step1/{{$bookingId}}" class="cntue">Pay ₹1,500/- <span style="font-size: 12px">{{count($booking['child']) + 1}} person(s)</span></a>
+                    <a href="javascript: void(0)" id="pay-button" data-href="{{url('/')}}/applyvisa/step1/{{$bookingId}}" class="cntue">Pay ₹1,500/- <span style='font-size: 12px'>{{count($booking['child']) + 1}} person(s)</span></a>
                 @endif
             </div>
         </div>

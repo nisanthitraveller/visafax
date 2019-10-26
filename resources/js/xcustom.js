@@ -547,7 +547,7 @@ function priceCheck() {
         console.log(price);
         $('#amount').val(price * parseInt($('#persons').val()));
         $('#udf1').val(planId);
-        $('#pay-button').text('Pay ₹' + price * parseInt($('#persons').val()) + '/- ' + '<span style="font-size: 12px">' + $('#persons').val() + ' person(s)');
+        $('#pay-button').text('Pay ₹' + price * parseInt($('#persons').val()) + '/- ' + '<span style="font-size: 12px">' + $('#persons').val() + ' person(s)</span>');
     }
 }
 
