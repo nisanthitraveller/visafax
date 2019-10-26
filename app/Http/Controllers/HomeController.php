@@ -28,7 +28,7 @@ class HomeController extends Controller
         $countryObj = new Country();
         
         $feeds = $blogObj->getFeeds();
-        $countries = $countryObj->all()->toArray();
+        $countries = $countryObj->where('status', 1)->get()->toArray();
         $new_array = array();
         foreach($countries as $item) {
           $new_array[str_replace(' ', '-', $item['continentName'])][] = $item;
@@ -44,6 +44,7 @@ class HomeController extends Controller
     public function autocomplete(Request $request)
     {
         $data = Country::select("countryName as name", "id")
+                ->where('status', 1)
                 ->where("countryName","LIKE","%{$request->input('query')}%")
                 ->get();
    
