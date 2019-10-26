@@ -78,7 +78,7 @@ $requests = explode('/', Request::path());
 
                 <div class="sidebar-wrapper">
                     <div class="logo">
-                        <a href="{{ secure_url('/') }}" class="simple-text"><img src = "{{ secure_asset('/images/logo.png') }}" style="width: 116px" /></a>
+                        <a href="{{ secure_url('/') }}" class="simple-text"><img src = "{{ secure_asset('/images/logo-reverse.png') }}" style="width: 116px" /></a>
                     </div>
 
                     <ul class="nav">

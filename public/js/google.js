@@ -66,8 +66,8 @@ function onSuccess(googleUser) {
                 location.href = '/dashboard?popup=1';
                 console.log('redirect true');
             } else {
-                $('.please-wait').hide();
-                $('.g-login').show();
+                $('#connect-modal').modal('hide');
+                $('#connect-modal-mobile').modal('show');
                 $('#phone1').focus();
             }
         }
