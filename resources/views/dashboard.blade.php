@@ -193,14 +193,29 @@ Visa Documents
                     </div>
                 </div>
                 @else
+                <?php
+                    $booking = $visaDetails;
+                    if($visaDetails['ParentID'] != 0) {
+                        $booking = \App\Models\Bookings::where("id", $visaDetails['ParentID'])->with('child')->first()->toArray();
+                    }
+                    $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCountry'])->with('master')->select('plan_id', 'price')->orderBy('plan_id', 'asc')->first();
+                ?>
                 <div class="col-sm-12 pay-dets">
                     <div class="row">
                         <div class="col-md-12 pay-dets-in">
+                            @if(!empty($countryPrices))
+                            <p>
+                                Billing Amount: {{number_format($countryPrices['price'] * (count($booking['child']) + 1))}}/-
+                            </p>
+                            @endif
+                            <p>
+                                Amount Paid: 0/-
+                            </p>
                             <p>
                                 @if($visaDetails['ParentID'] == 0)
-                                    <a href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}">Make Payment</a>
+                                    <a class="btn btn-outline-success" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}">Make Payment</a>
                                 @else
-                                    <a href="{{url('/') . '/applyvisa/payment/' . $visaDetails['ParentID'] . '?paylater=' . md5($visaDetails['BookingID'])}}">Make Payment</a>
+                                    <a class="btn btn-outline-success" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['ParentID'] . '?paylater=' . md5($visaDetails['BookingID'])}}">Make Payment</a>
                                 @endif
                             </p>
                         </div>
