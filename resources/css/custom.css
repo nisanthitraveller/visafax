@@ -60,3 +60,6 @@ section.search input:focus {
 section.deals h2{
     font-size: 18px !important;
 }
+section.banner.inner-payment h2{
+    font-weight: bold;
+}

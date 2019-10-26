@@ -447,8 +447,8 @@ function createVisa() {
             console.log('Invalid Token');
         } else {
             closeModal();
-            $('#connect-modal-signup').modal('show');
-            //location.href = '/dashboard';
+            //$('#connect-modal-signup').modal('show');
+            location.href = '/dashboard?popup=2';
             console.log('redirect true');
         }
     };
@@ -547,7 +547,7 @@ function priceCheck() {
         console.log(price);
         $('#amount').val(price * parseInt($('#persons').val()));
         $('#udf1').val(planId);
-        $('#pay-button').text('Pay ₹' + price * parseInt($('#persons').val()) + '/-');
+        $('#pay-button').text('Pay ₹' + price * parseInt($('#persons').val()) + '/- ' + '<span style="font-size: 12px">' + $('#persons').val() + ' person(s)');
     }
 }
 

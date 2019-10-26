@@ -230,21 +230,26 @@ Visa Documents
                 </div>
                 <form method="post" enctype="multipart/form-data">
                     @csrf
-                    @for($i=1; $i<=10; $i++)
-                        <div class="doc-list">
+                    @for($i=1; $i<=1; $i++)
+                        <div class="doc-list file-upload">
                             <div class="row">
-                                <div class="col-md-6 col-sm-4 col-4 doc-cols">File {{$i}}</div>
+                                <div class="col-md-6 col-sm-4 col-4 doc-cols">File</div>
                                 <div class="col-md-3 col-sm-4 col-4 doc-col-2">
                                     <input type="file" name="booking_documents[]" />
                                 </div>
                             </div>
                         </div>
                     @endfor
-                    <div class="doc-list">
+                    <div class="doc-list add-file">
                         <div class="row">
-                            <input type="hidden" id="docTYpe" name="docType" />
-                            <input type="hidden" id="visaID" name="visaID" value="{{$visaDetails['id']}}" />
-                            <button class="btn btn-dark pull-right">Submit</button>
+                            <div class="col-md-6 col-sm-6 col-6 doc-cols text-right">
+                                <input type="hidden" id="docTYpe" name="docType" />
+                                <input type="hidden" id="visaID" name="visaID" value="{{$visaDetails['id']}}" />
+                                <button type='button' class="btn btn-light pull-right add_more">Add More Files</button>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-6 doc-cols">
+                                <button class="btn btn-secondary">Submit</button>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -253,4 +258,74 @@ Visa Documents
 
     </div>
 </section>
+@if(isset($request['popup']) && $request['popup'] == 1)
+<div class="modal fade popus" id="connect-modal-signup" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <img src="{{url('/')}}/images/modal-img.png">
+                <h3>Sign up successful – please upload your travel documents</h3>
+                <p>Thanks for signing up on VisaBadge. Now, please share your travel documents to prepare your visa application</p>
+                <div class="col-sm-12 logind-links">
+                    <a href="javascript:void(0)" onclick="$('#connect-modal-signup').modal('hide')">Upload My Travel Documents</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+@if(isset($request['popup']) && $request['popup'] == 2)
+<div class="modal fade popus" id="connect-modal-signup2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <img src="{{url('/')}}/images/modal-img.png">
+                <h3>Get started with your new visa</h3>
+                <p>Get started with your new visa, by uploading your travel documents</p>
+                <div class="col-sm-12 logind-links">
+                    <a href="javascript:void(0)" onclick="$('#connect-modal-signup2').modal('hide')">Upload My Travel Documents</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+@endsection
+@if(isset($request['popup']) && $request['popup'] == 1)
+@section('scripts')
+<script type="text/javascript">
+    $(window).on('load', function () {
+        $('#connect-modal-signup').modal('show');
+    });
+</script>
+@endsection
+@endif
+@if(isset($request['popup']) && $request['popup'] == 2)
+@section('scripts')
+<script type="text/javascript">
+    $(window).on('load', function () {
+        $('#connect-modal-signup2').modal('show');
+    });
+</script>
+@endsection
+@endif
+@section('scripts')
+<script>
+$(document).ready(function(){
+  $('.add_more').click(function(e){
+    e.preventDefault();
+    $(".file-upload").clone().insertBefore(".add-file");
+  });
+});
+</script>
 @endsection

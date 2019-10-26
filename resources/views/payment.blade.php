@@ -16,7 +16,7 @@ Visa Payment
 
 <section class="deals payment-screen">
     <div class="container">
-        <div class="col-sm-12 text-justify card" style="padding: 10px; margin-bottom: 10px; background-color: #fafafa;">
+        <div class="col-sm-12 text-justify card" style="padding: 10px; margin-bottom: 10px; background-color: #fafafa; color: #2d49a2">
             We’ve prepared your visa documents and it’s ready to be reviewed by you. To start reviewing them, please choose the preferred services from below and make payment.
         </div>
         <form>

@@ -185,7 +185,7 @@ class VisaController extends Controller
             $documents[$assignedDocument['DocumentID']][] = $assignedDocument;
         }
         //dd($documents);
-        return view('dashboard')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response]);
+        return view('dashboard')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response, 'request' => $request]);
     }
     
     public function payusubmit(Request $request) {

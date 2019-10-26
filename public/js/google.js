@@ -61,8 +61,9 @@ function onSuccess(googleUser) {
         } else {
             closeModal();
             if (response.redirect == true) {
-                $('#connect-modal').modal('hide');
-                $('#connect-modal-signup').modal('show');
+                //$('#connect-modal').modal('hide');
+                //$('#connect-modal-signup').modal('show');
+                location.href = '/dashboard?popup=1';
                 console.log('redirect true');
             } else {
                 $('.please-wait').hide();
@@ -107,9 +108,9 @@ function updateMobile()
             headers: {"x-csrf-token": token},
             success: function (response) {
                 closeModal();
-                $('#connect-modal-signup').modal('show');
+                //$('#connect-modal-signup').modal('show');
                 console.log(response);
-                //location.href = '/applyvisa/payment/' + response.parentId;
+                location.href = '/dashboard?popup=1';
             }
         });
     }
