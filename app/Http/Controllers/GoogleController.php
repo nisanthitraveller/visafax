@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Google_Client;
 use App\User;
 use App\Models\Visa;
+use Illuminate\Support\Facades\Mail;
 
 class GoogleController extends Controller {
 
@@ -481,7 +482,9 @@ class GoogleController extends Controller {
         } finally {
             $service->getClient()->setUseBatch(false);
         }
-        
+        Mail::send('mail.mail-assign', $booking, function($message) use($booking) {
+           $message->to($booking['user']['email'], $booking['user']['FirstName'] .' ' . $booking['user']['Surname'])->subject('VisaBadge: Document generated for Booking ID' . $booking['BookingID']);
+        });
         return json_encode(['success' => true]);
     }
 
