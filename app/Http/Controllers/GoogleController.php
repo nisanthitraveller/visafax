@@ -484,7 +484,7 @@ class GoogleController extends Controller {
         }
         Mail::send('mail.mail-assign', ['booking' => $booking], function($message) use($booking) {
             $message->from('operations@visabadge.com', 'Operations VisaBadge');
-            $message->to('shiju.radhakrishnan@itraveller.com', $booking['user']['FirstName'] .' ' . $booking['user']['Surname'])
+            $message->to($booking['user']['EmailID'], $booking['user']['FirstName'] .' ' . $booking['user']['Surname'])
                     ->cc('operations@visabadge.com')
                     ->bcc(['shiju.radhakrishnan@itraveller.com', 'nisanth.kumar@itraveller.com'])
                     ->subject('VisaBadge: Document generated for Booking ID ' . $booking['BookingID']);
