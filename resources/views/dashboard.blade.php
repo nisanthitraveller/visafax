@@ -229,7 +229,7 @@ Visa Documents
                     <div class="row mb-2">
                         <div class="col-md-12 col-sm-12 col-12">
                             <p>
-                                No bookings found!
+                                No visas found! <a href="{{url('/')}}">Apply New</a>
                             </p>
                         </div>
                     </div>
