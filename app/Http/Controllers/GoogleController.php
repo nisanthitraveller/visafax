@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Google_Client;
 use App\User;
 use App\Models\Visa;
-use Illuminate\Support\Facades\Mail;
+use Mail;
 
 class GoogleController extends Controller {
 

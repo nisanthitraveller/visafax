@@ -550,6 +550,40 @@ function priceCheck() {
         $('#pay-button').html('Pay ₹' + price * parseInt($('#persons').val()) + '/- ' + '<span style=\'font-size: 12px\'>' + $('#persons').val() + ' person(s)</span>');
     }
 }
+$('input.typeahead').typeahead({
+    hint: true,
+    highlight: true,
+    autoSelect: true,
+    minLength: 0,
+    showHintOnFocus: true,
+    source: function (query, process) {
+        var $this = this; //get a reference to the typeahead object
+        if (query != '') {
+            return $.get(path, { query: query }, function (data) {
+                var options = [];
+                $this['map'] = {}; //replace any existing map attr with an empty object
+                $.each(data,function (i,val){
+                    options.push(val.name);
+                    $this.map[val.name] = val.id; //keep reference from name -> id
+                });
+                return process(options);
+            });
+        } else {
+            return process(['Switzerland', 'Dubai', 'France']);
+        }
+    },
+    updater: function (item) {
+        var str3 = 'india';
+        var str3 = item.replace(" ", "-");
+        console.log('dsdsdsd' + str3);
+        if(str3 != '') {
+            window.location.href = "/visa/" + str3.toLowerCase();
+            console.log(this.map[item],item); //access it here
+        }
+
+    }
+
+});
 
 /*
  * $("#multipleupload").uploadFile({

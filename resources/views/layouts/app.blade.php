@@ -39,30 +39,7 @@ $requests = explode('/', Request::path());
         <script src="{{ asset(mix('js/visabadge.js')) }}" defer></script>
         <script type="text/javascript">
             var path = "{{ route('autocomplete') }}";
-            $('input.typeahead').typeahead({
-                source: function (query, process) {
-                    var $this = this //get a reference to the typeahead object
-                    return $.get(path, { query: query }, function (data) {
-                        var options = [];
-                        $this['map'] = {}; //replace any existing map attr with an empty object
-                        $.each(data,function (i,val){
-                            options.push(val.name);
-                            $this.map[val.name] = val.id; //keep reference from name -> id
-                        });
-                        return process(options);
-                    });
-                },
-                updater: function (item) {
-                    var str3 = 'india';
-                    var str3 = item.replace(" ", "-");
-                    console.log('dsdsdsd' + str3);
-                    if(str3 != '') {
-                        window.location.href = "{{ url('/') }}/visa/" + str3.toLowerCase();
-                        console.log(this.map[item],item); //access it here
-                    }
-
-                }
-            });
+            
         </script>
         <script src="https://apis.google.com/js/platform.js?onload=onLoadGoogleCallback" async defer></script>
         @yield('scripts')
