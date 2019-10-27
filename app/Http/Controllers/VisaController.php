@@ -152,11 +152,10 @@ class VisaController extends Controller
         $visaObj = new Visa();
         $user = auth()->user();
         $agent = new Agent();
-        
         $allVisa = $visaObj->getAllMyVisa($user->id);
         $allVisa = json_decode(json_encode($allVisa), True);
         $destinationPath = 'uploads';
-        $bookingId = $allVisa[0]['id'];
+        $bookingId = isset($allVisa[0]) ? $allVisa[0]['id'] : null;
         if($request['bookingID']) {
             $bookingId = $request['bookingID'];
         }
@@ -176,14 +175,16 @@ class VisaController extends Controller
         }
         
         $response['payStat'] = null;
-        
-        $booking = \App\Models\Bookings::where("id", $bookingId)->with('user')->with('child')->first()->toArray();
-        
-        $assignedDocuments = \App\Models\BookingDocument::where('BookingID', $bookingId)->with('documenttype')->get()->toArray();
-        
-        $documents = [];
-        foreach ($assignedDocuments as $assignedDocument) {
-            $documents[$assignedDocument['DocumentID']][] = $assignedDocument;
+        $documents = $booking = [];
+        if($bookingId != null) {
+            $booking = \App\Models\Bookings::where("id", $bookingId)->with('user')->with('child')->first()->toArray();
+
+            $assignedDocuments = \App\Models\BookingDocument::where('BookingID', $bookingId)->with('documenttype')->get()->toArray();
+
+
+            foreach ($assignedDocuments as $assignedDocument) {
+                $documents[$assignedDocument['DocumentID']][] = $assignedDocument;
+            }
         }
         if($agent->isMobile() && isset($request['bookingID'])) {
             return view('dashboard-mobile')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response, 'request' => $request]);
