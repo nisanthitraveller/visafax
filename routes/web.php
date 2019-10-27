@@ -15,7 +15,7 @@
 //Route::any('login/', 'HomeController@welcome');
 //Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/', 'HomeController@welcome')->name('login');
-Route::get('/logout', 'HomeController@logout')->name('logout');
+Route::any('/logout', 'HomeController@logout')->name('logout');
 Route::get('/home', 'HomeController@index')    
     ->name('home');
 Route::get('/backend', 'HomeController@bologin');
