@@ -36,7 +36,7 @@ Visa Documents
                     </div>
                 </div>
                 <div class="row mb-2">
-                    <div class="col-md-12 col-sm-7 col-9">
+                    <div class="col-md-12 col-sm-12 col-9">
                         <?php $count1 = 0; ?>
                         @foreach($documents as $document11)
                             @foreach($document11 as $document22)

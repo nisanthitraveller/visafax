@@ -33,7 +33,11 @@ class HomeController extends Controller
         foreach($countries as $item) {
           $new_array[str_replace(' ', '-', $item['continentName'])][] = $item;
         }
-        return view('welcome')->with(['feeds' => $feeds, 'countries' => $new_array]);
+        $dashboard = false;
+        if (strpos(\Illuminate\Support\Facades\URL::previous(), 'dashboard') !== false) {
+            $dashboard = true;
+        }
+        return view('welcome')->with(['feeds' => $feeds, 'countries' => $new_array, 'dashboard' => $dashboard]);
     }
     
     /**

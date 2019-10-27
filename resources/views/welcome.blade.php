@@ -40,25 +40,26 @@ Apply visas
         <!-- Nav tabs -->
         <ul class="nav nav-tabs for-cntry" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#asia">Asia Pacific</a>
+                <a class="nav-link active" data-toggle="tab" href="#europe">Europe</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#africa">Africa</a>
+                <a class="nav-link" data-toggle="tab" href="#asia">Asia Pacific</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#america1">North America</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#america2">South America</a>
+                <a class="nav-link" data-toggle="tab" href="#africa">Africa</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#europe">Europe</a>
+                <a class="nav-link" data-toggle="tab" href="#america2">South America</a>
             </li>
+            
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
-            <div id="asia" class=" tab-pane active">
+            <div id="asia" class="container tab-pane fade">
                 <div class="row">
                     <?php $count = 1; ?>
                     @foreach($countries['Asia-Pacific'] as $country1)
@@ -154,7 +155,7 @@ Apply visas
                 </div>
 
             </div>
-            <div id="europe" class="container tab-pane fade"><br>
+            <div id="europe" class="tab-pane active"><br>
                 <div class="row">
                     <?php $count3 = 1; ?>
                     @foreach($countries['Europe'] as $country3)
@@ -309,7 +310,7 @@ Apply visas
     </div>
 </section>
 @if (!Auth::guest())
-<div class="modal fade popus" id="connect-modal" aria-hidden="true">
+<div class="modal fade popus" id="connect-modal-user" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <!-- Modal Header -->
@@ -335,8 +336,16 @@ Apply visas
 @section('scripts')
 <script type="text/javascript">
     $(window).on('load', function () {
-        $('#connect-modal').modal('show');
+        $('#connect-modal-user').modal('show');
     });
 </script>
 @endsection
+@elseif($dashboard == true)
+    @section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#connect-modal').modal('show');
+        });
+    </script>
+    @endsection
 @endif

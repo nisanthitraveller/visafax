@@ -61,8 +61,8 @@ Visa Payment
         <div class="col-sm-12 text-right pay-last-btn">
             <div class="container">
                 <form  method="post" name="PayUTransaction" id="PayUTransaction" class="formPay">
-                    <input name="amount1" type="hidden" id="amount" value="1500"/>
-                    <input name="amount" type="hidden" id="amount1" value="1"/>
+                    <input name="amount" type="hidden" id="amount" value="1500"/>
+                    <input name="amount1" type="hidden" id="amount1" value="1"/>
                     <input name="persons" type="hidden" id="persons" value="{{count($booking['child']) + 1}}"/>
                     <input name="udf1" type="hidden" id="udf1" value=""/>
                     <input name="udf2" type="hidden" id="udf2" value="{{$payLater}}"/>
