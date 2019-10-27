@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pricing;
 use App\Models\Visa;
 use App\Models\Bookings;
-use Google_Client;
+use Jenssegers\Agent\Agent;
 
 class VisaController extends Controller
 {
@@ -151,6 +151,7 @@ class VisaController extends Controller
     public function dashboard(Request $request) {
         $visaObj = new Visa();
         $user = auth()->user();
+        $agent = new Agent();
         
         $allVisa = $visaObj->getAllMyVisa($user->id);
         $allVisa = json_decode(json_encode($allVisa), True);
@@ -184,8 +185,13 @@ class VisaController extends Controller
         foreach ($assignedDocuments as $assignedDocument) {
             $documents[$assignedDocument['DocumentID']][] = $assignedDocument;
         }
+        if($agent->isMobile() && isset($request['bookingID'])) {
+            return view('dashboard-mobile')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response, 'request' => $request]);
+        } else {
+            return view('dashboard')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response, 'request' => $request]);
+        }
         //dd($documents);
-        return view('dashboard')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response, 'request' => $request]);
+        
     }
     
     public function payusubmit(Request $request) {

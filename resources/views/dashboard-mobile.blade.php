@@ -29,64 +29,12 @@ Visa Documents
         </div>
         @endif
         <div class="row">
-            <div class="col-xl-4 col-md-4 col-sm-4 left-sidebar">
-
-                <div class="wrapper center-block">
-                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
-                        <div class="panel panel-default">
-                            <div class="panel-heading active" role="tab" id="headingOne">
-                                <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Visa Applications
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseOne" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingOne">
-                                <div class="panel-body">
-                                    <ul>
-                                        @foreach($allVisa as $visa)
-                                        <?php $class = ($visa['id'] == $visaDetails['id']) ? 'active' : null; ?>
-                                        <li class="{{$class}}">
-                                            <a href="{{url('/')}}/dashboard?bookingID={{$visa['id']}}">
-                                                <span class="title-ac">{{$visa['countryName']}} {{$visa['BookingID']}}</span>
-                                                <span class="id-ac">{{$visa['FirstName']}} {{$visa['Surname']}} on {{date('d.m.y', strtotime($visa['created_at']))}}</span>
-                                            </a>
-                                        </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <?php 
-                        /* <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingThree">
-                                <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Payment History
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body">
-                                    <ul>
-                                        @foreach($allVisa as $visa)
-                                        @if($visa['paid'] == 1)
-                                        <li class="active">
-                                            <a href="{{url('/')}}/dashboard?bookingID={{$visa['id']}}">
-                                                <span class="title-ac">{{$visa['countryName']}} {{$visa['BookingID']}}</span>
-                                                <span class="id-ac">on {{date('d M, y', strtotime($visa['created_at']))}}</span>
-                                            </a>
-                                        </li>
-                                        @endif
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>*/ ?> 
+            <div class="col-xl-12 col-md-12 col-sm-12 right-sidebar" id="document-listing">
+                <div class="col-sm-12 mb-2 ">
+                    <div class="row mb-2 ">
+                        <a href="{{url('/')}}/dashboard" class="back-btn">Back</a>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-8 col-md-8 col-sm-8 right-sidebar d-none d-sm-block" id="document-listing">
                 <div class="row mb-2">
                     <div class="col-md-12 col-sm-7 col-9">
                         <?php $count1 = 0; ?>

@@ -1861,6 +1861,22 @@ a.bck-btn.no-bg {
 .visa-time {
     padding-right: 15px;
 }
+
+/* .time-list-wrapper::-webkit-scrollbar {
+    width: .53em;
+ background:#f6f6f6 !important;
+}
+
+
+body .time-list-wrapper ::-webkit-scrollbar-thumb{
+        cursor:pointer;border-radius:5px;
+        background:#dddddd !important;
+} */
+
+/*
+ *  STYLE 7
+ */
+
 body .time-list-wrapper::-webkit-scrollbar-track
 {
 
@@ -1962,10 +1978,23 @@ span.doc-title {
     padding: 4px 6px;
     border-radius: 6px;
 }
+a.back-btn {
+    background: #4f6dce;
+    color: #fff;
+    font-size: 17px;
+    border-radius: 100px;
+    padding: 7px 31px;
 
+    float: left;
+    display: block;
+}
 
 
 @media(max-width: 767px){
+    .right-sidebar {
+        margin-top: 28px;
+        padding-left: 15px;
+    }
     form.your-dts {
         width: 100%;
         overflow: hidden;
@@ -1978,7 +2007,7 @@ span.doc-title {
         padding-left: 10px;
         padding-right: 10px;
         text-align: center;
-        margin-top: 20px;
+
     }
     .do-ic{
         font-size: 14px;
