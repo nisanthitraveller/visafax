@@ -124,6 +124,7 @@ Visa Documents
                                 @endif
                             </div>
                         </div>
+                        <p style="padding-left: 18px; font-size: 11px; margin-bottom: 0">{{$toolTip['tooltip']}}</p>
                     </div>
                 </div>
                 <?php $count++; ?>

@@ -131,29 +131,25 @@ Visa Documents
                                 @if($visaDetails['paid'] == 1 && $document['DriveId'] != '')
                                     <div class="dos-name">
                                         <a target="_blank" href="{{'https://docs.google.com/document/d/' . $document['DriveId']}}"> {{$count}}. {{$document['documenttype']['type']}}</a>
-                                        <p style="padding-left: 18px; font-size: 11px; margin-bottom: 0">{{$toolTip['tooltip']}}</p>
                                     </div>
                                 @elseif($visaDetails['paid'] == 0 && $document['DriveId'] != '')
                                     <div class="dos-name">
                                         <a target="_blank" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}"> {{$count}}. {{$document['documenttype']['type']}}</a>
-                                        <p style="padding-left: 18px; font-size: 11px; margin-bottom: 0">{{$toolTip['tooltip']}}</p>
                                     </div>
                                 @elseif($document['DriveId'] == '' && count($document1) == 1)
                                     @if($document['pdf'] != '')
                                         <div class="dos-name">
                                             <a href="{{url('/') . '/uploads/' . $document['pdf']}}"> {{$count}}. {{$document['documenttype']['type']}}</a>
-                                            <p style="padding-left: 18px; font-size: 11px; margin-bottom: 0">{{$toolTip['tooltip']}}</p>
                                         </div>
                                     @else
                                         <div class="dos-name">
                                             <a href="javascript:void(0)" title="No files uploaded"> {{$count}}. {{$document['documenttype']['type']}}</a>
-                                            <p style="padding-left: 18px; font-size: 11px; margin-bottom: 0">{{$toolTip['tooltip']}}</p>
                                         </div>
                                     @endif
                                 @elseif($document['DriveId'] == '' && count($document1) > 1)
                                     <div class="dos-name">
                                         <a data-toggle="collapse" href="#connect-modal{{$k}}" role="button" aria-expanded="false" aria-controls="connect-modal{{$k}}"> {{$count}}. {{$document['documenttype']['type']}}</a>
-                                        <p style="padding-left: 18px; font-size: 11px; margin-bottom: 0">{{$toolTip['tooltip']}}</p>
+                                        
                                         <div class="collapse" id="connect-modal{{$k}}">
                                             <div>
                                                 <ol>
@@ -191,6 +187,7 @@ Visa Documents
                                     @endif
                                 </div>
                             </div>
+                            <p style="padding-left: 18px; font-size: 11px; margin-bottom: 0">{{$toolTip['tooltip']}}</p>
                         </div>
                     </div>
                     <?php $count++; ?>
