@@ -114,3 +114,6 @@ section.banner.inner-payment h2{
 .connect-links button {
     width: 50%;
 }
+.doc-list:hover {
+  box-shadow: 0 0 11px rgba(33,33,33,.2); 
+}
