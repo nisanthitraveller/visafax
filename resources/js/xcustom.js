@@ -47,13 +47,6 @@
         $(this).siblings('.panel-heading').removeClass('active');
     });
 
-    /*$('.ui.dropdown').dropdown({
-        on: 'hover'
-    });
-    $('.up-sucess-btn').popup({
-        inline: true
-    });*/
-
     $('.collapse').on('show.bs.collapse', function () {
         $('.collapse.show').each(function () {
             $(this).collapse('hide');
@@ -115,47 +108,6 @@ function isIE() {
 
 
 })();
-
-
-$(window).on('load', function () {
-
-    // Vimeo API nonsense
-    var player = document.getElementById('player_1');
-    $f(player).addEvent('ready', ready);
-
-    function addEvent(element, eventName, callback) {
-        (element.addEventListener) ? element.addEventListener(eventName, callback, false) : element.attachEvent(eventName, callback, false);
-    }
-
-    function ready(player_id) {
-        var froogaloop = $f(player_id);
-
-        froogaloop.addEvent('play', function (data) {
-            $('.flexslider').flexslider("pause");
-        });
-
-        froogaloop.addEvent('pause', function (data) {
-            $('.flexslider').flexslider("play");
-        });
-    }
-
-
-    // Call fitVid before FlexSlider initializes, so the proper initial height can be retrieved.
-    $(".flexslider")
-            .fitVids()
-            .flexslider({
-                animation: "slide",
-                useCSS: false,
-                animationLoop: false,
-                smoothHeight: true,
-                start: function (slider) {
-                    $('body').removeClass('loading');
-                },
-                before: function (slider) {
-                    $f(player).api('pause');
-                }
-            });
-});
 $(document).ready(function () {
     $('.stories').owlCarousel({
         loop: false,
@@ -191,113 +143,11 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
-
     $('.cart-box .image').on('click', function () {
         $(this).toggleClass('toggle-animation');
     });
-
-
-
 });
 
-
-$(document).ready(function () {
-    $('#imageGallery').lightSlider({
-        gallery: true,
-        item: 1,
-        loop: true,
-        thumbItem: 4,
-        slideMargin: 0,
-        enableDrag: true,
-        thumbMargin: 15,
-        galleryMargin: 15,
-        pager: true,
-
-        currentPagerPosition: 'left',
-        onSliderLoad: function (el) {
-            /* el.swipePlugin({
-             selector: '#imageGallery .lslide'
-             });*/
-        },
-
-        responsive: [
-            {
-                breakpoint: 768,
-                settings: {
-                    gallery: false,
-                }
-            }
-
-        ]
-
-    });
-});
-
-
-
-
-$.fn.filestyle = function (options) {
-    var settings = $.extend(
-            {
-                fieldText: 'No File Selected',
-                buttonText: 'Select File',
-                wrapClass: 'file',
-                wrapContent: '<div class="file"></div>',
-                fakeContent: '<div class="fake"><button></button><input type="text" disabled="disabled" class="filename" /></div>'
-            },
-            options
-            );
-
-    // init
-    $(this).wrap(settings.wrapContent)
-            .after(settings.fakeContent)
-            .on('change.file', function () {
-                var val = $(this).val().split('\\');
-                $(this).next().find('.filename').val(val.slice(-1)[0]);
-            });
-
-    $(this).next().find('.filename').val(settings.fieldText);
-    $(this).next().find('button').text(settings.buttonText);
-
-    return this;
-};
-
-$('[type="file"]').filestyle({
-    fieldText: '', // german translation
-    buttonText: 'Choose file'
-});
-
-
-$(document).ready(function () {
-
-
-    $('.switch label').on('click', function () {
-        var indicator = $(this).parent('.switch').find('span');
-        if ($(this).hasClass('right')) {
-            $(indicator).addClass('right');
-        } else {
-            $(indicator).removeClass('right');
-        }
-    });
-
-});
-$(document).ready(function () {
-
-    $(".number-btn").inputCounter({
-        selectors: {
-            addButtonSelector: '.btn-add',
-            subtractButtonSelector: '.btn-subtract',
-            inputSelector: '.input-counter',
-        }
-    });
-
-});
-
-/*
- $('#location-modal').modal({
- // backdrop: 'static',
- // keyboard: false
- })*/
 function initSlider() {
     console.log('Slider loaded');
     $('.slider-for').slick({
@@ -316,87 +166,6 @@ function initSlider() {
         focusOnSelect: true
     });
 }
-/*var placeholder = "Select a State";
-
- $( ".select2-single, .select2-multiple" ).select2( {
- placeholder: placeholder,
- width: null,
- containerCssClass: ':all:'
- } );
-
- $( ".select2-allow-clear" ).select2( {
- allowClear: true,
- placeholder: placeholder,
- width: null,
- containerCssClass: ':all:'
- } );*/
-
-
-$(".change-color-switch").bootstrapSwitch();
-
-$(document).ready(function () {
-
-
-    $('.change-color-switch').on('switchChange.bootstrapSwitch', function (e, data) {
-        var state = $(this).bootstrapSwitch('state');//returns true or false
-
-        if (state)
-        {
-            $(".conf-dy").show();
-            $(".book-state").addClass("intros");
-        } else
-        {
-            $(".conf-dy").hide();
-            $(".book-state").removeClass("intros");
-        }
-    });
-});
-
-
-$(".book-htls").bootstrapSwitch();
-
-$(document).ready(function () {
-
-
-    $('.book-htls').on('switchChange.bootstrapSwitch', function (e, data) {
-        var state = $(this).bootstrapSwitch('state');//returns true or false
-
-        if (state)
-        {
-            $(".conf-dy-htl").show();
-            $(".book-state").addClass("intros");
-        } else
-        {
-            $(".conf-dy-htl").hide();
-            $(".book-state").removeClass("intros");
-        }
-    });
-});
-
-
-
-
-/*$(".change-color-switch").bootstrapSwitch();
-
- $(document).ready(function(){
-
-
- $('.change-color-switch').on('switchChange.bootstrapSwitch', function (e, data) {
- var state=$(this).bootstrapSwitch('state');//returns true or false
-
- if(state)
- {
- // $(".book-state").show();
- $(".book-state").addClass("intros");
- }
- else
- {
- $(".book-state").removeClass("intros");
- //  $(".book-state").hide();
- }
- });
- });
- */
 
 $(document).on('change', ':file', function () {
     var input = $(this),
@@ -584,12 +353,3 @@ $('input.typeahead').typeahead({
     }
 
 });
-
-/*
- * $("#multipleupload").uploadFile({
- url: "upload.php",
- multiple: true,
- dragDrop: true,
- fileName: "Choose File"
- });
- */
