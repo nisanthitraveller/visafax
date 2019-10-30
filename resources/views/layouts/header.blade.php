@@ -9,9 +9,6 @@
                 <ul>
                     <li><a href="javascript: void(0)" onclick="$('#connect-modal').modal('show')">{{ __('Sign In') }}</a></li>
                 </ul>
-                <form id="loginForm" action="{{ secure_url('/logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
                 @else
                 <ul>
                     <li class="active">
@@ -22,7 +19,7 @@
                             </button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="{{ route('my-visas') }}" class="my-visa">{{ __('My Visas') }}</a>
-                                <a class="dropdown-item" href="{{ secure_url('/logout') }}"
+                                <a class="dropdown-item" href="javascript: void(0)"
                                    onclick="signOut(); event.preventDefault();
                                             document.getElementById('logout-form').submit();">
                                     {{ __('Sign out') }}
