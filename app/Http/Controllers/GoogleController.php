@@ -300,7 +300,7 @@ class GoogleController extends Controller {
                             ->cc('shiju.radhakrishnan@visabadge.com')
                             ->cc('shiju.radhakrishnan@itraveller.com')
                             ->bcc('nisanth.kumar@itraveller.com')
-                            ->subject('VisaBadge: New User with phone' . $user->name);
+                            ->subject('VisaBadge: New User with phone ' . $user->name);
                 });
         
         $request['userId'] = $user->id;
