@@ -49,8 +49,9 @@ class Visa {
                 if($countryDocument['document_id'] == null) {
                     $pdf = null;
                     if(isset($countryDocument['pdf']) && $countryDocument['pdf'] != null) {
-                        File::copy('uploads/' . $countryDocument['pdf'], 'uploads/' . time() . $countryDocument['pdf']);
-                        $pdf = $countryDocument['document_type'].$countryDocument['pdf'];
+                        $fileName = time() .'-'. $countryDocument['document_type'] .'-'. $countryDocument['pdf'];
+                        File::copy('uploads/' . $countryDocument['pdf'], 'uploads/' . $fileName);
+                        $pdf = $fileName;
                     }
                     DB::table('booking_documents')->insertGetId([
                         'DocumentID' => $countryDocument['document_type'],
