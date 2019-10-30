@@ -86,7 +86,7 @@ Visa Documents
                     </div>
                 </div>
             </div>
-            <div class="col-xl-8 col-md-8 col-sm-8 right-sidebar d-none d-sm-block" id="document-listing">
+            <div class="col-xl-8 col-md-8 col-sm-8 right-sidebar @if($mobile == true) d-none d-sm-block @endif" id="document-listing">
                 @if(!empty($visaDetails))
                     <div class="row mb-2">
                         <div class="col-md-12 col-sm-12 col-12">
@@ -100,8 +100,8 @@ Visa Documents
                             @endforeach
                             @if($count1 == 0)
                             <p>
-                                <b>Your remaining visa documents will be updated here.</b>
-                                <br /> After you have shared your above travel documents, we will quickly prepare your remaining visa documents and upload them here – usually in less than couple of hours. 
+                                <b>Upload below travel documents to initiate visa processing.</b>
+                                <br />The below is a list of mandatory documents that you will have to share with us to initiate your visa application. You can upload them here, by clicking on the UPLOAD button. More details are available below each item. Once you share them, leave the rest of the hassles to us - we will get your complete bunch of visa documents ready and quickly share them here for you to review (usually in less than a couple of hours).
                             </p>
                             @endif
                         </div>
@@ -252,6 +252,11 @@ Visa Documents
             </div>
             @if(!empty($visaDetails))
             <div class="col-xl-8 col-md-8 col-sm-8 right-sidebar" id="file-upload" style="display: none">
+                <div class="col-sm-12 mb-2 ">
+                    <div class="row mb-2 ">
+                        <a href="javascript:void(0)" class="back-btn" onclick="$('.right-sidebar').toggle()">Back</a>
+                    </div>
+                </div>
                 <div class="row mb-2">
                     <div class="col-md-6 col-sm-7 col-9">
                         <h2>Upload Files</h2>

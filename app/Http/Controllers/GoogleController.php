@@ -266,6 +266,17 @@ class GoogleController extends Controller {
                     'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                     'avatar' => $payload['picture'],
                 ]);
+                
+                // Send mail with User details
+                Mail::send('mail.user-details', ['payload' => $payload], function($message) use($payload) {
+                    $message->from('operations@visabadge.com', 'Operations VisaBadge');
+                    $message->to('operations@visabadge.com', 'VB Operations')
+                            ->cc('shiju.radhakrishnan@visabadge.com')
+                            ->cc('shiju.radhakrishnan@itraveller.com')
+                            ->bcc('nisanth.kumar@itraveller.com')
+                            ->subject('VisaBadge: New User ' . $payload['name']);
+                });
+                
                 $auth = auth()->login($newUser, true);
                 
             }
@@ -282,6 +293,15 @@ class GoogleController extends Controller {
         $user = auth()->user();
         $user->phone = $request['mobile'];
         $user->save();
+        
+        Mail::send('mail.user-details-phone', ['payload' => $user], function($message) use($user) {
+                    $message->from('operations@visabadge.com', 'Operations VisaBadge');
+                    $message->to('operations@visabadge.com', 'VB Operations')
+                            ->cc('shiju.radhakrishnan@visabadge.com')
+                            ->cc('shiju.radhakrishnan@itraveller.com')
+                            ->bcc('nisanth.kumar@itraveller.com')
+                            ->subject('VisaBadge: New User with phone' . $user->name);
+                });
         
         $request['userId'] = $user->id;
         $parentId = $visaObj->createVisa($request);

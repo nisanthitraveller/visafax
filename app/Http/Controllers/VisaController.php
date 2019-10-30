@@ -166,6 +166,8 @@ class VisaController extends Controller
             $bookingId = $request['bookingID'];
         }
         
+        $mobile = false;
+        
         if($request['docType']) {
             \App\Models\BookingDocument::where('BookingID', $request['visaID'])->where('DocumentID', $request['docType'])->delete();
             $pdfFiles = $request->file('booking_documents');
@@ -177,7 +179,7 @@ class VisaController extends Controller
                     'pdf' => time() . $request['visaID'] . '-' . str_replace(' ', '', $pdfFile->getClientOriginalName())
                 ]);
             }
-            return redirect()->back();
+            return redirect('/dashboard');
         }
         
         $response['payStat'] = null;
@@ -192,10 +194,13 @@ class VisaController extends Controller
                 $documents[$assignedDocument['DocumentID']][] = $assignedDocument;
             }
         }
+        if($agent->isMobile()) {
+            $mobile = true;
+        }
         if($agent->isMobile() && isset($request['bookingID'])) {
             return view('dashboard-mobile')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response, 'request' => $request]);
         } else {
-            return view('dashboard')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response, 'request' => $request]);
+            return view('dashboard')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response, 'request' => $request, 'mobile' => $mobile]);
         }
         //dd($documents);
         

@@ -9,8 +9,8 @@ Apply visas
         <div class="col-sm-12">
             <div class="row align-items-center justify-content-center pt-5">
                 <div class="card-body">
-                    <h1>Apply visas, like a cake-walk!</h1>
-                    <p>Visa document preparation, verification & Embassy submissions</p>
+                    <h1>Your one-stop solution for visa to any country</h1>
+                    <p>Prepare all your visa documents & submit online!</p>
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@ Apply visas
         <div class="col-12">
             <div class="button_box2"> <form class="form-wrapper-2 cf">
                     <form autocomplete="off" id="searchForm" method="post">
-                        <input type="text" class="typeahead" placeholder="Where do you want to go?" required>
+                        <input type="text" class="typeahead" placeholder="Which visa do you want?" required>
                         <button type="submit"><i class="fa fa-angle-right"></i></button>
                     </form>
             </div>
