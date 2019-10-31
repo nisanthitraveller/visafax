@@ -346,7 +346,7 @@ $('input.typeahead').typeahead({
                 return process(options);
             });
         } else {
-            return process(['Switzerland', 'Dubai', 'France']);
+            return process(['Switzerland', 'Austria', 'France', 'Australia']);
         }
     },
     updater: function (item) {
