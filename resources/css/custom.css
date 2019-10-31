@@ -118,5 +118,8 @@ section.banner.inner-payment h2{
   box-shadow: 0 0 11px rgba(33,33,33,.2); 
 }
 .desc-color {
-    padding-left: 33px; font-size: 10px; margin-bottom: 0; color: #666
+    padding: 0px 27px 0 42px; 
+    font-size: 10px; 
+    margin-bottom: 0;
+    color: #666;
 }

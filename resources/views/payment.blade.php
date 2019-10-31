@@ -75,7 +75,7 @@ Visa Payment
                     <input type="hidden" name="surl" value="{{url('/')}}/applyvisa/step1/{{$bookingId}}">
                     <input type="hidden" name="furl" value="{{url('/')}}/applyvisa/step1/{{$bookingId}}">
                 </form>
-                <a href="#" class="bck-btn no-bg">Go back</a>
+                <a href="javascript:void(0)" onclick="window.history.back()" class="bck-btn no-bg">Go back</a>
                 @if(!empty($countryPrices))
                     @if($payLater == true)
                         <a href="{{url('/')}}/applyvisa/step1/{{$bookingId}}" class="bck-btn">Pay later</a>

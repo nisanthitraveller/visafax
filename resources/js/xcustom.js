@@ -54,6 +54,14 @@
     });
     
     priceCheck();
+    
+    $(".doc-list").on("click", function(e) {
+        if (!$(e.target).hasClass('up-doc')) {
+            var chk = $(this).find('.dos-name a')[0];
+            chk.click();
+        }
+        
+    });
 
 })(jQuery);
 

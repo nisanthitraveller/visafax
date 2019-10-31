@@ -124,31 +124,32 @@ Visa Documents
                     <?php 
                         $document = $document1[0];
                         $toolTip = App\Models\Document::where('country_id', $visaDetails['VisitingCountry'])->where('document_type', $document['DocumentID'])->select('body_business as tooltip')->first()->toArray();
+                        $out = strlen($document['documenttype']['type']) > 27 ? substr($document['documenttype']['type'], 0, 27) . "..." : $document['documenttype']['type'];
                     ?>
-                    <div class="doc-list">
+                    <div class="doc-list" data-toggle="tooltip" data-placement="top" title="{{$document['documenttype']['type']}}">
                         <div class="row">
-                            <div class="col-md-6 col-sm-6 col-6 doc-cols">
+                            <div class="col-md-7 col-sm-7 col-7 doc-cols pr-0">
                                 @if($visaDetails['paid'] == 1 && $document['DriveId'] != '')
                                     <div class="dos-name">
-                                        <a target="_blank" href="{{'https://docs.google.com/document/d/' . $document['DriveId']}}"> {{$count}}. {{$document['documenttype']['type']}}</a>
+                                        <a target="_blank" href="{{'https://docs.google.com/document/d/' . $document['DriveId']}}"> {{sprintf("%02d", $count)}}. {{$out}}</a>
                                     </div>
                                 @elseif($visaDetails['paid'] == 0 && $document['DriveId'] != '')
                                     <div class="dos-name">
-                                        <a target="_blank" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}"> {{$count}}. {{$document['documenttype']['type']}}</a>
+                                        <a target="_blank" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}"> {{sprintf("%02d", $count)}}. {{$out}}</a>
                                     </div>
                                 @elseif($document['DriveId'] == '' && count($document1) == 1)
                                     @if($document['pdf'] != '')
                                         <div class="dos-name">
-                                            <a href="{{url('/') . '/uploads/' . $document['pdf']}}"> {{$count}}. {{$document['documenttype']['type']}}</a>
+                                            <a href="{{url('/') . '/uploads/' . $document['pdf']}}"> {{sprintf("%02d", $count)}}. {{$out}}</a>
                                         </div>
                                     @else
                                         <div class="dos-name">
-                                            <a href="javascript:void(0)" title="No files uploaded"> {{$count}}. {{$document['documenttype']['type']}}</a>
+                                            <a href="javascript:void(0)" title="No files uploaded"> {{sprintf("%02d", $count)}}. {{$out}}</a>
                                         </div>
                                     @endif
                                 @elseif($document['DriveId'] == '' && count($document1) > 1)
                                     <div class="dos-name">
-                                        <a data-toggle="collapse" href="#connect-modal{{$k}}" role="button" aria-expanded="false" aria-controls="connect-modal{{$k}}"> {{$count}}. {{$document['documenttype']['type']}}</a>
+                                        <a data-toggle="collapse" href="#connect-modal{{$k}}" role="button" aria-expanded="false" aria-controls="connect-modal{{$k}}"> {{sprintf("%02d", $count)}}. {{$out}}</a>
                                         
                                         <div class="collapse" id="connect-modal{{$k}}">
                                             <div>
@@ -165,16 +166,16 @@ Visa Documents
                                 @endif
                                 
                             </div>
-                            <div class="col-md-4 col-sm-4 col-4 doc-col-2">
+                            <div class="col-md-4 col-sm-4 col-4 doc-col-2 p-0">
                                 @if($document['DriveId'] == '')
                                 <div class="up-btn"> 
                                     <img src="{{url('/')}}/images/upload-active.png">
                                     <?php $text = (count($document1) >= 1 && $document['pdf'] != '') ? 'Upload New' : 'Upload'; ?>
-                                    <label data-toggle="tooltip" data-placement="top" title="{{$toolTip['tooltip']}}" for="file" class="up-doc" onclick="$('#docTYpe').val({{$k}}); $('.right-sidebar').toggle()">{{$text}}</label>
+                                    <label for="file" class="up-doc" onclick="$('#docTYpe').val({{$k}}); $('.right-sidebar').toggle()">{{$text}}</label>
                                 </div>
                                 @endif
                             </div>
-                            <div class="col-md-1 col-sm-2 col-2 doc-col-3">
+                            <div class="col-md-1 col-sm-2 col-2 doc-col-3 p-0">
                                 <div class="up-sucess-btn" data-position="top right">
                                     @if($document['status'] == 1)
                                         <span class="up-succss" data-toggle="tooltip" data-placement="top" title="Verified">
