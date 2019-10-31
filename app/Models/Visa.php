@@ -13,7 +13,7 @@ class Visa {
         
         $user = auth()->user();
         $lastId = \Illuminate\Support\Facades\DB::table('bookings')->max('id');
-        $countryDocuments = Document::where('country_id', $data['vistingCountry'])->select('document_type', 'document_id', 'pdf')->get()->toArray();
+        $countryDocuments = Document::where('country_id', $data['vistingCountry'])->select('document_type', 'document_id', 'pdf', 'display')->get()->toArray();
         $parentId = 0;
         for ($persons = 1; $persons <= $data['persons']; $persons++):
             
@@ -46,7 +46,7 @@ class Visa {
             
             //  echo '<pre>';print_r($countryDocuments);die;
             foreach($countryDocuments as $countryDocument) {
-                if($countryDocument['document_id'] == null) {
+                if($countryDocument['document_id'] == null && $countryDocument['display'] == 1) {
                     $pdf = null;
                     if(isset($countryDocument['pdf']) && $countryDocument['pdf'] != null) {
                         $fileName = time() .'-'. $countryDocument['document_type'] .'-'. $countryDocument['pdf'];

@@ -466,11 +466,11 @@ class GoogleController extends Controller {
                     if($documentCopyId != null) {
                         $docService->documents->batchUpdate($documentCopyId, $batchUpdateRequest);
                     }
-                    $visaObj->updateDriveID($input['bookingId'], $documentCopyId, $documentType);
+                    
                 } else {
                     $documentCopyId = null;
                 }
-                
+                $visaObj->updateDriveID($input['bookingId'], $documentCopyId, $documentType);
                 
             }
         }

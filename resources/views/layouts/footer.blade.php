@@ -75,9 +75,10 @@
             <div class="col-12 ft-social">
                 <ul class="social">
                     <li><a href="https://www.facebook.com/visabadge" target="_blank"> <i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="https://twitter.com/visabadge" target="_blank"> <i class="fab fa-twitter"></i></a></li>
-                    <li><a href="https://www.youtube.com/user/visabadge" target="_blank"> <i class="fab fa-youtube"></i></a></li>
+                    <li><a href="https://twitter.com/BadgeVisa" target="_blank"> <i class="fab fa-twitter"></i></a></li>
+                    <!--<li><a href="https://www.youtube.com/user/visabadge" target="_blank"> <i class="fab fa-youtube"></i></a></li>-->
                     <li><a href="https://instagram.com/visabadge" target="_blank"> <i class="fab fa-instagram"></i></a></li>
+                    <li><a href="https://in.pinterest.com/visabadge" target="_blank"> <i class="fab fa-pinterest"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -86,6 +87,5 @@
         <div class="row text-center">
             <p>&COPY; {{date('Y')}} - All rights reserved.</p>
         </div>
-        <a target="_blank" href="https://api.whatsapp.com/send?phone=919074294969&text=Hello VisaBadge" class="chat"><img src="{{secure_url('images/whatsapp.png')}}" width="64" /></a>
     </div>
 </footer>
