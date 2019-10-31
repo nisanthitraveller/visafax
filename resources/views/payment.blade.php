@@ -49,7 +49,7 @@ Visa Payment
                             </div>
                             <div class="col-md-11 col-sm-11 col-10">
                                 <h4>{{$countryPrice['master']['title']}}</h4>
-                                <p>{{htmlentities(strip_tags($countryPrice['master']['description']))}}</p>
+                                <p>{{str_replace('&amp;', '&', strip_tags($countryPrice['master']['description']))}}</p>
                             </div>
                         </div>
                     </div>
