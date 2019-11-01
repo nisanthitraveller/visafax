@@ -35,7 +35,7 @@ Visa {{$country['countryName']}}
 
             <h2>Start your visa application – please provide below information</h2>
 
-            <form class="your-dts" id="visaForm">
+            <form class="your-dts" id="visaForm" style="width: 100%">
 
                 <label>Country of residence</label>
                 <input type="text" name="residenceCountry" value="India" placeholder="India" readonly>
@@ -87,9 +87,9 @@ Visa {{$country['countryName']}}
 
             <div class="col-sm-12 text-center">
                 @guest
-                <a href="javascript:void(0)" onclick="$('#connect-modal').modal('show');" class="cntue">Continue</a>
+                <a href="javascript:void(0)" onclick="$('#connect-modal').modal('show');" class="cntue">Start My Visa Application</a>
                 @else
-                <a href="javascript:void(0)" id="create-visa" class="cntue">Continue</a>
+                <a href="javascript:void(0)" id="create-visa" class="cntue">Start My Visa Application</a>
                 @endguest
             </div>
             
@@ -109,7 +109,7 @@ Visa {{$country['countryName']}}
 </section>
 <section class="more-stories" style="padding: 15px">
     <div class="container">
-        <h2>Read more stories from us</h2>
+        <h2>Read More on {{$country['countryName']}} Visa Process</h2>
         <div class="stories owl-carousel owl-theme">
             @if(!empty($feeds['items']))
             <?php $countFeed = 0;?>
