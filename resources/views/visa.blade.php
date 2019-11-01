@@ -54,14 +54,14 @@ Visa {{$country['countryName']}}
                             <label  for="radio-2" class="radio-label"><span>Tourist</span></label>
                         </div>
 
-<!--                        <div class="radio">
-                            <input id="radio-3" name="visaType" type="radio" value="Employment">
-                            <label for="radio-3" class="radio-label"><span>Employment</span></label>
-                        </div>
-                        <div class="radio">
-                            <input id="radio-4" name="visaType" type="radio" value="Student">
-                            <label for="radio-4" class="radio-label"><span>Student</span></label>
-                        </div>-->
+                        <!--                        <div class="radio">
+                                                    <input id="radio-3" name="visaType" type="radio" value="Employment">
+                                                    <label for="radio-3" class="radio-label"><span>Employment</span></label>
+                                                </div>
+                                                <div class="radio">
+                                                    <input id="radio-4" name="visaType" type="radio" value="Student">
+                                                    <label for="radio-4" class="radio-label"><span>Student</span></label>
+                                                </div>-->
                     </div>
                 </div>
 
@@ -81,12 +81,13 @@ Visa {{$country['countryName']}}
 
                     </div>
                 </div>
+                
                 <input type="hidden" value="{{$country['id']}}" name="vistingCountry">
             </form>
 
             <div class="col-sm-12 text-center">
                 @guest
-                    <a href="javascript:void(0)" onclick="$('#connect-modal').modal('show');" class="cntue">Continue</a>
+                <a href="javascript:void(0)" onclick="$('#connect-modal').modal('show');" class="cntue">Continue</a>
                 @else
                 <a href="javascript:void(0)" id="create-visa" class="cntue">Continue</a>
                 @endguest
@@ -94,6 +95,43 @@ Visa {{$country['countryName']}}
 
         </div>
     </div>
+</section>
+<section class="more-stories pt-2">
+    <div class="container">
+        <h2>More about {{$country['countryName']}}</h2>
+        <div class="row">
+            <?php echo $country['description'] ?>
+        </div>
+    </div>
+</section>
+<section class="more-stories">
+    <div class="container">
+        <h2>Read more stories from us</h2>
+        <div class="stories owl-carousel owl-theme">
+            @if(!empty($feeds['items']))
+            <?php $countFeed = 0;?>
+            @foreach($feeds['items'] as $feed)
+            @if(strpos($feed['title'], $country['countryName']) !== false || strpos($feed['content_text'], $country['countryName']) !== false)
+            @if($countFeed <= 6)
+            <?php
+            $image = isset($feed['image']) ? $feed['image'] : secure_url('/') . "/images/st1.jpg";
+            ?>
+
+            <div class="item" onclick="location.href ='{{$feed['url']}}'">
+                <img src="{{$image}}" alt="{{$feed['title']}}" />
+                <div class="item-content">
+                    <h4>{{$feed['title']}}</h4>
+                    <p>{{substr($feed['content_text'], 0, 150)}}&nbsp;&nbsp;&nbsp;<a href="{{$feed['url']}}">Read More</a></p>
+                </div>
+            </div>
+            <?php $countFeed++; ?>
+            @endif
+            @endif
+            @endforeach
+            @endif
+        </div>
+    </div>
+
 </section>
 <div class="modal fade popus" id="connect-modal-signup" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

@@ -61,6 +61,7 @@ class CountryController extends Controller
         unset($country['id']);
         if(!empty($request['countryName'])) {
             $model = Country::findOrFail($Id);
+            //dd($request->toArray());
             $model->fill($request->toArray());
             $model->save();
             return redirect('/bo/countries')->with('status', 'Country updated!');

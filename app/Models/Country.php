@@ -21,7 +21,7 @@ class Country extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
     
-    protected $fillable = ['countryName', 'visa_cost', 'status'];
+    protected $fillable = ['countryName', 'visa_cost', 'status', 'description'];
     
     
 

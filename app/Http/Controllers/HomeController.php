@@ -47,20 +47,23 @@ class HomeController extends Controller
      */
     public function autocomplete(Request $request)
     {
+        
         $data = Country::select("countryName as name", "id")
                 ->where('status', 1)
                 ->where("countryName","LIKE","%{$request->input('query')}%")
                 ->get();
-   
+        
         return response()->json($data);
     }
     
     public function visa($visaUrl)
     {
+        $blogObj = new \App\Models\Blog();
         $visaUrl = str_replace('-', ' ', $visaUrl);
         $country = Country::where("countryName", $visaUrl)
                 ->first()->toArray();
-        return view('visa')->with(['country' => $country]);
+        $feeds = $blogObj->getFeeds();
+        return view('visa')->with(['country' => $country, 'feeds' => $feeds]);
     }
     
     public function index()

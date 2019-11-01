@@ -27,6 +27,12 @@
                         </select>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="formDescription">Description:</label>
+                    <div class="col-sm-8">
+                        <textarea class="ckeditor form-control" id="formDescription" name="description">{{$country->description}}</textarea>
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>

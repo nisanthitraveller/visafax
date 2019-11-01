@@ -125,3 +125,6 @@ section.banner.inner-payment h2{
     width: 100%;
     text-align: justify;
 }
+.item-content p {
+    text-align: justify;
+}
