@@ -35,7 +35,7 @@ Visa {{$country['countryName']}}
 
             <h2>Start your visa application – please provide below information</h2>
 
-            <form class="your-dts" id="visaForm" style="width: 100%">
+            <form class="your-dts" id="visaForm" style="max-height: 100%; padding: 0 15px">
 
                 <label>Country of residence</label>
                 <input type="text" name="residenceCountry" value="India" placeholder="India" readonly>
