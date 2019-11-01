@@ -128,7 +128,7 @@ section.banner.inner-payment h2{
 .item-content p {
     text-align: justify;
 }
-.more-stories strong{
+.more-stories strong, ol strong {
     display: inline !important;
 }
 a.cntue {
