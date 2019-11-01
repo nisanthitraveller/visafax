@@ -92,22 +92,18 @@ Visa {{$country['countryName']}}
                 <a href="javascript:void(0)" id="create-visa" class="cntue">Start My Visa Application</a>
                 @endguest
             </div>
-            
-            <div class="col-12 qstns pt-2">
-                <?php echo $country['description'] ?>
-            </div>
 
         </div>
     </div>
 </section>
-<section class="more-stories" style="padding: 15px">
+<section class="more-stories" style="padding: 0 15px">
     <div class="container">
         <div class="row">
             <?php echo $country['description'] ?>
         </div>
     </div>
 </section>
-<section class="more-stories" style="padding: 15px">
+<section class="more-stories" style="padding: 0 15px">
     <div class="container">
         <h2>Read More on {{$country['countryName']}} Visa Process</h2>
         <div class="stories owl-carousel owl-theme">
