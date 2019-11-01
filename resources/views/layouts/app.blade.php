@@ -21,7 +21,11 @@ $requests = explode('/', Request::path());
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-css/1.4.6/select2-bootstrap.min.css">
         @include('ga')
-        
+        @if((isset($requests[1]) && $requests[1] == 'dashboard'))
+        <script>
+            gtag('event', 'conversion', {'send_to': 'AW-1054771783/B2KXCJbpzrIBEMeU-vYD'});
+        </script>
+        @endif
         <script src="{{ asset('js/google.js') }}" defer></script>
     </head>
     <body>

@@ -6,4 +6,5 @@
   gtag('js', new Date());
 
   gtag('config', 'UA-149154867-1');
+  gtag('config', 'AW-1054771783');
 </script>
