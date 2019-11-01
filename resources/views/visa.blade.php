@@ -92,19 +92,22 @@ Visa {{$country['countryName']}}
                 <a href="javascript:void(0)" id="create-visa" class="cntue">Continue</a>
                 @endguest
             </div>
+            
+            <div class="col-12 qstns pt-2">
+                <?php echo $country['description'] ?>
+            </div>
 
         </div>
     </div>
 </section>
-<section class="more-stories pt-2">
+<section class="more-stories" style="padding: 15px">
     <div class="container">
-        <h2>More about {{$country['countryName']}}</h2>
         <div class="row">
             <?php echo $country['description'] ?>
         </div>
     </div>
 </section>
-<section class="more-stories">
+<section class="more-stories" style="padding: 15px">
     <div class="container">
         <h2>Read more stories from us</h2>
         <div class="stories owl-carousel owl-theme">
