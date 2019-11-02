@@ -2,7 +2,6 @@
  * @module       RD Navbar
  * @description  Enables RD Navbar Plugin
  */
-;
 (function ($) {
     var o = $('.rd-navbar');
 
@@ -335,19 +334,15 @@ $('input.typeahead').typeahead({
     showHintOnFocus: true,
     source: function (query, process) {
         var $this = this; //get a reference to the typeahead object
-        if (query != '') {
-            return $.get(path, { query: query }, function (data) {
-                var options = [];
-                $this['map'] = {}; //replace any existing map attr with an empty object
-                $.each(data,function (i,val){
-                    options.push(val.name);
-                    $this.map[val.name] = val.id; //keep reference from name -> id
-                });
-                return process(options);
+        return $.get(path, { query: query }, function (data) {
+            var options = [];
+            $this['map'] = {}; //replace any existing map attr with an empty object
+            $.each(data,function (i,val){
+                options.push(val.name);
+                $this.map[val.name] = val.id; //keep reference from name -> id
             });
-        } else {
-            return process(['Switzerland', 'Austria', 'France', 'Australia']);
-        }
+            return process(options);
+        });
     },
     updater: function (item) {
         var str3 = 'india';
@@ -359,5 +354,4 @@ $('input.typeahead').typeahead({
         }
 
     }
-
 });
