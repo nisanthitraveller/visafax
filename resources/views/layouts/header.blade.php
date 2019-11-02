@@ -18,7 +18,7 @@
                                 <span class="user-title d-none d-sm-inline">{{ Auth::user()->name }}</span>
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ route('my-visas') }}" class="my-visa">{{ __('My Visas') }}</a>
+                                <a href="{{ route('my-visas') }}" class="dropdown-item my-visa">{{ __('My Visas') }}</a>
                                 <a class="dropdown-item" href="javascript: void(0)"
                                    onclick="signOut(); event.preventDefault();
                                             document.getElementById('logout-form').submit();">
