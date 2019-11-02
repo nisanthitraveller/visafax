@@ -75,12 +75,13 @@ class CountryController extends Controller
         
         $documentTypeObj = new DocumentType();
         $documentTypes = $documentTypeObj->getList();
-        $countryDocuments = Document::where('country_id', $Id)->select('document_type', 'document_id', 'pdf', 'body_business')->get()->toArray();
+        $countryDocuments = Document::where('country_id', $Id)->select('document_type', 'document_id', 'pdf', 'body_business', 'display')->get()->toArray();
         //dd($countryDocuments);
         $documentTypeId = [];
         $driveId = [];
         $pdfs = [];
         $tooltip = [];
+        $display = [];
         $destinationPath = 'uploads';
         
         foreach($countryDocuments as $key => $countryDocument) {
@@ -88,6 +89,7 @@ class CountryController extends Controller
             $tooltip[$key] = $countryDocument['body_business'];
             $driveId[$key] = $countryDocument['document_id'];
             $pdfs[$key] = $countryDocument['pdf'];
+            $display[$key] = $countryDocument['display'];
         }
         
         $country = Country::where("id", $Id)->first();
@@ -113,6 +115,7 @@ class CountryController extends Controller
                     $findRow->pdf = $pdfFile;
                     $findRow->document_type = $documentType;
                     $findRow->body_business = isset($tooltips[$k]) ? $tooltips[$k] : null;
+                    $findRow->display = isset($request['display'][$k]) ? $request['display'][$k] : 0;
                     $findRow->save();
                 } else {
                     $documentObj = new Document();
@@ -120,6 +123,7 @@ class CountryController extends Controller
                     $documentObj->document_type = $documentType;
                     $documentObj->document_id = isset($docIds[$k]) ? $docIds[$k] : null;
                     $documentObj->body_business = isset($tooltips[$k]) ? $tooltips[$k] : null;
+                    $documentObj->display = isset($request['display'][$k]) ? $request['display'][$k] : 0;
                     $documentObj->pdf = $pdfFile;
                     $documentObj->status = 1;
                     $documentObj->save();
@@ -129,7 +133,7 @@ class CountryController extends Controller
             return redirect('/bo/countries')->with('status', 'Country updated!');
         }
         
-        return view('admin.countrydocument')->with(['country' => $country, 'documentTypes' => $documentTypes, 'documentTypeId' => $documentTypeId, 'driveId' => $driveId, 'pdfs' => $pdfs, 'tooltip' => $tooltip]);
+        return view('admin.countrydocument')->with(['country' => $country, 'documentTypes' => $documentTypes, 'documentTypeId' => $documentTypeId, 'driveId' => $driveId, 'pdfs' => $pdfs, 'tooltip' => $tooltip, 'display' => $display]);
     }
     
     public function countryprice($Id, Request $request)

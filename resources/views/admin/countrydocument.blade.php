@@ -21,18 +21,24 @@
                             <?php $checked = ($key !== false) ? 'checked' : null; ?>
                             <input type="checkbox" {{$checked}} value="{{$documentType->id}}" name="document_type[{{$documentType->id}}]" class="form-control" id="form{{$k}}">
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <input type="text" placeholder="Tooltip" value="<?php if($key !== false) { echo $tooltip[$key]; }?>"  name="body_business[{{$documentType->id}}]" class="form-control" />
                         </div>
                         <div class="col-sm-2">
                             <input type="text" placeholder="Drive ID" value="<?php if($key !== false) { echo $driveId[$key]; }?>" name="document_id[{{$documentType->id}}]" class="form-control">
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <input type="file" name="pdf[{{$documentType->id}}]" style="float: left" />
                             <br />
                             @if($key !== false && isset($pdfs[$key]))
                             <a href="{{url('/')}}/uploads/{{$pdfs[$key]}}" target="_blank">PDF</a>
                             @endif
+                        </div>
+                        <div class="col-sm-1">
+                            <select class="form-control" id="formStatus" name="display[{{$documentType->id}}]">
+                                <option value="0" <?php echo ($display[$key] == 0) ? 'selected' : null; ?>>Hide</option>
+                                <option value="1" <?php echo ($display[$key] == 1) ? 'selected' : null; ?>>Show</option>
+                            </select>
                         </div>
                     </div>
                 @endforeach

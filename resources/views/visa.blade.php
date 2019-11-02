@@ -87,9 +87,9 @@ Visa {{$country['countryName']}}
 
             <div class="col-sm-12 text-center">
                 @guest
-                <a href="javascript:void(0)" onclick="$('#connect-modal').modal('show');" class="cntue">Start My Visa Application</a>
+                <a href="javascript:void(0)" onclick="$('#connect-modal').modal('show');" class="cntue cntuemargin">Start My Visa Application</a>
                 @else
-                <a href="javascript:void(0)" id="create-visa" class="cntue">Start My Visa Application</a>
+                <a href="javascript:void(0)" id="create-visa" class="cntue cntuemargin">Start My Visa Application</a>
                 @endguest
             </div>
 
