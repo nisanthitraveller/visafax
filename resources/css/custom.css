@@ -47,9 +47,7 @@ img.media-object {
     min-height: 300px;
 }
 .my-visa {
-    font-size: 13px !important;
     padding-left: 15px !important;
-    font-weight: bold !important;
 }
 section.search input:focus {
     outline: 0;
