@@ -329,9 +329,6 @@ function priceCheck() {
 $('input.typeahead').typeahead({
     hint: true,
     highlight: true,
-    autoSelect: true,
-    minLength: 0,
-    showHintOnFocus: true,
     source: function (query, process) {
         var $this = this; //get a reference to the typeahead object
         return $.get(path, { query: query }, function (data) {
