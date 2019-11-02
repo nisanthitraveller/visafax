@@ -51,15 +51,15 @@
             $(this).collapse('hide');
         });
     });
-    
+
     priceCheck();
-    
-    $(".doc-list").on("click", function(e) {
+
+    $(".doc-list").on("click", function (e) {
         if (!$(e.target).hasClass('up-doc')) {
             var chk = $(this).find('.dos-name a')[0];
             chk.click();
         }
-        
+
     });
 
 })(jQuery);
@@ -315,7 +315,7 @@ function validateEmail(email) {
 function priceCheck() {
     var price = 0;
     var planId = '';
-    if($('.price-check').length) {
+    if ($('.price-check').length) {
         $('.price-check:checked').each(function () {
             price += isNaN(parseInt($(this).attr('data-price'))) ? 0 : parseInt($(this).attr('data-price'));
             planId += $(this).val() + '-';
@@ -331,24 +331,24 @@ $('input.typeahead').typeahead({
     highlight: true,
     source: function (query, process) {
         var $this = this; //get a reference to the typeahead object
-        return $.get(path, { query: query }, function (data) {
+        return $.get(path, {query: query}, function (data) {
             var options = [];
             $this['map'] = {}; //replace any existing map attr with an empty object
-            $.each(data,function (i,val){
+            $.each(data, function (i, val) {
                 options.push(val.name);
                 $this.map[val.name] = val.id; //keep reference from name -> id
             });
             return process(options);
         });
     },
-    updater: function (item) {
+    afterSelect: function(item) {
+        console.log(item);
         var str3 = 'india';
         var str3 = item.replace(" ", "-");
         console.log('dsdsdsd' + str3);
-        if(str3 != '') {
+        if (str3 != '') {
             window.location.href = "/visa/" + str3.toLowerCase();
-            console.log(this.map[item],item); //access it here
+            console.log(this.map[item], item); //access it here
         }
-
     }
 });

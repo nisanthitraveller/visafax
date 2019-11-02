@@ -46,9 +46,9 @@ Visa Documents
                             @endforeach
                         @endforeach
                         @if($count1 == 0)
-                        <p>
-                            <b>Your remaining visa documents will be updated here.</b>
-                            <br /> After you have shared your above travel documents, we will quickly prepare your remaining visa documents and upload them here – usually in less than couple of hours. 
+                        <p style="text-align: justify">
+                            <b>Upload below travel documents to initiate visa processing.</b>
+                            <br />The below is a list of mandatory documents that you will have to share with us to initiate your visa application. You can upload them here, by clicking on the UPLOAD button. More details are available below each item. Once you share them, leave the rest of the hassles to us - we will get your complete bunch of visa documents ready and quickly share them here for you to review (usually in less than a couple of hours).
                         </p>
                         @endif
                     </div>

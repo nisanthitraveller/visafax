@@ -15,7 +15,7 @@
                         <div class="dropdown">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                 <img src="{{ Auth::user()->avatar }}">
-                                <span class="user-title">{{ Auth::user()->name }}</span>
+                                <span class="user-title d-none d-sm-inline">{{ Auth::user()->name }}</span>
                             </button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="{{ route('my-visas') }}" class="my-visa">{{ __('My Visas') }}</a>
