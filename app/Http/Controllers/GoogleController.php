@@ -267,6 +267,10 @@ class GoogleController extends Controller {
                     'avatar' => $payload['picture'],
                 ]);
                 
+                // Mobile bypass
+                $input['userId'] = $newUser->id;
+                $parentId = $visaObj->createVisa($input);
+                
                 // Send mail with User details
                 Mail::send('mail.user-details', ['payload' => $payload], function($message) use($payload) {
                     $message->from('operations@visabadge.com', 'Operations VisaBadge');
