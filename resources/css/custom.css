@@ -64,6 +64,9 @@ section.deals{
     min-height: 280px;
     line-height: 25px;
 }
+.right-sidebar {
+    min-height: 280px;
+}
 section.deals ol {
     list-style: decimal;
 }
