@@ -36,6 +36,7 @@ function renderButton() {
 
 function onSuccess(googleUser) {
     console.log('G sigin');
+    $('#connect-modal').modal('hide');
     var id_token = googleUser.getAuthResponse().id_token;
     var accsTkn = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token;
     var profile = googleUser.getBasicProfile();
