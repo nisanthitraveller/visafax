@@ -351,20 +351,6 @@ Visa Documents
 @endif
 @endsection
 @section('scripts')
-@if(isset($request['popup']) && $request['popup'] == 1)
-<script type="text/javascript">
-    $(window).on('load', function () {
-        $('#connect-modal-signup').modal('show');
-    });
-</script>
-@endif
-@if(isset($request['popup']) && $request['popup'] == 2)
-<script type="text/javascript">
-    $(window).on('load', function () {
-        $('#connect-modal-signup2').modal('show');
-    });
-</script>
-@endif
 <script>
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip()
