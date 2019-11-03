@@ -281,29 +281,29 @@ Apply visas
             <div class="slider slider-nav">
                 <div>
                     <img src="images/test1.jpg">
-                    <div class="no_pic">SP</div>
+                    <div class="no_pic">VR</div>
                 </div>
                 <div>
                     <img src="images/test1.jpg">
-                    <div class="no_pic">PG</div>
+                    <div class="no_pic">AM</div>
                 </div>
                 <div>
                     <img src="images/test1.jpg">
-                    <div class="no_pic">AR</div>
+                    <div class="no_pic">AA</div>
                 </div>
             </div>
             <div class="slider slider-for">
                 <div>
                     <p>One of the major challenges in visa processing is the preparation of documents. VisaBadge makes is really a cake-walk. After submitting the documents online, I received all the documents on My Visas page, fully prepared. 100% hassle free.</p>
-                    <h3>Sai Padmanabhan, New Delhi</h3>
+                    <h3>Vivek Singh Rathore, New Delhi</h3>
                 </div>
                 <div>
                     <p>Did my Schengen visa application through VisaBadge and the process was quick and seamless. The entire bunch of documents needed was prepared instantly online and the interview process with Embassy was scheduled by VisaBadge directly. Strongly recommend them for making visa processing simpler.</p>
-                    <h3>Priyank Gupta, Mumbai</h3>
+                    <h3>Arun Gopal Mallepadi, Mumbai</h3>
                 </div>
                 <div>
                     <p>Availed end to end services from document preparation, verification, appointment booking, submissions and tracking from VisaBadge for my last trip to the UK. Everything was online, except the interview with the Embassy and found that the services are really competitive for the quality of experience. Strongly recommend to go with Visabadge!</p>
-                    <h3>Aditya Raghavan, Bangalore</h3>
+                    <h3>Abhishek Apte, Bangalore</h3>
                 </div>
             </div>
         </div>
