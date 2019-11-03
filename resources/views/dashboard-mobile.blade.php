@@ -71,7 +71,7 @@ Visa Documents
                 <?php 
                     $document = $document1[0];
                     $toolTip = App\Models\Document::where('country_id', $visaDetails['VisitingCountry'])->where('document_type', $document['DocumentID'])->select('body_business as tooltip')->first()->toArray();
-                    $out = strlen($document['documenttype']['type']) > 27 ? substr($document['documenttype']['type'], 0, 27) . "..." : $document['documenttype']['type'];
+                    $out = strlen($document['documenttype']['type']) > 16 ? substr($document['documenttype']['type'], 0, 15) . "..." : $document['documenttype']['type'];
                 ?>
                 <div class="doc-list" data-toggle="tooltip" data-placement="top" title="{{$document['documenttype']['type']}}">
                     <div class="row">

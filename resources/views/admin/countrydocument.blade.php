@@ -36,8 +36,8 @@
                         </div>
                         <div class="col-sm-1">
                             <select class="form-control" id="formStatus" name="display[{{$documentType->id}}]">
-                                <option value="0" <?php echo ($display[$key] == 0) ? 'selected' : null; ?>>Hide</option>
-                                <option value="1" <?php echo ($display[$key] == 1) ? 'selected' : null; ?>>Show</option>
+                                <option value="0" <?php echo (isset($display[$key]) && $display[$key] == 0) ? 'selected' : null; ?>>Hide</option>
+                                <option value="1" <?php echo (isset($display[$key]) && $display[$key] == 1) ? 'selected' : null; ?>>Show</option>
                             </select>
                         </div>
                     </div>
