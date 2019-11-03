@@ -266,6 +266,9 @@ class GoogleController extends Controller {
                     'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                     'avatar' => $payload['picture'],
                 ]);
+                
+                $auth = auth()->login($newUser, true);
+                
                 // Mobile bypass
                 $input['userId'] = $newUser->id;
                 $parentId = $visaObj->createVisa($input);
@@ -280,7 +283,7 @@ class GoogleController extends Controller {
                             ->subject('VisaBadge: New User ' . $payload['name']);
                 });
                 
-                $auth = auth()->login($newUser, true);
+                
                 
             }
             

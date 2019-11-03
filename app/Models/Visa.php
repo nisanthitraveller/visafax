@@ -11,7 +11,7 @@ class Visa {
 
     public function createVisa($data) {
         
-        //$user = auth()->user();
+        $user = auth()->user();
         $lastId = \Illuminate\Support\Facades\DB::table('bookings')->max('id');
         $countryDocuments = Document::where('country_id', $data['vistingCountry'])->select('document_type', 'document_id', 'pdf', 'display')->get()->toArray();
         $parentId = 0;
@@ -22,11 +22,11 @@ class Visa {
                         'CountryOfBirth' => $data['residenceCountry'],
                         'CurrentNationality' => $data['residenceCountry'],
                         'user_id' => $data['userId'],
-                        'Surname' => '',
-                        'FirstName' => '',
+                        'Surname' => $user->last_name,
+                        'FirstName' => $user->first_name,
                         'CityOfResidence' => '',
-                        'EmailID' => '',
-                        'PhoneNo' => '',
+                        'EmailID' => $user->email,
+                        'PhoneNo' => $user->phone,
                     ]
             );
             $bookingID = (strlen($lastId + 1) < 3) ? 'VB' . '000' . ($lastId + 1) . '-' . $persons : 'VB' . ($lastId + 1) . '-' . $persons;
