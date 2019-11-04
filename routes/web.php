@@ -32,6 +32,10 @@ Route::any('/createvisa', 'GoogleController@createvisa');
 Route::any('/testvisa', 'VisaController@testvisa');
 Route::any('/payusubmit', 'VisaController@payusubmit');
 Route::any('/dashboard', 'VisaController@dashboard')->name('my-visas');
+Route::any('/dashboard1', 'VisaController@dashboard')->name('my-visas1');
+Route::any('/bucket', 'AwsController@bucket');
+Route::post('/deleteimage/{image}', 'AwsController@destroy')->name('deleteimage');
+Route::post('/images', 'AwsController@store')->name('images');
 
 // Static URLs
 Route::view('/faq', 'faq');

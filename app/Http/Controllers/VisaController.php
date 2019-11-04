@@ -197,10 +197,14 @@ class VisaController extends Controller
         if($agent->isMobile()) {
             $mobile = true;
         }
-        if($agent->isMobile() && isset($request['bookingID'])) {
-            return view('dashboard-mobile')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response, 'request' => $request]);
+        if($request->is('dashboard')) {
+            if($agent->isMobile() && isset($request['bookingID'])) {
+                return view('dashboard-mobile')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response, 'request' => $request]);
+            } else {
+                return view('dashboard')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response, 'request' => $request, 'mobile' => $mobile]);
+            }
         } else {
-            return view('dashboard')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response, 'request' => $request, 'mobile' => $mobile]);
+            return view('dashboard-new')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response, 'request' => $request, 'mobile' => $mobile]);
         }
         //dd($documents);
         

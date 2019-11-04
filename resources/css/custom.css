@@ -7,6 +7,9 @@ and open the template in the editor.
     Created on : Oct 6, 2019, 9:16:32 PM
     Author     : Nisanth Kumar
 */
+body {
+    background-color: #fff !important;
+}
 img.media-object {
     border-radius: 0;
 }

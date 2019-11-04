@@ -19,7 +19,7 @@ $requests = explode('/', Request::path());
         <link rel="shortcut icon" href="{{ asset('images/fav-icon.png') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-css/1.4.6/select2-bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
         @include('ga')
         @if((isset($requests[1]) && $requests[1] == 'dashboard'))
         <script>
@@ -28,19 +28,21 @@ $requests = explode('/', Request::path());
         @endif
         <script src="{{ asset('js/google.js') }}" defer></script>
     </head>
-    <body>
+    <body style="background: #fff !important">
         <div id="app">
             @include('layouts.header')
             @yield('content')
             @if(!isset($requests[1]) || (isset($requests[1]) && $requests[1] != 'payment'))
                 @include('layouts.footer')
             @endif
-            <a target="_blank" href="https://api.whatsapp.com/send?phone={{env('PHONE_NUM')}}&text=Hello VisaBadge" class="chat"><img src="{{secure_url('images/whatsapp.png')}}" width="64" /></a>
+            <!--<a target="_blank" href="https://api.whatsapp.com/send?phone={{env('PHONE_NUM')}}&text=Hello VisaBadge" class="chat"><img src="{{secure_url('images/whatsapp.png')}}" width="64" /></a>-->
         </div>
         
         <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
         <script src="{{ asset('js/slick.min.js') }}" type="text/javascript"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+        <script src="{{ asset('js/jquery.steps.js') }}" type="text/javascript"></script>
         <script src="{{ asset(mix('js/visabadge.js')) }}" defer></script>
         <script type="text/javascript">
             var path = "{{ route('autocomplete') }}";
@@ -48,5 +50,6 @@ $requests = explode('/', Request::path());
         </script>
         <script src="https://apis.google.com/js/platform.js?onload=onLoadGoogleCallback" async defer></script>
         @yield('scripts')
+        <script type="text/javascript" src="https://botsrv.com/qb/widget/KlXDVbBYj7EYdgQL/8qJgArRo1AEdvoR9" async defer></script>
     </body>
 </html>
