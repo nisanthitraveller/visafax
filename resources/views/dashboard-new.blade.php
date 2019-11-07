@@ -60,7 +60,7 @@ Visa Documents
                         <span class="number">2.</span> 
                         <span class="step-text">Documentation</span>
                         <span class="step-year">
-                            @if(!empty($visaDetails['assign_date']))
+                            @if($step >= 2 && !empty($visaDetails['assign_date']))
                                 {{date('d M, y', strtotime($visaDetails['assign_date']))}}
                             @endif
                         </span>
@@ -71,7 +71,7 @@ Visa Documents
                         <span class="number">3.</span> 
                         <span class="step-text">Payment</span>
                         <span class="step-year">
-                            @if(!empty($visaDetails['payment_date']))
+                            @if($step >= 3 && !empty($visaDetails['payment_date']))
                                 {{date('d M, y', strtotime($visaDetails['payment_date']))}}
                             @endif
                         </span>
