@@ -508,6 +508,9 @@ class GoogleController extends Controller {
         } finally {
             $service->getClient()->setUseBatch(false);
         }
+        
+        $visaObj->updateAssignBooking($input['bookingId']);
+        
         Mail::send('mail.mail-assign', ['booking' => $booking], function($message) use($booking) {
             $message->from('operations@visabadge.com', 'Operations VisaBadge');
             $message->to($booking['user']['EmailID'], $booking['user']['FirstName'] .' ' . $booking['user']['Surname'])

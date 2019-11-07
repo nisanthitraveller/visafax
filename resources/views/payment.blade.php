@@ -13,12 +13,25 @@ Visa Payment
 
     </div>
 </section>
-
+<?php
+    $status = 0;
+    foreach($booking['documents'] as $document) {
+        if($document['status'] == 0) {
+            $status++;
+        }
+    }
+?>
 <section class="deals payment-screen">
     <div class="container">
-        <div class="col-sm-12 text-justify card" style="padding: 10px; margin-bottom: 10px; background-color: #fafafa; color: #2d49a2">
-            We’ve prepared your visa documents and it’s ready to be reviewed by you. To start reviewing them, please choose the preferred services from below and make payment.
-        </div>
+        @if($status == 0)
+            <div class="col-sm-12 text-justify card" style="padding: 10px; margin-bottom: 10px; background-color: #fafafa; color: #2d49a2">
+                We’ve prepared your visa documents and it’s ready to be reviewed by you. To start reviewing them, please choose the preferred services from below and make payment.
+            </div>
+        @else
+            <div class="col-sm-12 text-justify card" style="padding: 10px; margin-bottom: 10px; background-color: #fafafa; color: #2d49a2">
+                The below are our service offerings. Please review and choose the services you want - make payment, only after we've prepared your documents.
+            </div>
+        @endif
         <form>
             @foreach($countryPrices as $key => $countryPrice)
             <div class="col-sm-12 pay-wrap">

@@ -47,6 +47,13 @@ class UserController extends Controller
         return view('admin.users')->with(['users' => $users]);
     }
     
+    public function enquiries()
+    {
+        $userObj = new User();
+        $users = $userObj->all();
+        return view('admin.enquiries')->with(['users' => $users]);
+    }
+    
     public function edituser($userId, Request $request)
     {
         $user = UserInfo::where("id", $userId)->first()->toArray();

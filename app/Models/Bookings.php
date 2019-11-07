@@ -31,7 +31,7 @@ class Bookings extends Model
     }
     
     public function documents() {
-        return $this->hasMany(Document::class, 'BookingID', 'id');
+        return $this->hasMany(BookingDocument::class, 'BookingID', 'id');
     }
 
     function getList() {

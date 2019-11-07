@@ -95,7 +95,7 @@ class BookingsController extends Controller
         
         $destinationPath = 'uploads';
         
-        if($request['status']) {
+        if(isset($request['status'])) {
             BookingDocument::where('id', $request['id'])->update(['status' => $request['status']]);
             return redirect()->back();
         }

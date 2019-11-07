@@ -82,6 +82,11 @@ $requests = explode('/', Request::path());
                     </div>
 
                     <ul class="nav">
+                        <li <?php if ($requests[1] == 'enquiries') { ?> class="active" <?php } ?> >
+                            <a href="{{ secure_url('/') }}/bo/enquiries">
+                                <p>Enquiries</p>
+                            </a>
+                        </li>
                         <li <?php if ($requests[1] == 'users') { ?> class="active" <?php } ?> >
                             <a href="{{ secure_url('/') }}/bo/users">
                                 <p>Users</p>

@@ -165,6 +165,12 @@ class Visa {
               ->where('id', $parentId)
               ->update(['DriveID' => $driveId]);
     }
+    public function updateAssignBooking($parentId) {
+        DB::table('bookings')
+              ->where('id', $parentId)
+              ->update(['assign_date' => date('Y-m-d'), 'status' => 1]);
+    }
+    
     
     public function updateAddress($userId, $address, $parentId) {
         DB::table('user_info as a')

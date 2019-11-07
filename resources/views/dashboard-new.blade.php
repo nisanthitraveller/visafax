@@ -11,11 +11,11 @@ Visa Documents
             <div class="col-9 dash-select cntry-selected">
                 <div class="media">
                     <label class="label-title">Visa status for</label>
-                    <select class="selectpicker select-bx  mobile-device" data-style="btn-danger"  data-max-options="1"  title="Choose one of the following...">
+                    <select id="visa-change" class="selectpicker select-bx  mobile-device" data-style="btn-danger"  data-max-options="1"  title="Choose one of the following...">
 
                         <optgroup label="Recent applications">
                             @foreach($allVisa as $visa)
-                            <option>{{$visa['countryName']}} ({{$visa['BookingID']}}) |  On {{date('d.m.y', strtotime($visa['created_at']))}}</option>
+                            <option value="{{$visa['id']}}" <?php if($visa['id'] == $visaDetails['id']) {echo 'selected';} ?>>{{$visa['countryName']}} ({{$visa['BookingID']}}) |  On {{date('d.m.y', strtotime($visa['created_at']))}}</option>
                             @endforeach
                         </optgroup>
 
@@ -25,52 +25,86 @@ Visa Documents
         </div>
     </div>
 </section>
-
+<?php
+    $step = 2;
+    if($visaDetails['paid'] == 1) {
+        $step = 3;
+    }
+    
+    if($visaDetails['status'] == 1) {
+        $step = 4;
+    }
+    
+    if($visaDetails['status'] == 2) {
+        $step = 5;
+    }
+    
+    if($visaDetails['status'] == 3) {
+        $step = 6;
+    }
+?>
 <div class="dasboard-detail-wrap">
-    <form action="" id="wizard" class="pt-4 acts wizard clearfix" role="application">
+    <form id="wizard" class="pt-4 acts wizard clearfix" role="application" method="post" enctype="multipart/form-data">
+        @csrf
         <div class="steps clearfix">
             <ul role="tablist">
-                <li role="tab" aria-disabled="false" class="first done checked" aria-selected="false">
-                    <a id="wizard-t-0" href="#wizard-h-0" aria-controls="wizard-p-0">
+                <li role="tab" aria-disabled="false" class="first done <?php if($step >= 1 ) { echo 'checked'; } ?>" aria-selected="false">
+                    <a>
                         <span class="number">1.</span> 
                         <span class="step-text">Login</span>
                         <span class="step-year">{{date('d M, y', strtotime($visaDetails['user']['created_at']))}}</span>
                     </a>
                 </li>
-                <li role="tab" aria-disabled="false" class="checked">
-                    <a id="wizard-t-1" href="#wizard-h-1" aria-controls="wizard-p-1">
+                <li role="tab" aria-disabled="false" class="<?php if($step >= 2 ) { echo 'checked'; } ?>">
+                    <a>
                         <span class="number">2.</span> 
                         <span class="step-text">Upload Docs</span>
                         <span class="step-year">{{date('d M, y', strtotime($visaDetails['created_at']))}}</span>
                     </a>
                 </li>
-                <li role="tab" aria-disabled="false" class="checked">
-                    <a id="wizard-t-2" href="#wizard-h-2" aria-controls="wizard-p-2">
+                
+                <li role="tab" aria-disabled="false" class="<?php if($step >= 3 ) { echo 'checked'; } ?>">
+                    <a>
                         <span class="number">3.</span> 
-                        <span class="step-text">Documentation</span>
-                        <span class="step-year">28 Oct</span>
+                        <span class="step-text">Payment</span>
+                        <span class="step-year">
+                            @if(!empty($visaDetails['payment_date']))
+                                {{date('d M, y', strtotime($visaDetails['payment_date']))}}
+                            @endif
+                        </span>
                     </a>
                 </li>
-                <li role="tab" aria-disabled="false" class="current checked" aria-selected="true">
-                    <a id="wizard-t-3" href="#wizard-h-3" aria-controls="wizard-p-3">
-                        <span class="current-info audible">current step: </span>
+                <li role="tab" aria-disabled="false" class="<?php if($step >= 4 ) { echo 'checked'; } ?>">
+                    <a>
                         <span class="number">4.</span> 
-                        <span class="step-text">Verification</span>
-                        <span class="step-year">29 Oct</span>
+                        <span class="step-text">Documentation</span>
+                        <span class="step-year">
+                            @if(!empty($visaDetails['assign_date']))
+                                {{date('d M, y', strtotime($visaDetails['assign_date']))}}
+                            @endif
+                        </span>
                     </a>
                 </li>
-                <li role="tab" aria-disabled="false">
-                    <a id="wizard-t-4" href="#wizard-h-4" aria-controls="wizard-p-4">
+                <li role="tab" aria-disabled="false" class="<?php if($step >= 5 ) { echo 'checked'; } ?>">
+                    <a>
                         <span class="number">5.</span>
-                        <span class="step-text">Submission</span>
-                        <span class="step-year">30 Oct</span>
+                        <span class="step-text">Verification</span>
+                        <span class="step-year">
+                            @if($step >= 5 && !empty($visaDetails['updated_at']))
+                                {{date('d M, y', strtotime($visaDetails['updated_at']))}}
+                            @endif
+                        </span>
                     </a>
                 </li>
-                <li role="tab" aria-disabled="false" class="last">
-                    <a id="wizard-t-5" href="#wizard-h-5" aria-controls="wizard-p-5">
+                <li role="tab" aria-disabled="false" class="last <?php if($step >= 6 ) { echo 'checked'; } ?>">
+                    <a>
                         <span class="number">6.</span> 
                         <span class="step-text">Approval</span>
-                        <span class="step-year">31 Oct</span>
+                        <span class="step-year">
+                            @if($step >= 6 && !empty($visaDetails['updated_at']))
+                                {{date('d M, y', strtotime($visaDetails['updated_at']))}}
+                            @endif
+                        </span>
                     </a>
                 </li>
             </ul>
@@ -78,7 +112,7 @@ Visa Documents
         <div class="content clearfix">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-12 col-md-12 col-sm-12 mt-4 p-47 dashboard-wrap" id="document-listing">
+                    <div class="col-xl-12 col-md-12 col-sm-12 mt-4 p-47 dashboard-wrap right-sidebar"id="document-listing">
                         @if($response['payStat'] == 'Payment Failed')
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <strong>Failed!</strong> Payment failed, please try later.
@@ -131,7 +165,7 @@ Visa Documents
 
                                 <div class="col-lg-3 col-md-3 col-sm-3 row-bgd">
                                     <div class="col-md-12 col-12 row-dta">
-                                        <div class="do-ic"><img src="images/track.png"> Track status</div>
+                                        <!--<div class="do-ic"><img src="images/track.png"> Track status</div>-->
                                     </div>
                                 </div>
                             </div>
@@ -153,13 +187,13 @@ Visa Documents
                                     </div>
                                     @elseif($visaDetails['paid'] == 0 && $document['DriveId'] != '')
                                     <div class="dos-name">
-                                        <a target="_blank" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}"> {{sprintf("%02d", $count)}}. {{$out}}</a>
+                                        <a href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}"> {{sprintf("%02d", $count)}}. {{$out}}</a>
                                         <span class="sm-desc">{{$toolTip['tooltip']}}</span>
                                     </div>
                                     @elseif($document['DriveId'] == '' && count($document1) == 1)
                                     @if($document['pdf'] != '')
                                     <div class="dos-name">
-                                        <a href="{{url('/') . '/uploads/' . $document['pdf']}}"> {{sprintf("%02d", $count)}}. {{$out}}</a>
+                                        <a target="_blank" href="{{url('/') . '/uploads/' . $document['pdf']}}"> {{sprintf("%02d", $count)}}. {{$out}}</a>
                                         <span class="sm-desc">{{$toolTip['tooltip']}}</span>
                                     </div>
                                     @else
@@ -267,6 +301,67 @@ Visa Documents
                         </div>
                         @endif
                     </div>
+                    @if(!empty($visaDetails))
+                        <div class="col-xl-12 col-md-12 col-sm-12 mt-4 p-47 dashboard-wrap right-sidebar" id="file-upload" style="display: none">
+                            <div class="container mb-4 dash-titles">
+                                <div class="row">
+                                    <div class="col-md-9 col-sm-12 row-bg">
+
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-12  row-dta">
+                                            <div class="do-ic"><img src="{{url('/')}}/images/doc2.png">{{$visaDetails['user']['FirstName']}} {{$visaDetails['user']['Surname']}}</div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-6  row-dta">
+                                            <div class="do-ic"><img src="{{url('/')}}/images/doc3.png">{{$visaDetails['BookingID']}}</div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-6 row-dta">
+                                            <div class="do-ic"><img src="{{url('/')}}/images/doc1.png">{{date('d.m.y', strtotime($visaDetails['created_at']))}}</div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-3 col-md-3 col-sm-3 row-bgd">
+                                        <div class="col-md-12 col-12 row-dta">
+<!--                                            <div class="do-ic">
+                                                <img src="images/track.png"> Track status
+                                            </div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 mb-2 ">
+                                <div class="row mb-2 ">
+                                    <a href="javascript:void(0)" class="back-btn" onclick="$('.right-sidebar').toggle()">Back</a>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-6 col-sm-7 col-9">
+                                    <h2>Upload Files</h2>
+                                </div>
+                            </div>
+                                @for($i=1; $i<=1; $i++)
+                                    <div class="doc-list file-upload">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-4 col-4 doc-cols">File</div>
+                                            <div class="col-md-3 col-sm-4 col-4 doc-col-2">
+                                                <input type="file" name="booking_documents[]" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endfor
+                                <div class="doc-list add-file">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-6 doc-cols">
+                                            <input type="hidden" id="docTYpe" name="docType" />
+                                            <input type="hidden" id="visaID" name="visaID" value="{{$visaDetails['id']}}" />
+                                            <button type='button' class="btn btn-light pull-right add_more">Add More Files</button>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-6 doc-cols text-right">
+                                            <button class="btn btn-secondary">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

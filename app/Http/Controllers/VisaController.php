@@ -25,7 +25,7 @@ class VisaController extends Controller
     public function payment($bookingId)
     {
         $payLater = request('paylater') ? false : true;
-        $booking = Bookings::where("id", $bookingId)->with('child')->first()->toArray();
+        $booking = Bookings::where("id", $bookingId)->with('child')->with('documents')->first()->toArray();
         $countryPrices = Pricing::where('country_id', $booking['VisitingCountry'])->with('master')->select('plan_id', 'price')->orderBy('plan_id', 'asc')->get()->toArray();
         return view('payment')->with(['bookingId' => $bookingId, 'payLater' => $payLater, 'countryPrices' => $countryPrices, 'booking' => $booking]);
     }
@@ -52,7 +52,7 @@ class VisaController extends Controller
             $bookingObj->updatePayment($bookingId, $response);
             
             //if($data['udf2'] == true) {
-                return redirect('/dashboard')->with(['bookingId' => $bookingId, 'response' => $response]);
+                return redirect('/dashboard?bookingID=' . $bookingId)->with(['bookingId' => $bookingId, 'response' => $response]);
             //}
         }
         //$visaDetails = $visaObj->getVisa($bookingId);
@@ -168,8 +168,19 @@ class VisaController extends Controller
         
         $mobile = false;
         
+        $response['payStat'] = null;
+        $documents = $booking = [];
+        if($bookingId != null) {
+            $booking = \App\Models\Bookings::where("id", $bookingId)->with('user')->with('child')->first()->toArray();
+            $assignedDocuments = \App\Models\BookingDocument::where('BookingID', $bookingId)->with('documenttype')->get()->toArray();
+            foreach ($assignedDocuments as $assignedDocument) {
+                $documents[$assignedDocument['DocumentID']][] = $assignedDocument;
+            }
+        }
+        
         if($request['docType']) {
             \App\Models\BookingDocument::where('BookingID', $request['visaID'])->where('DocumentID', $request['docType'])->delete();
+            $documentType = \App\Models\DocumentType::where('id', $request['docType'])->first()->toArray();
             $pdfFiles = $request->file('booking_documents');
             foreach($pdfFiles as $pdfFile) {
                 $pdfFile->move($destinationPath, time() . $request['visaID'] . '-' . str_replace(' ', '', $pdfFile->getClientOriginalName()));
@@ -179,21 +190,18 @@ class VisaController extends Controller
                     'pdf' => time() . $request['visaID'] . '-' . str_replace(' ', '', $pdfFile->getClientOriginalName())
                 ]);
             }
-            return redirect('/dashboard');
+            
+            Mail::send('mail.mail-upload', ['booking' => $booking, 'documentType' => $documentType], function($message) use($booking) {
+                $message->from('operations@visabadge.com', 'Operations VisaBadge');
+                $message->to('operations@visabadge.com', 'VB Operarons')
+                        ->cc('shiju.radhakrishnan@visabadge.com')
+                        ->bcc(['nisanth.kumar@itraveller.com'])
+                        ->subject('VisaBadge: Document uploaded for Booking ID ' . $booking['BookingID']);
+            });
+            
+            return redirect()->back();
         }
         
-        $response['payStat'] = null;
-        $documents = $booking = [];
-        if($bookingId != null) {
-            $booking = \App\Models\Bookings::where("id", $bookingId)->with('user')->with('child')->first()->toArray();
-
-            $assignedDocuments = \App\Models\BookingDocument::where('BookingID', $bookingId)->with('documenttype')->get()->toArray();
-
-
-            foreach ($assignedDocuments as $assignedDocument) {
-                $documents[$assignedDocument['DocumentID']][] = $assignedDocument;
-            }
-        }
         if($agent->isMobile()) {
             $mobile = true;
         }
