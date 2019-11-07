@@ -49,8 +49,7 @@ class UserController extends Controller
     
     public function enquiries()
     {
-        $userObj = new User();
-        $users = $userObj->all();
+        $users = User::orderBy('created_at', 'desc')->get();
         return view('admin.enquiries')->with(['users' => $users]);
     }
     
