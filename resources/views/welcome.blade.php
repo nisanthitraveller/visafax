@@ -38,7 +38,7 @@ Apply visas
     <div class="container">
 
         <!-- Nav tabs -->
-<!--        <ul class="nav nav-tabs for-cntry" role="tablist">
+        <ul class="nav nav-tabs for-cntry" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#europe">Europe</a>
             </li>
@@ -55,36 +55,16 @@ Apply visas
                 <a class="nav-link" data-toggle="tab" href="#america2">South America</a>
             </li>
             
-        </ul>-->
+        </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
-            <div id="asia" class="container tab-pane active">
+            <div id="asia" class="container tab-pane fade">
                 <div class="row">
-                    <?php $count3 = 1; ?>
-                    @foreach($countries['Europe'] as $country3)
-                    @if($count3 <= 3)
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch" title="{{$country3['countryName']}}">
-                        <div class="media">
-                            <a class="media-left" href="{{ url('/') }}/visa/{{str_replace(' ', '-', strtolower($country3['countryName']))}}">
-                                <img class="media-object" src="https://www.countryflags.io/{{strtolower($country3['countryCode'])}}/shiny/64.png" alt="{{$country3['countryName']}}">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">{{substr($country3['countryName'], 0, 15)}}</h4>
-                                    <p>From ₹ {{number_format($country3['visa_cost'])}}</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <?php $count3++; ?>
-                    @endif
-                    @endforeach
-                    
                     <?php $count = 1; ?>
                     @foreach($countries['Asia-Pacific'] as $country1)
-                    @if($count <= 3)
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch" title="{{$country1['countryName']}}">
+                    <?php $class = $count <= 12 ? null : 'not-visible'; ?>
+                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch {{$class}}" title="{{$country1['countryName']}}">
                         <div class="media">
                             <a class="media-left" href="{{ url('/') }}/visa/{{str_replace(' ', '-', strtolower($country1['countryName']))}}">
                                 <img class="media-object" src="https://www.countryflags.io/{{strtolower($country1['countryCode'])}}/shiny/64.png" alt="{{$country1['countryName']}}">
@@ -97,17 +77,21 @@ Apply visas
                     </div>
 
                     <?php $count++; ?>
-                    @endif
                     @endforeach
-                    
-                    
+                </div>
+
+            </div>
+
+            <div id="africa" class="container tab-pane fade"><br>
+
+                <div class="row">
                     <?php $count2 = 1; ?>
                     @foreach($countries['Africa'] as $country2)
-                    @if($count2 <= 3)
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch" title="{{$country2['countryName']}}">
+                    <?php $class = $count2 <= 12 ? null : 'not-visible'; ?>
+                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch {{$class}}" title="{{$country2['countryName']}}">
                         <div class="media">
                             <a class="media-left" href="{{ url('/') }}/visa/{{str_replace(' ', '-', strtolower($country2['countryName']))}}">
-                                <img class="media-object" src="https://www.countryflags.io/{{strtolower($country2['countryCode'])}}/shiny/64.png" alt="{{$country2['countryName']}}">
+                                <img class="media-object" src="https://www.countryflags.io/{{strtolower($country2['countryCode'])}}/shiny/64.png" alt="{{$country1['countryName']}}">
 
                                 <div class="media-body">
                                     <h4 class="media-heading">{{substr($country2['countryName'], 0, 15)}}</h4>
@@ -118,17 +102,21 @@ Apply visas
                     </div>
 
                     <?php $count2++; ?>
-                    @endif
                     @endforeach
-                    
-                    
+                </div>
+
+
+            </div>
+            <div id="america1" class="container tab-pane fade"><br>
+
+                <div class="row">
                     <?php $count3 = 1; ?>
                     @foreach($countries['North-America'] as $country3)
-                    @if($count3 <= 3)
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch" title="{{$country3['countryName']}}">
+                    <?php $class = $count3 <= 12 ? null : 'not-visible'; ?>
+                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch {{$class}}" title="{{$country3['countryName']}}">
                         <div class="media">
                             <a class="media-left" href="{{ url('/') }}/visa/{{str_replace(' ', '-', strtolower($country3['countryName']))}}">
-                                <img class="media-object" src="https://www.countryflags.io/{{strtolower($country3['countryCode'])}}/shiny/64.png" alt="{{$country3['countryName']}}">
+                                <img class="media-object" src="https://www.countryflags.io/{{strtolower($country3['countryCode'])}}/shiny/64.png" alt="{{$country1['countryName']}}">
 
                                 <div class="media-body">
                                     <h4 class="media-heading">{{substr($country3['countryName'], 0, 15)}}</h4>
@@ -139,35 +127,56 @@ Apply visas
                     </div>
 
                     <?php $count3++; ?>
-                    @endif
                     @endforeach
-                    
-                    
-                    <?php $count3 = 1; ?>
-                    @foreach($countries['South-America'] as $country3)
-                    @if($count3 <= 3)
-                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch" title="{{$country3['countryName']}}">
-                        <div class="media">
-                            <a class="media-left" href="{{ url('/') }}/visa/{{str_replace(' ', '-', strtolower($country3['countryName']))}}">
-                                <img class="media-object" src="https://www.countryflags.io/{{strtolower($country3['countryCode'])}}/shiny/64.png" alt="{{$country3['countryName']}}">
-
-                                <div class="media-body">
-                                    <h4 class="media-heading">{{substr($country3['countryName'], 0, 15)}}</h4>
-                                    <p>From ₹ {{number_format($country3['visa_cost'])}}</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <?php $count3++; ?>
-                    @endif
-                    @endforeach
-                    
-                    
                 </div>
 
             </div>
+            <div id="america2" class="container tab-pane fade"><br>
+
+                <div class="row">
+                    <?php $count3 = 1; ?>
+                    @foreach($countries['South-America'] as $country3)
+                    <?php $class = $count3 <= 12 ? null : 'not-visible'; ?>
+                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch {{$class}}" title="{{$country3['countryName']}}">
+                        <div class="media">
+                            <a class="media-left" href="{{ url('/') }}/visa/{{str_replace(' ', '-', strtolower($country3['countryName']))}}">
+                                <img class="media-object" src="https://www.countryflags.io/{{strtolower($country3['countryCode'])}}/shiny/64.png" alt="{{$country1['countryName']}}">
+
+                                <div class="media-body">
+                                    <h4 class="media-heading">{{substr($country3['countryName'], 0, 15)}}</h4>
+                                    <p>From ₹ {{number_format($country3['visa_cost'])}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <?php $count3++; ?>
+                    @endforeach
+                </div>
+
+            </div>
+            <div id="europe" class="tab-pane active"><br>
+                <div class="row">
+                    <?php $count3 = 1; ?>
+                    @foreach($countries['Europe'] as $country3)
+                    <?php $class = $count3 <= 12 ? null : 'not-visible'; ?>
+                    <div class="col-xl-4 col-md-4 col-sm-4 col-6 cntry-ch {{$class}}" title="{{$country3['countryName']}}">
+                        <div class="media">
+                            <a class="media-left" href="{{ url('/') }}/visa/{{str_replace(' ', '-', strtolower($country3['countryName']))}}">
+                                <img class="media-object" src="https://www.countryflags.io/{{strtolower($country3['countryCode'])}}/shiny/64.png" alt="{{$country1['countryName']}}">
+
+                                <div class="media-body">
+                                    <h4 class="media-heading">{{substr($country3['countryName'], 0, 15)}}</h4>
+                                    <p>From ₹ {{number_format($country3['visa_cost'])}}</p>
+                                </div></a>
+                        </div>
+                    </div>
+                    <?php $count3++; ?>
+                    @endforeach
+                </div>
+            </div>
         </div>
+        <a href="javascript:void(0)" class="ld-more">Load More...</a>
 
     </div>
 </section>

@@ -26,7 +26,7 @@ Visa Documents
     </div>
 </section>
 <?php
-    $step = 2;
+    $step = 1;
     if($visaDetails['paid'] == 1) {
         $step = 3;
     }
@@ -48,21 +48,24 @@ Visa Documents
         @csrf
         <div class="steps clearfix">
             <ul role="tablist">
-                <li role="tab" aria-disabled="false" class="first done <?php if($step >= 1 ) { echo 'checked'; } ?>" aria-selected="false">
+                <li role="tab" aria-disabled="false" class="<?php if($step >= 1 ) { echo 'checked'; } ?>">
                     <a>
                         <span class="number">1.</span> 
-                        <span class="step-text">Login</span>
-                        <span class="step-year">{{date('d M, y', strtotime($visaDetails['user']['created_at']))}}</span>
+                        <span class="step-text">Upload Docs</span>
+                        <span class="step-year">{{date('d M, y', strtotime($visaDetails['created_at']))}}</span>
                     </a>
                 </li>
                 <li role="tab" aria-disabled="false" class="<?php if($step >= 2 ) { echo 'checked'; } ?>">
                     <a>
                         <span class="number">2.</span> 
-                        <span class="step-text">Upload Docs</span>
-                        <span class="step-year">{{date('d M, y', strtotime($visaDetails['created_at']))}}</span>
+                        <span class="step-text">Documentation</span>
+                        <span class="step-year">
+                            @if(!empty($visaDetails['assign_date']))
+                                {{date('d M, y', strtotime($visaDetails['assign_date']))}}
+                            @endif
+                        </span>
                     </a>
                 </li>
-                
                 <li role="tab" aria-disabled="false" class="<?php if($step >= 3 ) { echo 'checked'; } ?>">
                     <a>
                         <span class="number">3.</span> 
@@ -74,13 +77,14 @@ Visa Documents
                         </span>
                     </a>
                 </li>
+                
                 <li role="tab" aria-disabled="false" class="<?php if($step >= 4 ) { echo 'checked'; } ?>">
                     <a>
-                        <span class="number">4.</span> 
-                        <span class="step-text">Documentation</span>
+                        <span class="number">4.</span>
+                        <span class="step-text">Verification</span>
                         <span class="step-year">
-                            @if(!empty($visaDetails['assign_date']))
-                                {{date('d M, y', strtotime($visaDetails['assign_date']))}}
+                            @if($step >= 4 && !empty($visaDetails['verified_at']))
+                                {{date('d M, y', strtotime($visaDetails['verified_at']))}}
                             @endif
                         </span>
                     </a>
@@ -88,10 +92,10 @@ Visa Documents
                 <li role="tab" aria-disabled="false" class="<?php if($step >= 5 ) { echo 'checked'; } ?>">
                     <a>
                         <span class="number">5.</span>
-                        <span class="step-text">Verification</span>
+                        <span class="step-text">Submission</span>
                         <span class="step-year">
-                            @if($step >= 5 && !empty($visaDetails['updated_at']))
-                                {{date('d M, y', strtotime($visaDetails['updated_at']))}}
+                            @if($step >= 5 && !empty($visaDetails['submission_at']))
+                                {{date('d M, y', strtotime($visaDetails['submission_at']))}}
                             @endif
                         </span>
                     </a>
@@ -101,8 +105,8 @@ Visa Documents
                         <span class="number">6.</span> 
                         <span class="step-text">Approval</span>
                         <span class="step-year">
-                            @if($step >= 6 && !empty($visaDetails['updated_at']))
-                                {{date('d M, y', strtotime($visaDetails['updated_at']))}}
+                            @if($step >= 6 && !empty($visaDetails['approval_at']))
+                                {{date('d M, y', strtotime($visaDetails['approval_at']))}}
                             @endif
                         </span>
                     </a>

@@ -23,7 +23,8 @@
                                 <option value="0" <?php echo ($data == 0) ? 'selected' : null; ?>>NA</option>
                                 <option value="0" <?php echo ($data == 1) ? 'selected' : null; ?>>Documentation</option>
                                 <option value="0" <?php echo ($data == 2) ? 'selected' : null; ?>>Verification</option>
-                                <option value="1" <?php echo ($data == 3) ? 'selected' : null; ?>>Approval</option>
+                                <option value="1" <?php echo ($data == 3) ? 'selected' : null; ?>>Submission</option>
+                                <option value="1" <?php echo ($data == 4) ? 'selected' : null; ?>>Approval</option>
                             </select>
                         @else
                             <input type="{{$type}}" value="{{$data}}" name="{{$key}}" class="form-control {{$calClass}}" id="form{{$key}}">

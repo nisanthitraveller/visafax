@@ -62,13 +62,29 @@ class BookingsController extends Controller
         unset($user['ParentID']);
         unset($user['plan_id']);
         unset($user['payment_response']);
+        unset($user['verified_at']);
+        unset($user['submission_at']);
+        unset($user['approval_at']);
         //unset($user['payment_date']);
         unset($user['DriveID']);
         if(!empty($request['VisaType'])) {
             $model = Bookings::findOrFail($bookingId);
             $data = $request->toArray();
-            $data['JoiningDate'] = implode("-", array_reverse(explode("/", $data['JoiningDate'])));
-            $data['payment_date'] = implode("-", array_reverse(explode("/", $data['payment_date'])));
+            if(!empty($data['JoiningDate'])) {
+                $data['JoiningDate'] = implode("-", array_reverse(explode("/", $data['JoiningDate'])));
+            } 
+            if(!empty($data['payment_date'])) {
+                $data['payment_date'] = implode("-", array_reverse(explode("/", $data['payment_date'])));
+            }
+            if(!empty($data['status']) && $data['status'] == 2) {
+                $data['verified_at'] = date('Y-m-d');
+            }
+            if(!empty($data['status']) && $data['status'] == 3) {
+                $data['submission_at'] = date('Y-m-d');
+            }
+            if(!empty($data['status']) && $data['status'] == 4) {
+                $data['approval_at'] = date('Y-m-d');
+            }
             $model->fill($data);
             $model->save();
             return redirect()->back();
@@ -97,6 +113,10 @@ class BookingsController extends Controller
         
         if(isset($request['status'])) {
             BookingDocument::where('id', $request['id'])->update(['status' => $request['status']]);
+            $exists = BookingDocument::where('BookingID', $bookingId)->where('status', 0)->exists();
+            if($exists == false) {
+               Bookings::where('id', $bookingId)->update(['verified_at' => date('Y-m-d')]);
+            }
             return redirect()->back();
         }
         if($request['delete']) {
