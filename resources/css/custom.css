@@ -140,6 +140,10 @@ section.banner.inner-payment h2{
 a.cntuemargin {
     margin: 50px !important;
 }
+span.sm-desc {
+    padding-left: 28px !important;
+    text-align: justify;
+}
 @media screen and (max-width: 767px) {
     .dos-name a {
         font-size: 14px;
