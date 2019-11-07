@@ -144,14 +144,7 @@ class VisaController extends Controller
     }
     
     public function testvisa() {
-        $booking = Bookings::where("id", 1)->with('user')->with('child')->first()->toArray();
-        Mail::send('mail.mail-assign', ['booking' => $booking], function($message) use($booking) {
-            $message->from('operations@visabadge.com', 'Operations VisaBadge');
-            $message->to('shiju.radhakrishnan@itraveller.com', $booking['user']['FirstName'] .' ' . $booking['user']['Surname'])
-                    ->cc('operations@visabadge.com')
-                    ->bcc(['shiju.radhakrishnan@itraveller.com', 'nisanth.kumar@itraveller.com'])
-                    ->subject('VisaBadge: Document generated for Booking ID ' . $booking['BookingID']);
-        });
+        phpinfo();
     }
     
     public function dashboard(Request $request) {
