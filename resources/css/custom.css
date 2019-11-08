@@ -144,6 +144,13 @@ span.sm-desc {
     padding-left: 28px !important;
     text-align: justify;
 }
+.plus-minus {
+    font-weight: bold;
+    height: 28px;
+    padding: 0 !important;
+    width: 28px !important;
+    position: relative;
+}
 @media screen and (max-width: 767px) {
     .dos-name a {
         font-size: 14px;

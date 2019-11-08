@@ -3,7 +3,29 @@
 @section('content')
 <div class="container-fluid">
     <div class="card">
-        <h2>Users</h2>
+        <form method="get">
+            <div class="row">
+                <div class="col-md-2">
+                    Add user
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" required name="first_name" placeholder="First name">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" required name="last_name" placeholder="Last name">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" required name="email" placeholder="Email">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" name="phone" placeholder="Phone">
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                </div>
+            </div>
+        </form>
+        <h2>Enquiries</h2>
         <div class="container-fluid">          
             <table class="display compact table-bordered table-hover table-striped table-condensed" id="listTable">
                 <thead>
@@ -24,7 +46,7 @@
                         <td>{{$user->last_name}}</td>
                         <td>{{$user->email}}</td>
                         <td>{{$user->phone}}</td>
-                        <td>{{date('d.m.y H:i', strtotime($user->created_at))}}</td>
+                        <td>{{date('d.m.y H:i', strtotime($user->created_at) + (5.5 * 60 * 60))}}</td>
                     </tr>
                     @endforeach
                 </tbody>

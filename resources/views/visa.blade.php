@@ -73,9 +73,9 @@ Visa {{$country['countryName']}}
                         <div class="col-4 text-right">
 
                             <div class="input-group counter">
-                                <input type="button" value="-" class="button-minus" data-field="persons">
+                                <input type="button" value="-" class="button-minus plus-minus" data-field="persons">
                                 <input type="number" step="1" max="" value="1" name="persons" class="quantity-field">
-                                <input type="button" value="+" class="button-plus" data-field="persons">
+                                <input type="button" value="+" class="button-plus plus-minus" data-field="persons">
                             </div>
                         </div>
 

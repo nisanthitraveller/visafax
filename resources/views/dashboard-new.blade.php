@@ -7,7 +7,7 @@ Visa Documents
 
     <div class="container">
         <div class="row align-items-center justify-content-center pt-4">
-            <h1>My visa documents</h1>
+            <h1>My Visa Documents</h1>
             <div class="col-9 dash-select cntry-selected">
                 <div class="media">
                     <label class="label-title">Visa status for</label>
@@ -27,6 +27,11 @@ Visa Documents
 </section>
 <?php
     $step = 1;
+    
+    if(!empty($visaDetails['assign_date'])) {
+        $step = 2;
+    }
+    
     if($visaDetails['paid'] == 1) {
         $step = 3;
     }
@@ -42,23 +47,22 @@ Visa Documents
     if($visaDetails['status'] == 3) {
         $step = 6;
     }
+    
 ?>
 <div class="dasboard-detail-wrap">
     <form id="wizard" class="pt-4 acts wizard clearfix" role="application" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="steps clearfix">
-            <ul role="tablist">
-                <li role="tab" aria-disabled="false" class="<?php if($step >= 1 ) { echo 'checked'; } ?>">
+        <div class="container">
+            <ul class="tablist">
+                <li class="<?php if($step >= 1 ) { echo 'active'; } ?>">
                     <a>
-                        <span class="number">1.</span> 
-                        <span class="step-text">Upload Docs</span>
-                        <span class="step-year">{{date('d M, y', strtotime($visaDetails['created_at']))}}</span>
+                        <span class="tb-name">Upload Docs</span>
+                        <span class="tb-year">{{date('d M, y', strtotime($visaDetails['created_at']))}}</span>
                     </a>
                 </li>
-                <li role="tab" aria-disabled="false" class="<?php if($step >= 2 ) { echo 'checked'; } ?>">
+                <li class="<?php if($step >= 2 ) { echo 'active'; } ?>">
                     <a>
-                        <span class="number">2.</span> 
-                        <span class="step-text">Documentation</span>
+                        <span class="tb-name">Prepare Docs</span>
                         <span class="step-year">
                             @if($step >= 2 && !empty($visaDetails['assign_date']))
                                 {{date('d M, y', strtotime($visaDetails['assign_date']))}}
@@ -66,10 +70,9 @@ Visa Documents
                         </span>
                     </a>
                 </li>
-                <li role="tab" aria-disabled="false" class="<?php if($step >= 3 ) { echo 'checked'; } ?>">
+                <li class="<?php if($step >= 3 ) { echo 'active'; } ?>">
                     <a>
-                        <span class="number">3.</span> 
-                        <span class="step-text">Payment</span>
+                        <span class="tb-name">Payment</span>
                         <span class="step-year">
                             @if($step >= 3 && !empty($visaDetails['payment_date']))
                                 {{date('d M, y', strtotime($visaDetails['payment_date']))}}
@@ -78,10 +81,9 @@ Visa Documents
                     </a>
                 </li>
                 
-                <li role="tab" aria-disabled="false" class="<?php if($step >= 4 ) { echo 'checked'; } ?>">
+                <li class="<?php if($step >= 4 ) { echo 'active'; } ?>">
                     <a>
-                        <span class="number">4.</span>
-                        <span class="step-text">Verification</span>
+                        <span class="tb-name">Verification</span>
                         <span class="step-year">
                             @if($step >= 4 && !empty($visaDetails['verified_at']))
                                 {{date('d M, y', strtotime($visaDetails['verified_at']))}}
@@ -89,10 +91,9 @@ Visa Documents
                         </span>
                     </a>
                 </li>
-                <li role="tab" aria-disabled="false" class="<?php if($step >= 5 ) { echo 'checked'; } ?>">
+                <li class="<?php if($step >= 5 ) { echo 'active'; } ?>">
                     <a>
-                        <span class="number">5.</span>
-                        <span class="step-text">Submission</span>
+                        <span class="tb-name">Submission</span>
                         <span class="step-year">
                             @if($step >= 5 && !empty($visaDetails['submission_at']))
                                 {{date('d M, y', strtotime($visaDetails['submission_at']))}}
@@ -100,10 +101,9 @@ Visa Documents
                         </span>
                     </a>
                 </li>
-                <li role="tab" aria-disabled="false" class="last <?php if($step >= 6 ) { echo 'checked'; } ?>">
+                <li class="last <?php if($step >= 6 ) { echo 'active'; } ?>">
                     <a>
-                        <span class="number">6.</span> 
-                        <span class="step-text">Approval</span>
+                        <span class="tb-name">Approval</span>
                         <span class="step-year">
                             @if($step >= 6 && !empty($visaDetails['approval_at']))
                                 {{date('d M, y', strtotime($visaDetails['approval_at']))}}
@@ -167,11 +167,11 @@ Visa Documents
                                 </div>
 
 
-                                <div class="col-lg-3 col-md-3 col-sm-3 row-bgd">
+                                <!--<div class="col-lg-3 col-md-3 col-sm-3 row-bgd">
                                     <div class="col-md-12 col-12 row-dta">
-                                        <!--<div class="do-ic"><img src="images/track.png"> Track status</div>-->
+                                        <div class="do-ic"><img src="images/track.png"> Track status</div>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                         <?php $count = 1 ?>

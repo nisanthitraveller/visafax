@@ -24,6 +24,7 @@ Route::get('/googledoc', 'GoogleController@googledoc');
 Route::get('/autocomplete', 'HomeController@autocomplete')->name('autocomplete');
 
 Route::any('/visa/{visaUrl}', 'HomeController@visa');
+Route::any('/visa1/{visaUrl}', 'HomeController@visa');
 Route::any('/applyvisa/payment/{bookingId}', 'VisaController@payment');
 Route::any('/applyvisa/step1/{bookingId}', 'VisaController@step1');
 Route::any('/applyvisa/step2/{bookingId}', 'VisaController@step2');

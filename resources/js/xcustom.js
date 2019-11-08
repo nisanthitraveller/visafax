@@ -66,41 +66,18 @@
         location.href = '/dashboard1?bookingID=' + $(this).val();
     });
     
-    /*$("#wizard").steps({
-        headerTag: "h2",
-        bodyTag: "section",
-        transitionEffect: "fade",
-        enableAllSteps: true,
-        transitionEffectSpeed: 500,
-       // titleTemplate: "#title#" ,
-        labels: {
-            finish: "Submit",
-            next: "Forward",
-            previous: "Backward"
+    $('a[href^="#"]').click(function(){
+        var the_id = $(this).attr("href");
+        if (the_id === '#') {
+          return;
         }
-    });*/
+        $('html, body').animate({
+          scrollTop:$(the_id).offset().top
+        }, 'slow');
+        return false;
+    });
     
     $('select').selectpicker();
-    
-    /*if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
-        $('.selectpicker').selectpicker('mobile');
-    }
-    else {
-        $('.selectpicker').selectpicker({});
-    }
-    
-    $('#wizard > .steps li a').click(function(){
-        $(this).parent().addClass('checked');
-        $(this).parent().prevAll().addClass('checked');
-        $(this).parent().nextAll().removeClass('checked');
-    });
-    // Custome Jquery Step Button
-    $('.forward').click(function(){
-      $("#wizard").steps('next');
-    });
-    $('.backward').click(function(){
-        $("#wizard").steps('previous');
-    });*/
     // Select Dropdown
     $('html').click(function() {
         $('.select .dropdown').hide(); 
@@ -397,7 +374,6 @@ $('input.typeahead').typeahead({
         console.log(item);
         var str3 = 'india';
         var str3 = item.replace(" ", "-");
-        console.log('dsdsdsd' + str3);
         if (str3 != '') {
             window.location.href = "/visa/" + str3.toLowerCase();
             console.log(this.map[item], item); //access it here

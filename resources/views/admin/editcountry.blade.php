@@ -28,9 +28,21 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label" for="formDescription">Description:</label>
+                    <label class="col-sm-4 col-form-label" for="formDescription">Visa Process:</label>
                     <div class="col-sm-8">
                         <textarea class="ckeditor form-control" id="formDescription" name="description">{{$country->description}}</textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="formDescription2">Document Checklist :</label>
+                    <div class="col-sm-8">
+                        <textarea class="ckeditor form-control" id="formDescription2" name="description2">{{$country->description2}}</textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="formDescription3">FAQ:</label>
+                    <div class="col-sm-8">
+                        <textarea class="ckeditor form-control" id="formDescription3" name="description3">{{$country->description3}}</textarea>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>

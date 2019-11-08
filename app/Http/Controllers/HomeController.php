@@ -56,14 +56,18 @@ class HomeController extends Controller
         return response()->json($data);
     }
     
-    public function visa($visaUrl)
+    public function visa($visaUrl, Request $request)
     {
+        $path = $request->path();
         $blogObj = new \App\Models\Blog();
-        $visaUrl = str_replace('-', ' ', $visaUrl);
-        $country = Country::where("countryName", $visaUrl)
+        $country = Country::where("countryName", str_replace('-', ' ', $visaUrl))
                 ->first()->toArray();
         $feeds = $blogObj->getFeeds();
-        return view('visa')->with(['country' => $country, 'feeds' => $feeds]);
+        if(strpos($path, 'visa1') !== false) {
+            return view('visa1')->with(['country' => $country, 'feeds' => $feeds]);
+        } else {
+            return view('visa')->with(['country' => $country, 'feeds' => $feeds]);
+        }
     }
     
     public function index()

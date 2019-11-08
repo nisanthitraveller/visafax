@@ -47,8 +47,16 @@ class UserController extends Controller
         return view('admin.users')->with(['users' => $users]);
     }
     
-    public function enquiries()
+    public function enquiries(Request $request)
     {
+        if(!empty($request['first_name'])) {
+            $model = new User();
+            $request['name'] = $request['first_name'] . ' ' . $request['last_name'];
+            $request['password'] = \Illuminate\Support\Facades\Hash::make('123456');
+            $model->fill($request->toArray());
+            $model->save();
+            return redirect()->back();
+        }
         $users = User::orderBy('created_at', 'desc')->get();
         return view('admin.enquiries')->with(['users' => $users]);
     }
