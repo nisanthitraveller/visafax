@@ -121,7 +121,9 @@ section.banner.inner-payment h2{
     width: 50%;
 }
 .doc-list:hover {
-  box-shadow: 0 0 11px rgba(33,33,33,.2); 
+  /*box-shadow: 0 0 11px rgba(33,33,33,.2); */
+  /*border-left: 5px solid #4f6dce;*/
+  
 }
 .desc-color {
     padding: 0px 27px 0 42px; 
@@ -150,6 +152,12 @@ span.sm-desc {
     padding: 0 !important;
     width: 28px !important;
     position: relative;
+}
+.content-tabs p {
+    text-align: justify;
+}
+.content-tabs ul li {
+    margin-bottom: 5px;
 }
 @media screen and (max-width: 767px) {
     .dos-name a {

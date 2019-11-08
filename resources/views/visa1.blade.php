@@ -34,7 +34,7 @@ Visa {{$country['countryName']}}
 
         <ul class="tablist">
 
-            <li class="active current">
+            <li class="active">
                 <span class="tb-name">Initiation</span>
                 <span class="tb-year">
                     {{date('d M, y', time())}}
@@ -104,7 +104,7 @@ Visa {{$country['countryName']}}
                     </div>
                     <div class="sm-sections">
                         <h2>A quick guide about {{$country['countryName']}} visa process</h2>
-                        <p>content 1</p>
+                        <p>Here you find a quick, but comprehensive summary of items to be noted as part of your visa application to {{$country['countryName']}}.</p>
                     </div>
                     <div class="sm-sections mt-3 mb-4 row">
 
@@ -121,7 +121,7 @@ Visa {{$country['countryName']}}
                     </div>
                     <div class="sm-sections mt-3 mb-4 row content-tabs" id="th-know">
                         <h2>Know everything about {{$country['countryName']}} visa process</h2>
-                        <p>content 2</p>
+                        <p>The below is a comprehensive summary of items that comes handy while you start preparing your {{$country['countryName']}} visa application.</p>
                         <div class="col-xl-12 col-md-12 col-sm-12 tab-img pr-0 pl-0">
                             <img src="{{url('/')}}/images/img-read1.jpg">
                         </div>
@@ -130,7 +130,7 @@ Visa {{$country['countryName']}}
                     </div>
                     <div class="sm-sections mt-0 mb-4 row content-tabs" id="checklist">
                         <h2>{{$country['countryName']}} Visa Document Checklist</h2>
-                        <p>content 3</p>
+                        <p>Here we have tried summarising the key documents to be prepared while applying for your visa for {{$country['countryName']}}. </p>
                         <div class="col-xl-12 col-md-12 col-sm-12 tab-img pr-0 pl-0">
                             <img src="{{url('/')}}/images/img-read3.jpg">
                         </div>
@@ -139,7 +139,7 @@ Visa {{$country['countryName']}}
                     </div>
                     <div class="sm-sections mt-0 mb-4 row content-tabs" id="faq">
                         <h2>FAQ</h2>
-                        <p>content 4</p>
+                        <p>We understand that you may have many questions in mind, before you apply for your visa. Some of them may get answered below. For any more queries, write or call us,</p>
                         <div class="col-xl-12 col-md-12 col-sm-12 tab-img pr-0 pl-0">
                             <img src="{{url('/')}}/images/img-read4.jpg">
                         </div>
@@ -155,7 +155,7 @@ Visa {{$country['countryName']}}
                             <div class="row">
 
                                 <h4>Read More on {{$country['countryName']}} Visa Process</h4>
-                                <p>content 5</p>
+                                <p>Some of our experts have compiled a lot more information that you may find useful, that contain varied nuances how things work with visa application, submission, Embassies and immigration centers. Please find them below in our blog.</p>
 
                                 <div class="stories owl-carousel owl-theme">
                                     @if(!empty($feeds['items']))
