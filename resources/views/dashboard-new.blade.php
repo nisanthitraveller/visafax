@@ -323,13 +323,13 @@ Visa Documents
                                     </div>
 
 
-                                    <div class="col-lg-3 col-md-3 col-sm-3 row-bgd">
+                                    <!--<div class="col-lg-3 col-md-3 col-sm-3 row-bgd">
                                         <div class="col-md-12 col-12 row-dta">
-<!--                                            <div class="do-ic">
+                                            <div class="do-ic">
                                                 <img src="images/track.png"> Track status
-                                            </div>-->
+                                            </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                             <div class="col-sm-12 mb-2 ">
