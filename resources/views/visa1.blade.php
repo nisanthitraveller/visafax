@@ -120,6 +120,7 @@ Visa {{$country['countryName']}}
                         <div class="col-xl-12 col-md-12 col-sm-12 tab-img pr-0 pl-0">
                             <img src="{{url('/')}}/images/img-read1.jpg">
                         </div>
+                        <div style="width: 100%">&nbsp;</div>
                         <?php echo ($country['description']) ?>
                     </div>
                     <div class="sm-sections mt-0 mb-4 row content-tabs" id="checklist">
@@ -128,6 +129,7 @@ Visa {{$country['countryName']}}
                         <div class="col-xl-12 col-md-12 col-sm-12 tab-img pr-0 pl-0">
                             <img src="{{url('/')}}/images/img-read3.jpg">
                         </div>
+                        <div style="width: 100%">&nbsp;</div>
                         <?php echo ($country['description2']) ?>
                     </div>
                     <div class="sm-sections mt-0 mb-4 row content-tabs" id="faq">
@@ -138,7 +140,7 @@ Visa {{$country['countryName']}}
                         </div>
                         <div style="width: 100%">&nbsp;</div>
                         <?php echo ($country['description3']) ?>
-                        <h2>Still having queries? Connect on WhatsApp or Mail</h2>
+                        <h2 class="social-head">Still having queries? Connect on WhatsApp or Mail</h2>
                         <div class="col-12 fur-cnt mb-4">
                             <div class="row">
                                 <a href="mailto:hello@visabadge.com" ><i class="ic-cnt"><img src="{{url('/')}}/images/enve.png"></i>hello@visabadge.com</a>
