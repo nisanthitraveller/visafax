@@ -136,7 +136,7 @@ Visa {{$country['countryName']}}
                         <div class="col-xl-12 col-md-12 col-sm-12 tab-img pr-0 pl-0">
                             <img src="{{url('/')}}/images/img-read4.jpg">
                         </div>
-                        <div style="margin-top: 1rem !important">&nbsp;</div>
+                        <div style="width: 100%">&nbsp;</div>
                         <?php echo ($country['description3']) ?>
                         <h2>Still having queries? Connect on WhatsApp or Mail</h2>
                         <div class="col-12 fur-cnt mb-4">
