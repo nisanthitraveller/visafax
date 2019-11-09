@@ -234,12 +234,13 @@ class GoogleController extends Controller {
             $return['status'] = true;
             $userId = $payload['sub'];
             
-            $finduser = User::where('provider_id', $userId)->first();
+            $finduser = User::where('email', $payload['email'])->first();
             
             if ($finduser) {
                 $return['redirect'] = true;
                 $finduser->first_name = $payload['given_name'];
                 $finduser->last_name = $payload['family_name'];
+                $finduser->provider_id = $payload['sub'];
                 $finduser->save();
                 
                 $input['userId'] = $finduser->id;
@@ -283,9 +284,17 @@ class GoogleController extends Controller {
                             ->subject('VisaBadge: New User ' . $payload['name']);
                 });
                 
-                
-                
             }
+            
+            // Send mail to User
+            Mail::send('mail.create-visa', ['user' => $auth], function($message) use($auth) {
+                $message->from('operations@visabadge.com', 'Operations VisaBadge');
+                $message->to($auth->email, $auth->name)
+                        ->bcc('shiju.radhakrishnan@visabadge.com')
+                        ->bcc('shiju.radhakrishnan@itraveller.com')
+                        ->bcc('nisanth.kumar@itraveller.com')
+                        ->subject($auth->name . ', this is about your visa application');
+            });
             
         } else {
             $return['status'] = false;
@@ -331,6 +340,16 @@ class GoogleController extends Controller {
         
         $return['status'] = true;
         $return['parentId'] = $parentId;
+        
+        // Send mail to User
+        Mail::send('mail.create-visa', ['user' => $user], function($message) use($user) {
+            $message->from('operations@visabadge.com', 'Operations VisaBadge');
+            $message->to($user->email, $user->name)
+                    ->bcc('shiju.radhakrishnan@visabadge.com')
+                    ->bcc('shiju.radhakrishnan@itraveller.com')
+                    ->bcc('nisanth.kumar@itraveller.com')
+                    ->subject($user->name . ', this is about your visa application');
+        });
         
         return json_encode($return);
     }

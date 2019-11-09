@@ -309,43 +309,4 @@ Apply visas
         </div>
     </div>
 </section>
-@if (!Auth::guest())
-<div class="modal fade popus" id="connect-modal-user" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">×</button>
-            </div>
-            <!-- Modal body -->
-            <div class="modal-body">
-                <img src="{{url('/')}}/images/modal-img.png">
-                <h3>Welcome back, {{Auth::user()->name}}!</h3>
-                <p>Do you want to visit My Visas page to view your old visa applications or create a new visa application?</p>
-                <div class="col-sm-12 logind-links">
-                    <a href="javascript:void(0)" onclick="$('#connect-modal-user').modal('hide'); $('.typeahead').focus()">Get New Visa</a>
-                    <a href="{{url('/')}}/dashboard">Go to My Visas</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endif
 @endsection
-@if (!Auth::guest())
-@section('scripts')
-<script type="text/javascript">
-    $(window).on('load', function () {
-        $('#connect-modal-user').modal('show');
-    });
-</script>
-@endsection
-@elseif($dashboard == true)
-    @section('scripts')
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#connect-modal').modal('show');
-        });
-    </script>
-    @endsection
-@endif

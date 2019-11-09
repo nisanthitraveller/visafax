@@ -16,8 +16,9 @@
                         <td>
                             <form method="GET" enctype="multipart/form-data" class="your-dts">
                                 <select name="status" onchange="$(this).parents('form:first').submit()">
-                                    <option value="0" <?php echo ($documentType['status'] == 0) ? 'selected' : null; ?>>Verification Ongoing</option>
-                                    <option value="1" <?php echo ($documentType['status'] == 1) ? 'selected' : null; ?>>Verified</option>
+                                    <option value="0" <?php echo ($documentType['status'] == 0) ? 'selected' : null; ?>>Pending - Customer Review</option>
+                                    <option value="1" <?php echo ($documentType['status'] == 1) ? 'selected' : null; ?>>Pending - VisaBadge Review</option>
+                                    <option value="2" <?php echo ($documentType['status'] == 2) ? 'selected' : null; ?>>Verified</option>
                                 </select>
                                 <input type="hidden" name="id" value="{{$documentType['id']}}" />
                             </form>

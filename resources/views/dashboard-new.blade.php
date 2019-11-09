@@ -153,7 +153,7 @@ Visa Documents
                         @endif
                         <div class="container mb-4 dash-titles">
                             <div class="row">
-                                <div class="col-md-9 col-sm-12 row-bg">
+                                <div class="col-md-12 col-sm-12 row-bg">
 
                                     <div class="col-lg-4 col-md-4 col-sm-12 col-12  row-dta">
                                         <div class="do-ic"><img src="{{url('/')}}/images/doc2.png">{{$visaDetails['user']['FirstName']}} {{$visaDetails['user']['Surname']}}</div>
@@ -229,20 +229,24 @@ Visa Documents
                                     @if($document['DriveId'] == '')
                                     <div class="up-btn">
                                         <img src="{{url('/')}}/images/upload-active.png">
-                                        <?php $text = (count($document1) >= 1 && $document['pdf'] != '') ? 'Upload New' : 'Upload'; ?>
+                                        <?php $text = (count($document1) >= 1 && $document['pdf'] != '') ? 'Uploaded' : 'Upload'; ?>
                                         <label for="file" class="up-doc" onclick="$('#docTYpe').val({{$k}}); $('.right-sidebar').toggle()">{{$text}}</label>
                                     </div>
                                     @endif
                                 </div>
                                 <div class="col-md-1 col-sm-2 col-2 doc-col-3">
                                     <div class="up-sucess-btn" data-position="top right">
-                                        @if($document['status'] == 1)
-                                        <span class="up-succss" data-toggle="tooltip" data-placement="top" title="Verified">
+                                        @if($document['status'] == 2)
+                                        <span class="up-succss" data-toggle="tooltip" data-placement="top" title="Verified & Ready to Download">
                                             <i class="fa fa-check"></i>
                                         </span>
-                                        @else
-                                        <span class="up-progrs" data-toggle="tooltip" data-placement="top" title="Verification Ongoing">
+                                        @elseif($document['status'] == 1)
+                                        <span class="up-progrs" data-toggle="tooltip" data-placement="top" title="Pending - VisaBadge Review">
                                             <i class="fa fa-clock"></i>
+                                        </span>
+                                        @else
+                                        <span class="up-warning" data-toggle="tooltip" data-placement="top" title="Pending - Customer Review">
+                                            <i class="fa fa-exclamation"></i>
                                         </span>
                                         @endif
                                     </div>

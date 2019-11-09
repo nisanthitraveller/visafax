@@ -64,9 +64,9 @@ class HomeController extends Controller
                 ->first()->toArray();
         $feeds = $blogObj->getFeeds();
         if(strpos($path, 'visa1') !== false) {
-            return view('visa1')->with(['country' => $country, 'feeds' => $feeds]);
-        } else {
             return view('visa')->with(['country' => $country, 'feeds' => $feeds]);
+        } else {
+            return view('visa1')->with(['country' => $country, 'feeds' => $feeds]);
         }
     }
     

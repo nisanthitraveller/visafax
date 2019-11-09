@@ -159,6 +159,21 @@ span.sm-desc {
 .content-tabs ul li {
     margin-bottom: 5px;
 }
+.dropdown-menu.show {
+    right: 0px !important;
+    left: auto;
+}
+span.up-warning {
+    display: inline-block;
+    background: #FA8072;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    line-height: 23px;
+}
 @media screen and (max-width: 767px) {
     .dos-name a {
         font-size: 14px;

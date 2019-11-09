@@ -11,14 +11,13 @@
                 </ul>
                 @else
                 <ul>
-                    <li class="active">
+                    <li class="active"><a href="{{ route('my-visas') }}">{{ __('My Visas') }}</a></li>
+                    <li>
                         <div class="dropdown">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                 <img src="{{ Auth::user()->avatar }}">
-                                <span class="user-title d-none d-sm-inline">{{ Auth::user()->name }}</span>
                             </button>
                             <div class="dropdown-menu">
-                                <a href="{{ route('my-visas') }}" class="dropdown-item my-visa">{{ __('My Visas') }}</a>
                                 <a class="dropdown-item my-visa" href="javascript: void(0)"
                                    onclick="signOut(); event.preventDefault();
                                             document.getElementById('logout-form').submit();">

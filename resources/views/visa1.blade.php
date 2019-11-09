@@ -29,25 +29,20 @@ Visa {{$country['countryName']}}
     </div>
 </section>
 <div class="dasboard-detail-wrap">
-
     <div class="container">
-
-        <ul class="tablist">
-
-            <li class="active">
-                <span class="tb-name">Initiation</span>
-                <span class="tb-year">
-                    {{date('d M, y', time())}}
-                </span>
-            </li>
-            <li><span class="tb-name">Upload Docs</span></li>
-            <li><span class="tb-name">Documentation</span></li>
-            <li><span class="tb-name">Verification</span></li>
-            <li><span class="tb-name">Submission</span></li>
-            <li><span class="tb-name">Approval</span></li>
-
-        </ul>
-
+            <ul class="tablist">
+                <li class="active">
+                    <a>
+                        <span class="tb-name">Upload Docs</span>
+                        <span class="tb-year">{{date('d M, y', time())}}</span>
+                    </a>
+                </li>
+                <li><a><span class="tb-name">Prepare Docs</span></a></li>
+                <li><a><span class="tb-name">Payment</span></a></li>
+                <li><a><span class="tb-name">Verification</span></a></li>
+                <li><a><span class="tb-name">Submission</span></a></li>
+                <li><a><span class="tb-name">Approval</span></a></li>
+            </ul>
     </div>
 
     <div class="inner">
@@ -57,7 +52,7 @@ Visa {{$country['countryName']}}
                     <div class="row mb-2 ">
                         <div class="col-md-12 col-sm-12 col-12 doc-block">
                             <h2>Start your visa application</h2>
-                            <p>Please provide the below informations for initiating the process. And you can upload the necessary documents in the next step</p>
+                            <p>Here you can start your visa processing. Choose a country and on the next page, you will have more details on the visa processing & documents needed</p>
                         </div>
                     </div>
 
@@ -125,7 +120,6 @@ Visa {{$country['countryName']}}
                         <div class="col-xl-12 col-md-12 col-sm-12 tab-img pr-0 pl-0">
                             <img src="{{url('/')}}/images/img-read1.jpg">
                         </div>
-                        <h4>Key points to note</h4>
                         <?php echo ($country['description']) ?>
                     </div>
                     <div class="sm-sections mt-0 mb-4 row content-tabs" id="checklist">
@@ -134,21 +128,21 @@ Visa {{$country['countryName']}}
                         <div class="col-xl-12 col-md-12 col-sm-12 tab-img pr-0 pl-0">
                             <img src="{{url('/')}}/images/img-read3.jpg">
                         </div>
-                        <h5>Please note the below key aspects before starting your work on documents,</h5>
                         <?php echo ($country['description2']) ?>
                     </div>
                     <div class="sm-sections mt-0 mb-4 row content-tabs" id="faq">
-                        <h2>FAQ</h2>
+                        <h2>FAQs on {{$country['countryName']}} Visa Processing</h2>
                         <p>We understand that you may have many questions in mind, before you apply for your visa. Some of them may get answered below. For any more queries, write or call us,</p>
                         <div class="col-xl-12 col-md-12 col-sm-12 tab-img pr-0 pl-0">
                             <img src="{{url('/')}}/images/img-read4.jpg">
                         </div>
+                        <div style="margin-top: 1rem !important">&nbsp;</div>
                         <?php echo ($country['description3']) ?>
-                        <h4>Still having queries? Connect on WhatsApp or Mail</h4>
+                        <h2>Still having queries? Connect on WhatsApp or Mail</h2>
                         <div class="col-12 fur-cnt mb-4">
                             <div class="row">
                                 <a href="mailto:hello@visabadge.com" ><i class="ic-cnt"><img src="{{url('/')}}/images/enve.png"></i>hello@visabadge.com</a>
-                                <a href="https://wa.me/+91 9633 262 579" ><i class="ic-cnt"><img src="{{url('/')}}/images/whats.png"></i>+91 9633 262 579</a>
+                                <a href="https://wa.me/+91 999 5020 746" ><i class="ic-cnt"><img src="{{url('/')}}/images/whats.png"></i>+91 999 5020 746</a>
                             </div>
                         </div>
                         <div class="col-12 more-slider mb-3" id="stories">
