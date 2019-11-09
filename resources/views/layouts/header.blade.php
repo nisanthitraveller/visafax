@@ -11,7 +11,7 @@
                 </ul>
                 @else
                 <ul>
-                    <li class="active"><a href="{{ route('my-visas') }}">{{ __('My Visas') }}</a></li>
+                    <li class="active"><a class="btn btn-outline-primary" href="{{ route('my-visas') }}">{{ __('My Visas') }}</a></li>
                     <li>
                         <div class="dropdown">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
