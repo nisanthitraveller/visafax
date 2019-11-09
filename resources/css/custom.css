@@ -155,7 +155,7 @@ span.sm-desc {
 }
 .content-tabs p {
     text-align: justify;
-    margin-bottom: 0 !important;
+    margin-bottom: 5px !important;
 }
 .content-tabs ul li {
     margin-bottom: 5px;
