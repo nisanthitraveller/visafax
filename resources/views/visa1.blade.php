@@ -56,7 +56,7 @@ Visa {{$country['countryName']}}
                         </div>
                     </div>
 
-                    <form class="your-dts page-detail">
+                    <form class="your-dts page-detail" id="visaForm">
                         <div class="row">
                             <div class="col-xl-5 col-md-5 col-sm-4 col-6 data-colt ">
 
