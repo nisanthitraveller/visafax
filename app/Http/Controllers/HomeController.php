@@ -60,8 +60,7 @@ class HomeController extends Controller
     {
         $path = $request->path();
         $blogObj = new \App\Models\Blog();
-        $country = Country::where("countryName", str_replace('-', ' ', $visaUrl))
-                ->first()->toArray();
+        $country = Country::where("countryName", str_replace('-', ' ', $visaUrl))->first()->toArray();
         $feeds = $blogObj->getFeeds();
         if(strpos($path, 'visa1') !== false) {
             return view('visa')->with(['country' => $country, 'feeds' => $feeds]);
