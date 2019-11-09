@@ -178,6 +178,9 @@ span.up-warning {
 .main-nav ul li.active a {
     font-weight: bold !important;
 }
+.main-nav ul li.active a:hover {
+    color: #fff;
+}
 button.btn.btn-primary.dropdown-toggle img {
     margin-left: 10px !important;
     margin-right: 0px !important;
