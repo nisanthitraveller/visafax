@@ -71,6 +71,7 @@
         if (the_id === '#') {
           return;
         }
+        $(the_id).show();
         $('html, body').animate({
           scrollTop:$(the_id).offset().top
         }, 'slow');
