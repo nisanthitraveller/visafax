@@ -153,6 +153,8 @@ class VisaController extends Controller
         $agent = new Agent();
         $allVisa = $visaObj->getAllMyVisa($user->id);
         $allVisa = json_decode(json_encode($allVisa), True);
+        $users = \App\Models\UserInfo::where("user_id", $user->id)->select('id')->get()->toArray();
+        $userIds = array_column($users, 'id');
         $destinationPath = 'uploads';
         $bookingId = isset($allVisa[0]) ? $allVisa[0]['id'] : null;
         if($request['bookingID']) {
@@ -165,6 +167,9 @@ class VisaController extends Controller
         $documents = $booking = [];
         if($bookingId != null) {
             $booking = \App\Models\Bookings::where("id", $bookingId)->with('user')->with('child')->first()->toArray();
+            if(!in_array($booking['user_id'], $userIds)) {
+                return redirect('/dashboard');
+            }
             $assignedDocuments = \App\Models\BookingDocument::where('BookingID', $bookingId)->with('documenttype')->get()->toArray();
             foreach ($assignedDocuments as $assignedDocument) {
                 $documents[$assignedDocument['DocumentID']][] = $assignedDocument;
