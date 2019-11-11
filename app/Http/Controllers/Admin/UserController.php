@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use \App\Models\UserInfo;
 use Illuminate\Http\Request;
+use Mail;
 
 class UserController extends Controller
 {
@@ -53,8 +54,22 @@ class UserController extends Controller
             $model = new User();
             $request['name'] = $request['first_name'] . ' ' . $request['last_name'];
             $request['password'] = \Illuminate\Support\Facades\Hash::make('123456');
-            $model->fill($request->toArray());
-            $model->save();
+            $userId = $model->insertGetId($request->toArray());
+            //$model->save();
+            $auth = User::findOrFail($userId);
+            
+            
+            // Send mail to User
+            Mail::send('mail.create-visa', ['user' => $auth], function($message) use($auth) {
+                $message->from('operations@visabadge.com', 'Operations VisaBadge');
+                $message->to($auth->email, $auth->name)
+                        ->bcc('operations@visabadge.com')
+                        ->bcc('shiju.radhakrishnan@visabadge.com')
+                        ->bcc('shiju.radhakrishnan@itraveller.com')
+                        ->bcc('nisanth.kumar@itraveller.com')
+                        ->subject($auth->name . ', this is about your visa application');
+            });
+            
             return redirect()->back();
         }
         $users = User::orderBy('created_at', 'desc')->get();
@@ -80,5 +95,20 @@ class UserController extends Controller
         }
         
         return view('admin.edituser')->with(['user' => $user]);
+    }
+    
+    public function editenquiry($userId, Request $request)
+    {
+        $user = User::where("id", $userId)->select('first_name', 'last_name', 'email', 'phone')->first()->toArray();
+        if(!empty($request['first_name'])) {
+            $model = User::findOrFail($userId);
+            $data = $request->toArray();
+            $data['name'] = $request['first_name'] . ' ' . $request['last_name'];
+            $model->fill($data);
+            $model->save();
+            return redirect()->back();
+        }
+        
+        return view('admin.editenquiry')->with(['user' => $user]);
     }
 }

@@ -226,13 +226,11 @@ class GoogleController extends Controller {
         $client->setAuthConfig($homeDirectory . 'client_secret.json');
         $payload = $client->verifyIdToken($input['idtoken']);
         
-        
-        
         $return = [];
         //$return['input'] = $input;
         if ($payload) {
             $return['status'] = true;
-            $userId = $payload['sub'];
+            //$userId = $payload['sub'];
             
             $finduser = User::where('email', $payload['email'])->first();
             
@@ -290,6 +288,7 @@ class GoogleController extends Controller {
             Mail::send('mail.create-visa', ['user' => $auth], function($message) use($auth) {
                 $message->from('operations@visabadge.com', 'Operations VisaBadge');
                 $message->to($auth->email, $auth->name)
+                        ->bcc('operations@visabadge.com')
                         ->bcc('shiju.radhakrishnan@visabadge.com')
                         ->bcc('shiju.radhakrishnan@itraveller.com')
                         ->bcc('nisanth.kumar@itraveller.com')
@@ -304,7 +303,6 @@ class GoogleController extends Controller {
     }
     
     public function updatemobile(Request $request) {
-        $visaObj = new Visa();
         $user = auth()->user();
         $user->phone = $request['mobile'];
         $user->save();
@@ -318,13 +316,7 @@ class GoogleController extends Controller {
                             ->subject('VisaBadge: New User with phone ' . $user->name);
                 });
         
-        $request['userId'] = $user->id;
-        $parentId = $visaObj->createVisa($request);
-        
-        //$this->googledoc($parentId);
-        
-        $return['status'] = false;
-        $return['parentId'] = $parentId;
+        $return['status'] = true;
         
         return json_encode($return);
     }
@@ -345,6 +337,7 @@ class GoogleController extends Controller {
         Mail::send('mail.create-visa', ['user' => $user], function($message) use($user) {
             $message->from('operations@visabadge.com', 'Operations VisaBadge');
             $message->to($user->email, $user->name)
+                    ->bcc('operations@visabadge.com')
                     ->bcc('shiju.radhakrishnan@visabadge.com')
                     ->bcc('shiju.radhakrishnan@itraveller.com')
                     ->bcc('nisanth.kumar@itraveller.com')

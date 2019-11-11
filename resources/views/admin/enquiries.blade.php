@@ -15,7 +15,7 @@
                     <input type="text" class="form-control" required name="last_name" placeholder="Last name">
                 </div>
                 <div class="col-md-2">
-                    <input type="text" class="form-control" required name="email" placeholder="Email">
+                    <input type="text" class="form-control" name="email" placeholder="Email">
                 </div>
                 <div class="col-md-2">
                     <input type="text" class="form-control" name="phone" placeholder="Phone">
@@ -36,6 +36,7 @@
                         <th>Email ID</th>
                         <th>Phone</th>
                         <th>Enquiry Date</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,6 +48,11 @@
                         <td>{{$user->email}}</td>
                         <td>{{$user->phone}}</td>
                         <td>{{date('d.m.y H:i', strtotime($user->created_at) + (5.5 * 60 * 60))}}</td>
+                        <td>
+                            <a href="{!! route('admin.editenquiry', [$user->id]) !!}">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
