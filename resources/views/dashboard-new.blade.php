@@ -258,15 +258,15 @@ Visa Documents
                         @endforeach
                         <div>&nbsp;</div>
                         @if($visaDetails['paid'] == 1)
-                        <div class="col-sm-12 pay-dets">
-                            <div class="row">
-                                <div class="col-md-12 pay-dets-in">
-                                    <h4>Payment details</h4>
-                                    <p>Amount paid {{number_format($visaDetails['amount_paid'])}}  |  Paid on {{date('d M, y', strtotime($visaDetails['payment_date']))}}</p>
-                                    <p>Mode of payment {{$visaDetails['payment_response']}}</p>
+                            <div class="col-sm-12 pay-dets">
+                                <div class="row">
+                                    <div class="col-md-12 pay-dets-in">
+                                        <h4>Payment details</h4>
+                                        <p>Amount paid {{number_format($visaDetails['amount_paid'])}}  |  Paid on {{date('d M, y', strtotime($visaDetails['payment_date']))}}</p>
+                                        <p>Mode of payment {{$visaDetails['payment_response']}}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         @else
                         <?php
                         $booking = $visaDetails;
@@ -277,22 +277,15 @@ Visa Documents
                         ?>
                         <div class="col-sm-12 pay-dets">
                             <div class="row">
-                                <div class="col-md-6 pay-dets-in">
-                                    @if(!empty($countryPrices))
-                                    <p>
-                                        Billing Amount: {{number_format($countryPrices['price'] * (count($booking['child']) + 1))}}/-
-                                    </p>
-                                    @endif
-                                    <p>
-                                        Amount Paid: 0/-
-                                    </p>
+                                <div class="col-md-6 align-self-center pay-dets-in">
+                                    <p>Know more about offerings & prices</p>
                                 </div>
                                 <div class="col-md-6 pay-dets-in text-right">
                                     <p>
                                         @if($visaDetails['ParentID'] == 0)
-                                        <a class="btn btn-outline-primary" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}">Make Payment</a>
+                                        <a class="btn btn-outline-primary" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}">Show List of Services</a>
                                         @else
-                                        <a class="btn btn-outline-primary" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['ParentID'] . '?paylater=' . md5($visaDetails['BookingID'])}}">Make Payment</a>
+                                        <a class="btn btn-outline-primary" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['ParentID'] . '?paylater=' . md5($visaDetails['BookingID'])}}">Show List of Services</a>
                                         @endif
                                     </p>
                                 </div>

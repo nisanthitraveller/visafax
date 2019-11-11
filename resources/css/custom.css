@@ -191,6 +191,9 @@ button.btn.btn-primary.dropdown-toggle img {
 .social-head {
     margin: 25px 0 !important;
 }
+.owl-carousel .owl-item img {
+    height: 162px;
+}
 @media screen and (max-width: 767px) {
     .dos-name a {
         font-size: 14px;
