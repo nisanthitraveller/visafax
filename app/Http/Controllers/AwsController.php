@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use AWS;
 use Aws\Textract\TextractClient;
-
+use Storage;
+use Illuminate\Http\Request;
 class AwsController extends Controller
 {
     //private $projectName = 'VisaBadge';
@@ -43,22 +44,22 @@ class AwsController extends Controller
             'Document' => [ // REQUIRED
                 'S3Object' => [
                     'Bucket' => 'visabadge-bucket',
-                    'Name' => 'test.png'
+                    'Name' => 'passport1.jpeg'
                 ],
             ],
-            'FeatureTypes' => ['FORMS'], // REQUIRED
+            'FeatureTypes' => ['TABLES'], // REQUIRED
         ]);
         dd($result);
     }
     public function store(Request $request)
        {
            $this->validate($request, [
-               'image' => 'required|image|max:2048'
+               'image' => 'required|max:2048'
            ]);
            if ($request->hasFile('image')) {
                $file = $request->file('image');
-               $name = time() . $file->getClientOriginalName();
-           $filePath = 'images/' . $name;
+               $name = $file->getClientOriginalName();
+           $filePath = $name;
            Storage::disk('s3')->put($filePath, file_get_contents($file));
        }
        return back()->withSuccess('Image uploaded successfully');
@@ -67,5 +68,13 @@ class AwsController extends Controller
    {
        Storage::disk('s3')->delete('images/' . $image);
        return back()->withSuccess('Image was deleted successfully');
+   }
+   
+   public function image()
+   {
+        $url = 'https://' . env('AWS_BUCKET') . '.s3.amazonaws.com/';
+        $s3 = AWS::createClient('s3');
+        $images = $s3->listObjects(['Bucket' => 'visabadge-bucket'])->toArray();
+        return view('bucket-images')->with(array('images' => $images['Contents'], 'url' => $url));
    }
 }
