@@ -37,14 +37,14 @@ img.media-object {
     left: 45%;
     width: 64px;
     height: 64px;
-    padding:30px 15px 0px;
+    padding: 12px;
     border: 3px solid #ababab;
-    box-shadow:1px 1px 10px #ababab;
-    border-radius:20px;
+    box-shadow: 1px 1px 10px #ababab;
+    border-radius: 20px;
     background-color: white;
     z-index: 1002;
-    text-align:center;
-    overflow: auto;
+    text-align: center;
+    overflow: hidden;
 }
 #app {
     min-height: 300px;

@@ -266,11 +266,11 @@ class GoogleController extends Controller {
                     'avatar' => $payload['picture'],
                 ]);
                 
-                $auth = auth()->login($newUser, true);
+                $auth = auth()->loginUsingId($newUser->id, true);
                 
                 // Mobile bypass
                 $input['userId'] = $newUser->id;
-                $parentId = $visaObj->createVisa($input);
+                $parentId = $visaObj->createVisa($input, $auth);
                 
                 // Send mail with User details
                 Mail::send('mail.user-details', ['payload' => $payload], function($message) use($payload) {
@@ -326,7 +326,7 @@ class GoogleController extends Controller {
         $user = auth()->user();
         
         $input['userId'] = $user->id;
-        $parentId = $visaObj->createVisa($input);
+        $parentId = $visaObj->createVisa($input, $user);
         
         //$this->googledoc($parentId);
         

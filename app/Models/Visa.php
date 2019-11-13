@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\File;
 
 class Visa {
 
-    public function createVisa($data) {
-        
-        $user = auth()->user();
+    public function createVisa($data, $user = null) {
+        if(empty($user)) {
+            $user = auth()->user();
+        }
         $lastId = \Illuminate\Support\Facades\DB::table('bookings')->max('id');
         $countryDocuments = Document::where('country_id', $data['vistingCountry'])->select('document_type', 'document_id', 'pdf', 'display')->get()->toArray();
         $parentId = 0;

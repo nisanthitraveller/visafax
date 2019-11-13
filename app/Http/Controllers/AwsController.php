@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use AWS;
+use Aws\Textract\TextractClient;
 
 class AwsController extends Controller
 {
@@ -27,7 +28,27 @@ class AwsController extends Controller
     {
         
         $s3 = AWS::createClient('s3');
-        dd($s3->listObject(['Bucket' => 'arn:aws:s3:::textract-console-us-east-1-99c77c15-6a14-4050-ad5a-3d3366db6002']));
+        $client = new TextractClient([
+            'region' => env('AWS_DEFAULT_REGION'),
+            'version' => 'latest',
+            'aws_access_key_id' => env('AWS_ACCESS_KEY_ID'),
+            'aws_secret_access_key' => env('AWS_SECRET_ACCESS_KEY'),
+        ]);
+        $files = $s3->listObjects(['Bucket' => 'visabadge-bucket']);
+        //dd($files);
+        //foreach($files->Contents as $file) {
+            
+        //}
+        $result = $client->analyzeDocument([
+            'Document' => [ // REQUIRED
+                'S3Object' => [
+                    'Bucket' => 'visabadge-bucket',
+                    'Name' => 'test.png'
+                ],
+            ],
+            'FeatureTypes' => ['FORMS'], // REQUIRED
+        ]);
+        dd($result);
     }
     public function store(Request $request)
        {

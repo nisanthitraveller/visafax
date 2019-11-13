@@ -37,6 +37,7 @@
                         <th>Phone</th>
                         <th>Enquiry Date</th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,6 +52,11 @@
                         <td>
                             <a href="{!! route('admin.editenquiry', [$user->id]) !!}">
                                 <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{!! route('admin.deleteenquiry', [$user->id]) !!}">
+                                <i class="fas fa-trash"></i>
                             </a>
                         </td>
                     </tr>

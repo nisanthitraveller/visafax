@@ -111,4 +111,25 @@ class UserController extends Controller
         
         return view('admin.editenquiry')->with(['user' => $user]);
     }
+    
+    public function deleteenquiry($userId)
+    {
+        $userList = UserInfo::where("user_id", $userId)->select('id')->get();
+        foreach($userList as $childUser) {
+            $bookings = \App\Models\Bookings::where("user_id", $childUser->id)->with('child')->select('id')->get()->toArray();
+            foreach($bookings as $booking) {
+                \App\Models\BookingDocument::where("BookingID", $booking['id'])->delete();
+                if(!empty($booking['child'])) {
+                    foreach($booking['child'] as $childBooking) {
+                        \App\Models\BookingDocument::where("BookingID", $childBooking['id'])->delete();
+                    }
+                }
+            }
+            \App\Models\Bookings::where("user_id", $childUser->id)->with('child')->delete();
+        }
+        UserInfo::where("user_id", $userId)->delete();
+        User::where("id", $userId)->delete();
+        
+        return redirect('/bo/enquiries');
+    }
 }

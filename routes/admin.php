@@ -14,6 +14,7 @@ Route::get('/users', 'Admin\UserController@get')->name('admin.users');
 Route::any('/edituser/{userId}', 'Admin\UserController@edituser')->name('admin.edituser');
 Route::get('/enquiries', 'Admin\UserController@enquiries')->name('admin.enquiries');
 Route::any('/editenquiry/{userId}', 'Admin\UserController@editenquiry')->name('admin.editenquiry');
+Route::any('/deleteenquiry/{userId}', 'Admin\UserController@deleteenquiry')->name('admin.deleteenquiry');
 
 Route::get('/countries', 'Admin\CountryController@get')->name('admin.countries');
 Route::any('/editcountry/{Id}', 'Admin\CountryController@editcountry')->name('admin.editcountry');
