@@ -25,9 +25,9 @@ class AwsController extends Controller
         ));
     }
     
-    public function bucket()
+    public function bucket(Request $request)
     {
-        
+        $file = isset($request['file']) ? $request['file'] : 'passport1.jpeg';
         $s3 = AWS::createClient('s3');
         $client = new TextractClient([
             'region' => env('AWS_DEFAULT_REGION'),
@@ -44,7 +44,7 @@ class AwsController extends Controller
             'Document' => [ // REQUIRED
                 'S3Object' => [
                     'Bucket' => 'visabadge-bucket',
-                    'Name' => 'passport3.jpeg'
+                    'Name' => $file
                 ],
             ],
             'FeatureTypes' => ['FORMS'], // REQUIRED
@@ -58,9 +58,20 @@ class AwsController extends Controller
            ]);
            if ($request->hasFile('image')) {
                $file = $request->file('image');
-               $name = $file->getClientOriginalName();
-           $filePath = $name;
-           Storage::disk('s3')->put($filePath, file_get_contents($file));
+                $s3 = new \Aws\S3\S3Client([
+			'region'  => env('AWS_DEFAULT_REGION'),
+			'version' => 'latest',
+			'credentials' => [
+                            'key'    => env('AWS_ACCESS_KEY_ID'),
+                            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+			]
+		]);	
+                $s3->putObject(array(
+                    'Bucket'     => env('AWS_BUCKET'),
+                    'Key'        => $file->getClientOriginalName(),
+                    'SourceFile' => $file->getPathname(),
+                    'ACL'    => 'public-read'
+                ));
        }
        return back()->withSuccess('Image uploaded successfully');
    }

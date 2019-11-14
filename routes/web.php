@@ -49,4 +49,5 @@ Route::get('/updatemobile', 'GoogleController@updatemobile')->name('updatemobile
 // AWS URLs
 Route::any('/bucket', 'AwsController@bucket');
 Route::post('/deleteimage/{image}', 'AwsController@destroy')->name('deleteimage');
-Route::post('/images', 'AwsController@store')->name('images');
+Route::get('/s3/images', 'AwsController@image');
+Route::post('/s3/store', 'AwsController@store');

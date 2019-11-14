@@ -36,29 +36,14 @@
                </div>
                <div class="col-sm-8">
                    @if (count($images) > 0)
-                       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                       <div>
                            <div class="carousel-inner">
                                @foreach ($images as $image)
-                                   <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                       <img class="d-block w-100" src="{{ $image['src'] }}" alt="First slide">
-                                       <div class="carousel-caption">
-                                           <form action="{{ url('deleteimage/' . $image['name']) }}" method="POST">
-                                               {{ csrf_field() }}
-                                               {{ method_field('DELETE') }}
-                                               <button type="submit" class="btn btn-default">Remove</button>
-                                           </form>
-                                       </div>
+                                       <img class="d-block w-100" src="{{ $url . $image['Key'] }}" alt="First slide">
+                                       <a href="{{url('deleteimage/' . $image['Key']}}">View Details</a>
                                    </div>
                                @endforeach
                            </div>
-                           <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                               <span class="sr-only">Previous</span>
-                           </a>
-                           <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                               <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                               <span class="sr-only">Next</span>
-                           </a>
                        </div>
                    @else
                        <p>Nothing found</p>
@@ -66,7 +51,7 @@
                </div>
                <div class="col-sm-4">
                    <div class="card border-0 text-center">
-                       <form action="{{ url('/images') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                       <form action="{{ url('/s3/store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                            {{ csrf_field() }}
                            <div class="form-group">
                                <input type="file" name="image" id="image">
