@@ -44,10 +44,10 @@ class AwsController extends Controller
             'Document' => [ // REQUIRED
                 'S3Object' => [
                     'Bucket' => 'visabadge-bucket',
-                    'Name' => 'passport1.jpeg'
+                    'Name' => 'passport3.jpeg'
                 ],
             ],
-            'FeatureTypes' => ['TABLES'], // REQUIRED
+            'FeatureTypes' => ['FORMS'], // REQUIRED
         ]);
         dd($result);
     }
