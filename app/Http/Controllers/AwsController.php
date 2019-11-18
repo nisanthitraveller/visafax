@@ -28,14 +28,14 @@ class AwsController extends Controller
     public function bucket(Request $request)
     {
         $file = isset($request['file']) ? $request['file'] : 'passport1.jpeg';
-        $s3 = AWS::createClient('s3');
+        //$s3 = AWS::createClient('s3');
         $client = new TextractClient([
             'region' => env('AWS_DEFAULT_REGION'),
             'version' => 'latest',
             'aws_access_key_id' => env('AWS_ACCESS_KEY_ID'),
             'aws_secret_access_key' => env('AWS_SECRET_ACCESS_KEY'),
         ]);
-        $files = $s3->listObjects(['Bucket' => 'visabadge-bucket']);
+        //$files = $s3->listObjects(['Bucket' => 'visabadge-bucket']);
         //dd($files);
         //foreach($files->Contents as $file) {
             
@@ -49,7 +49,16 @@ class AwsController extends Controller
             ],
             'FeatureTypes' => ['FORMS'], // REQUIRED
         ]);
-        dd($result);
+        $data = $result->toArray();
+        $url = 'https://' . env('AWS_BUCKET') . '.s3.amazonaws.com/';
+        echo '<img style="width:30%" src="' . $url . $file .'" />';
+        $cnt = 1;
+        foreach($data['Blocks'] as $block) {
+            if($block['BlockType'] == 'LINE' && $block['Text'] != '') {
+                echo '<br>' . $cnt . ' ' . $block['Text'];
+                $cnt++;
+            }
+        }
     }
     public function store(Request $request)
        {

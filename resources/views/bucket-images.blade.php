@@ -40,9 +40,10 @@
                            <div class="carousel-inner">
                                @foreach ($images as $image)
                                        <img class="d-block w-25" src="{{ $url . $image['Key'] }}"  alt="First slide">
-                                       <a href="{{url('bucket?file=' . $image['Key'])}}">View Details</a>
-                                   </div>
+                                       <a target="_blank" href="{{url('bucket?file=' . $image['Key'])}}">View Details</a>
+                                   
                                @endforeach
+                           </div>
                            </div>
                        </div>
                    @else
