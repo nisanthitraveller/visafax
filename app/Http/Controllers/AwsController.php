@@ -6,6 +6,7 @@ use AWS;
 use Aws\Textract\TextractClient;
 use Storage;
 use Illuminate\Http\Request;
+use \Gufy\PdfToHtml\Pdf;
 class AwsController extends Controller
 {
     //private $projectName = 'VisaBadge';
@@ -92,6 +93,15 @@ class AwsController extends Controller
    
    public function image()
    {
+       $file = 'uploads' . '/0VB00021-1-Swissvisa-application_For_Visa_080515(2).pdf';
+       $pdf = new Pdf($file);
+       \Gufy\PdfToHtml\Config::set('pdftohtml.bin', '/usr/bin/pdftohtml');
+
+        // change pdfinfo bin location
+        \Gufy\PdfToHtml\Config::set('pdfinfo.bin', '/usr/bin/pdfinfo');
+       $dom = $pdf->html();
+       
+       dd($dom);
         $url = 'https://' . env('AWS_BUCKET') . '.s3.amazonaws.com/';
         $s3 = AWS::createClient('s3');
         $images = $s3->listObjects(['Bucket' => 'visabadge-bucket'])->toArray();
