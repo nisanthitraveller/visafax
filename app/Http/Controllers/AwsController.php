@@ -95,10 +95,10 @@ class AwsController extends Controller
    {
        $file = 'uploads' . '/0VB00021-1-Swissvisa-application_For_Visa_080515(2).pdf';
        $pdf = new Pdf($file);
-       \Gufy\PdfToHtml\Config::set('pdftohtml.bin', '/usr/bin/pdftohtml');
+       //\Gufy\PdfToHtml\Config::set('pdftohtml.bin', '/usr/bin/pdftohtml');
 
         // change pdfinfo bin location
-        \Gufy\PdfToHtml\Config::set('pdfinfo.bin', '/usr/bin/pdfinfo');
+        //\Gufy\PdfToHtml\Config::set('pdfinfo.bin', '/usr/bin/pdfinfo');
        $dom = $pdf->html();
        
        dd($dom);
