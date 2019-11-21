@@ -8,6 +8,7 @@ use App\Models\Visa;
 use App\Models\Bookings;
 use Jenssegers\Agent\Agent;
 use Mail;
+use App\Models\Country;
 
 class VisaController extends Controller
 {
@@ -19,7 +20,8 @@ class VisaController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
+        $this->middleware('auth', ['except' => 'countrydashboard']);
     }
     
     public function payment($bookingId)
@@ -220,5 +222,14 @@ class VisaController extends Controller
         $view = view('PayUSubmitPayment')->with(array('data' => $request));
         $contents = $view->render();
         return $contents;
+    }
+    
+    public function countrydashboard($visaUrl) {
+        
+        $country = Country::where("countryName", str_replace('-', ' ', $visaUrl))->first()->toArray();
+        
+        $countryDocuments = \App\Models\Document::where('country_id', $country['id'])->with('documenttype')->select('document_type', 'document_id', 'pdf', 'body_business as tooltip', 'display')->get()->toArray();
+        return view('dashboard-country')->with(['countryDocuments' => $countryDocuments]);
+        
     }
 }

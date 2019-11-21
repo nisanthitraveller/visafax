@@ -6,7 +6,7 @@ use AWS;
 use Aws\Textract\TextractClient;
 use Storage;
 use Illuminate\Http\Request;
-use \Gufy\PdfToHtml\Pdf;
+use Gufy\PdfToHtml\Pdf;
 class AwsController extends Controller
 {
     //private $projectName = 'VisaBadge';
@@ -41,16 +41,31 @@ class AwsController extends Controller
         //foreach($files->Contents as $file) {
             
         //}
+        /*$result = $client->startDocumentAnalysis([
+            'DocumentLocation' => [ // REQUIRED
+                'S3Object' => [
+                    'Bucket' => 'textract-console-us-east-1-99c77c15-6a14-4050-ad5a-3d3366db6002',
+                    'Name' => $file
+                ],
+            ],
+            'FeatureTypes' => ['TABLES', 'FORMS'], // REQUIRED
+        ]);
         $result = $client->analyzeDocument([
             'Document' => [ // REQUIRED
                 'S3Object' => [
-                    'Bucket' => 'visabadge-bucket',
+                    'Bucket' => 'textract-console-us-east-1-99c77c15-6a14-4050-ad5a-3d3366db6002',
                     'Name' => $file
                 ],
             ],
             'FeatureTypes' => ['FORMS'], // REQUIRED
         ]);
-        $data = $result->toArray();
+        $data = $result->toArray();*/
+        $result2 = $client->getDocumentAnalysis([
+            'JobId' => '37413011ebb5ad8839745a89f2a0c337263fc0a6eb8b2bc7e5a7ee6d2231ff2b'
+        ]);
+        echo '<pre>';
+        //print_r($data);
+        dd($result2->toArray());
         $url = 'https://' . env('AWS_BUCKET') . '.s3.amazonaws.com/';
         echo '<img style="width:30%" src="' . $url . $file .'" />';
         $cnt = 1;

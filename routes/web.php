@@ -33,6 +33,7 @@ Route::any('/createvisa', 'GoogleController@createvisa');
 Route::any('/testvisa', 'VisaController@testvisa');
 Route::any('/payusubmit', 'VisaController@payusubmit');
 Route::any('/dashboard', 'VisaController@dashboard')->name('my-visas');
+Route::any('/visadetails/{visaUrl}', 'VisaController@countrydashboard');
 Route::any('/dashboard1', 'VisaController@dashboard')->name('my-visas1');
 
 // Static URLs
