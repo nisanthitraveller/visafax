@@ -90,10 +90,12 @@ Visa Documents
 
                                 </div>
                                 <div class="col-md-3 col-sm-3 col-4 doc-col-2">
-                                    <div class="up-btn">
-                                        <img src="{{url('/')}}/images/upload-active.png">
-                                        <label for="file" class="up-doc">Upload</label>
-                                    </div>
+                                    @if(empty($document['document_id']))
+                                        <div class="up-btn">
+                                            <img src="{{url('/')}}/images/upload-active.png">
+                                            <label for="file" class="up-doc">Upload</label>
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="col-md-1 col-sm-2 col-2 doc-col-3">
                                     <div class="up-sucess-btn" data-position="top right">
