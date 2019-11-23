@@ -68,10 +68,10 @@ function onSuccess(googleUser) {
                 console.log('redirect true');
             //} else {
                 //location.href = '/dashboard?popup=1';
-            //    console.log('redirect false');
-            //    $('#connect-modal').modal('hide');
-            //    $('#connect-modal-mobile').modal('show');
-            //    $('#phone1').focus();
+                //console.log('redirect false');
+                //$('#connect-modal').modal('hide');
+                //$('#connect-modal-mobile').modal('show');
+                //$('#phone1').focus();
             //}
         }
     };
