@@ -74,11 +74,24 @@ Visa Documents
                 <div class="row">
                     <div class="col-xl-12 col-md-12 col-sm-12 mt-4 p-47 dashboard-wrap right-sidebar"id="document-listing">
                         <?php $count = 1 ?>
+                        <?php $display = 0 ?>
                         @foreach($countryDocuments as $k => $document)
                         <?php
                             $class = ($document['display'] == 1) ? 'btn' : 'btn disabled';
+                            if($document['display'] == 0) {
+                                $display++;
+                            }
                             $out = strlen($document['documenttype']['type']) > 27 ? substr($document['documenttype']['type'], 0, 27) . "..." : $document['documenttype']['type'];
                         ?>
+                        @if($display == 1 && $document['display'] == 0)
+                        <div class="doc-list" data-toggle="tooltip" data-placement="top">
+                            <div class="row">
+                                <div class="col-md-8 col-sm-7 col-12 doc-cols">
+                                    <h2>Other Documents</h2>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
                         <div class="doc-list" data-toggle="tooltip" data-placement="top" title="{{$document['documenttype']['type']}}">
                             <div class="row">
                                 <div class="col-md-8 col-sm-7 col-12 doc-cols">
@@ -90,7 +103,7 @@ Visa Documents
 
                                 </div>
                                 <div class="col-md-3 col-sm-3 col-4 doc-col-2">
-                                    @if(empty($document['document_id']))
+                                    @if(empty($document['document_id']) && $document['display'] == 1)
                                         <div class="up-btn">
                                             <img src="{{url('/')}}/images/upload-active.png">
                                             <label for="file" class="up-doc">Upload</label>

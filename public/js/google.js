@@ -61,18 +61,18 @@ function onSuccess(googleUser) {
             console.log('Invalid Token');
         } else {
             closeModal();
-            if (response.redirect == true) {
-                //$('#connect-modal').modal('hide');
-                //$('#connect-modal-signup').modal('show');
-                location.href = '/dashboard?popup=1';
-                console.log('redirect true');
-            } else {
-                //location.href = '/dashboard?popup=1';
-                console.log('redirect false');
+            //if (response.redirect == true) {
                 $('#connect-modal').modal('hide');
-                $('#connect-modal-mobile').modal('show');
-                $('#phone1').focus();
-            }
+                //$('#connect-modal-signup').modal('show');
+                location.href = '/dashboard?popup=1&uploadType=' + response.uploadType;
+                console.log('redirect true');
+            //} else {
+                //location.href = '/dashboard?popup=1';
+            //    console.log('redirect false');
+            //    $('#connect-modal').modal('hide');
+            //    $('#connect-modal-mobile').modal('show');
+            //    $('#phone1').focus();
+            //}
         }
     };
     var formParams = urlencodeFormData(data);
