@@ -56,7 +56,8 @@ Visa {{$country['countryName']}}
                         </div>
                     </div>
 
-                    <form class="your-dts page-detail" id="visaForm">
+                    <form class="your-dts page-detail" method="post" id="visaForm" action="{{url('/')}}/visadetails/{{str_replace('', '-', strtolower($country['countryName']))}}">
+                        @csrf
                         <div class="row">
                             <div class="col-xl-5 col-md-5 col-sm-4 col-6 data-colt ">
 
@@ -92,7 +93,7 @@ Visa {{$country['countryName']}}
 
                     <div class="col-sm-12 text-center down-bnch  mb-5">
                         @guest
-                        <a href="javascript:void(0)" onclick="$('#connect-modal').modal('show');" class="cntue">Start My Visa Application</a>
+                        <a href="javascript:void(0)" onclick="$('#visaForm').submit()" class="cntue">Start My Visa Application</a>
                         @else
                         <a href="javascript:void(0)" id="create-visa" class="cntue">Start My Visa Application</a>
                         @endguest

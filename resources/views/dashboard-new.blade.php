@@ -422,4 +422,13 @@ Visa Documents
     });
     });
 </script>
+@if(isset($request['uploadType']) && $request['uploadType'] != 0)
+<script type="text/javascript">
+    $(window).on('load', function () {
+        $('#docTYpe').val({{$request['uploadType']}}); 
+        $('.right-sidebar').toggle();
+    });
+</script>
+@endif
 @endsection
+

@@ -13,6 +13,7 @@ class Visa {
         if(empty($user)) {
             $user = auth()->user();
         }
+        $uploadType = isset($data['uploadType']) ? $data['uploadType'] : 0;
         $lastId = \Illuminate\Support\Facades\DB::table('bookings')->max('id');
         $countryDocuments = Document::where('country_id', $data['vistingCountry'])->select('document_type', 'document_id', 'pdf', 'display')->get()->toArray();
         $parentId = 0;
@@ -47,7 +48,7 @@ class Visa {
             
             //  echo '<pre>';print_r($countryDocuments);die;
             foreach($countryDocuments as $countryDocument) {
-                if($countryDocument['document_id'] == null && $countryDocument['display'] == 1) {
+                if(($countryDocument['document_id'] == null && $uploadType != 0) || ($countryDocument['document_id'] == null && $countryDocument['display'] == 1 && $uploadType == 0)) {
                     $pdf = null;
                     if(isset($countryDocument['pdf']) && $countryDocument['pdf'] != null) {
                         $fileName = time() .'-'. $countryDocument['document_type'] .'-'. $countryDocument['pdf'];

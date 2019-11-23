@@ -224,12 +224,11 @@ class VisaController extends Controller
         return $contents;
     }
     
-    public function countrydashboard($visaUrl) {
-        
+    public function countrydashboard($visaUrl, Request $request) {
         $country = Country::where("countryName", str_replace('-', ' ', $visaUrl))->first()->toArray();
         
         $countryDocuments = \App\Models\Document::where('country_id', $country['id'])->with('documenttype')->select('document_type', 'document_id', 'pdf', 'body_business as tooltip', 'display')->orderBy('display', 'DESC')->get()->toArray();
-        return view('dashboard-country')->with(['countryDocuments' => $countryDocuments]);
+        return view('dashboard-country')->with(['countryDocuments' => $countryDocuments, 'request' => $request]);
         
     }
 }

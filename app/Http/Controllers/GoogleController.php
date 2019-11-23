@@ -284,6 +284,7 @@ class GoogleController extends Controller {
                 
             }
             
+            
             // Send mail to User
             Mail::send('mail.create-visa', ['user' => $auth], function($message) use($auth) {
                 $message->from('operations@visabadge.com', 'Operations VisaBadge');
@@ -298,7 +299,7 @@ class GoogleController extends Controller {
         } else {
             $return['status'] = false;
         }
-        
+        $return['uploadType'] = isset($input['uploadType']) ? $input['uploadType'] : 0;
         return json_encode($return);
     }
     

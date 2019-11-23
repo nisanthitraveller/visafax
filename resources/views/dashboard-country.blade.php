@@ -116,6 +116,13 @@ Visa Documents
             </div>
         </div>
     </form>
+    <form method="post" id="visaForm">
+        <input name="visaType" value="{{$request['persons']}}" type="hidden">
+        <input type="hidden" name="persons" value="{{$request['persons']}}" />
+        <input type="hidden" value="{{$request['vistingCountry']}}" name="vistingCountry">
+        <input type="hidden" value="{{$request['residenceCountry']}}" name="residenceCountry">
+        <input type="hidden" value="{{$countryDocuments[0]['documenttype']['id']}}" name="uploadType" id="uploadType">
+    </form>
 </div>
 <div style="clear: both"></div>
 @endsection
