@@ -35,6 +35,7 @@ Route::any('/payusubmit', 'VisaController@payusubmit');
 Route::any('/dashboard', 'VisaController@dashboard')->name('my-visas');
 Route::any('/visadetails/{visaUrl}', 'VisaController@countrydashboard');
 Route::any('/dashboard1', 'VisaController@dashboard')->name('my-visas1');
+Route::any('/showform', 'VisaController@showform')->name('show-form');
 
 // Static URLs
 Route::view('/faq', 'faq');
@@ -52,3 +53,4 @@ Route::any('/bucket', 'AwsController@bucket');
 Route::post('/deleteimage/{image}', 'AwsController@destroy')->name('deleteimage');
 Route::get('/s3/images', 'AwsController@image');
 Route::post('/s3/store', 'AwsController@store');
+Route::get('/readdoc', 'AwsController@readdoc');

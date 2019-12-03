@@ -130,7 +130,7 @@ Visa Documents
         </div>
     </form>
     <form method="post" id="visaForm">
-        <input name="visaType" value="{{$request['persons']}}" type="hidden">
+        <input name="visaType" value="{{$request['visaType']}}" type="hidden">
         <input type="hidden" name="persons" value="{{$request['persons']}}" />
         <input type="hidden" value="{{$request['vistingCountry']}}" name="vistingCountry">
         <input type="hidden" value="{{$request['residenceCountry']}}" name="residenceCountry">
@@ -141,12 +141,12 @@ Visa Documents
 @endsection
 @section('scripts')
 <script>
-    $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip()
-            $('.add_more').click(function(e){
-    e.preventDefault();
-    $(".file-upload").clone().insertBefore(".add-file");
-    });
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+        $('.add_more').click(function(e) {
+            e.preventDefault();
+            $(".file-upload").clone().insertBefore(".add-file");
+        });
     });
 </script>
 @endsection

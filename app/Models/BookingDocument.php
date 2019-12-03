@@ -18,4 +18,7 @@ class BookingDocument extends Model
     public function documenttype() {
         return $this->belongsTo(DocumentType::class, 'DocumentID', 'id');
     }
+    public function document() {
+        return $this->belongsTo(Document::class, 'DocumentID', 'document_type');
+    }
 }

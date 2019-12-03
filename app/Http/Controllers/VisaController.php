@@ -9,6 +9,8 @@ use App\Models\Bookings;
 use Jenssegers\Agent\Agent;
 use Mail;
 use App\Models\Country;
+use Aws\Textract\TextractClient;
+use AWS;
 
 class VisaController extends Controller
 {
@@ -153,6 +155,14 @@ class VisaController extends Controller
         $visaObj = new Visa();
         $user = auth()->user();
         $agent = new Agent();
+        
+        $client = new TextractClient([
+            'region' => env('AWS_DEFAULT_REGION'),
+            'version' => 'latest',
+            'aws_access_key_id' => env('AWS_ACCESS_KEY_ID'),
+            'aws_secret_access_key' => env('AWS_SECRET_ACCESS_KEY'),
+        ]);
+        
         $allVisa = $visaObj->getAllMyVisa($user->id);
         $allVisa = json_decode(json_encode($allVisa), True);
         $users = \App\Models\UserInfo::where("user_id", $user->id)->select('id')->get()->toArray();
@@ -172,10 +182,48 @@ class VisaController extends Controller
             if(!in_array($booking['user_id'], $userIds)) {
                 return redirect('/dashboard');
             }
-            $assignedDocuments = \App\Models\BookingDocument::where('BookingID', $bookingId)->with('documenttype')->get()->toArray();
+            $assignedDocuments = \App\Models\BookingDocument::where('BookingID', $bookingId)->with('document')->with('documenttype')->get()->toArray();
             foreach ($assignedDocuments as $assignedDocument) {
                 $documents[$assignedDocument['DocumentID']][] = $assignedDocument;
             }
+        }
+        $jobId = null;
+        if($request['save_user_id']) {
+            
+        }
+        
+        if($request['save_booking_id']) {
+            $model = Bookings::findOrFail($request['save_booking_id']);
+            $bookingRequest = $request['booking'];
+            $data = $bookingRequest->toArray();
+            if(!empty($data['JoiningDate'])) {
+                $data['JoiningDate'] = implode("-", array_reverse(explode("/", $data['JoiningDate'])));
+            } 
+            if(!empty($data['payment_date'])) {
+                $data['payment_date'] = implode("-", array_reverse(explode("/", $data['payment_date'])));
+            }
+            if(!empty($data['status']) && $data['status'] == 2) {
+                $data['verified_at'] = date('Y-m-d');
+            }
+            if(!empty($data['status']) && $data['status'] == 3) {
+                $data['submission_at'] = date('Y-m-d');
+            }
+            if(!empty($data['status']) && $data['status'] == 4) {
+                $data['approval_at'] = date('Y-m-d');
+            }
+            $model->fill($data);
+            $model->save();
+        }
+        
+        if($request['save_user_id']) {
+            $modelUser = UserInfo::findOrFail($request['save_user_id']);
+            $userRequest = $request['user'];
+            $dataUser = $userRequest->toArray();
+            $dataUser['PassportDOI'] = implode("-", array_reverse(explode("/", $dataUser['PassportDOI'])));
+            $dataUser['PassportDOE'] = implode("-", array_reverse(explode("/", $dataUser['PassportDOE'])));
+            $dataUser['DOB'] = implode("-", array_reverse(explode("/", $dataUser['DOB'])));
+            $modelUser->fill($dataUser);
+            $modelUser->save();
         }
         
         if($request['docType']) {
@@ -183,12 +231,41 @@ class VisaController extends Controller
             $documentType = \App\Models\DocumentType::where('id', $request['docType'])->first()->toArray();
             $pdfFiles = $request->file('booking_documents');
             foreach($pdfFiles as $pdfFile) {
-                $pdfFile->move($destinationPath, time() . $request['visaID'] . '-' . str_replace(' ', '', $pdfFile->getClientOriginalName()));
+                $fileName = time() . $request['visaID'] . '-' . str_replace(' ', '', $pdfFile->getClientOriginalName());
+                $pdfFile->move($destinationPath, $fileName);
                 \App\Models\BookingDocument::insert([
                     'DocumentID' => $request['docType'],
                     'BookingID' => $request['visaID'],
-                    'pdf' => time() . $request['visaID'] . '-' . str_replace(' ', '', $pdfFile->getClientOriginalName())
+                    'pdf' => $fileName
                 ]);
+                if($request['totaluploadType']) {
+                    $s3 = new \Aws\S3\S3Client([
+                            'region'  => env('AWS_DEFAULT_REGION'),
+                            'version' => 'latest',
+                            'credentials' => [
+                                'key'    => env('AWS_ACCESS_KEY_ID'),
+                                'secret' => env('AWS_SECRET_ACCESS_KEY'),
+                            ]
+                    ]);	
+                    $s3->putObject(array(
+                        'Bucket'     => env('AWS_BUCKET'),
+                        'Key'        => $fileName,
+                        'SourceFile' => $destinationPath . '/' . $fileName,
+                        'ContentType' => 'application/pdf'
+                    ));
+
+                    $result = $client->startDocumentAnalysis([
+                        'DocumentLocation' => [ // REQUIRED
+                            'S3Object' => [
+                                'Bucket' => 'visabadge-bucket',
+                                'Name' => $fileName
+                            ],
+                        ],
+                        'FeatureTypes' => ['TABLES', 'FORMS'], // REQUIRED
+                    ]);
+                    $data = $result->toArray();
+                    $jobId[] = $data['JobId'];
+                }
             }
             
             Mail::send('mail.mail-upload', ['booking' => $booking, 'documentType' => $documentType], function($message) use($booking) {
@@ -198,8 +275,11 @@ class VisaController extends Controller
                         ->bcc(['nisanth.kumar@itraveller.com'])
                         ->subject('VisaBadge: Document uploaded for Booking ID ' . $booking['BookingID']);
             });
-            
-            return redirect()->back();
+            return response()->json([
+                'message'   => $documentType['type'] . ' Upload Successfully',
+                'class_name'  => 'alert-success',
+                'JobId' => $jobId
+            ]);
         }
         
         if($agent->isMobile()) {
@@ -230,5 +310,38 @@ class VisaController extends Controller
         $countryDocuments = \App\Models\Document::where('country_id', $country['id'])->with('documenttype')->select('document_type', 'document_id', 'pdf', 'body_business as tooltip', 'display')->orderBy('display', 'DESC')->get()->toArray();
         return view('dashboard-country')->with(['countryDocuments' => $countryDocuments, 'request' => $request]);
         
+    }
+    
+    public function showform(Request $request)
+    {
+        $booking = Bookings::where("id", $request['visaID'])->first()->toArray();
+        $user = \App\Models\UserInfo::where("id", $booking['user_id'])->first()->toArray();
+        $bookingId =  $booking['id'];
+        $userId =  $user['id'];
+        unset($booking['created_at']);
+        unset($booking['updated_at']);
+        unset($booking['user_id']);
+        unset($booking['id']);
+        unset($booking['VisitingCountry']);
+        unset($booking['ParentID']);
+        unset($booking['plan_id']);
+        unset($booking['payment_response']);
+        unset($booking['verified_at']);
+        unset($booking['submission_at']);
+        unset($booking['approval_at']);
+        unset($booking['status']);
+        unset($booking['payment_date']);
+        unset($booking['DriveID']);
+        unset($booking['paid']);
+        unset($booking['amount_paid']);
+        unset($booking['assign_date']);
+        unset($booking['BookingID']);
+        
+        unset($user['created_at']);
+        unset($user['updated_at']);
+        unset($user['user_id']);
+        unset($user['id']);
+        
+        return view('showform')->with(['user' => $user, 'booking' => $booking, 'bookingId' => $bookingId, 'userId' => $userId]);
     }
 }
