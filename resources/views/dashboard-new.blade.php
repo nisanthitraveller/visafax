@@ -398,10 +398,10 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                                         Upload {{$uploadType['Name']}}
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-6 col-6  row-dta">
-                                        <a href="javascript:void(0)" onclick="$(this).parent().parent().remove(); $('#docTYpe').val({{$uploadType['Key']}});" class="btn btn-success">Yes</a>
+                                        <a href="javascript:void(0)" onclick="$(this).parent().parent().parent().remove(); $('#docTYpe').val({{$uploadType['Key']}});" class="btn btn-success">Yes</a>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-6 col-6  row-dta">
-                                        <a href="javascript:void(0)" onclick="$(this).parent().parent().remove(); showNext()" class="btn btn-danger">No</a>
+                                        <a href="javascript:void(0)" onclick="$(this).parent().parent().parent().remove(); showNext()" class="btn btn-danger">No</a>
                                     </div>
                                 </div>
                             </div>
@@ -517,7 +517,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
         if($('.up-type').first().length) {
             $('.up-type').first().show();
         } else {
-            showForm({{$visaDetails['id']}});
+            showForm($('#visaID').val());
             console.log('show form');
         }
     }
@@ -532,7 +532,6 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                 $('#file-upload').html(data);
             }
         })
-        
     }
     
     function fetchdata(JobId, visaID) {
