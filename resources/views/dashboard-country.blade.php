@@ -23,52 +23,6 @@ Visa Documents
 <div class="dasboard-detail-wrap">
     <form id="wizard" class="pt-4 acts wizard clearfix" role="application" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="container">
-            <ul class="tablist">
-                <li class="<?php if($step >= 1 ) { echo 'active'; } ?>">
-                    <a>
-                        <span class="tb-name">Upload Docs</span>
-                        <span class="tb-year">{{date('d M, y')}}</span>
-                    </a>
-                </li>
-                <li class="<?php if($step >= 2 ) { echo 'active'; } ?>">
-                    <a>
-                        <span class="tb-name">Prepare Docs</span>
-                        <span class="step-year">
-                        </span>
-                    </a>
-                </li>
-                <li class="<?php if($step >= 3 ) { echo 'active'; } ?>">
-                    <a>
-                        <span class="tb-name">Payment</span>
-                        <span class="step-year">
-                        </span>
-                    </a>
-                </li>
-                
-                <li class="<?php if($step >= 4 ) { echo 'active'; } ?>">
-                    <a>
-                        <span class="tb-name">Verification</span>
-                        <span class="step-year">
-                        </span>
-                    </a>
-                </li>
-                <li class="<?php if($step >= 5 ) { echo 'active'; } ?>">
-                    <a>
-                        <span class="tb-name">Submission</span>
-                        <span class="step-year">
-                        </span>
-                    </a>
-                </li>
-                <li class="last <?php if($step >= 6 ) { echo 'active'; } ?>">
-                    <a>
-                        <span class="tb-name">Approval</span>
-                        <span class="step-year">
-                        </span>
-                    </a>
-                </li>
-            </ul>
-        </div>
         <div class="content clearfix">
             <div class="container">
                 <div class="row">
@@ -96,7 +50,7 @@ Visa Documents
                             <div class="row">
                                 <div class="col-md-8 col-sm-7 col-12 doc-cols">
                                     <div class="dos-name">
-                                        <a target="_blank" class="{{$class}}" onclick="$('#connect-modal').modal('show')"> {{sprintf("%02d", $count)}}. {{$out}}</a>
+                                        <a target="_blank" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> onclick="$('#connect-modal').modal('show')" <?php } ?>> {{sprintf("%02d", $count)}}. {{$out}}</a>
                                         <span class="sm-desc">{{$document['tooltip']}}</span>
                                     </div>
                                     
@@ -104,7 +58,7 @@ Visa Documents
                                 </div>
                                 <div class="col-md-3 col-sm-3 col-4 doc-col-2">
                                     @if(empty($document['document_id']) && $document['display'] == 1)
-                                        <div class="up-btn">
+                                        <div class="up-btn" onclick="$('#connect-modal').modal('show')">
                                             <img src="{{url('/')}}/images/upload-active.png">
                                             <label for="file" class="up-doc">Upload</label>
                                         </div>

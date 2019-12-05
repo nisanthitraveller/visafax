@@ -193,9 +193,9 @@ class VisaController extends Controller
         }
         
         if($request['save_booking_id']) {
+            
             $model = Bookings::findOrFail($request['save_booking_id']);
-            $bookingRequest = $request['booking'];
-            $data = $bookingRequest->toArray();
+            $data = $request['booking'];
             if(!empty($data['JoiningDate'])) {
                 $data['JoiningDate'] = implode("-", array_reverse(explode("/", $data['JoiningDate'])));
             } 
@@ -216,16 +216,21 @@ class VisaController extends Controller
         }
         
         if($request['save_user_id']) {
-            $modelUser = UserInfo::findOrFail($request['save_user_id']);
-            $userRequest = $request['user'];
-            $dataUser = $userRequest->toArray();
+            $modelUser = \App\Models\UserInfo::findOrFail($request['save_user_id']);
+            $dataUser = $request['user'];
             $dataUser['PassportDOI'] = implode("-", array_reverse(explode("/", $dataUser['PassportDOI'])));
             $dataUser['PassportDOE'] = implode("-", array_reverse(explode("/", $dataUser['PassportDOE'])));
             $dataUser['DOB'] = implode("-", array_reverse(explode("/", $dataUser['DOB'])));
             $modelUser->fill($dataUser);
             $modelUser->save();
         }
-        
+        if($request['save_user_id'] || $request['save_booking_id']) { 
+            return response()->json([
+                'message'   => 'Data saved Successfully',
+                'class_name'  => 'alert-success',
+                'redirect' => 1
+            ]);
+        }
         if($request['docType']) {
             \App\Models\BookingDocument::where('BookingID', $request['visaID'])->where('DocumentID', $request['docType'])->delete();
             $documentType = \App\Models\DocumentType::where('id', $request['docType'])->first()->toArray();
@@ -278,7 +283,8 @@ class VisaController extends Controller
             return response()->json([
                 'message'   => $documentType['type'] . ' Upload Successfully',
                 'class_name'  => 'alert-success',
-                'JobId' => $jobId
+                'JobId' => $jobId,
+                'redirect' => 0
             ]);
         }
         

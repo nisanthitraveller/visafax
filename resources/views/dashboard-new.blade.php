@@ -53,6 +53,7 @@ if ($visaDetails['status'] == 3) {
 <div class="dasboard-detail-wrap">
     <form id="wizard" class="pt-4 acts wizard clearfix" role="application" method="post" enctype="multipart/form-data">
         @csrf
+        @if(!isset($request['uploadType']))
         <div class="container">
             <ul class="tablist">
                 <li class="<?php if ($step >= 1) {
@@ -126,6 +127,7 @@ if ($visaDetails['status'] == 3) {
                 </li>
             </ul>
         </div>
+        @endif
         <div class="content clearfix">
             <div class="container">
                 <div class="row">
@@ -319,7 +321,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                     <div class="col-xl-12 col-md-12 col-sm-12 mt-4 p-47 dashboard-wrap right-sidebar" id="file-upload" style="display: none">
                         <div class="container mb-4 dash-titles">
                             <div class="row">
-                                <div class="col-md-9 col-sm-12 row-bg">
+                                <div class="col-md-12 col-sm-12 row-bg">
 
                                     <div class="col-lg-4 col-md-4 col-sm-12 col-12  row-dta">
                                         <div class="do-ic"><img src="{{url('/')}}/images/doc2.png">{{$visaDetails['user']['FirstName']}} {{$visaDetails['user']['Surname']}}</div>
@@ -342,11 +344,13 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                                 </div>-->
                             </div>
                         </div>
+                        @if(!isset($request['uploadType']))
                         <div class="col-sm-12 mb-2 ">
                             <div class="row mb-2 ">
                                 <a href="javascript:void(0)" class="back-btn" onclick="$('.right-sidebar').toggle()">Back</a>
                             </div>
                         </div>
+                        @endif
                         <div class="col-sm-12 mb-2 ">
                             <div class="alert" id="message" style="display: none"></div>
                         </div>
@@ -355,9 +359,17 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                                 <h2>Upload Files</h2>
                             </div>
                         </div>
-                        <div class="doc-list file-upload">
+                        <div class="file-upload" style="display:none">
+                            <div class="doc-list">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-4 col-4 doc-col-2">
+                                        <input type="file" accept="application/pdf" name="booking_documents[]" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="doc-list">
                             <div class="row">
-                                <div class="col-md-6 col-sm-4 col-4 doc-cols">File</div>
                                 <div class="col-md-3 col-sm-4 col-4 doc-col-2">
                                     <input type="file" accept="application/pdf" name="booking_documents[]" />
                                 </div>
@@ -371,7 +383,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                                     <button type='button' class="btn btn-light pull-right add_more">Add More Files</button>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-6 doc-cols text-right">
-                                    <input type="submit" name="upload" id="upload" class="btn btn-secondary" value="Upload">
+                                    <input type="submit" name="upload" id="upload" class="btn btn-success" value="Upload">
                                 </div>
                             </div>
                         </div>
@@ -468,7 +480,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
         $('[data-toggle="tooltip"]').tooltip()
         $('.add_more').click(function(e){
             e.preventDefault();
-            $(".file-upload").clone().insertBefore(".add-file");
+            $(".file-upload .doc-list").clone().insertBefore(".add-file");
         });
     });
 </script>
@@ -483,6 +495,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
 <script>
     $(document).ready(function(){
         $('#wizard').on('submit', function(event) {
+            openModal();
             event.preventDefault();
             $.ajax({
                 url:"{{ route('my-visas') }}",
@@ -508,6 +521,9 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                             fetchdata(item, $('#visaID').val());
                         }, 5000)
                     });
+                    if(data.redirect == 1) {
+                        location.href = '/dashboard';
+                    }
                 }
             })
         });
@@ -546,6 +562,8 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                     setTimeout(function() {
                         fetchdata(JobId, visaID);
                     }, 5000)
+                } else {
+                    closeModal();
                 }
                 // Perform operation on return value
                 console.log(data);

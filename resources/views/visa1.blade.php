@@ -92,11 +92,7 @@ Visa {{$country['countryName']}}
                     </form>
 
                     <div class="col-sm-12 text-center down-bnch  mb-5">
-                        @guest
                         <a href="javascript:void(0)" onclick="$('#visaForm').submit()" class="cntue">Start My Visa Application</a>
-                        @else
-                        <a href="javascript:void(0)" id="create-visa" class="cntue">Start My Visa Application</a>
-                        @endguest
                     </div>
                     <div class="sm-sections">
                         <h2>A quick guide about {{$country['countryName']}} visa process</h2>
