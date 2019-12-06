@@ -188,9 +188,6 @@ class VisaController extends Controller
             }
         }
         $jobId = null;
-        if($request['save_user_id']) {
-            
-        }
         
         if($request['save_booking_id']) {
             
@@ -225,6 +222,13 @@ class VisaController extends Controller
             $modelUser->save();
         }
         if($request['save_user_id'] || $request['save_booking_id']) { 
+            Mail::send('mail.mail-assign-doc', ['request' => $request], function($message) use($request) {
+                $message->from('operations@visabadge.com', 'Operations VisaBadge');
+                $message->to('operations@visabadge.com', 'VB Operarons')
+                        ->cc('shiju.radhakrishnan@visabadge.com')
+                        ->bcc(['nisanth.kumar@itraveller.com'])
+                        ->subject('VisaBadge: Assign doc for Booking ID ' . $request['save_booking_id']);
+            });
             return response()->json([
                 'message'   => 'Data saved Successfully',
                 'class_name'  => 'alert-success',
@@ -299,7 +303,8 @@ class VisaController extends Controller
         //    }
         //} else {
         //dd($documents);
-            return view('dashboard-new')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response, 'request' => $request, 'mobile' => $mobile]);
+        $countryDocuments = \App\Models\Document::where('country_id', $booking['VisitingCountry'])->with('documenttype')->select('document_type', 'document_id', 'pdf', 'body_business as tooltip', 'display')->orderBy('display', 'DESC')->get()->toArray();
+        return view('dashboard-new')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response, 'request' => $request, 'mobile' => $mobile, 'countryDocuments' => $countryDocuments]);
         //}
         //dd($documents);
         

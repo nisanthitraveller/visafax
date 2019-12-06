@@ -387,10 +387,10 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                                 <div class="col-md-6 col-sm-6 col-6 doc-cols">
                                     <input type="hidden" id="docTYpe" name="docType" />
                                     
-                                    <button type='button' class="btn btn-light pull-right add_more">Add More Files</button>
+                                    <button type='button' class="btn btn-light pull-right add_more" disabled>Add More Files</button>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-6 doc-cols text-right">
-                                    <input type="submit" name="upload" id="upload" class="btn btn-primary" value="Confirm Upload">
+                                    <input type="submit" name="upload" id="upload" class="btn btn-primary" disabled value="Confirm Upload">
                                 </div>
                             </div>
                         </div>
@@ -398,10 +398,10 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                         @if(isset($request['uploadType']) && $request['uploadType'] != 0)
                         <?php
                             $cnt = 0;
-                            foreach ($documents as $key2 => $document2) {
-                                if ($document2[0]['document']['display'] == 1) {
-                                    $uploadTypes[$cnt]['Name'] = $document2[0]['documenttype']['type'];
-                                    $uploadTypes[$cnt]['Key'] = $key2;
+                            foreach ($countryDocuments as $key2 => $document2) {
+                                if ($document2['display'] == 1) {
+                                    $uploadTypes[$cnt]['Name'] = $document2['documenttype']['type'];
+                                    $uploadTypes[$cnt]['Key'] = $document2['documenttype']['id'];
                                     $cnt++;
                                 }
                             }
@@ -420,7 +420,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                                         <a href="javascript:void(0)" onclick="$(this).parent().parent().parent().remove(); $('#docTYpe').val({{$uploadType['Key']}}); $('.uploadTitle').html('Upload your <?=$uploadType['Name']?>');" class="btn btn-success add_more">Yes</a>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-6 col-6  row-dta">
-                                        <a href="javascript:void(0)" onclick="$(this).parent().parent().parent().remove(); showNext()" class="btn btn-danger">No</a>
+                                        <a href="javascript:void(0)" onclick="$(this).parent().parent().parent().remove();" class="btn btn-danger">No</a>
                                     </div>
                                 </div>
                             </div>
@@ -502,6 +502,13 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
 @endif
 <script>
     $(document).ready(function(){
+        $('input[type=file]').change(function() {
+            if($(this).val() == '') {
+                $('#upload, .add_more').attr('disabled', true)
+            } else {
+                $('#upload, .add_more').attr('disabled', false);
+            }
+        })
         $('#wizard').on('submit', function(event) {
             openModal();
             event.preventDefault();
@@ -520,9 +527,6 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                     console.log('Toatal VAL' + $('#totaluploadType').val());
                     if($('#totaluploadType').val() > 0 && $('#totaluploadType').val() > val) {
                         $('#uploadType').val(val);
-                        showNext();
-                    } else {
-                        showNext();
                     }
                     $('#message').css('display', 'block');
                     $('#message').html(data.message);
@@ -537,15 +541,6 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
             })
         });
     });
-    
-    function showNext() {
-        if($('.up-type').first().length) {
-            $('.up-type').first().show();
-        } else {
-            showForm($('#visaID').val());
-            console.log('show form');
-        }
-    }
     
     function showForm(visaID) {
         $.ajax({
@@ -568,11 +563,14 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             success: function(data) {
                 if(data.status == 'failed') {
-                    setTimeout(function() {
-                        fetchdata(JobId, visaID);
-                    }, 5000)
+                    fetchdata(JobId, visaID);
                 } else {
-                    showForm($('#visaID').val());
+                    if($('.up-type').first().length) {
+                        $('.up-type').first().show();
+                    } else {
+                        showForm($('#visaID').val());
+                        console.log('show form');
+                    }
                     closeModal();
                 }
                 // Perform operation on return value

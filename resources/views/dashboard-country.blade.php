@@ -59,7 +59,7 @@ Visa Documents
                         @endif
                         <div class="doc-list display{{$document['display']}}" {{$class1}} data-toggle="tooltip" data-placement="top" title="{{$document['documenttype']['type']}}">
                             <div class="row">
-                                <div class="col-md-8 col-sm-7 col-12 doc-cols">
+                                <div class="col-md-9 col-sm-7 col-12 doc-cols">
                                     <div class="dos-name">
                                         <a target="_blank" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> onclick="$('#connect-modal').modal('show')" <?php } ?>> {{sprintf("%02d", $count)}}. {{$out}}</a>
                                         <span class="sm-desc">{{$document['tooltip']}}</span>
@@ -74,13 +74,6 @@ Visa Documents
                                             <label for="file" class="up-doc">Upload</label>
                                         </div>
                                     @endif
-                                </div>
-                                <div class="col-md-1 col-sm-2 col-2 doc-col-3">
-                                    <div class="up-sucess-btn" data-position="top right">
-                                        <span class="up-warning" data-toggle="tooltip" data-placement="top" title="Pending - Customer Review">
-                                            <i class="fa fa-exclamation"></i>
-                                        </span>
-                                    </div>
                                 </div>
                                 
                             </div>
