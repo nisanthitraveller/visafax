@@ -166,6 +166,7 @@ if ($visaDetails['status'] == 3) {
                             </div>
                         </div>
                         @endif
+                        
                         <div class="container mb-4 dash-titles">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 row-bg">
@@ -319,6 +320,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                     </div>
                     @if(!empty($visaDetails))
                     <div class="col-xl-12 col-md-12 col-sm-12 mt-4 p-47 dashboard-wrap right-sidebar" id="file-upload" style="display: none">
+                        @if(!isset($request['uploadType']))
                         <div class="container mb-4 dash-titles">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 row-bg">
@@ -344,6 +346,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                                 </div>-->
                             </div>
                         </div>
+                        @endif
                         @if(!isset($request['uploadType']))
                         <div class="col-sm-12 mb-2 ">
                             <div class="row mb-2 ">
@@ -356,7 +359,11 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                         </div>
                         <div class="row mb-2">
                             <div class="col-md-6 col-sm-7 col-9">
-                                <h2>Upload Files</h2>
+                                @if(!isset($request['uploadType']))
+                                    <h2 class="uploadTitle">Upload your documents</h2>
+                                @else
+                                    <h2 class="uploadTitle">Upload your {{$documents[$request['uploadType']][0]['documenttype']['type']}}</h2>
+                                @endif
                             </div>
                         </div>
                         <div class="file-upload" style="display:none">
@@ -379,11 +386,11 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-6 doc-cols">
                                     <input type="hidden" id="docTYpe" name="docType" />
-                                    <input type="hidden" id="visaID" name="visaID" value="{{$visaDetails['id']}}" />
+                                    
                                     <button type='button' class="btn btn-light pull-right add_more">Add More Files</button>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-6 doc-cols text-right">
-                                    <input type="submit" name="upload" id="upload" class="btn btn-success" value="Upload">
+                                    <input type="submit" name="upload" id="upload" class="btn btn-primary" value="Confirm Upload">
                                 </div>
                             </div>
                         </div>
@@ -410,7 +417,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                                         Upload {{$uploadType['Name']}}
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-6 col-6  row-dta">
-                                        <a href="javascript:void(0)" onclick="$(this).parent().parent().parent().remove(); $('#docTYpe').val({{$uploadType['Key']}});" class="btn btn-success">Yes</a>
+                                        <a href="javascript:void(0)" onclick="$(this).parent().parent().parent().remove(); $('#docTYpe').val({{$uploadType['Key']}}); $('.uploadTitle').html('Upload your <?=$uploadType['Name']?>');" class="btn btn-success add_more">Yes</a>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-6 col-6  row-dta">
                                         <a href="javascript:void(0)" onclick="$(this).parent().parent().parent().remove(); showNext()" class="btn btn-danger">No</a>
@@ -426,6 +433,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                 </div>
             </div>
         </div>
+        <input type="hidden" id="visaID" name="visaID" value="{{$visaDetails['id']}}" />
         <input type="hidden" value="0" id="uploadType" name="uploadType" />
         <input type="hidden" value="{{count($uploadTypes)}}" name="totaluploadType" id="totaluploadType" />
     </form>
@@ -506,20 +514,21 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                 cache: false,
                 processData: false,
                 success:function(data) {
+                    $('input[type=file]').val(null);
                     var val = parseInt($('#uploadType').val()) + 1;
                     console.log('VAL' + val);
                     console.log('Toatal VAL' + $('#totaluploadType').val());
                     if($('#totaluploadType').val() > 0 && $('#totaluploadType').val() > val) {
                         $('#uploadType').val(val);
                         showNext();
+                    } else {
+                        showNext();
                     }
                     $('#message').css('display', 'block');
                     $('#message').html(data.message);
                     $('#message').addClass(data.class_name);
                     $.each(data.JobId, function(i, item) {
-                        setTimeout(function() {
-                            fetchdata(item, $('#visaID').val());
-                        }, 5000)
+                        fetchdata(item, $('#visaID').val());
                     });
                     if(data.redirect == 1) {
                         location.href = '/dashboard';
@@ -563,6 +572,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                         fetchdata(JobId, visaID);
                     }, 5000)
                 } else {
+                    showForm($('#visaID').val());
                     closeModal();
                 }
                 // Perform operation on return value

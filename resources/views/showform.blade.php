@@ -33,7 +33,7 @@
                 @endforeach
                 <input type="hidden" id="save_user_id" name="save_user_id" value="{{$userId}}" />
                 <input type="hidden" id="save_booking_id" name="save_booking_id" value="{{$bookingId}}" />
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Save & Show My Visa Documents</button>
         </div>
     </div>
 </div>

@@ -298,6 +298,7 @@ class VisaController extends Controller
         //        return view('dashboard')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response, 'request' => $request, 'mobile' => $mobile]);
         //    }
         //} else {
+        //dd($documents);
             return view('dashboard-new')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response, 'request' => $request, 'mobile' => $mobile]);
         //}
         //dd($documents);
@@ -314,7 +315,7 @@ class VisaController extends Controller
         $country = Country::where("countryName", str_replace('-', ' ', $visaUrl))->first()->toArray();
         
         $countryDocuments = \App\Models\Document::where('country_id', $country['id'])->with('documenttype')->select('document_type', 'document_id', 'pdf', 'body_business as tooltip', 'display')->orderBy('display', 'DESC')->get()->toArray();
-        return view('dashboard-country')->with(['countryDocuments' => $countryDocuments, 'request' => $request]);
+        return view('dashboard-country')->with(['countryDocuments' => $countryDocuments, 'request' => $request, 'country' => $country]);
         
     }
     
