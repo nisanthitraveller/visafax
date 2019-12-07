@@ -133,11 +133,13 @@ function urlencodeFormData(fd) {
 }
 
 function openModal() {
-    document.getElementById('loader-modal').style.display = 'block';
-    document.getElementById('fade').style.display = 'block';
+    $('.loading').show();
+    //document.getElementById('loading').style.display = 'block';
+    //document.getElementById('fade').style.display = 'block';
 }
 
 function closeModal() {
-    document.getElementById('loader-modal').style.display = 'none';
-    document.getElementById('fade').style.display = 'none';
+    $('.loading').hide();
+    //document.getElementById('loader-modal').style.display = 'none';
+    //document.getElementById('fade').style.display = 'none';
 }

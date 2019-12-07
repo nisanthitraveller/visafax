@@ -82,7 +82,7 @@ function urlencodeFormData(fd){
 }
 
 function openModal() {
-    document.getElementById('loader-modal').style.display = 'block';
+    document.getElementById('loading').style.display = 'block';
     document.getElementById('fade').style.display = 'block';
 }
 

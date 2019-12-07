@@ -61,7 +61,11 @@ Visa Documents
                             <div class="row">
                                 <div class="col-md-9 col-sm-7 col-12 doc-cols">
                                     <div class="dos-name">
-                                        <a target="_blank" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> onclick="$('#connect-modal').modal('show')" <?php } ?>> {{sprintf("%02d", $count)}}. {{$out}}</a>
+                                        @guest
+                                            <a target="_blank" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> onclick="$('#connect-modal').modal('show')" <?php } ?>> {{sprintf("%02d", $count)}}. {{$out}}</a>
+                                        @else
+                                            <a class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> href="{{url('/')}}/dashboard?uploadType={{$document['documenttype']['id']}}" <?php } ?>> {{sprintf("%02d", $count)}}. {{$out}}</a>
+                                        @endguest
                                         <span class="sm-desc">{{$document['tooltip']}}</span>
                                     </div>
                                     
@@ -69,7 +73,12 @@ Visa Documents
                                 </div>
                                 <div class="col-md-3 col-sm-3 col-4 doc-col-2">
                                     @if(empty($document['document_id']) && $document['display'] == 1)
-                                        <div class="up-btn" onclick="$('#connect-modal').modal('show')">
+                                        @guest
+                                            <div class="up-btn" onclick="$('#connect-modal').modal('show')">
+                                        @else
+                                            <div class="up-btn" onclick="location.href='{{url('/')}}/dashboard?uploadType={{$document['documenttype']['id']}}'">
+                                        @endguest
+                                        
                                             <img src="{{url('/')}}/images/upload-active.png">
                                             <label for="file" class="up-doc">Upload</label>
                                         </div>

@@ -354,9 +354,43 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                             </div>
                         </div>
                         @endif
-                        <div class="col-sm-12 mb-2 ">
+                        <div class="col-sm-12 mb-2 " style="padding-left: 0">
                             <div class="alert" id="message" style="display: none"></div>
                         </div>
+                        <?php $uploadTypes = []; ?>
+                        @if(isset($request['uploadType']) && $request['uploadType'] != 0)
+                        <?php
+                            $cnt = 0;
+                            foreach ($countryDocuments as $key2 => $document2) {
+                                if ($document2['display'] == 1) {
+                                    $uploadTypes[$cnt]['Name'] = $document2['documenttype']['type'];
+                                    $uploadTypes[$cnt]['Key'] = $document2['documenttype']['id'];
+                                    $cnt++;
+                                }
+                            }
+                            //unset($uploadTypes[$request['uploadType']])
+                        ?>
+                        <div class="container mb-4 dash-titles">
+                            
+                            @foreach($uploadTypes as $key => $uploadType)
+                            @if($uploadType['Key'] != $request['uploadType'])
+                            <div class="row up-type" id="uploadType-{{$key}}" style="display:none">
+                                <div class="col-md-9 col-sm-12 row-bg">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-12  row-dta">
+                                        Upload {{$uploadType['Name']}}
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-6  row-dta">
+                                        <a href="javascript:void(0)" onclick="$(this).parent().parent().parent().remove(); $('#docTYpe').val({{$uploadType['Key']}}); $('.uploadTitle').html('Upload your <?=$uploadType['Name']?>');" class="btn btn-success add_more">Yes</a>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-6  row-dta">
+                                        <a href="javascript:void(0)" onclick="$(this).parent().parent().parent().remove();" class="btn btn-danger">No</a>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                            @endforeach
+                        </div>
+                        @endif
                         <div class="row mb-2">
                             <div class="col-md-6 col-sm-7 col-9">
                                 @if(!isset($request['uploadType']))
@@ -394,40 +428,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                                 </div>
                             </div>
                         </div>
-                        <?php $uploadTypes = []; ?>
-                        @if(isset($request['uploadType']) && $request['uploadType'] != 0)
-                        <?php
-                            $cnt = 0;
-                            foreach ($countryDocuments as $key2 => $document2) {
-                                if ($document2['display'] == 1) {
-                                    $uploadTypes[$cnt]['Name'] = $document2['documenttype']['type'];
-                                    $uploadTypes[$cnt]['Key'] = $document2['documenttype']['id'];
-                                    $cnt++;
-                                }
-                            }
-                            //unset($uploadTypes[$request['uploadType']])
-                        ?>
-                        <div class="container mb-4 dash-titles">
-                            
-                            @foreach($uploadTypes as $key => $uploadType)
-                            @if($uploadType['Key'] != $request['uploadType'])
-                            <div class="row up-type" id="uploadType-{{$key}}" style="display:none">
-                                <div class="col-md-9 col-sm-12 row-bg">
-                                    <div class="col-lg-6 col-md-6 col-sm-12 col-12  row-dta">
-                                        Upload {{$uploadType['Name']}}
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-6 col-6  row-dta">
-                                        <a href="javascript:void(0)" onclick="$(this).parent().parent().parent().remove(); $('#docTYpe').val({{$uploadType['Key']}}); $('.uploadTitle').html('Upload your <?=$uploadType['Name']?>');" class="btn btn-success add_more">Yes</a>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-6 col-6  row-dta">
-                                        <a href="javascript:void(0)" onclick="$(this).parent().parent().parent().remove();" class="btn btn-danger">No</a>
-                                    </div>
-                                </div>
-                            </div>
-                            @endif
-                            @endforeach
-                        </div>
-                        @endif
+                        
                     </div>
                     @endif
                 </div>
@@ -528,9 +529,11 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                     if($('#totaluploadType').val() > 0 && $('#totaluploadType').val() > val) {
                         $('#uploadType').val(val);
                     }
-                    $('#message').css('display', 'block');
                     $('#message').html(data.message);
                     $('#message').addClass(data.class_name);
+                    $("#message").fadeTo(2000, 500).slideUp(500, function(){
+                        $("#message").slideUp(500);
+                    });
                     $.each(data.JobId, function(i, item) {
                         fetchdata(item, $('#visaID').val());
                     });

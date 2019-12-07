@@ -172,6 +172,9 @@ class VisaController extends Controller
         if($request['bookingID']) {
             $bookingId = $request['bookingID'];
         }
+        if($request['save_booking_id']) {
+            $bookingId = $request['save_booking_id'];
+        }
         
         $mobile = false;
         
@@ -227,7 +230,7 @@ class VisaController extends Controller
                 $message->to('operations@visabadge.com', 'VB Operarons')
                         ->cc('shiju.radhakrishnan@visabadge.com')
                         ->bcc(['nisanth.kumar@itraveller.com'])
-                        ->subject('VisaBadge: Assign doc for Booking ID ' . $request['save_booking_id']);
+                        ->subject('VisaBadge: Assign doc for Booking ID VB' . $request['save_booking_id']);
             });
             return response()->json([
                 'message'   => 'Data saved Successfully',
