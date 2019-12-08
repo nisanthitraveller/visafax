@@ -98,7 +98,7 @@ Visa Documents
                                         @guest
                                             <a style="padding-left: 0" target="_blank" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> onclick="$('#connect-modal').modal('show')" <?php } ?>>{{$out}}</a>
                                         @else
-                                            <a style="padding-left: 0" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> href="{{url('/')}}/dashboard?uploadType={{$document['documenttype']['id']}}" <?php } ?>> {{sprintf("%02d", $count)}}. {{$out}}</a>
+                                            <a style="padding-left: 0" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> href="{{url('/')}}/dashboard?uploadType={{$document['documenttype']['id']}}" <?php } ?>>{{$out}}</a>
                                         @endguest
                                         <span class="sm-desc">{{$document['tooltip']}}</span>
                                     </div>
