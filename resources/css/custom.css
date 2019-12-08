@@ -323,7 +323,13 @@ button.btn.btn-primary.dropdown-toggle img {
     border-radius: 5px;
 }
 .Uploaded{
-    background-color: #d4eae3;
+   background-color: #2fc394;
+}
+.Uploaded label.up-doc {
+   color: #fff;
+}
+.Uploaded img {
+   display: none;
 }
 .tab1 li {
     width: 18% !important;

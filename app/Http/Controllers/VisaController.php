@@ -181,7 +181,7 @@ class VisaController extends Controller
         $response['payStat'] = null;
         $documents = $booking = [];
         if($bookingId != null) {
-            $booking = \App\Models\Bookings::where("id", $bookingId)->with('user')->with('child')->first()->toArray();
+            $booking = \App\Models\Bookings::where("id", $bookingId)->with('documents')->with('user')->with('child')->first()->toArray();
             if(!in_array($booking['user_id'], $userIds)) {
                 return redirect('/dashboard');
             }
@@ -305,11 +305,27 @@ class VisaController extends Controller
         //        return view('dashboard')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response, 'request' => $request, 'mobile' => $mobile]);
         //    }
         //} else {
-        //dd($documents);
-        $countryDocuments = \App\Models\Document::where('country_id', $booking['VisitingCountry'])->with('documenttype')->select('document_type', 'document_id', 'pdf', 'body_business as tooltip', 'display')->orderBy('display', 'DESC')->get()->toArray();
-        return view('dashboard-new')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response, 'request' => $request, 'mobile' => $mobile, 'countryDocuments' => $countryDocuments]);
+        $uploadedDocs = [];
+        $countryDocs = [];
+        foreach($booking['documents'] as $doc) {
+            if(!empty($doc['pdf'])) {
+                $uploadedDocs[] = $doc['DocumentID'];
+            }
+        }
+        $countryDocuments = \App\Models\Document::where('country_id', $booking['VisitingCountry'])->where('display', 1)->with('documenttype')->select('document_type', 'document_id', 'pdf', 'body_business as tooltip', 'display')->orderBy('display', 'DESC')->get()->toArray();
+        foreach($countryDocuments as $countryDoc) {
+            $countryDocs[] = $countryDoc['document_type'];
+        }
+        $arrayDiff = array_values(array_diff($countryDocs, $uploadedDocs));
+        if(!empty($arrayDiff) && !isset($request['uploadType']) && $booking['status'] == 0) {
+            return redirect('/dashboard?uploadType=' . $arrayDiff[0]);
+        } else if(empty($arrayDiff) && !isset($request['uploadType']) && $booking['status'] == 0 && !isset($request['form'])) {
+            return redirect('/dashboard?form=1');
+        } else {
+            return view('dashboard-new')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response, 'request' => $request, 'mobile' => $mobile, 'countryDocuments' => $countryDocuments, 'arrayDiff' => $arrayDiff]);
+        }
         //}
-        //dd($documents);
+        
         
     }
     

@@ -32,7 +32,7 @@
     </ul>
 </div>
 <div class="container-fluid">
-    <div class="card p-3">
+    <div class="card pt-1">
         <div class="card-body">
             <h5 class="card-title">Verify & confirm your below visa application data</h5>
             <div class="table-responsive-sm">          

@@ -69,7 +69,7 @@ if ($visaDetails['status'] == 3) {
 <div class="dasboard-detail-wrap">
     <form id="wizard" class="pt-4 acts wizard clearfix" role="application" method="post" enctype="multipart/form-data">
         @csrf
-        @if(!isset($request['uploadType']))
+        @if(!isset($request['uploadType']) && !isset($request['form']))
         <div class="container">
             <ul class="tablist tab1">
                 <li class="active">
@@ -334,7 +334,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                         <?php
                             $cnt = 0;
                             foreach ($countryDocuments as $key2 => $document2) {
-                                if ($document2['display'] == 1) {
+                                if ($document2['display'] == 1 && in_array($document2['documenttype']['id'], $arrayDiff)) {
                                     $uploadTypes[$cnt]['Name'] = $document2['documenttype']['type'];
                                     $uploadTypes[$cnt]['Key'] = $document2['documenttype']['id'];
                                     $cnt++;
@@ -487,6 +487,15 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
     $(window).on('load', function () {
         $('#docTYpe').val({{$request['uploadType']}});
         $('.right-sidebar').toggle();
+    });
+</script>
+@endif
+@if(isset($request['form']) && $request['form'] == 1)
+<script type="text/javascript">
+    $(window).on('load', function () {
+        $('.right-sidebar').toggle();
+        showForm($('#visaID').val());
+        console.log('show form');
     });
 </script>
 @endif
