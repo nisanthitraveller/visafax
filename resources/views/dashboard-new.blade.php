@@ -94,7 +94,7 @@ if ($visaDetails['status'] == 3) {
                 <li>
                     <a>
                         <span class="tb-name" style="top: -50px; width: 105px">View my documents</span>
-                        <span class="tb-year">{{date('d M, y'))}}</span>
+                        <span class="tb-year">{{date('d M, y')}}</span>
                     </a>
                 </li>
                 <li class="last">
