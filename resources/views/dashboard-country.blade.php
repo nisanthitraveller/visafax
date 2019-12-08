@@ -7,7 +7,7 @@ Visa Documents
 
     <div class="container">
         <div class="row align-items-center justify-content-center pt-4">
-            <h2>Upload your passport and payslip for initiating the visa application</h2>
+            <h2>Upload your passport & payslip to initiate the visa application</h2>
             <div class="col-9 dash-select cntry-selected">
                 <div class="media">
                     &nbsp;
@@ -23,32 +23,31 @@ Visa Documents
             <ul class="tablist tab1">
                 <li class="active">
                     <a>
-                        <span class="tb-name" style="top: -40px;">Start my application</span>
+                        <span class="tb-name" style="top: -50px; width: 105px">Start my application</span>
                         <span class="tb-year">{{date('d M, y')}}</span>
                     </a>
                 </li>
                 <li class="active">
                     <a>
-                        <span class="tb-name" style="top: -40px;">Upload Passport and payslip</span>
-                        <span class="step-year">
-                            {{date('d M, y')}}
-                        </span>
+                        <span class="tb-name" style="top: -50px; width: 105px">Upload passport & payslip</span>
+                        <span class="tb-year">{{date('d M, y')}}</span>
                     </a>
                 </li>
                 <li>
                     <a>
-                        <span class="tb-name" style="top: -40px;">Save my informations</span>
+                        <span class="tb-name" style="top: -50px; width: 105px">Save my information</span>
+                        <span class="tb-year"></span>
                     </a>
                 </li>
 
                 <li>
                     <a>
-                        <span class="tb-name" style="top: -40px;">View all documents</span>
+                        <span class="tb-name" style="top: -50px; width: 105px">View my documents</span>
                     </a>
                 </li>
                 <li class="last">
                     <a>
-                        <span class="tb-name" style="top: -40px;">Verify by VisaBadge</span>
+                        <span class="tb-name" style="top: -50px; width: 105px">Verify by VisaBadge</span>
                     </a>
                 </li>
             </ul>
@@ -72,7 +71,7 @@ Visa Documents
                         <div class="row mb-2 ">
                             <div class="col-md-10 col-sm-10 col-10 doc-block mt-3">
                                 <p class="dir" style="text-align: justify; color: #6483e9; text-decoration: underline; cursor: pointer; margin-bottom: 0" onclick="$('.dir, .display0').toggle()">
-                                    Show other documents
+                                    Show other documents needed
                                     <i style="padding-left: 5px" class="fa fa-angle-down"></i>
                                 </p>
                                 <p class="dir" style="display: none; text-align: justify; color: #6483e9; text-decoration: underline; cursor: pointer; margin-bottom: 0" onclick="$('.dir, .display0').toggle()">

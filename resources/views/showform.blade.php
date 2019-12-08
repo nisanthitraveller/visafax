@@ -1,48 +1,49 @@
 <div class="container">
-            <ul class="tablist tab1">
-                <li class="active">
-                    <a>
-                        <span class="tb-name" style="top: -40px;">Start my application</span>
-                        <span class="tb-year">{{date('d M, y')}}</span>
-                    </a>
-                </li>
-                <li class="active">
-                    <a>
-                        <span class="tb-name" style="top: -40px;">Upload Passport and payslip</span>
-                        <span class="tb-year">{{date('d M, y')}}</span>
-                    </a>
-                </li>
-                <li class="active">
-                    <a>
-                        <span class="tb-name" style="top: -40px;">Save my informations</span>
-                        <span class="tb-year">{{date('d M, y')}}</span>
-                    </a>
-                </li>
+    <ul class="tablist tab1">
+        <li class="active">
+            <a>
+                <span class="tb-name" style="top: -50px; width: 105px">Start my application</span>
+                <span class="tb-year">{{date('d M, y')}}</span>
+            </a>
+        </li>
+        <li class="active">
+            <a>
+                <span class="tb-name" style="top: -50px; width: 105px">Upload passport & payslip</span>
+                <span class="tb-year">{{date('d M, y')}}</span>
+            </a>
+        </li>
+        <li class="active">
+            <a>
+                <span class="tb-name" style="top: -50px; width: 105px">Save my information</span>
+                <span class="tb-year">{{date('d M, y')}}</span>
+            </a>
+        </li>
 
-                <li>
-                    <a>
-                        <span class="tb-name" style="top: -40px;">View all documents</span>
-                    </a>
-                </li>
-                <li class="last">
-                    <a>
-                        <span class="tb-name" style="top: -40px;">Verify by VisaBadge</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <li>
+            <a>
+                <span class="tb-name" style="top: -50px; width: 105px">View my documents</span>
+            </a>
+        </li>
+        <li class="last">
+            <a>
+                <span class="tb-name" style="top: -50px; width: 105px">Verify by VisaBadge</span>
+            </a>
+        </li>
+    </ul>
+</div>
 <div class="container-fluid">
     <div class="card p-3">
         <div class="card-body">
-            <h5 class="card-title">Check the details below</h5>
+            <h5 class="card-title">Verify & confirm your below visa application data</h5>
             <div class="table-responsive-sm">          
                 @foreach($user as $key => $data)
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label" for="form{{$key}}">{{$key}}:</label>
+                    <label class="col-sm-4 col-form-label" for="form{{$key}}">{{preg_replace('/(?<!\ )[A-Z]/', ' $0', $key)}}</label>
                     <div class="col-sm-8">
                         <?php
                             $calClass = (in_array($key, ['PassportDOI', 'PassportDOE'])) ? 'datepicker3' : null;
                             $calClass2 = (in_array($key, ['DOB'])) ? 'datepicker' : null;
+                            $data = (in_array($key, ['PassportDOI', 'PassportDOE', 'DOB'])) ? date('d/m/Y', strtotime($data)) : $data;
                         ?>
                         <input type="text" value="{{$data}}" name="user[{{$key}}]" class="form-control {{$calClass}} {{$calClass2}}" id="form{{$key}}">
                     </div>
@@ -50,7 +51,7 @@
                 @endforeach
                 @foreach($booking as $key1 => $data1)
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label" for="form{{$key1}}">{{$key1}}:</label>
+                    <label class="col-sm-4 col-form-label" for="form{{$key1}}">{{preg_replace('/(?<!\ )[A-Z]/', ' $0', $key1)}}</label>
                     <div class="col-sm-8">
                         <?php
                             $type = 'text';
@@ -66,9 +67,14 @@
                     </div>
                 </div>
                 @endforeach
-                <input type="hidden" id="save_user_id" name="save_user_id" value="{{$userId}}" />
-                <input type="hidden" id="save_booking_id" name="save_booking_id" value="{{$bookingId}}" />
-                <button type="submit" class="btn btn-primary">Save & Show My Visa Documents</button>
+                <div class="form-group row">
+                    <div class="col-sm-12 text-right">
+                        <input type="hidden" id="save_user_id" name="save_user_id" value="{{$userId}}" />
+                        <input type="hidden" id="save_booking_id" name="save_booking_id" value="{{$bookingId}}" />
+                        <a href="javascript:void(0)" onclick="window.history.back()" class="btn btn-light">Cancel</a>
+                        <button type="submit" class="btn btn-success">Confirm & View my documents</button>
+                    </div>
+                </div>
         </div>
         </div>
     </div>

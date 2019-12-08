@@ -71,74 +71,35 @@ if ($visaDetails['status'] == 3) {
         @csrf
         @if(!isset($request['uploadType']))
         <div class="container">
-            <ul class="tablist">
-                <li class="<?php if ($step >= 1) {
-    echo 'active';
-} ?>">
+            <ul class="tablist tab1">
+                <li class="active">
                     <a>
-                        <span class="tb-name">Upload Docs</span>
+                        <span class="tb-name" style="top: -50px; width: 105px">Start my application</span>
                         <span class="tb-year">{{date('d M, y', strtotime($visaDetails['created_at']))}}</span>
                     </a>
                 </li>
-                <li class="<?php if ($step >= 2) {
-    echo 'active';
-} ?>">
+                <li class="active">
                     <a>
-                        <span class="tb-name">Prepare Docs</span>
-                        <span class="step-year">
-                            @if($step >= 2 && !empty($visaDetails['assign_date']))
-                            {{date('d M, y', strtotime($visaDetails['assign_date']))}}
-                            @endif
-                        </span>
+                        <span class="tb-name" style="top: -50px; width: 105px">Upload passport & payslip</span>
+                        <span class="tb-year">{{date('d M, y', strtotime($visaDetails['created_at']))}}</span>
                     </a>
                 </li>
-                <li class="<?php if ($step >= 3) {
-    echo 'active';
-} ?>">
+                <li class="active">
                     <a>
-                        <span class="tb-name">Payment</span>
-                        <span class="step-year">
-                            @if($step >= 3 && !empty($visaDetails['payment_date']))
-                            {{date('d M, y', strtotime($visaDetails['payment_date']))}}
-                            @endif
-                        </span>
+                        <span class="tb-name" style="top: -50px; width: 105px">Save my information</span>
+                        <span class="tb-year">{{date('d M, y', strtotime($visaDetails['created_at']))}}</span>
                     </a>
                 </li>
 
-                <li class="<?php if ($step >= 4) {
-    echo 'active';
-} ?>">
+                <li>
                     <a>
-                        <span class="tb-name">Verification</span>
-                        <span class="step-year">
-                            @if($step >= 4 && !empty($visaDetails['verified_at']))
-                            {{date('d M, y', strtotime($visaDetails['verified_at']))}}
-                            @endif
-                        </span>
+                        <span class="tb-name" style="top: -50px; width: 105px">View my documents</span>
+                        <span class="tb-year">{{date('d M, y'))}}</span>
                     </a>
                 </li>
-                <li class="<?php if ($step >= 5) {
-    echo 'active';
-} ?>">
+                <li class="last">
                     <a>
-                        <span class="tb-name">Submission</span>
-                        <span class="step-year">
-                            @if($step >= 5 && !empty($visaDetails['submission_at']))
-                            {{date('d M, y', strtotime($visaDetails['submission_at']))}}
-                            @endif
-                        </span>
-                    </a>
-                </li>
-                <li class="last <?php if ($step >= 6) {
-    echo 'active';
-} ?>">
-                    <a>
-                        <span class="tb-name">Approval</span>
-                        <span class="step-year">
-                            @if($step >= 6 && !empty($visaDetails['approval_at']))
-                            {{date('d M, y', strtotime($visaDetails['approval_at']))}}
-                            @endif
-                        </span>
+                        <span class="tb-name" style="top: -50px; width: 105px">Verify by VisaBadge</span>
                     </a>
                 </li>
             </ul>
@@ -216,14 +177,9 @@ $out = strlen($document['documenttype']['type']) > 27 ? substr($document['docume
                         <div class="doc-list" data-toggle="tooltip" data-placement="top" title="{{$document['documenttype']['type']}}">
                             <div class="row">
                                 <div class="col-md-8 col-sm-7 col-12 doc-cols">
-                                    @if($visaDetails['paid'] == 1 && $document['DriveId'] != '')
+                                    @if($document['DriveId'] != '')
                                     <div class="dos-name">
                                         <a target="_blank" href="{{'https://docs.google.com/document/d/' . $document['DriveId']}}"> {{sprintf("%02d", $count)}}. {{$out}}</a>
-                                        <span class="sm-desc">{{$toolTip['tooltip']}}</span>
-                                    </div>
-                                    @elseif($visaDetails['paid'] == 0 && $document['DriveId'] != '')
-                                    <div class="dos-name">
-                                        <a href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}"> {{sprintf("%02d", $count)}}. {{$out}}</a>
                                         <span class="sm-desc">{{$toolTip['tooltip']}}</span>
                                     </div>
                                     @elseif($document['DriveId'] == '' && count($document1) == 1)
@@ -335,7 +291,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                         @endif
                     </div>
                     @if(!empty($visaDetails))
-                    <div class="col-xl-12 col-md-12 col-sm-12 mt-4 p-47 dashboard-wrap right-sidebar" id="file-upload" style="display: none">
+                    <div class="col-xl-12 col-md-12 col-sm-12 mt-4 p-47 dashboard-wrap right-sidebar" id="file-upload" style="margin-top: 0 !important; display: none">
                         @if(!isset($request['uploadType']))
                         <div class="container mb-4 dash-titles">
                             <div class="row">
@@ -394,23 +350,21 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                                 <div class="col-md-12 col-sm-12 row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-12  row-dta" style="text-align: justify">
                                         @if(stripos($uploadType['Name'], 'passport') !== false)
-                                            <b>Are you ready to upload your passport</b>
+                                            <h5>Are you ready to upload your passport ?</h5>
                                             <br />
-                                            <small style="color: lightgrey">You can upload the passport in PDF format only. Upload the front page by clicking the choose file and click add more files to upload back side of the passport</small>
+                                            <small class="sml" style="color: lightgrey">Upload the front & back side copies of your passport in <b>PDF</b> format. Start uploading by clicking the 'Choose File'. To add more files, click on 'Add More Files'.</small>
                                         @elseif(stripos($uploadType['Name'], 'offer letter') !== false || stripos($uploadType['Name'], 'payslip') !== false)
-                                            <b>Are you ready to upload your payslip</b>
+                                            <h5>Are you ready to upload your payslip ?</h5>
                                             <br />
-                                            <small style="color: lightgrey">You can upload the payslip in PDF format only. Upload the latest file</small>
+                                            <small style="color: lightgrey">Please upload your recent payslip to find your company name & employment details. If you don't have your payslip ready, click 'Not now' and you can upload it later.</small>
+                                            <small style="display: none" class="sml">Upload your latest month's payslip copy in <b>PDF</b> format. Start uploading by clicking the 'Choose File'. If you don't have your payslip ready, click 'Cancel' and you can upload it later.</small>
                                         @endif
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6  row-dta">
-                                        Uploading your {{$uploadType['Name']}}
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-6  row-dta">
+                                        <a href="javascript:void(0)" onclick="$('.uploadText').html($('#uploadType-{{$key}} .sml').html()); $(this).parent().parent().parent().remove(); $('#docTYpe').val({{$uploadType['Key']}}); $('.uploadTitle').html('Upload your <?=$uploadType['Name']?>');$('.file-show').show();" class="btn btn-success add_more">Yes, upload now</a>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-6 col-6  row-dta">
-                                        <a href="javascript:void(0)" onclick="$('.uploadText').html($('#uploadType-{{$key}} small').html()); $(this).parent().parent().parent().remove(); $('#docTYpe').val({{$uploadType['Key']}}); $('.uploadTitle').html('Upload your <?=$uploadType['Name']?>');$('.file-show').show();" class="btn btn-success add_more">Yes, upload now</a>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-6 col-6  row-dta">
-                                        <a href="javascript:void(0)" onclick="$(this).parent().parent().parent().remove();" class="btn btn-light">No later</a>
+                                        <a href="javascript:void(0)" onclick="$(this).parent().parent().parent().remove();" class="btn btn-light">Not now</a>
                                     </div>
                                 </div>
                             </div>
@@ -425,10 +379,10 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                                 @else
                                     @if(stripos($documents[$request['uploadType']][0]['documenttype']['type'], 'passport') !== false)
                                     <h5 class="uploadTitle">Upload front and back sides of your passport in PDF format</h5>
-                                    <small style="color: lightgrey" class="uploadText">You can upload the passport in PDF format only. Upload the front page by clicking the choose file and click add more files to upload back side of the passport</small>
+                                    <small style="color: lightgrey" class="uploadText">Upload the front & back side copies of your passport in <b>PDF</b> format. Start uploading by clicking the 'Choose File'. To add more files, click on 'Add More Files'.</small>
                                     @elseif(stripos($documents[$request['uploadType']][0]['documenttype']['type'], 'offer letter') !== false || strpos($documents[$request['uploadType']][0]['documenttype']['type'], 'payslip') !== false)
                                     <h5 class="uploadTitle">Upload your payslip in PDF format</h5>
-                                    <small style="color: lightgrey" class="uploadText">You can upload the payslip in PDF format only. Upload the latest file</small>
+                                    <small style="color: lightgrey" class="uploadText">Please upload your recent payslip to find your company name & employment details. If you don't have your payslip ready, click 'Not now' and you can upload it later.</small>
                                     @endif
                                 @endif
                             </div>
@@ -441,7 +395,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                             </div>
                         </div>
                         <div class="file-upload" style="display:none">
-                            <div class="doc-list">
+                            <div class="doc-list file-show">
                                 <div class="row">
                                     <div class="col-md-3 col-sm-4 col-4 doc-col-2">
                                         <input type="file" accept="application/pdf" name="booking_documents[]" />
@@ -452,12 +406,13 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                         
                         <div class="doc-list add-file file-show">
                             <div class="row">
-                                <div class="col-md-6 col-sm-6 col-6 doc-cols">
+                                <div class="col-md-4 col-sm-4 col-4 doc-cols" style="padding-left: 0;">
                                     <input type="hidden" id="docTYpe" name="docType" />
                                     
                                     <button type='button' class="btn btn-link pull-right add_more" disabled>Add More Files</button>
                                 </div>
-                                <div class="col-md-6 col-sm-6 col-6 doc-cols text-right">
+                                <div class="col-md-8 col-sm-8 col-8 doc-cols text-right">
+                                    <a href="javascript:void(0)" onclick="showForm({{$visaDetails['id']}})" class="btn btn-light">Cancel</a>
                                     <input type="submit" name="upload" id="upload" class="btn btn-success" disabled value="Confirm Upload">
                                 </div>
                             </div>
@@ -588,7 +543,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             success:function(data) {
                 $('#file-upload').html(data);
-                $('.uploadTitle').html('Verify and complete the details');
+                $('.uploadTitle').html('Verify & Confirm');
             }
         })
     }
