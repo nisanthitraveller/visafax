@@ -3,11 +3,11 @@
 Visa Documents
 @endsection
 @section('content')
-<section class="banner inner-2" style="background-image: url({{url('/')}}/images/hero-home.png);">
+<section class="banner inner-payment" style="background-image: url({{url('/')}}/images/hero-home.png);">
 
     <div class="container">
         <div class="row align-items-center justify-content-center pt-4">
-            <h1>Upload below documents & start your application</h1>
+            <h2>Upload your passport and payslip for initiating the visa application</h2>
             <div class="col-9 dash-select cntry-selected">
                 <div class="media">
                     &nbsp;

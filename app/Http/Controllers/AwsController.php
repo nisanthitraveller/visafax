@@ -161,7 +161,9 @@ class AwsController extends Controller
                         if (strpos($rd, $key) !== false) {
                             if (is_numeric($key1) && is_numeric($k)) {
                                 if(!empty($k1['db'])) {
-                                    $rr[$k1['db']][] = $readData[$k + $key1];
+                                    if(isset($readData[$k + $key1])) {
+                                        $rr[$k1['db']][] = $readData[$k + $key1];
+                                    }
                                 }
                             } else {
                                 echo '<br/>' . $key1;
