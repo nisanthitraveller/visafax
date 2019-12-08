@@ -179,24 +179,24 @@ $out = strlen($document['documenttype']['type']) > 27 ? substr($document['docume
                                 <div class="col-md-8 col-sm-7 col-12 doc-cols">
                                     @if($document['DriveId'] != '')
                                     <div class="dos-name">
-                                        <a target="_blank" href="{{'https://docs.google.com/document/d/' . $document['DriveId']}}"> {{sprintf("%02d", $count)}}. {{$out}}</a>
+                                        <a target="_blank" href="{{'https://docs.google.com/document/d/' . $document['DriveId']}}">{{$out}}</a>
                                         <span class="sm-desc">{{$toolTip['tooltip']}}</span>
                                     </div>
                                     @elseif($document['DriveId'] == '' && count($document1) == 1)
                                     @if($document['pdf'] != '')
                                     <div class="dos-name">
-                                        <a target="_blank" href="{{url('/') . '/uploads/' . $document['pdf']}}"> {{sprintf("%02d", $count)}}. {{$out}}</a>
+                                        <a target="_blank" href="{{url('/') . '/uploads/' . $document['pdf']}}">{{$out}}</a>
                                         <span class="sm-desc">{{$toolTip['tooltip']}}</span>
                                     </div>
                                     @else
                                     <div class="dos-name">
-                                        <a href="javascript:void(0)" title="No files uploaded"> {{sprintf("%02d", $count)}}. {{$out}}</a>
+                                        <a href="javascript:void(0)" title="No files uploaded">{{$out}}</a>
                                         <span class="sm-desc">{{$toolTip['tooltip']}}</span>
                                     </div>
                                     @endif
                                     @elseif($document['DriveId'] == '' && count($document1) > 1)
                                     <div class="dos-name">
-                                        <a data-toggle="collapse" href="#connect-modal{{$k}}" role="button" aria-expanded="false" aria-controls="connect-modal{{$k}}"> {{sprintf("%02d", $count)}}. {{$out}}</a>
+                                        <a data-toggle="collapse" href="#connect-modal{{$k}}" role="button" aria-expanded="false" aria-controls="connect-modal{{$k}}">{{$out}}</a>
                                         <span class="sm-desc">{{$toolTip['tooltip']}}</span>
                                         <div class="collapse" id="connect-modal{{$k}}">
                                             <div>
@@ -215,9 +215,9 @@ $out = strlen($document['documenttype']['type']) > 27 ? substr($document['docume
                                 </div>
                                 <div class="col-md-3 col-sm-3 col-4 doc-col-2">
                                     @if($document['DriveId'] == '')
-                                    <div class="up-btn">
+                                    <?php $text = (count($document1) >= 1 && $document['pdf'] != '') ? 'Uploaded' : 'Upload'; ?>
+                                    <div class="up-btn {{$text}}">
                                         <img src="{{url('/')}}/images/upload-active.png">
-<?php $text = (count($document1) >= 1 && $document['pdf'] != '') ? 'Uploaded' : 'Upload'; ?>
                                         <label for="file" class="up-doc" onclick="$('#docTYpe').val({{$k}}); $('.right-sidebar').toggle()">{{$text}}</label>
                                     </div>
                                     @endif
@@ -228,7 +228,7 @@ $out = strlen($document['documenttype']['type']) > 27 ? substr($document['docume
                                         <span class="up-succss" data-toggle="tooltip" data-placement="top" title="Verified & Ready to Download">
                                             <i class="fa fa-check"></i>
                                         </span>
-                                        @elseif($document['status'] == 1)
+                                        @elseif($document['status'] == 0)
                                         <span class="up-progrs" data-toggle="tooltip" data-placement="top" title="Pending - VisaBadge Review">
                                             <i class="fa fa-clock"></i>
                                         </span>

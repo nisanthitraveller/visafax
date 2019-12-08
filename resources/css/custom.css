@@ -322,6 +322,9 @@ button.btn.btn-primary.dropdown-toggle img {
     padding: 5px 10px 5px 5px;
     border-radius: 5px;
 }
+.Uploaded{
+    background-color: #d4eae3;
+}
 .tab1 li {
     width: 18% !important;
 }
