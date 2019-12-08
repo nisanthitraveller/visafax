@@ -37,23 +37,15 @@ Visa Documents
                         @if($display == 1 && $document['display'] == 0)
                         <div class="row mb-2 ">
                             <div class="col-md-10 col-sm-10 col-10 doc-block mt-3">
-                                <b>Other Documents needed for your {{$country['countryName']}} visa application</b>
-                                <p style="text-align: justify">
-                                    Below are the additional documents that needs to be submitted as part of your visa application. You can review them, after you upload above documents.
+                                <p class="dir" style="text-align: justify; color: #6483e9; text-decoration: underline; cursor: pointer" onclick="$('.dir, .display0').toggle()">
+                                    Show other documents
+                                    <i style="padding-left: 5px" class="fa fa-angle-down"></i>
                                 </p>
-                            </div>
-                            <div class="col-md-2 col-sm-2 col-2 doc-block mt-3 text-right">
-                                <i class="fa fa-arrow-down" style="font-size:36px" onclick="$('.display0').fadeToggle('slow')"></i>
-                            </div>
-                        </div>
-                        @endif
-                        @if($count == 1 && $document['display'] == 1)
-                        <div class="row mb-2 ">
-                            <div class="col-md-12 col-sm-12 col-12 doc-block">
-                                <b>Upload below travel documents to initiate visa processing.</b>
-                                <p style="text-align: justify">
-                                    The below is a list of mandatory documents that you will have to share with us to initiate your visa application
+                                <p class="dir" style="display: none; text-align: justify; color: #6483e9; text-decoration: underline; cursor: pointer" onclick="$('.dir, .display0').toggle()">
+                                    Hide other documents
+                                    <i style="padding-left: 5px" class="fa fa-angle-up"></i>
                                 </p>
+                                
                             </div>
                         </div>
                         @endif
@@ -62,9 +54,9 @@ Visa Documents
                                 <div class="col-md-9 col-sm-7 col-12 doc-cols">
                                     <div class="dos-name">
                                         @guest
-                                            <a target="_blank" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> onclick="$('#connect-modal').modal('show')" <?php } ?>> {{sprintf("%02d", $count)}}. {{$out}}</a>
+                                            <a style="padding-left: 0" target="_blank" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> onclick="$('#connect-modal').modal('show')" <?php } ?>>{{$out}}</a>
                                         @else
-                                            <a class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> href="{{url('/')}}/dashboard?uploadType={{$document['documenttype']['id']}}" <?php } ?>> {{sprintf("%02d", $count)}}. {{$out}}</a>
+                                            <a style="padding-left: 0" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> href="{{url('/')}}/dashboard?uploadType={{$document['documenttype']['id']}}" <?php } ?>> {{sprintf("%02d", $count)}}. {{$out}}</a>
                                         @endguest
                                         <span class="sm-desc">{{$document['tooltip']}}</span>
                                     </div>

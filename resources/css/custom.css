@@ -269,7 +269,7 @@ a.cntuemargin {
     margin: 50px !important;
 }
 span.sm-desc {
-    padding-left: 28px !important;
+    padding-left: 0 !important;
     text-align: justify;
 }
 .plus-minus {
@@ -316,6 +316,11 @@ button.btn.btn-primary.dropdown-toggle img {
 }
 .owl-carousel .owl-item img {
     height: 162px;
+}
+.up-btn {
+    background-color: #eaeeff;
+    padding: 5px 10px 5px 5px;
+    border-radius: 5px;
 }
 @media screen and (max-width: 767px) {
     .dos-name a {
