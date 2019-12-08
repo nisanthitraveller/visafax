@@ -390,25 +390,24 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                             
                             @foreach($uploadTypes as $key => $uploadType)
                             @if($uploadType['Key'] != $request['uploadType'])
-                            <div class="row up-type" id="uploadType-{{$key}}" style="display:none">
+                            <div class="row up-type" id="uploadType-{{$key}}" style="display: none">
                                 <div class="col-md-12 col-sm-12 row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-12  row-dta" style="text-align: justify">
-                                        @if (stripos('passport', $uploadType['Name']) !== false)
+                                        @if(stripos($uploadType['Name'], 'passport') !== false)
                                             <b>Are you ready to upload your passport</b>
                                             <br />
                                             <small style="color: lightgrey">You can upload the passport in PDF format only. Upload the front page by clicking the choose file and click add more files to upload back side of the passport</small>
-                                        @elseif (stripos('offer letter', $uploadType['Name']) !== false || stripos('payslip', $uploadType['Name']) !== false)
+                                        @elseif(stripos($uploadType['Name'], 'offer letter') !== false || stripos($uploadType['Name'], 'payslip') !== false)
                                             <b>Are you ready to upload your payslip</b>
                                             <br />
                                             <small style="color: lightgrey">You can upload the payslip in PDF format only. Upload the latest file</small>
                                         @endif
-                                        
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-6  row-dta">
                                         Uploading your {{$uploadType['Name']}}
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-6 col-6  row-dta">
-                                        <a href="javascript:void(0)" onclick="$(this).parent().parent().parent().remove(); $('#docTYpe').val({{$uploadType['Key']}}); $('.uploadTitle').html('Upload your <?=$uploadType['Name']?>');$('.file-show').show();" class="btn btn-success add_more">Yes, upload now</a>
+                                        <a href="javascript:void(0)" onclick="$('.uploadText').html($('#uploadType-{{$key}} small').html()); $(this).parent().parent().parent().remove(); $('#docTYpe').val({{$uploadType['Key']}}); $('.uploadTitle').html('Upload your <?=$uploadType['Name']?>');$('.file-show').show();" class="btn btn-success add_more">Yes, upload now</a>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-6 col-6  row-dta">
                                         <a href="javascript:void(0)" onclick="$(this).parent().parent().parent().remove();" class="btn btn-light">No later</a>
@@ -424,12 +423,12 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                                 @if(!isset($request['uploadType']))
                                     <h2 class="uploadTitle">Upload your documents</h2>
                                 @else
-                                    @if (stripos('passport', $documents[$request['uploadType']][0]['documenttype']['type']) !== false)
+                                    @if(stripos($documents[$request['uploadType']][0]['documenttype']['type'], 'passport') !== false)
                                     <h5 class="uploadTitle">Upload front and back sides of your passport in PDF format</h5>
-                                    <small style="color: lightgrey">You can upload the passport in PDF format only. Upload the front page by clicking the choose file and click add more files to upload back side of the passport</small>
-                                    @elseif (stripos('offer letter', $documents[$request['uploadType']][0]['documenttype']['type']) !== false || strpos('payslip', $documents[$request['uploadType']][0]['documenttype']['type']) !== false)
+                                    <small style="color: lightgrey" class="uploadText">You can upload the passport in PDF format only. Upload the front page by clicking the choose file and click add more files to upload back side of the passport</small>
+                                    @elseif(stripos($documents[$request['uploadType']][0]['documenttype']['type'], 'offer letter') !== false || strpos($documents[$request['uploadType']][0]['documenttype']['type'], 'payslip') !== false)
                                     <h5 class="uploadTitle">Upload your payslip in PDF format</h5>
-                                    <small style="color: lightgrey">You can upload the payslip in PDF format only. Upload the latest file</small>
+                                    <small style="color: lightgrey" class="uploadText">You can upload the payslip in PDF format only. Upload the latest file</small>
                                     @endif
                                 @endif
                             </div>
@@ -589,6 +588,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             success:function(data) {
                 $('#file-upload').html(data);
+                $('.uploadTitle').html('Verify and complete the details');
             }
         })
     }
