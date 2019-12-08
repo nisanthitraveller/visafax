@@ -351,19 +351,19 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-12  row-dta" style="text-align: justify">
                                         @if(stripos($uploadType['Name'], 'passport') !== false)
                                             <h5>Are you ready to upload your passport ?</h5>
-                                            <br />
                                             <small class="sml" style="color: #ddd">Upload the front & back side copies of your passport in <b>PDF</b> format. Start uploading by clicking the 'Choose File'. To add more files, click on 'Add More Files'.</small>
+                                            <br />
                                         @elseif(stripos($uploadType['Name'], 'offer letter') !== false || stripos($uploadType['Name'], 'payslip') !== false)
                                             <h5>Are you ready to upload your payslip ?</h5>
-                                            <br />
                                             <small style="color: #ddd">Please upload your recent payslip to find your company name & employment details. If you don't have your payslip ready, click 'Not now' and you can upload it later.</small>
                                             <small style="display: none" class="sml">Upload your latest month's payslip copy in <b>PDF</b> format. Start uploading by clicking the 'Choose File'. If you don't have your payslip ready, click 'Cancel' and you can upload it later.</small>
+                                            <br />
                                         @endif
                                     </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-6 col-6  row-dta">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-6 mt-2 row-dta">
                                         <a href="javascript:void(0)" onclick="$('.uploadText').html($('#uploadType-{{$key}} .sml').html()); $(this).parent().parent().parent().remove(); $('#docTYpe').val({{$uploadType['Key']}}); $('.uploadTitle').html('Upload your <?=$uploadType['Name']?>');$('.file-show').show();" class="btn btn-success add_more">Yes, upload now</a>
                                     </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-6 col-6  row-dta">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-6 mt-2 row-dta">
                                         <a href="javascript:void(0)" onclick="$(this).parent().parent().parent().remove();" class="btn btn-light">Not now</a>
                                     </div>
                                 </div>
@@ -387,7 +387,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                                 @endif
                             </div>
                         </div>
-                        <div class="doc-list file-show">
+                        <div class="doc-list up-doc-file file-show">
                             <div class="row">
                                 <div class="col-md-3 col-sm-4 col-4 doc-col-2">
                                     <input type="file" accept="application/pdf" name="booking_documents[]" />
@@ -395,7 +395,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                             </div>
                         </div>
                         <div class="file-upload" style="display:none">
-                            <div class="doc-list file-show">
+                            <div class="doc-list up-doc-file file-show">
                                 <div class="row">
                                     <div class="col-md-3 col-sm-4 col-4 doc-col-2">
                                         <input type="file" accept="application/pdf" name="booking_documents[]" />
@@ -511,6 +511,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                 cache: false,
                 processData: false,
                 success:function(data) {
+                    $(".up-doc-file:nth-child(2)").hide();
                     $('.file-show').hide();
                     $('input[type=file]').val(null);
                     var val = parseInt($('#uploadType').val()) + 1;
