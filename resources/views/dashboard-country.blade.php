@@ -79,11 +79,11 @@ Visa Documents
                         @if($display == 1 && $document['display'] == 0)
                         <div class="row mb-2 ">
                             <div class="col-md-10 col-sm-10 col-10 doc-block mt-3">
-                                <p class="dir" style="text-align: justify; color: #6483e9; text-decoration: underline; cursor: pointer" onclick="$('.dir, .display0').toggle()">
+                                <p class="dir" style="text-align: justify; color: #6483e9; text-decoration: underline; cursor: pointer; margin-bottom: 0" onclick="$('.dir, .display0').toggle()">
                                     Show other documents
                                     <i style="padding-left: 5px" class="fa fa-angle-down"></i>
                                 </p>
-                                <p class="dir" style="display: none; text-align: justify; color: #6483e9; text-decoration: underline; cursor: pointer" onclick="$('.dir, .display0').toggle()">
+                                <p class="dir" style="display: none; text-align: justify; color: #6483e9; text-decoration: underline; cursor: pointer; margin-bottom: 0" onclick="$('.dir, .display0').toggle()">
                                     Hide other documents
                                     <i style="padding-left: 5px" class="fa fa-angle-up"></i>
                                 </p>
