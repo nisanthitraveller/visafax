@@ -352,11 +352,11 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                                         @if(stripos($uploadType['Name'], 'passport') !== false)
                                             <h5>Are you ready to upload your passport ?</h5>
                                             <br />
-                                            <small class="sml" style="color: lightgrey">Upload the front & back side copies of your passport in <b>PDF</b> format. Start uploading by clicking the 'Choose File'. To add more files, click on 'Add More Files'.</small>
+                                            <small class="sml" style="color: #ddd">Upload the front & back side copies of your passport in <b>PDF</b> format. Start uploading by clicking the 'Choose File'. To add more files, click on 'Add More Files'.</small>
                                         @elseif(stripos($uploadType['Name'], 'offer letter') !== false || stripos($uploadType['Name'], 'payslip') !== false)
                                             <h5>Are you ready to upload your payslip ?</h5>
                                             <br />
-                                            <small style="color: lightgrey">Please upload your recent payslip to find your company name & employment details. If you don't have your payslip ready, click 'Not now' and you can upload it later.</small>
+                                            <small style="color: #ddd">Please upload your recent payslip to find your company name & employment details. If you don't have your payslip ready, click 'Not now' and you can upload it later.</small>
                                             <small style="display: none" class="sml">Upload your latest month's payslip copy in <b>PDF</b> format. Start uploading by clicking the 'Choose File'. If you don't have your payslip ready, click 'Cancel' and you can upload it later.</small>
                                         @endif
                                     </div>
@@ -379,10 +379,10 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                                 @else
                                     @if(stripos($documents[$request['uploadType']][0]['documenttype']['type'], 'passport') !== false)
                                     <h5 class="uploadTitle">Upload front and back sides of your passport in PDF format</h5>
-                                    <small style="color: lightgrey" class="uploadText">Upload the front & back side copies of your passport in <b>PDF</b> format. Start uploading by clicking the 'Choose File'. To add more files, click on 'Add More Files'.</small>
+                                    <small style="color: #ddd" class="uploadText">Upload the front & back side copies of your passport in <b>PDF</b> format. Start uploading by clicking the 'Choose File'. To add more files, click on 'Add More Files'.</small>
                                     @elseif(stripos($documents[$request['uploadType']][0]['documenttype']['type'], 'offer letter') !== false || strpos($documents[$request['uploadType']][0]['documenttype']['type'], 'payslip') !== false)
                                     <h5 class="uploadTitle">Upload your payslip in PDF format</h5>
-                                    <small style="color: lightgrey" class="uploadText">Please upload your recent payslip to find your company name & employment details. If you don't have your payslip ready, click 'Not now' and you can upload it later.</small>
+                                    <small style="color: #ddd" class="uploadText">Please upload your recent payslip to find your company name & employment details. If you don't have your payslip ready, click 'Not now' and you can upload it later.</small>
                                     @endif
                                 @endif
                             </div>
