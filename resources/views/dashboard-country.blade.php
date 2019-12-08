@@ -20,7 +20,7 @@ Visa Documents
     <form id="wizard" class="pt-4 acts wizard clearfix" role="application" method="post" enctype="multipart/form-data">
         @csrf
         <div class="container">
-            <ul class="tablist">
+            <ul class="tablist tab1">
                 <li class="active">
                     <a>
                         <span class="tb-name" style="top: -40px;">Start my application</span>
@@ -38,25 +38,17 @@ Visa Documents
                 <li>
                     <a>
                         <span class="tb-name" style="top: -40px;">Save my informations</span>
-                        <span class="step-year">
-                            
-                        </span>
                     </a>
                 </li>
 
                 <li>
                     <a>
                         <span class="tb-name" style="top: -40px;">View all documents</span>
-                        <span class="step-year">
-                            
-                        </span>
                     </a>
                 </li>
                 <li class="last">
                     <a>
                         <span class="tb-name" style="top: -40px;">Verify by VisaBadge</span>
-                        <span class="step-year">
-                        </span>
                     </a>
                 </li>
             </ul>

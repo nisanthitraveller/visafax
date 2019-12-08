@@ -322,6 +322,12 @@ button.btn.btn-primary.dropdown-toggle img {
     padding: 5px 10px 5px 5px;
     border-radius: 5px;
 }
+.tab1 li {
+    width: 18% !important;
+}
+ul.tab1 li:before {
+    left: 58px !important;
+}
 @media screen and (max-width: 767px) {
     .dos-name a {
         font-size: 14px;
