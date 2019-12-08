@@ -30,18 +30,34 @@ Visa {{$country['countryName']}}
 </section>
 <div class="dasboard-detail-wrap">
     <div class="container">
-            <ul class="tablist">
-                <li class="active">
+            <ul class="tablist tab1">
+                <li>
                     <a>
-                        <span class="tb-name">Upload Docs</span>
-                        <span class="tb-year">{{date('d M, y', time())}}</span>
+                        <span class="tb-name" style="top: -50px; width: 105px">Start my application</span>
                     </a>
                 </li>
-                <li><a><span class="tb-name">Prepare Docs</span></a></li>
-                <li><a><span class="tb-name">Payment</span></a></li>
-                <li><a><span class="tb-name">Verification</span></a></li>
-                <li><a><span class="tb-name">Submission</span></a></li>
-                <li><a><span class="tb-name">Approval</span></a></li>
+                <li>
+                    <a>
+                        <span class="tb-name" style="top: -50px; width: 105px">Upload passport & payslip</span>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <span class="tb-name" style="top: -50px; width: 105px">Save my information</span>
+                        <span class="tb-year"></span>
+                    </a>
+                </li>
+
+                <li>
+                    <a>
+                        <span class="tb-name" style="top: -50px; width: 105px">View my documents</span>
+                    </a>
+                </li>
+                <li class="last">
+                    <a>
+                        <span class="tb-name" style="top: -50px; width: 105px">Verify by VisaBadge</span>
+                    </a>
+                </li>
             </ul>
     </div>
 

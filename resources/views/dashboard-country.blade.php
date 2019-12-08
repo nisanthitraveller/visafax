@@ -27,7 +27,7 @@ Visa Documents
                         <span class="tb-year">{{date('d M, y')}}</span>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a>
                         <span class="tb-name" style="top: -50px; width: 105px">Upload passport & payslip</span>
                         <span class="tb-year">{{date('d M, y')}}</span>
