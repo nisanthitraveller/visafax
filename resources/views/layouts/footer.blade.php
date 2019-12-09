@@ -11,8 +11,8 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <img src="{{url('/')}}/images/modal-img.png">
-                <h3>Sign in & initiate your visa application for Free!</h3>
-                <p>Sign in to initiate your visa application. On VisaBadge, we get your visa documents prepared instantly, on a single page - completely Free!</p>
+                <h3>Sign in & initiate your visa application for FREE!</h3>
+                <p>Sign in to initiate your visa application. On VisaBadge, we get your visa documents prepared instantly, on a single page - completely FREE!</p>
                 <div class="col-sm-12 connect-links">
                     <!--<div class="g-signin2" id="my-signin2" data-width="260" data-height="50" data-theme="light" data-longtitle="true" data-onsuccess="onSignIn"></div>-->
                     <a href="javascript:void(0)" id="googleSignIn"><img src="{{url('/')}}/images/search.svg">Connect with Google</a>

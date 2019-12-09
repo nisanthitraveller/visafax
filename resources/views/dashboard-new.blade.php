@@ -99,7 +99,7 @@ if ($visaDetails['status'] == 3) {
                 </li>
                 <li class="last">
                     <a>
-                        <span class="tb-name" style="top: -50px; width: 105px">Verify by VisaBadge</span>
+                        <span class="tb-name" style="top: -50px; width: 105px">Verification by VisaBadge</span>
                     </a>
                 </li>
             </ul>
@@ -174,7 +174,7 @@ $document = $document1[0];
 $toolTip = App\Models\Document::where('country_id', $visaDetails['VisitingCountry'])->where('document_type', $document['DocumentID'])->select('body_business as tooltip')->first()->toArray();
 $out = strlen($document['documenttype']['type']) > 27 ? substr($document['documenttype']['type'], 0, 27) . "..." : $document['documenttype']['type'];
 ?>
-                        <div class="doc-list" data-toggle="tooltip" data-placement="top" title="{{$document['documenttype']['type']}}">
+                        <div class="doc-list" data-toggle="tooltip" data-placement="top">
                             <div class="row">
                                 <div class="col-md-8 col-sm-7 col-12 doc-cols">
                                     @if($document['DriveId'] != '')
@@ -350,21 +350,21 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                                 <div class="col-md-12 col-sm-12 row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-12  row-dta" style="text-align: justify">
                                         @if(stripos($uploadType['Name'], 'passport') !== false)
-                                            <h5>Are you ready to upload your passport ?</h5>
-                                            <small class="sml" style="color: #ddd">Upload the front & back side copies of your passport in <b>PDF</b> format. Start uploading by clicking the 'Choose File'. To add more files, click on 'Add More Files'.</small>
+                                            <h5 style="color: #282828">Are you ready to upload your passport ?</h5>
+                                            <small class="sml" style="color: #606060; line-height: 18px !important; display: block;">Upload the front & back side copies of your passport in <b>PDF</b> format. Start uploading by clicking the 'Choose File'. To add more files, click on 'Add More Files'.</small>
                                             <br />
                                         @elseif(stripos($uploadType['Name'], 'offer letter') !== false || stripos($uploadType['Name'], 'payslip') !== false)
-                                            <h5>Are you ready to upload your payslip ?</h5>
-                                            <small style="color: #ddd">Please upload your recent payslip to find your company name & employment details. If you don't have your payslip ready, click 'Not now' and you can upload it later.</small>
+                                            <h5 style="color: #282828">Are you ready to upload your payslip ?</h5>
+                                            <small style="color: #606060; line-height: 18px !important; display: block;">Please upload your recent payslip to find your company name & employment details. If you don't have your payslip ready, click 'Not now' and you can upload it later.</small>
                                             <small style="display: none" class="sml">Upload your latest month's payslip copy in <b>PDF</b> format. Start uploading by clicking the 'Choose File'. If you don't have your payslip ready, click 'Cancel' and you can upload it later.</small>
                                             <br />
                                         @endif
                                     </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-6 col-6 mt-2 row-dta">
-                                        <a href="javascript:void(0)" onclick="$('.uploadText').html($('#uploadType-{{$key}} .sml').html()); $(this).parent().parent().parent().remove(); $('#docTYpe').val({{$uploadType['Key']}}); $('.uploadTitle').html('Upload your <?=$uploadType['Name']?>');$('.file-show').show();" class="btn btn-success add_more">Yes, upload now</a>
+                                    <div class="col-lg-9 col-md-9 col-sm-6 col-6 mt-2 row-dta text-right">
+                                        <a href="javascript:void(0)" onclick="$(this).parent().parent().parent().remove(); showNext()" class="btn btn-light">Not now</a>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-6 col-6 mt-2 row-dta">
-                                        <a href="javascript:void(0)" onclick="$(this).parent().parent().parent().remove();" class="btn btn-light">Not now</a>
+                                        <a href="javascript:void(0)" onclick="$('.uploadText').html($('#uploadType-{{$key}} .sml').html()); $(this).parent().parent().parent().remove(); $('#docTYpe').val({{$uploadType['Key']}}); $('.uploadTitle').html('Upload your <?=$uploadType['Name']?>');$('.file-show').show();" class="btn btn-success add_more">Yes, upload now</a>
                                     </div>
                                 </div>
                             </div>
@@ -373,21 +373,21 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                         </div>
                         @endif
                         <div class="row mb-2 file-show">
-                            <div class="col-md-9 col-sm-10 col-9">
+                            <div class="col-md-12 col-sm-10 col-9">
                                 @if(!isset($request['uploadType']))
-                                    <h2 class="uploadTitle">Upload your documents</h2>
+                                    <h2 class="uploadTitle" style="color: #282828">Upload your documents</h2>
                                 @else
                                     @if(stripos($documents[$request['uploadType']][0]['documenttype']['type'], 'passport') !== false)
-                                    <h5 class="uploadTitle">Upload front and back sides of your passport in PDF format</h5>
-                                    <small style="color: #ddd" class="uploadText">Upload the front & back side copies of your passport in <b>PDF</b> format. Start uploading by clicking the 'Choose File'. To add more files, click on 'Add More Files'.</small>
-                                    @elseif(stripos($documents[$request['uploadType']][0]['documenttype']['type'], 'offer letter') !== false || strpos($documents[$request['uploadType']][0]['documenttype']['type'], 'payslip') !== false)
-                                    <h5 class="uploadTitle">Upload your payslip in PDF format</h5>
-                                    <small style="color: #ddd" class="uploadText">Please upload your recent payslip to find your company name & employment details. If you don't have your payslip ready, click 'Not now' and you can upload it later.</small>
+                                    <h5 class="uploadTitle" style="color: #282828">Upload front and back sides of your passport in PDF format</h5>
+                                    <small style="color: #606060; line-height: 18px !important; display: block; text-align: justify" class="uploadText">Upload the front & back side copies of your passport in <b>PDF</b> format. Start uploading by clicking the 'Choose File'. To add more files, click on 'Add More Files'.</small>
+                                    @elseif(stripos($documents[$request['uploadType']][0]['documenttype']['type'], 'offer letter') !== false || stripos($documents[$request['uploadType']][0]['documenttype']['type'], 'payslip') !== false)
+                                    <h5 class="uploadTitle" style="color: #282828">Upload your payslip in PDF format</h5>
+                                    <small style="color: #606060; line-height: 18px !important; display: block; text-align: justify" class="uploadText">Please upload your recent payslip to find your company name & employment details. If you don't have your payslip ready, click 'Not now' and you can upload it later.</small>
                                     @endif
                                 @endif
                             </div>
                         </div>
-                        <div class="doc-list up-doc-file file-show">
+                        <div class="doc-list up-doc-file file-show mt-2">
                             <div class="row">
                                 <div class="col-md-3 col-sm-4 col-4 doc-col-2">
                                     <input type="file" accept="application/pdf" name="booking_documents[]" />
@@ -395,7 +395,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                             </div>
                         </div>
                         <div class="file-upload" style="display:none">
-                            <div class="doc-list up-doc-file file-show">
+                            <div class="doc-list up-doc-file file-show mt-2">
                                 <div class="row">
                                     <div class="col-md-3 col-sm-4 col-4 doc-col-2">
                                         <input type="file" accept="application/pdf" name="booking_documents[]" />
@@ -404,7 +404,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                             </div>
                         </div>
                         
-                        <div class="doc-list add-file file-show">
+                        <div class="doc-list add-file file-show mt-2">
                             <div class="row">
                                 <div class="col-md-4 col-sm-4 col-4 doc-cols" style="padding-left: 0;">
                                     <input type="hidden" id="docTYpe" name="docType" />
@@ -520,7 +520,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                 cache: false,
                 processData: false,
                 success:function(data) {
-                    $(".up-doc-file:nth-child(2)").hide();
+                    $(".up-doc-file:nth-child(1)").remove();
                     $('.file-show').hide();
                     $('input[type=file]').val(null);
                     var val = parseInt($('#uploadType').val()) + 1;
@@ -582,6 +582,14 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
             }
         });
    }
+   function showNext() {
+        if($('.up-type').first().length) {
+            $('.up-type').first().show();
+        } else {
+            showForm({{$visaDetails['id']}});
+            console.log('show form');
+        }
+    }
 </script>
 @endsection
 

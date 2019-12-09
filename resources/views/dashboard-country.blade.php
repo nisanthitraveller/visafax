@@ -47,7 +47,7 @@ Visa Documents
                 </li>
                 <li class="last">
                     <a>
-                        <span class="tb-name" style="top: -50px; width: 105px">Verify by VisaBadge</span>
+                        <span class="tb-name" style="top: -50px; width: 105px">Verification by VisaBadge</span>
                     </a>
                 </li>
             </ul>
@@ -62,6 +62,7 @@ Visa Documents
                         <?php
                             $class = ($document['display'] == 1) ? 'btn' : 'btn disabled';
                             $class1 = ($document['display'] == 1) ? null : "style=display:none";
+                            $class2 = ($document['display'] == 1) ? 'col-md-9' : 'col-md-12';
                             if($document['display'] == 0) {
                                 $display++;
                             }
@@ -82,34 +83,33 @@ Visa Documents
                             </div>
                         </div>
                         @endif
-                        <div class="doc-list display{{$document['display']}}" {{$class1}} data-toggle="tooltip" data-placement="top" title="{{$document['documenttype']['type']}}">
+                        <div class="doc-list display{{$document['display']}}" {{$class1}} data-toggle="tooltip" data-placement="top">
                             <div class="row">
-                                <div class="col-md-9 col-sm-7 col-12 doc-cols">
+                                <div class="{{$class2}} col-sm-7 col-12 doc-cols">
                                     <div class="dos-name">
                                         @guest
-                                            <a style="padding-left: 0" target="_blank" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> onclick="$('#connect-modal').modal('show')" <?php } ?>>{{$out}}</a>
+                                            <a style="padding-left: 0; color: #282828" target="_blank" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> onclick="$('#connect-modal').modal('show')" <?php } ?>>{{$out}}</a>
                                         @else
-                                            <a style="padding-left: 0" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> href="{{url('/')}}/dashboard?uploadType={{$document['documenttype']['id']}}" <?php } ?>>{{$out}}</a>
+                                            <a style="padding-left: 0; color: #282828" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> href="{{url('/')}}/dashboard?uploadType={{$document['documenttype']['id']}}" <?php } ?>>{{$out}}</a>
                                         @endguest
-                                        <span class="sm-desc">{{$document['tooltip']}}</span>
+                                        <span class="sm-desc" style="color: #606060">{{$document['tooltip']}}</span>
                                     </div>
                                     
 
                                 </div>
+                                @if(empty($document['document_id']) && $document['display'] == 1)
                                 <div class="col-md-3 col-sm-3 col-4 doc-col-2">
-                                    @if(empty($document['document_id']) && $document['display'] == 1)
-                                        @guest
-                                            <div class="up-btn" onclick="$('#connect-modal').modal('show')">
-                                        @else
-                                            <div class="up-btn" onclick="location.href='{{url('/')}}/dashboard?uploadType={{$document['documenttype']['id']}}'">
-                                        @endguest
-                                        
-                                            <img src="{{url('/')}}/images/upload-active.png">
-                                            <label for="file" class="up-doc">Upload</label>
-                                        </div>
-                                    @endif
+                                    @guest
+                                        <div class="up-btn" onclick="$('#connect-modal').modal('show')">
+                                    @else
+                                        <div class="up-btn" onclick="location.href='{{url('/')}}/dashboard?uploadType={{$document['documenttype']['id']}}'">
+                                    @endguest
+
+                                        <img src="{{url('/')}}/images/upload-active.png">
+                                        <label for="file" class="up-doc">Upload</label>
+                                    </div>
                                 </div>
-                                
+                                @endif
                             </div>
                         </div>
                         <?php $count++; ?>

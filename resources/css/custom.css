@@ -250,6 +250,7 @@ section.banner.inner-payment h2{
 }
 .dashboard-wrap .doc-list {
     cursor: pointer;
+    padding: 9px 32px 15px;
 }
 .desc-color {
     padding: 0px 27px 0 42px; 
@@ -336,6 +337,9 @@ button.btn.btn-primary.dropdown-toggle img {
 }
 ul.tab1 li:before {
     left: 58px !important;
+}
+.dashboard-wrap .doc-col-2 {
+    flex-direction: row-reverse;
 }
 @media screen and (max-width: 767px) {
     .dos-name a {
