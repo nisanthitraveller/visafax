@@ -389,7 +389,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                         </div>
                         <div class="doc-list up-doc-file file-show mt-2">
                             <div class="row">
-                                <div class="col-md-3 col-sm-4 col-4 doc-col-2">
+                                <div class="col-md-3 col-sm-4 col-4">
                                     <input type="file" accept="application/pdf" name="booking_documents[]" />
                                 </div>
                             </div>
@@ -397,7 +397,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                         <div class="file-upload" style="display:none">
                             <div class="doc-list up-doc-file file-show mt-2">
                                 <div class="row">
-                                    <div class="col-md-3 col-sm-4 col-4 doc-col-2">
+                                    <div class="col-md-3 col-sm-4 col-4">
                                         <input type="file" accept="application/pdf" name="booking_documents[]" />
                                     </div>
                                 </div>
