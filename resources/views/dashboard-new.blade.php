@@ -67,7 +67,7 @@ if ($visaDetails['status'] == 3) {
 }
 ?>
 <div class="dasboard-detail-wrap">
-    <form id="wizard" class="pt-4 acts wizard clearfix" role="application" method="post" enctype="multipart/form-data">
+    <form id="wizard" class="pt-2 acts wizard clearfix" role="application" method="post" enctype="multipart/form-data">
         @csrf
         @if(!isset($request['uploadType']) && !isset($request['form']))
         <div class="container">
