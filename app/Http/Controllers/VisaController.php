@@ -211,6 +211,7 @@ class VisaController extends Controller
             if(!empty($data['status']) && $data['status'] == 4) {
                 $data['approval_at'] = date('Y-m-d');
             }
+            $data['status'] = 1;
             $model->fill($data);
             $model->save();
         }
