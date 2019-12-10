@@ -59,7 +59,7 @@
 <div id="loader-modal">
     <img src="{{url('/')}}/images/loading.gif">
 </div>
-<footer class="pt-5 ftr">
+<footer class="pt-5 ftr mt-0">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-2 col-sm-2 ft-logo"><img src="{{secure_url('images/logo-reverse.png')}}" style="width: 116px"></div>

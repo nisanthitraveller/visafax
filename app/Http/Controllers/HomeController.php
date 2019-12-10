@@ -40,6 +40,24 @@ class HomeController extends Controller
         return view('welcome')->with(['feeds' => $feeds, 'countries' => $new_array, 'dashboard' => $dashboard]);
     }
     
+    public function landing()
+    {
+        $blogObj = new \App\Models\Blog();
+        $countryObj = new Country();
+        
+        $feeds = $blogObj->getFeeds();
+        $countries = $countryObj->where('status', 1)->get()->toArray();
+        $new_array = array();
+        foreach($countries as $item) {
+          $new_array[str_replace(' ', '-', $item['continentName'])][] = $item;
+        }
+        $dashboard = false;
+        if (strpos(\Illuminate\Support\Facades\URL::previous(), 'dashboard') !== false) {
+            $dashboard = true;
+        }
+        return view('landing')->with(['feeds' => $feeds, 'countries' => $new_array, 'dashboard' => $dashboard]);
+    }
+    
     /**
      * Show the form for creating a new resource.
      *
