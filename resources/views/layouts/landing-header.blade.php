@@ -9,7 +9,7 @@
                     <a href="javascript: void(0)" onclick="$('#connect-modal').modal('show')" class="bg-inverse">My Visas</a>
                     <a href="javascript: void(0)" onclick="$('#connect-modal').modal('show')">Sign In</a>
                 @else
-                    <a href="{{ route('my-visas') }}" class="bg-inverse">My Visa</a>
+                    <a href="{{ route('my-visas') }}" class="bg-inverse">My Visas</a>
                 @endguest
                 <div class="menu-icon">
                     <span class="menu-icon__line menu-icon__line-left"></span>
