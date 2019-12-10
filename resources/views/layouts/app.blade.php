@@ -35,7 +35,7 @@ $requests = explode('/', Request::path());
             @if(!isset($requests[1]) || (isset($requests[1]) && $requests[1] != 'payment'))
                 @include('layouts.footer')
             @endif
-            <!--<a target="_blank" href="https://api.whatsapp.com/send?phone={{env('PHONE_NUM')}}&text=Hello VisaBadge" class="chat"><img src="{{secure_url('images/whatsapp.png')}}" width="64" /></a>-->
+            <a target="_blank" href="https://api.whatsapp.com/send?phone={{env('PHONE_NUM')}}&text=Hello VisaBadge" class="chat"><img src="{{secure_url('images/whatsapp.png')}}" width="64" /></a>
         </div>
         
         <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
@@ -49,6 +49,6 @@ $requests = explode('/', Request::path());
         </script>
         <script src="https://apis.google.com/js/platform.js?onload=onLoadGoogleCallback" async defer></script>
         @yield('scripts')
-        <script type="text/javascript" src="https://botsrv.com/qb/widget/KlXDVbBYj7EYdgQL/8qJgArRo1AEdvoR9" async defer></script>
+        <!--<script type="text/javascript" src="https://botsrv.com/qb/widget/KlXDVbBYj7EYdgQL/8qJgArRo1AEdvoR9" async defer></script>-->
     </body>
 </html>

@@ -342,7 +342,7 @@ Apply visas
 
             </div>
             <div class="col-md-6 col-sm-6 story-p">
-                <p><img src="images/story-th.png">Read stories about visas</p>
+                <p><img src="images/story-th.png"><a href="{{ secure_url('/') }}/blog" style="color: #fff">Read stories about visas</a></p>
             </div>
         </div>
     </div>
