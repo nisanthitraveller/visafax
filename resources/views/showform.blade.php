@@ -72,7 +72,7 @@
                         <input type="hidden" id="save_user_id" name="save_user_id" value="{{$userId}}" />
                         <input type="hidden" id="save_booking_id" name="save_booking_id" value="{{$bookingId}}" />
                         <a href="javascript:void(0)" onclick="window.history.back()" class="btn btn-light">Cancel</a>
-                        <button type="submit" onclick="amplitude.getInstance().logEvent('Form_Proceed');" class="btn btn-success">Confirm & Proceed</button>
+                        <button type="submit" onclick="mixpanel.track('Form_Proceed');" class="btn btn-success">Confirm & Proceed</button>
                     </div>
                 </div>
         </div>

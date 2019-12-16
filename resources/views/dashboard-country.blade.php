@@ -88,7 +88,7 @@ Visa Documents
                                 <div class="{{$class2}} col-sm-7 col-12 doc-cols">
                                     <div class="dos-name">
                                         @guest
-                                            <a style="padding-left: 0; color: #282828" target="_blank" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> onclick="$('#connect-modal').modal('show'); amplitude.getInstance().logEvent('D1_Upload_Passport');" <?php } ?>>{{$out}}</a>
+                                            <a style="padding-left: 0; color: #282828" target="_blank" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> onclick="$('#connect-modal').modal('show'); mixpanel.track('D1_Upload_Passport');" <?php } ?>>{{$out}}</a>
                                         @else
                                             <a style="padding-left: 0; color: #282828" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> href="{{url('/')}}/dashboard?uploadType={{$document['documenttype']['id']}}" <?php } ?>>{{$out}}</a>
                                         @endguest

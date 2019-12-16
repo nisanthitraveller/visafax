@@ -87,7 +87,7 @@ Visa {{$country['countryName']}}
 
             <div class="col-sm-12 text-center">
                 @guest
-                <a href="javascript:void(0)" onclick="$('#connect-modal').modal('show'); amplitude.getInstance().logEvent('Start_My_Visa');" class="cntue cntuemargin">Start My Visa Application</a>
+                <a href="javascript:void(0)" onclick="$('#connect-modal').modal('show'); mixpanel.track('Start_My_Visa');" class="cntue cntuemargin">Start My Visa Application</a>
                 @else
                 <a href="javascript:void(0)" id="create-visa" class="cntue cntuemargin">Start My Visa Application</a>
                 @endguest
@@ -155,7 +155,8 @@ Visa {{$country['countryName']}}
 @section('scripts')
 <script type="text/javascript">
     $(window).on('load', function () {
-        amplitude.getInstance().logEvent('Page_2_Load');
+        console.log('Event')
+        mixpanel.track('Page_2_Load');
     });
 </script>
 @endsection
