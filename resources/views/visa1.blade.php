@@ -220,3 +220,11 @@ Visa {{$country['countryName']}}
     </div>
 </div>
 @endsection
+@section('scripts')
+<script type="text/javascript">
+    $(window).on('load', function () {
+        console.log('Event');
+        mixpanel.track('Page_2_Load');
+    });
+</script>
+@endsection
