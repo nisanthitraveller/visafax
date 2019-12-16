@@ -346,3 +346,6 @@ ul.tab1 li:before {
         font-size: 14px;
     }
 }
+.dasboard-detail-wrap {
+    min-height: 400px;
+}
