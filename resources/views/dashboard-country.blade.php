@@ -142,3 +142,11 @@ Visa Documents
     });
 </script>
 @endsection
+@section('scripts')
+<script type="text/javascript">
+    $(window).on('load', function () {
+        console.log('Dashboard 1');
+        mixpanel.track('Dashboard_1');
+    });
+</script>
+@endsection
