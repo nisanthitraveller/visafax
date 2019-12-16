@@ -23,7 +23,7 @@ Apply visas
             </div>
             <div class="col-md-5 col-sm-6 wow fadeInUp top-img" data-wow-duration="2s" data-wow-delay="3s">
                 <div class=" wel-image" >
-                    <img src="{{secure_url('/')}}/images/wel-img.jpg">
+                    <img src="{{url('/')}}/images/wel-img.jpg">
                     <div class="img-conent">
                         <p class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="5s">Worried about your visa rejections? Find your visa approval chances</p>
                         <a href="#" class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="7s">Check Now <i class="fa fa-angle-right"></i></a>
@@ -52,7 +52,7 @@ Apply visas
                         <div class="col-md-12 col-sm-4 col-12 counter-Txt margin-bot-35">  <span class="counter-value" data-count="49">04</span><small>Data errors in application</small></div>
                     </div>
                 </div>
-                <img src="{{secure_url('/')}}/images/parerl-1.png" data-enllax-ratio=".5" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl" />
+                <img src="{{url('/')}}/images/parerl-1.png" data-enllax-ratio=".5" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl" />
             </div>
         </div>
     </div>
@@ -61,7 +61,7 @@ Apply visas
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-12 ans-intro wow fadeInUp" data-wow-duration="2s" data-wow-delay="1s">
-                <img src="{{secure_url('/')}}/images/vis-logo.png">
+                <img src="{{url('/')}}/images/vis-logo.png">
                 <h2>That's why<span>VisaBadge</span></h2>
             </div>
 
@@ -74,27 +74,27 @@ Apply visas
 </section>
 <section class="pb-4 we-gurnte">
     <div class="container-fluid">
-        <img src="{{secure_url('/')}}/images/parerl-2.png" data-enllax-ratio=".5" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl-2" />
-        <img src="{{secure_url('/')}}/images/parerl-3.png" data-enllax-ratio="0.2" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl-3" />
+        <img src="{{url('/')}}/images/parerl-2.png" data-enllax-ratio=".5" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl-2" />
+        <img src="{{url('/')}}/images/parerl-3.png" data-enllax-ratio="0.2" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl-3" />
         <div class="row">
             <div class="we-gurnte-banner col-xl-6 col-md-6 col-sm-12 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="1s" style="background-image: url(images/guar-banner.jpg);">
                 <div class="we-gurnte-text  wow fadeInUp"  data-wow-duration="2s" data-wow-delay="1s">
                     <div class="row  no-gutters" data-wow-duration="2s" data-wow-delay="1s">
                         <div class="col-md-4 col-sm-4 col-12 ic-columns">
                             <div class="ic-in wow flipInX" data-wow-duration="2s" data-wow-delay="2s">
-                                <img src="{{secure_url('/')}}/images/gur-ic1.png">
+                                <img src="{{url('/')}}/images/gur-ic1.png">
                             </div>
                             <h4>Online</h4>
                         </div>
                         <div class="col-md-4 col-sm-4 col-12 ic-columns">
                             <div class="ic-in wow flipInX" data-wow-duration="2s" data-wow-delay="2s">
-                                <img src="{{secure_url('/')}}/images/gur-ic2.png">
+                                <img src="{{url('/')}}/images/gur-ic2.png">
                             </div>
                             <h4>Instant</h4>
                         </div>
                         <div class="col-md-4 col-sm-4 col-12 ic-columns">
                             <div class="ic-in wow flipInX" data-wow-duration="2s" data-wow-delay="2s">
-                                <img src="{{secure_url('/')}}/images/gur-ic3.png">
+                                <img src="{{url('/')}}/images/gur-ic3.png">
                             </div>
                             <h4>Free</h4>
                         </div>
@@ -110,7 +110,7 @@ Apply visas
         <h2><small>What makes</small><span>VisaBadge</span> different?</h2>
         <p>On VisaBadge, just upload your passport & our intelligent algorithm will read them to get your visa documents ready - instantly. Watch how it works!</p>
         <div class="video-bg">
-            <img src="{{secure_url('/')}}/images/vid-img.jpg">
+            <img src="{{url('/')}}/images/vid-img.jpg">
             <div class="vid-btn">
                 <a id="play-video" class="video-play-button" href="#" data-toggle="modal" data-target="#myvideo">
                     <span></span>
@@ -133,8 +133,8 @@ Apply visas
             </div>
 
             <div class="col-md-6 col-sm-6 col-12 process-img wow fadeInRight text-right" data-wow-duration="2s" data-wow-delay="1s">
-                <img src="{{secure_url('/')}}/images/step1.png">
-                <img src="{{secure_url('/')}}/images/parerl-4.png" data-enllax-ratio="0.2" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl-4" />
+                <img src="{{url('/')}}/images/step1.png">
+                <img src="{{url('/')}}/images/parerl-4.png" data-enllax-ratio="0.2" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl-4" />
             </div>
         </div>
     </div>
@@ -145,8 +145,8 @@ Apply visas
         <div class="row align-items-center">
 
             <div class="col-md-6 col-sm-6 col-12 process-img wow fadeInLeft text-left" data-wow-duration="2s" data-wow-delay="1s">
-                <img src="{{secure_url('/')}}/images/step2.png">
-                <img src="{{secure_url('/')}}/images/parerl-5.png" data-enllax-ratio="0.2" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl-5" />
+                <img src="{{url('/')}}/images/step2.png">
+                <img src="{{url('/')}}/images/parerl-5.png" data-enllax-ratio="0.2" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl-5" />
             </div>
             <div class="col-md-6 col-sm-6 col-12 process-in">
                 <span class="numb wow flipInX" data-wow-duration="1s" data-wow-delay="1s">2</span>
@@ -160,14 +160,14 @@ Apply visas
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6 col-sm-6 col-12 process-in">
-                <div class="badge wow flipInX" data-wow-duration="2s" data-wow-delay="2s"><img src="{{secure_url('/')}}/images/vis-badge.png"></div>
+                <div class="badge wow flipInX" data-wow-duration="2s" data-wow-delay="2s"><img src="{{url('/')}}/images/vis-badge.png"></div>
                 <span class="numb wow flipInX bg-yellow" data-wow-duration="1s" data-wow-delay="1s">3</span>
                 <h3 class="wow fadeInLeft" data-wow-duration="2s" data-wow-delay="1s">Get it verified</h3>
                 <p class="wow fadeInLeft" data-wow-duration="2s" data-wow-delay="1s">Verify the documents or get it verified by our experts, before you submit it to the Embassies. Remember, an error-free application can improve the chances of your approvals!</p>
             </div>
             <div class="col-md-6 col-sm-6 col-12 process-img wow fadeInRight text-right" data-wow-duration="2s" data-wow-delay="1s">
-                <img src="{{secure_url('/')}}/images/step3.png">
-                <img src="{{secure_url('/')}}/images/parerl-6.png" data-enllax-ratio="0.6" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl-5" />
+                <img src="{{url('/')}}/images/step3.png">
+                <img src="{{url('/')}}/images/parerl-6.png" data-enllax-ratio="0.6" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl-5" />
             </div>
         </div>
     </div>
@@ -184,7 +184,7 @@ Apply visas
                     @foreach($feeds['items'] as $feed)
                     @if($countFeed <= 6)
                     <?php
-                    $image = isset($feed['image']) ? $feed['image'] : secure_url('/') . "/images/st1.jpg";
+                    $image = isset($feed['image']) ? $feed['image'] : url('/') . "/images/st1.jpg";
                     ?>
 
                     <div class="item" onclick="location.href ='{{$feed['url']}}'">
@@ -212,8 +212,8 @@ Apply visas
 
         <h2><small>Listen to our</small><span>customers</span></h2>
 
-        <img src="{{secure_url('/')}}/images/parerl-7.png" data-enllax-ratio=".5" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl-7" />
-        <img src="{{secure_url('/')}}/images/parerl-8.png" data-enllax-ratio="0.2" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl-8" />
+        <img src="{{url('/')}}/images/parerl-7.png" data-enllax-ratio=".5" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl-7" />
+        <img src="{{url('/')}}/images/parerl-8.png" data-enllax-ratio="0.2" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl-8" />
 
         <div class="row justify-content-end">
             <div class="we-gurnte-banner col-xl-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-duration="2s" data-wow-delay="1s" style="background-image: url(images/guar-banner.jpg);">
@@ -223,7 +223,7 @@ Apply visas
                         <div class="testmonials owl-carousel owl-theme pt-3 wow fadeInUp" data-wow-duration="2s" data-wow-delay="1s">
                             <div class="item">
                                 <div class="auth-img">
-                                    <img src="{{secure_url('/')}}/images/author.jpg">
+                                    <img src="{{url('/')}}/images/author.jpg">
                                 </div>
                                 <div class="item-content">
 
@@ -233,7 +233,7 @@ Apply visas
                             </div>
                             <div class="item">
                                 <div class="auth-img">
-                                    <img src="{{secure_url('/')}}/images/author.jpg">
+                                    <img src="{{url('/')}}/images/author.jpg">
                                 </div>
                                 <div class="item-content">
 
@@ -243,7 +243,7 @@ Apply visas
                             </div>
                             <div class="item">
                                 <div class="auth-img">
-                                    <img src="{{secure_url('/')}}/images/author.jpg">
+                                    <img src="{{url('/')}}/images/author.jpg">
                                 </div>
                                 <div class="item-content">
 
@@ -268,44 +268,44 @@ Apply visas
 
         <div class="row">
             <div class="col-md-4 col-sm-12 pop-wrap wow fadeInUp" data-wow-duration="2s" data-wow-delay="200ms">
-                <div class="th-img relative"><img src="{{secure_url('/')}}/images/th1.png">
+                <div class="th-img relative"><img src="{{url('/')}}/images/th1.png">
                     <h4>Switzerland</h4>
-                    <a href="{{ secure_url('/') }}/visa/switzerland">Apply Now</a>
+                    <a href="{{ url('/') }}/visa/switzerland">Apply Now</a>
                 </div>
             </div>
 
             <div class="col-md-4 col-sm-12 pop-wrap wow fadeInUp" data-wow-duration="2s" data-wow-delay="300ms">
-                <div class="th-img relative"><img src="{{secure_url('/')}}/images/th2.png">
+                <div class="th-img relative"><img src="{{url('/')}}/images/th2.png">
                     <h4>Germany</h4>
-                    <a href="{{ secure_url('/') }}/visa/germany">Apply Now</a>
+                    <a href="{{ url('/') }}/visa/germany">Apply Now</a>
                 </div>
             </div>
 
             <div class="col-md-4 col-sm-12 pop-wrap wow fadeInUp" data-wow-duration="2s" data-wow-delay="400ms">
-                <div class="th-img relative"><img src="{{secure_url('/')}}/images/th3.png">
+                <div class="th-img relative"><img src="{{url('/')}}/images/th3.png">
                     <h4>Canada</h4>
-                    <a href="{{ secure_url('/') }}/visa/canada">Apply Now</a>
+                    <a href="{{ url('/') }}/visa/canada">Apply Now</a>
                 </div>
             </div>
 
             <div class="col-md-4 col-sm-12 pop-wrap wow fadeInUp" data-wow-duration="2s" data-wow-delay="500ms">
-                <div class="th-img relative"><img src="{{secure_url('/')}}/images/th4.png">
+                <div class="th-img relative"><img src="{{url('/')}}/images/th4.png">
                     <h4>United States</h4>
-                    <a href="{{ secure_url('/') }}/visa/united-states">Apply Now</a>
+                    <a href="{{ url('/') }}/visa/united-states">Apply Now</a>
                 </div>
             </div>
 
             <div class="col-md-4 col-sm-12 pop-wrap wow fadeInUp" data-wow-duration="2s" data-wow-delay="600ms">
-                <div class="th-img relative"><img src="{{secure_url('/')}}/images/th5.png">
+                <div class="th-img relative"><img src="{{url('/')}}/images/th5.png">
                     <h4>Thailand</h4>
-                    <a href="{{ secure_url('/') }}/visa/thailand">Apply Now</a>
+                    <a href="{{ url('/') }}/visa/thailand">Apply Now</a>
                 </div>
             </div>
 
             <div class="col-md-4 col-sm-12 pop-wrap wow fadeInUp" data-wow-duration="2s" data-wow-delay="700ms">
-                <div class="th-img relative"><img src="{{secure_url('/')}}/images/th6.png">
+                <div class="th-img relative"><img src="{{url('/')}}/images/th6.png">
                     <h4>Singapore</h4>
-                    <a href="{{ secure_url('/') }}/visa/singapore">Apply Now</a>
+                    <a href="{{ url('/') }}/visa/singapore">Apply Now</a>
                 </div>
             </div>
 
@@ -329,16 +329,16 @@ Apply visas
                 </div>
 
                 <ul>
-                    <li><img src="{{secure_url('/')}}/images/flash.png"></li>
-                    <li><a href="{{ secure_url('/') }}/visa/united-kingdom">UK</a></li>
-                    <li><a href="{{ secure_url('/') }}/visa/united-states">US</a></li>
-                    <li><a href="{{ secure_url('/') }}/visa/canada">Canada</a></li>
+                    <li><img src="{{url('/')}}/images/flash.png"></li>
+                    <li><a href="{{ url('/') }}/visa/united-kingdom">UK</a></li>
+                    <li><a href="{{ url('/') }}/visa/united-states">US</a></li>
+                    <li><a href="{{ url('/') }}/visa/canada">Canada</a></li>
                     <li><a href="javascript:;" onclick="$('.typeahead').focus()">+ 120 Countries</a></li>
                 </ul>
 
             </div>
             <div class="col-md-6 col-sm-6 story-p">
-                <p><img src="{{secure_url('/')}}/images/story-th.png"><a href="{{ secure_url('/') }}/blog" style="color: #fff">Read our visa guides</a></p>
+                <p><img src="{{url('/')}}/images/story-th.png"><a href="{{ url('/') }}/blog" style="color: #fff">Read our visa guides</a></p>
             </div>
         </div>
     </div>

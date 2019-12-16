@@ -256,7 +256,7 @@ Apply visas
             @foreach($feeds['items'] as $feed)
             @if($countFeed <= 6)
             <?php
-            $image = isset($feed['image']) ? $feed['image'] : secure_url('/') . "/images/st1.jpg";
+            $image = isset($feed['image']) ? $feed['image'] : url('/') . "/images/st1.jpg";
             ?>
 
             <div class="item" onclick="location.href ='{{$feed['url']}}'">

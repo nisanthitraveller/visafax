@@ -2,7 +2,7 @@
     <div class="container pt-3 pb-3">
         <div class="row">
             <div class="col-3 logo  align-content-center">
-                <a href="{{ secure_url('/') }}">VisaBadge</a>
+                <a href="{{ url('/') }}">VisaBadge</a>
             </div>
             <div class="col-9 main-nav text-right justify-content-md-center">
                 @guest

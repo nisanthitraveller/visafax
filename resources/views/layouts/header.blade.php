@@ -2,7 +2,7 @@
     <div class="container pt-3 pb-3">
         <div class="row">
             <div class="col-3 logo  align-content-center">
-                <a href="{{ secure_url('/') }}"><img src = "{{ secure_asset('/images/logo.png') }}" style="width: 116px" /></a>
+                <a href="{{ url('/') }}"><img src = "{{ secure_asset('/images/logo.png') }}" style="width: 116px" /></a>
             </div>
             <div class="col-9 main-nav text-right justify-content-md-center">
                 @guest
@@ -24,7 +24,7 @@
                                     {{ __('Sign out') }}
                                 </a>
 
-                                <form id="logout-form" action="{{ secure_url('/logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
 

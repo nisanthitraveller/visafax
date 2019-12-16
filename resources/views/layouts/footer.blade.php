@@ -62,15 +62,15 @@
 <footer class="pt-5 ftr mt-0">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-2 col-sm-2 ft-logo"><img src="{{secure_url('images/logo-reverse.png')}}" style="width: 116px"></div>
+            <div class="col-md-2 col-sm-2 ft-logo"><img src="{{url('images/logo-reverse.png')}}" style="width: 116px"></div>
             <div class="col-md-10 col-sm-10 ft-qlinks text-right ">
                 <ul>
-                    <li><a href="{{secure_url('about')}}">About</a></li>
-                    <li><a href="{{secure_url('faq')}}">FAQ</a></li>
-                    <li><a href="{{secure_url('privacy')}}">Privacy policy </a></li>
-                    <li><a href="{{secure_url('terms')}}">T&C</a></li>
-                    <li><a href="{{secure_url('blog')}}">Blog</a></li>
-                    <li><a href="{{secure_url('contact')}}">Contact</a></li>
+                    <li><a href="{{url('about')}}">About</a></li>
+                    <li><a href="{{url('faq')}}">FAQ</a></li>
+                    <li><a href="{{url('privacy')}}">Privacy policy </a></li>
+                    <li><a href="{{url('terms')}}">T&C</a></li>
+                    <li><a href="{{url('blog')}}">Blog</a></li>
+                    <li><a href="{{url('contact')}}">Contact</a></li>
                 </ul>
             </div>
             <div class="col-12 ft-social">

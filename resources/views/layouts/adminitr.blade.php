@@ -78,38 +78,38 @@ $requests = explode('/', Request::path());
 
                 <div class="sidebar-wrapper">
                     <div class="logo">
-                        <a href="{{ secure_url('/') }}" class="simple-text"><img src="https://in.lastminute.com/images/desktop/logo-home.png" style="width: 116px" /></a>
-<!--                        <a href="{{ secure_url('/') }}" class="simple-text"><img src = "{{ secure_asset('/images/logo-reverse.png') }}" style="width: 116px" /></a>-->
+                        <a href="{{ url('/') }}" class="simple-text"><img src="https://in.lastminute.com/images/desktop/logo-home.png" style="width: 116px" /></a>
+<!--                        <a href="{{ url('/') }}" class="simple-text"><img src = "{{ secure_asset('/images/logo-reverse.png') }}" style="width: 116px" /></a>-->
                     </div>
 
                     <ul class="nav">
                         <li <?php if ($requests[1] == 'enquiries') { ?> class="active" <?php } ?> >
-                            <a href="{{ secure_url('/') }}/bo/enquiries">
+                            <a href="{{ url('/') }}/bo/enquiries">
                                 <p>Enquiries</p>
                             </a>
                         </li>
                         <li <?php if ($requests[1] == 'users') { ?> class="active" <?php } ?> >
-                            <a href="{{ secure_url('/') }}/bo/users">
+                            <a href="{{ url('/') }}/bo/users">
                                 <p>Users</p>
                             </a>
                         </li>
                         <li <?php if ($requests[1] == 'bookings') { ?> class="active" <?php } ?> >
-                            <a href="{{ secure_url('/') }}/bo/bookings">
+                            <a href="{{ url('/') }}/bo/bookings">
                                 <p>Bookings</p>
                             </a>
                         </li>
                         <li <?php if ($requests[1] == 'documenttypes') { ?> class="active" <?php } ?> >
-                            <a href="{{ secure_url('/') }}/bo/documenttypes">
+                            <a href="{{ url('/') }}/bo/documenttypes">
                                 <p>Document Types</p>
                             </a>
                         </li>
                         <li <?php if ($requests[1] == 'countries') { ?> class="active" <?php } ?> >
-                            <a href="{{ secure_url('/') }}/bo/countries">
+                            <a href="{{ url('/') }}/bo/countries">
                                 <p>Countries</p>
                             </a>
                         </li>
                         <li <?php if ($requests[1] == 'pricingtypes') { ?> class="active" <?php } ?> >
-                            <a href="{{ secure_url('/') }}/bo/pricingtypes">
+                            <a href="{{ url('/') }}/bo/pricingtypes">
                                 <p>Pricing Master</p>
                             </a>
                         </li>

@@ -8,6 +8,7 @@ function onLoadGoogleCallback() {
         if($('#googleSignIn').length) {
             auth2.attachClickHandler(element, {},
                     function (googleUser) {
+                        amplitude.getInstance().logEvent('Signup');
                         console.log('Signed in: ' + googleUser.getBasicProfile().getName());
                         onSuccess(googleUser);
                     }, function (error) {

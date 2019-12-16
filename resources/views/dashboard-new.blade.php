@@ -390,7 +390,12 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                         <div class="doc-list up-doc-file file-show mt-2">
                             <div class="row">
                                 <div class="col-md-3 col-sm-4 col-4">
-                                    <input type="file" accept="application/pdf" name="booking_documents[]" />
+                                    @if(isset($request['uploadType']) && stripos($documents[$request['uploadType']][0]['documenttype']['type'], 'passport') !== false)
+                                        <input type="file" onclick="amplitude.getInstance().logEvent('Browse_Passport');" accept="application/pdf" name="booking_documents[]" />
+                                    @else
+                                        <input type="file" accept="application/pdf" name="booking_documents[]" />
+                                    @endif
+                                    
                                 </div>
                             </div>
                         </div>
@@ -413,7 +418,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-8 doc-cols text-right">
                                     <a href="javascript:void(0)" onclick="showForm({{$visaDetails['id']}})" class="btn btn-light">Cancel</a>
-                                    <input type="submit" name="upload" id="upload" class="btn btn-success" disabled value="Confirm Upload">
+                                    <input onclick="amplitude.getInstance().logEvent('Confirm_Upload');" type="submit" name="upload" id="upload" class="btn btn-success" disabled value="Confirm Upload">
                                 </div>
                             </div>
                         </div>
