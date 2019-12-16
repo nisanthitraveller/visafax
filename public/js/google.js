@@ -8,7 +8,6 @@ function onLoadGoogleCallback() {
         if($('#googleSignIn').length) {
             auth2.attachClickHandler(element, {},
                     function (googleUser) {
-                        mixpanel.track('Signup');
                         console.log('Signed in: ' + googleUser.getBasicProfile().getName());
                         onSuccess(googleUser);
                     }, function (error) {
@@ -37,6 +36,7 @@ function renderButton() {
 
 function onSuccess(googleUser) {
     console.log('G sigin');
+    mixpanel.track('Signup');
     $('#connect-modal').modal('hide');
     var id_token = googleUser.getAuthResponse().id_token;
     var accsTkn = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token;

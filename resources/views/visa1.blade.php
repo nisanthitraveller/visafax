@@ -108,7 +108,7 @@ Visa {{$country['countryName']}}
                     </form>
 
                     <div class="col-sm-12 text-center down-bnch  mb-5">
-                        <a href="javascript:void(0)" onclick="$('#visaForm').submit()" class="cntue">Start My Visa Application</a>
+                        <a href="javascript:void(0)" onclick="mixpanel.track('Start_My_Visa'); $('#visaForm').submit()" class="cntue">Start My Visa Application</a>
                     </div>
                     <div class="sm-sections">
                         <h2>A quick guide about {{$country['countryName']}} visa process</h2>
