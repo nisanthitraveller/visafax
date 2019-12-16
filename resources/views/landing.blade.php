@@ -47,9 +47,9 @@ Apply visas
             <div class="col-md-5 col-sm-12 wel-text wow fadeInUp relative wel-in" data-wow-duration="2s" data-wow-delay="2s">
                 <div class="counter-wrap">
                     <div class="row" id="counter">
-                        <div class="col-md-12 col-sm-4 col-12 counter-Txt">  <span class="counter-value" data-count="22">11</span> <small>Incomplete application</small></div>
-                        <div class="col-md-12 col-sm-4 col-12 counter-Txt">  <span class="counter-value" data-count="29">06</span><small>Missing documents</small></div>
-                        <div class="col-md-12 col-sm-4 col-12 counter-Txt margin-bot-35">  <span class="counter-value" data-count="49">04</span><small>Data errors in application</small></div>
+                        <div class="col-md-12 col-sm-4 col-12 counter-Txt">  <span class="counter-value" data-count="22">11%</span> <small>Incomplete application</small></div>
+                        <div class="col-md-12 col-sm-4 col-12 counter-Txt">  <span class="counter-value" data-count="29">06%</span><small>Missing documents</small></div>
+                        <div class="col-md-12 col-sm-4 col-12 counter-Txt margin-bot-35">  <span class="counter-value" data-count="49">04%</span><small>Data errors in application</small></div>
                     </div>
                 </div>
                 <img src="{{url('/')}}/images/parerl-1.png" data-enllax-ratio=".5" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl" />
