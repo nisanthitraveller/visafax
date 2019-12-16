@@ -140,10 +140,6 @@ Visa Documents
             $(".file-upload").clone().insertBefore(".add-file");
         });
     });
-</script>
-@endsection
-@section('scripts')
-<script type="text/javascript">
     $(window).on('load', function () {
         console.log('Dashboard 1');
         mixpanel.track('Dashboard_1');
