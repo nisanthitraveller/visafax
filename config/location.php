@@ -61,7 +61,7 @@ return [
 
             'options' => [
 
-                'host' => 'geoip.maxmind.com',
+                'host' => 'visabadge.com',
 
             ],
 
@@ -121,7 +121,7 @@ return [
 
         'enabled' => true,
 
-        'ip' => '66.102.0.0',
+        'ip' => '182.75.147.182',
 
     ],
 
