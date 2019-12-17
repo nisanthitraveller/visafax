@@ -315,7 +315,7 @@ Apply visas
 <section class="pop-cntry">
     <div class="container">
         <div class="row">
-            <h2 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s"><small style="color: #9566cc">Other </small> <span>Countries </span>on VisaBadge</h2>
+            <h2 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s"><small>Other </small> <span style="color: #9566cc">Countries </span>on VisaBadge</h2>
         </div>
 
         <div class="row text-justify">
