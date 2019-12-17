@@ -89,4 +89,5 @@
             <p>&COPY; {{date('Y')}} - All rights reserved.</p>
         </div>
     </div>
+    <span id="siteseal"><script async type="text/javascript" src="https://seal.starfieldtech.com/getSeal?sealID=pHi7E0z5FAke4eRlgiOnlqhBMzp526aCIcLR6WvBdIBWjdxvoM5ZEqdAJsyH"></script></span>
 </footer>

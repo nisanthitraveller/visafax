@@ -34,8 +34,9 @@
 <div class="container-fluid">
     <div class="card pt-1 mt-4">
         <div class="card-body">
-            <h5 class="card-title"><strong style="color: #282828">Verify & confirm your below visa application data</strong></h5>
-            <div class="table-responsive-sm">          
+            <h5 class="card-title text-center"><strong style="color: #282828">Verify and confirm your visa details</strong></h5>
+            <div class="table-responsive-sm">   
+                <label class="col-sm-10 col-form-label">User Info</label>
                 @foreach($user as $key => $data)
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="form{{$key}}">{{preg_replace('/(?<!\ )[A-Z]/', ' $0', $key)}}</label>
@@ -45,12 +46,26 @@
                             $calClass2 = (in_array($key, ['DOB'])) ? 'datepicker' : null;
                             $data = (in_array($key, ['PassportDOI', 'PassportDOE', 'DOB'])) ? date('d/m/Y', strtotime($data)) : $data;
                         ?>
-                        <input type="text" value="{{$data}}" name="user[{{$key}}]" class="form-control {{$calClass}} {{$calClass2}}" id="form{{$key}}">
+                        <input type="text" value="{{$data}}" placeholder="Enter {{preg_replace('/(?<!\ )[A-Z]/', ' $0', $key)}}" name="user[{{$key}}]" class="form-control {{$calClass}} {{$calClass2}}" id="form{{$key}}">
                     </div>
                 </div>
                 @endforeach
+                @if(!empty($booking))
+                <div class="row mb-2 ">
+                    <div class="col-md-10 col-sm-10 col-10 doc-block mt-3">
+                        <p class="dir" style="text-align: justify; color: #6483e9; text-decoration: underline; cursor: pointer; margin-bottom: 0" onclick="$('.dir, .display0').toggle()">
+                            Show other details needed
+                            <i style="padding-left: 5px" class="fa fa-angle-down"></i>
+                        </p>
+                        <p class="dir" style="display: none; text-align: justify; color: #6483e9; text-decoration: underline; cursor: pointer; margin-bottom: 0" onclick="$('.dir, .display0').toggle()">
+                            Hide other details
+                            <i style="padding-left: 5px" class="fa fa-angle-up"></i>
+                        </p>
+
+                    </div>
+                </div>
                 @foreach($booking as $key1 => $data1)
-                <div class="form-group row">
+                <div class="form-group row display0" style="display: none">
                     <label class="col-sm-4 col-form-label" for="form{{$key1}}">{{preg_replace('/(?<!\ )[A-Z]/', ' $0', $key1)}}</label>
                     <div class="col-sm-8">
                         <?php
@@ -62,7 +77,7 @@
                             $calClass = (in_array($key1, ['JoiningDate', 'payment_date'])) ? 'datepicker2' : null;
                             $data1 = (in_array($key, ['JoiningDate', 'payment_date'])) ? date('d/m/Y', strtotime($data1)) : $data1;
                         ?>
-                        <input type="{{$type}}" value="{{$data1}}" name="booking[{{$key1}}]" class="form-control {{$calClass}}" id="form{{$key1}}">
+                        <input type="{{$type}}" value="{{$data1}}" placeholder="Enter {{preg_replace('/(?<!\ )[A-Z]/', ' $0', $key1)}}" name="booking[{{$key1}}]" class="form-control {{$calClass}}" id="form{{$key1}}">
                         
                     </div>
                 </div>

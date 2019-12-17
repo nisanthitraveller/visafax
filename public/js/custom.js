@@ -447,8 +447,9 @@ $(document).ready(function () {
                 var options = [];
                 $this['map'] = {}; //replace any existing map attr with an empty object
                 $.each(data, function (i, val) {
+                    //console.log(val.key);
                     options.push(val.name);
-                    $this.map[val.name] = val.id; //keep reference from name -> id
+                    $this.map[val.name] = val.key; //keep reference from name -> id
                 });
                 return process(options);
             });
@@ -456,9 +457,9 @@ $(document).ready(function () {
         afterSelect: function(item) {
             console.log(item);
             var str3 = 'india';
-            var str3 = item.replace(" ", "-");
+            var str3 = this.map[item].replace(" ", "-");
             if (str3 != '') {
-                window.location.href = "/visa/" + str3.toLowerCase();
+                window.location.href = "/visa-application/" + str3.toLowerCase();
                 console.log(this.map[item], item); //access it here
             }
         }

@@ -51,11 +51,12 @@ class HomeController extends Controller
         foreach($countries as $item) {
           $new_array[str_replace(' ', '-', $item['continentName'])][] = $item;
         }
+        $position = \Stevebauman\Location\Facades\Location::get()->toArray();
         $dashboard = false;
         if (strpos(\Illuminate\Support\Facades\URL::previous(), 'dashboard') !== false) {
             $dashboard = true;
         }
-        return view('landing')->with(['feeds' => $feeds, 'countries' => $new_array, 'dashboard' => $dashboard]);
+        return view('landing')->with(['feeds' => $feeds, 'countries' => $new_array, 'countries1' => $countries, 'dashboard' => $dashboard, 'position' => $position]);
     }
     
     /**
@@ -65,20 +66,27 @@ class HomeController extends Controller
      */
     public function autocomplete(Request $request)
     {
-        
-        $data = Country::select("countryName as name", "id")
+        $data = [];
+        $position = \Stevebauman\Location\Facades\Location::get()->toArray();
+        $data1 = Country::select("countryName as name", "id")
                 ->where('status', 1)
                 ->where("countryName","LIKE","%{$request->input('query')}%")
-                ->get();
-        
+                ->get()->toArray();
+        foreach($data1 as $k => $d) {
+            $data[$k]['name'] = $d['name'];
+            $data[$k]['key'] = str_replace(' ', '-', $d['name']) . '-visa-from-' . str_replace(' ', '-', $position['countryName']);
+            $data[$k]['id'] = $d['id'];
+        }
         return response()->json($data);
     }
     
     public function visa($visaUrl, Request $request)
     {
+        $arr = explode("-visa-from-", $visaUrl, 2);
+        $first = $arr[0];
         $path = $request->path();
         $blogObj = new \App\Models\Blog();
-        $country = Country::where("countryName", str_replace('-', ' ', $visaUrl))->first()->toArray();
+        $country = Country::where("countryName", str_replace('-', ' ', $first))->first()->toArray();
         $feeds = $blogObj->getFeeds();
         if(strpos($path, 'visa1') !== false) {
             return view('visa')->with(['country' => $country, 'feeds' => $feeds]);

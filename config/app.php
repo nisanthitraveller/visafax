@@ -177,6 +177,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
         Aws\Laravel\AwsServiceProvider::class,
+        Stevebauman\Location\LocationServiceProvider::class,
 
     ],
 

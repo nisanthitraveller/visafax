@@ -12,7 +12,7 @@ Apply visas
     </div>
     <div class="container welcome-contents">
         <div class="row h-100 align-items-center">
-            <div class="col-md-7 col-sm-6 wel-text wow fadeInUp" data-wow-duration="2s" data-wow-delay="1s">
+            <div class="col-md-7 col-sm-6 wel-text wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">
                 <h2>Your one-stop solution<br>
                     for visa to<br>
                     any country
@@ -21,12 +21,12 @@ Apply visas
                 <p>Get your visa documents online, for <b>FREE</b>!</p>
                 <a href="#" class="scroll-down" address="true"></a>
             </div>
-            <div class="col-md-5 col-sm-6 wow fadeInUp top-img" data-wow-duration="2s" data-wow-delay="3s">
+            <div class="col-md-5 col-sm-6 wow fadeInUp top-img" data-wow-duration="1s" data-wow-delay="3s">
                 <div class=" wel-image" >
                     <img src="{{url('/')}}/images/wel-img.jpg">
                     <div class="img-conent">
-                        <p class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="5s">Worried about your visa rejections? Find your visa approval chances</p>
-                        <a href="#" class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="7s">Check Now <i class="fa fa-angle-right"></i></a>
+                        <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="5s">Worried about your visa rejections? Find your visa approval chances</p>
+                        <a href="#" class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="7s">Check Now <i class="fa fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -39,12 +39,12 @@ Apply visas
     <div class="container">
         <div class="row h-100 align-items-center">
 
-            <div class="col-md-7 col-sm-12 rej-text wel-text wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+            <div class="col-md-7 col-sm-12 rej-text wel-text wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.5s">
                 <h2>21% of visa applications are <span>rejected</span> annually</h2>
                 <p>...and, the key reasons for those rejections are - incomplete application, missing documents & data errors in the applications. By sparing a little extra care or taking an expert help, one could significantly increase the chances of approvals.</p>
             </div>
 
-            <div class="col-md-5 col-sm-12 wel-text wow fadeInUp relative wel-in" data-wow-duration="2s" data-wow-delay="2s">
+            <div class="col-md-5 col-sm-12 wel-text wow fadeInUp relative wel-in" data-wow-duration="1s" data-wow-delay="1s">
                 <div class="counter-wrap">
                     <div class="row" id="counter">
                         <div class="col-md-12 col-sm-4 col-12 counter-Txt">  <span class="counter-value" data-count="22">11%</span> <small>Incomplete application</small></div>
@@ -60,12 +60,12 @@ Apply visas
 <section class="pb-4">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-sm-12 ans-intro wow fadeInUp" data-wow-duration="2s" data-wow-delay="1s">
+            <div class="col-md-6 col-sm-12 ans-intro wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">
                 <img src="{{url('/')}}/images/vis-logo.png">
                 <h2>That's why<span>VisaBadge</span></h2>
             </div>
 
-            <div class="col-md-6 col-sm-12 ans-intro-text wow fadeInUp" data-wow-duration="2s" data-wow-delay="2s">
+            <div class="col-md-6 col-sm-12 ans-intro-text wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
                 <p>VisaBadge is a free online tool to simplify your visa document preparation, verification, submissions & stamping</p>
             </div>
 
@@ -77,23 +77,23 @@ Apply visas
         <img src="{{url('/')}}/images/parerl-2.png" data-enllax-ratio=".5" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl-2" />
         <img src="{{url('/')}}/images/parerl-3.png" data-enllax-ratio="0.2" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl-3" />
         <div class="row">
-            <div class="we-gurnte-banner col-xl-6 col-md-6 col-sm-12 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="1s" style="background-image: url(images/guar-banner.jpg);">
-                <div class="we-gurnte-text  wow fadeInUp"  data-wow-duration="2s" data-wow-delay="1s">
-                    <div class="row  no-gutters" data-wow-duration="2s" data-wow-delay="1s">
+            <div class="we-gurnte-banner col-xl-6 col-md-6 col-sm-12 wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.5s" style="background-image: url(images/guar-banner.jpg);">
+                <div class="we-gurnte-text  wow fadeInUp"  data-wow-duration="1s" data-wow-delay="0.5s">
+                    <div class="row  no-gutters" data-wow-duration="1s" data-wow-delay="0.5s">
                         <div class="col-md-4 col-sm-4 col-12 ic-columns">
-                            <div class="ic-in wow flipInX" data-wow-duration="2s" data-wow-delay="2s">
+                            <div class="ic-in wow flipInX" data-wow-duration="1s" data-wow-delay="1s">
                                 <img src="{{url('/')}}/images/gur-ic1.png">
                             </div>
                             <h4>Online</h4>
                         </div>
                         <div class="col-md-4 col-sm-4 col-12 ic-columns">
-                            <div class="ic-in wow flipInX" data-wow-duration="2s" data-wow-delay="2s">
+                            <div class="ic-in wow flipInX" data-wow-duration="1s" data-wow-delay="1s">
                                 <img src="{{url('/')}}/images/gur-ic2.png">
                             </div>
                             <h4>Instant</h4>
                         </div>
                         <div class="col-md-4 col-sm-4 col-12 ic-columns">
-                            <div class="ic-in wow flipInX" data-wow-duration="2s" data-wow-delay="2s">
+                            <div class="ic-in wow flipInX" data-wow-duration="1s" data-wow-delay="1s">
                                 <img src="{{url('/')}}/images/gur-ic3.png">
                             </div>
                             <h4>Free</h4>
@@ -106,7 +106,7 @@ Apply visas
     </div>
 </section>
 <section class="wh-differ">
-    <div class="container relative wow fadeInUp" data-wow-duration="2s" data-wow-delay="1s">
+    <div class="container relative wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">
         <h2><small>What makes</small><span>VisaBadge</span> different?</h2>
         <p>On VisaBadge, just upload your passport & our intelligent algorithm will read them to get your visa documents ready - instantly. Watch how it works!</p>
         <div class="video-bg">
@@ -124,15 +124,15 @@ Apply visas
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6 col-sm-6 col-12 process-in">
-                <h2 class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="1s"><small>The steps involved</small> In the <span>process </span></h2>
+                <h2 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s"><small>The steps involved</small> In the <span>process </span></h2>
 
-                <span class="numb wow flipInX" data-wow-duration="1s" data-wow-delay="1s">1</span>
+                <span class="numb wow flipInX" data-wow-duration="0.5s" data-wow-delay="0.5s">1</span>
 
-                <h3 class="wow fadeInLeft" data-wow-duration="2s" data-wow-delay="1s">Choose your visa type</h3>
-                <p class="wow fadeInLeft" data-wow-duration="2s" data-wow-delay="1s">Start your visa application by selecting the visa type - business & tourist. Provide the number of applicants & country of residents.</p>
+                <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.5s">Choose your visa type</h3>
+                <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.5s">Start your visa application by selecting the visa type - business & tourist. Provide the number of applicants & country of residents.</p>
             </div>
 
-            <div class="col-md-6 col-sm-6 col-12 process-img wow fadeInRight text-right" data-wow-duration="2s" data-wow-delay="1s">
+            <div class="col-md-6 col-sm-6 col-12 process-img wow fadeInRight text-right" data-wow-duration="1s" data-wow-delay="0.5s">
                 <img src="{{url('/')}}/images/step1.png">
                 <img src="{{url('/')}}/images/parerl-4.png" data-enllax-ratio="0.2" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl-4" />
             </div>
@@ -144,14 +144,14 @@ Apply visas
     <div class="container">
         <div class="row align-items-center">
 
-            <div class="col-md-6 col-sm-6 col-12 process-img wow fadeInLeft text-left" data-wow-duration="2s" data-wow-delay="1s">
+            <div class="col-md-6 col-sm-6 col-12 process-img wow fadeInLeft text-left" data-wow-duration="1s" data-wow-delay="0.5s">
                 <img src="{{url('/')}}/images/step2.png">
                 <img src="{{url('/')}}/images/parerl-5.png" data-enllax-ratio="0.2" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl-5" />
             </div>
             <div class="col-md-6 col-sm-6 col-12 process-in">
-                <span class="numb wow flipInX" data-wow-duration="1s" data-wow-delay="1s">2</span>
-                <h3 class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="1s">Upload your passport</h3>
-                <p class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="1s">Upload a scanned copy of your passport. Our intelligent algorithm will read it and automatically fill out your visa documents - instantly!</p>
+                <span class="numb wow flipInX" data-wow-duration="0.5s" data-wow-delay="0.5s">2</span>
+                <h3 class="wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">Upload your passport</h3>
+                <p class="wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">Upload a scanned copy of your passport. Our intelligent algorithm will read it and automatically fill out your visa documents - instantly!</p>
             </div>
         </div>
     </div>
@@ -160,12 +160,12 @@ Apply visas
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6 col-sm-6 col-12 process-in">
-                <div class="badge wow flipInX" data-wow-duration="2s" data-wow-delay="2s"><img src="{{url('/')}}/images/vis-badge.png"></div>
-                <span class="numb wow flipInX bg-yellow" data-wow-duration="1s" data-wow-delay="1s">3</span>
-                <h3 class="wow fadeInLeft" data-wow-duration="2s" data-wow-delay="1s">Get it verified</h3>
-                <p class="wow fadeInLeft" data-wow-duration="2s" data-wow-delay="1s">Verify the documents or get it verified by our experts, before you submit it to the Embassies. Remember, an error-free application can improve the chances of your approvals!</p>
+                <div class="badge wow flipInX" data-wow-duration="1s" data-wow-delay="1s"><img src="{{url('/')}}/images/vis-badge.png"></div>
+                <span class="numb wow flipInX bg-yellow" data-wow-duration="0.5s" data-wow-delay="0.5s">3</span>
+                <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.5s">Get it verified</h3>
+                <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.5s">Verify the documents or get it verified by our experts, before you submit it to the Embassies. Remember, an error-free application can improve the chances of your approvals!</p>
             </div>
-            <div class="col-md-6 col-sm-6 col-12 process-img wow fadeInRight text-right" data-wow-duration="2s" data-wow-delay="1s">
+            <div class="col-md-6 col-sm-6 col-12 process-img wow fadeInRight text-right" data-wow-duration="1s" data-wow-delay="0.5s">
                 <img src="{{url('/')}}/images/step3.png">
                 <img src="{{url('/')}}/images/parerl-6.png" data-enllax-ratio="0.6" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl-5" />
             </div>
@@ -176,9 +176,9 @@ Apply visas
     <div class="container">
         <div class="row  align-items-center">
             <div class="col-sm-12">
-                <h2 class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="1s">  <small>Read more</small>from <span>visa guides</span></h2>
+                <h2 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">  <small>Read more</small>from <span>visa guides</span></h2>
 
-                <div class="stories owl-carousel owl-theme pt-3 wow fadeInUp" data-wow-duration="2s" data-wow-delay="1s">
+                <div class="stories owl-carousel owl-theme pt-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">
                     @if(!empty($feeds['items']))
                     <?php $countFeed = 0; ?>
                     @foreach($feeds['items'] as $feed)
@@ -216,11 +216,11 @@ Apply visas
         <img src="{{url('/')}}/images/parerl-8.png" data-enllax-ratio="0.2" data-enllax-type="foreground" data-enllax-direction="vertical" class="parl-8" />
 
         <div class="row justify-content-end">
-            <div class="we-gurnte-banner col-xl-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-duration="2s" data-wow-delay="1s" style="background-image: url(images/guar-banner.jpg);">
-                <div class="we-gurnte-text  wow fadeInUp"  data-wow-duration="2s" data-wow-delay="1s">
-                    <div class="row  no-gutters" data-wow-duration="2s" data-wow-delay="1s">
+            <div class="we-gurnte-banner col-xl-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s" style="background-image: url(images/guar-banner.jpg);">
+                <div class="we-gurnte-text  wow fadeInUp"  data-wow-duration="1s" data-wow-delay="0.5s">
+                    <div class="row  no-gutters" data-wow-duration="1s" data-wow-delay="0.5s">
 
-                        <div class="testmonials owl-carousel owl-theme pt-3 wow fadeInUp" data-wow-duration="2s" data-wow-delay="1s">
+                        <div class="testmonials owl-carousel owl-theme pt-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">
                             <div class="item">
                                 <div class="auth-img">
                                     <img src="{{url('/')}}/images/author.jpg">
@@ -263,52 +263,67 @@ Apply visas
 <section class="pop-cntry">
     <div class="container">
         <div class="row">
-            <h2 class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="1s"><small>Most travelled</small> <span>Countries </span> in {{date('Y')}}</h2>
+            <h2 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s"><small>Most travelled</small> <span>Countries </span> in {{date('Y')}}</h2>
         </div>
 
         <div class="row">
-            <div class="col-md-4 col-sm-12 pop-wrap wow fadeInUp" data-wow-duration="2s" data-wow-delay="200ms">
+            <div class="col-md-4 col-sm-12 pop-wrap wow fadeInUp" data-wow-duration="1s" data-wow-delay="200ms">
                 <div class="th-img relative"><img src="{{url('/')}}/images/th1.png">
                     <h4>Switzerland</h4>
-                    <a href="{{ url('/') }}/visa/switzerland">Apply Now</a>
+                    <a href="{{ url('/') }}/visa-application/switzerland-visa-from-{{str_replace(' ', '-', $position['countryName'])}}">Apply Now</a>
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-12 pop-wrap wow fadeInUp" data-wow-duration="2s" data-wow-delay="300ms">
+            <div class="col-md-4 col-sm-12 pop-wrap wow fadeInUp" data-wow-duration="1s" data-wow-delay="300ms">
                 <div class="th-img relative"><img src="{{url('/')}}/images/th2.png">
                     <h4>Germany</h4>
-                    <a href="{{ url('/') }}/visa/germany">Apply Now</a>
+                    <a href="{{ url('/') }}/visa-application/germany-visa-from-{{str_replace(' ', '-', $position['countryName'])}}">Apply Now</a>
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-12 pop-wrap wow fadeInUp" data-wow-duration="2s" data-wow-delay="400ms">
+            <div class="col-md-4 col-sm-12 pop-wrap wow fadeInUp" data-wow-duration="1s" data-wow-delay="400ms">
                 <div class="th-img relative"><img src="{{url('/')}}/images/th3.png">
                     <h4>Canada</h4>
-                    <a href="{{ url('/') }}/visa/canada">Apply Now</a>
+                    <a href="{{ url('/') }}/visa-application/canada-visa-from-{{str_replace(' ', '-', $position['countryName'])}}">Apply Now</a>
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-12 pop-wrap wow fadeInUp" data-wow-duration="2s" data-wow-delay="500ms">
+            <div class="col-md-4 col-sm-12 pop-wrap wow fadeInUp" data-wow-duration="1s" data-wow-delay="500ms">
                 <div class="th-img relative"><img src="{{url('/')}}/images/th4.png">
                     <h4>United States</h4>
-                    <a href="{{ url('/') }}/visa/united-states">Apply Now</a>
+                    <a href="{{ url('/') }}/visa-application/united-states-visa-from-{{str_replace(' ', '-', $position['countryName'])}}">Apply Now</a>
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-12 pop-wrap wow fadeInUp" data-wow-duration="2s" data-wow-delay="600ms">
+            <div class="col-md-4 col-sm-12 pop-wrap wow fadeInUp" data-wow-duration="1s" data-wow-delay="600ms">
                 <div class="th-img relative"><img src="{{url('/')}}/images/th5.png">
                     <h4>Thailand</h4>
-                    <a href="{{ url('/') }}/visa/thailand">Apply Now</a>
+                    <a href="{{ url('/') }}/visa-application/thailand-visa-from-{{str_replace(' ', '-', $position['countryName'])}}">Apply Now</a>
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-12 pop-wrap wow fadeInUp" data-wow-duration="2s" data-wow-delay="700ms">
+            <div class="col-md-4 col-sm-12 pop-wrap wow fadeInUp" data-wow-duration="1s" data-wow-delay="700ms">
                 <div class="th-img relative"><img src="{{url('/')}}/images/th6.png">
                     <h4>Singapore</h4>
-                    <a href="{{ url('/') }}/visa/singapore">Apply Now</a>
+                    <a href="{{ url('/') }}/visa-application/singapore-visa-from-{{str_replace(' ', '-', $position['countryName'])}}">Apply Now</a>
                 </div>
             </div>
 
+        </div>
+    </div>
+</section>
+<section class="pop-cntry">
+    <div class="container">
+        <div class="row">
+            <h2 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s"><small style="color: #9566cc">Other </small> <span>Countries </span>on VisaBadge</h2>
+        </div>
+
+        <div class="row text-justify">
+            @foreach($countries1 as $country)
+                <a class="mr-3 pull-left" href="{{ url('/') }}/visa-application/{{str_replace(' ', '-', $country['countryName'])}}-visa-from-{{str_replace(' ', '-', $position['countryName'])}}">
+                    <small>{{$country['countryName']}}</small>
+                </a>
+            @endforeach
         </div>
     </div>
 </section>
@@ -330,9 +345,9 @@ Apply visas
 
                 <ul>
                     <li><img src="{{url('/')}}/images/flash.png"></li>
-                    <li><a href="{{ url('/') }}/visa/united-kingdom">UK</a></li>
-                    <li><a href="{{ url('/') }}/visa/united-states">US</a></li>
-                    <li><a href="{{ url('/') }}/visa/canada">Canada</a></li>
+                    <li><a href="{{ url('/') }}/visa-application/united-kingdom-visa-from-{{str_replace(' ', '-', $position['countryName'])}}">UK</a></li>
+                    <li><a href="{{ url('/') }}/visa-application/united-states-visa-from-{{str_replace(' ', '-', $position['countryName'])}}">US</a></li>
+                    <li><a href="{{ url('/') }}/visa-application/canada-visa-from-{{str_replace(' ', '-', $position['countryName'])}}">Canada</a></li>
                     <li><a href="javascript:;" onclick="$('.typeahead').focus()">+ 120 Countries</a></li>
                 </ul>
 
@@ -426,12 +441,6 @@ $(window).enllax();
       return false;
     });
   });
-
-
-
-
-
-
 
 function isOnScreen(elem) {
   // if the element doesn't exist, abort
