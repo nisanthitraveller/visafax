@@ -3,12 +3,17 @@
 Visa Documents
 @endsection
 @section('content')
-@if(!isset($request['uploadType']))
+
 <section class="banner inner-2" style="background-image: url({{url('/')}}/images/hero-home.png);">
 
     <div class="container">
         <div class="row align-items-center justify-content-center pt-4">
-            <h1>My Visa Documents</h1>
+            @if(!isset($request['uploadType']))
+                <h1>My Visa Documents</h1>
+            @else
+                <h1 class="uploadTitle">Upload your {{$documents[$request['uploadType']][0]['documenttype']['type']}}</h1>
+            @endif
+            
             <div class="col-9 dash-select cntry-selected">
                 <div class="media">
                     <label class="label-title">Visa status for</label>
@@ -28,21 +33,7 @@ Visa Documents
         </div>
     </div>
 </section>
-@else
-<section class="banner inner-payment" style="background-image: url({{url('/')}}/images/hero-home.png);">
 
-    <div class="container">
-        <div class="row align-items-center justify-content-center pt-4">
-            <h2 class="uploadTitle">Upload your {{$documents[$request['uploadType']][0]['documenttype']['type']}}</h2>
-            <div class="col-9 dash-select cntry-selected">
-                <div class="media">
-                    &nbsp;
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-@endif
 <?php
 $step = 1;
 
