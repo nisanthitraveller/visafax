@@ -368,7 +368,7 @@ Apply visas
             </div>
             <!-- Modal body -->
             <div class="modal-body">
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/ngElkyQ6Rhs" frameborder="0" allowfullscreen></iframe>
+                <iframe width="100%" height="315" src="https://drive.google.com/file/d/1xAyA7t75KVgaloNyhSAnhjXC6f0aETKT/preview" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
     </div>

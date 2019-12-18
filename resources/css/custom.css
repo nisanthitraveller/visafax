@@ -138,7 +138,27 @@ box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1
     transform: rotate(360deg);
   }
 }
-
+.progress {
+    display: flex;
+    height: .8rem;
+  
+    width: 21%;
+    z-index: 99;
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+.progress-bar {
+    
+    background-color: #5fd055;
+  
+    height: 100%;
+}
+.progress-bar-striped {
+   
+    background-size: .4rem 1rem;
+}
 #fade {
     display: none;
     position:absolute;
@@ -341,11 +361,108 @@ ul.tab1 li:before {
 .dashboard-wrap .doc-col-2 {
     flex-direction: row-reverse;
 }
+
+p.dir {
+    display: inline-block;
+    padding: 7px 12px;
+    background: #6483e9;
+    color: #fff !important;
+    border-radius: 5px;
+    text-decoration: none !important;
+    text-align: left !important;
+  
+    font-size: 15px;
+}
+a.btn.btn-light {
+    border-radius: 100px;
+    border: 1px solid #ddd;
+}
 @media screen and (max-width: 767px) {
+.popus .modal-dialog {
+    max-width: 92%;
+    margin: 1.75rem auto;
+    border: 0;
+}
+  
     .dos-name a {
         font-size: 14px;
     }
+    ul.tab1 li:before {
+    left: 66px!important;
 }
+.p-47 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.dashboard-wrap.right-sidebar#document-listing .doc-cols {
+    flex: 0 0 75%;
+    max-width: 75%;
+}
+div#file-upload .file-show .col-md-12.col-sm-10.col-9{
+  flex: 0 0 100%;
+    max-width: 100%;
+}
+div#file-upload .doc-list.up-doc-file {
+    cursor: pointer;
+    padding: 9px 0px 15px;
+}
+.btn-success.disabled, .btn-success:disabled {
+    color: #fff;
+    background-color: #4f6dce !important;
+    border-color: #4f6dce !important;
+    border:0 !important;
+    border-radius: 100px;
+}
+}
+
+
+@media(max-width: 575px){
+  .dashboard-wrap.right-sidebar#document-listing .doc-cols {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 5px;
+}
+ .dashboard-wrap.right-sidebar#document-listing .doc-col-2 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    top: 0;
+}
+p.dir {
+ 
+    font-size: 14px;
+}
+div#file-upload .doc-list.add-file.file-show.mt-2 .col-4 {
+    padding-left: 18px !important;
+}
+}
+@media (max-width: 435px){
+.doc-col-2 {
+      padding-right: 15px;
+    padding-left: 15px;
+
+}
+div#file-upload .doc-list.add-file.file-show.mt-2 .col-4 {
+    order: 2;
+    flex: 0 0 100%;
+    max-width: 100%;
+        text-align: center;
+            margin-top: 10px;
+  
+}
+div#file-upload .doc-list.add-file.file-show.mt-2 .col-8 {
+    order: 1;
+    flex: 0 0 100%;
+    max-width: 100%;
+    text-align: center !important;
+    justify-content: space-between;
+    display: flex;
+}
+
+
+
+
+}
+
 .dasboard-detail-wrap {
     min-height: 400px;
 }

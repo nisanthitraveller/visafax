@@ -54,7 +54,11 @@
         </div>
     </div>
 </div>
-<div class="loading" style="display: none">Loading&#8230;</div>
+<div style="" class="loading">
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:40%"></div>
+  </div>
+</div>
 <div id="fade"></div>
 <div id="loader-modal">
     <img src="{{url('/')}}/images/loading.gif">

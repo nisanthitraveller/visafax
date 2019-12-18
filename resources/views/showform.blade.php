@@ -51,37 +51,38 @@
                 </div>
                 @endforeach
                 @if(!empty($booking))
-                <div class="row mb-2 ">
-                    <div class="col-md-10 col-sm-10 col-10 doc-block mt-3">
-                        <p class="dir" style="text-align: justify; color: #6483e9; text-decoration: underline; cursor: pointer; margin-bottom: 0" onclick="$('.dir, .display0').toggle()">
-                            Show other details needed
-                            <i style="padding-left: 5px" class="fa fa-angle-down"></i>
-                        </p>
-                        <p class="dir" style="display: none; text-align: justify; color: #6483e9; text-decoration: underline; cursor: pointer; margin-bottom: 0" onclick="$('.dir, .display0').toggle()">
-                            Hide other details
-                            <i style="padding-left: 5px" class="fa fa-angle-up"></i>
-                        </p>
+                    <div class="row mb-2 ">
+                        <div class="col-md-10 col-sm-10 col-10 doc-block mt-3">
+                            <p class="dir" style="text-align: justify; color: #6483e9; text-decoration: underline; cursor: pointer; margin-bottom: 0" onclick="$('.dir, .display0').toggle()">
+                                Show other details needed
+                                <i style="padding-left: 5px" class="fa fa-angle-down"></i>
+                            </p>
+                            <p class="dir" style="display: none; text-align: justify; color: #6483e9; text-decoration: underline; cursor: pointer; margin-bottom: 0" onclick="$('.dir, .display0').toggle()">
+                                Hide other details
+                                <i style="padding-left: 5px" class="fa fa-angle-up"></i>
+                            </p>
 
+                        </div>
                     </div>
-                </div>
-                @foreach($booking as $key1 => $data1)
-                <div class="form-group row display0" style="display: none">
-                    <label class="col-sm-4 col-form-label" for="form{{$key1}}">{{preg_replace('/(?<!\ )[A-Z]/', ' $0', $key1)}}</label>
-                    <div class="col-sm-8">
-                        <?php
-                            $type = 'text';
-                            //dd($booking);
-                            if($key == 'Duration') {
-                                $type = 'number';
-                            }
-                            $calClass = (in_array($key1, ['JoiningDate', 'payment_date'])) ? 'datepicker2' : null;
-                            $data1 = (in_array($key, ['JoiningDate', 'payment_date'])) ? date('d/m/Y', strtotime($data1)) : $data1;
-                        ?>
-                        <input type="{{$type}}" value="{{$data1}}" placeholder="Enter {{preg_replace('/(?<!\ )[A-Z]/', ' $0', $key1)}}" name="booking[{{$key1}}]" class="form-control {{$calClass}}" id="form{{$key1}}">
-                        
+                    @foreach($booking as $key1 => $data1)
+                    <div class="form-group row display0" style="display: none">
+                        <label class="col-sm-4 col-form-label" for="form{{$key1}}">{{preg_replace('/(?<!\ )[A-Z]/', ' $0', $key1)}}</label>
+                        <div class="col-sm-8">
+                            <?php
+                                $type = 'text';
+                                //dd($booking);
+                                if($key == 'Duration') {
+                                    $type = 'number';
+                                }
+                                $calClass = (in_array($key1, ['JoiningDate', 'payment_date'])) ? 'datepicker2' : null;
+                                $data1 = (in_array($key, ['JoiningDate', 'payment_date'])) ? date('d/m/Y', strtotime($data1)) : $data1;
+                            ?>
+                            <input type="{{$type}}" value="{{$data1}}" placeholder="Enter {{preg_replace('/(?<!\ )[A-Z]/', ' $0', $key1)}}" name="booking[{{$key1}}]" class="form-control {{$calClass}}" id="form{{$key1}}">
+
+                        </div>
                     </div>
-                </div>
-                @endforeach
+                    @endforeach
+                @endif
                 <div class="form-group row">
                     <div class="col-sm-12 text-right">
                         <input type="hidden" id="save_user_id" name="save_user_id" value="{{$userId}}" />
