@@ -57,6 +57,7 @@
 <div style="" class="loading">
   <div class="progress">
     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:40%"></div>
+    <span id="loader-text">Please wait...</span>
   </div>
 </div>
 <div id="fade"></div>

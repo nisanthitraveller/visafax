@@ -64,7 +64,7 @@
 
                         </div>
                     </div>
-                    <label class="col-sm-10 col-form-label" style="font-weight: bold; padding-left: 0; text-decoration: underline;">Other Info</label>
+                    <label class="col-sm-10 col-form-label display0" style="display: none; font-weight: bold; padding-left: 0; text-decoration: underline;">Other Info</label>
                     @foreach($booking as $key1 => $data1)
                     <div class="form-group row display0" style="display: none">
                         <label class="col-sm-4 col-form-label" for="form{{$key1}}">{{preg_replace('/(?<!\ )[A-Z]/', ' $0', $key1)}}</label>
