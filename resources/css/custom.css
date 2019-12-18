@@ -56,7 +56,7 @@ loading:before {
 }
 */
 
-.loading:not(:required):after {
+/*.loading:not(:required):after {
   content: '';
   display: block;
   font-size: 10px;
@@ -71,7 +71,7 @@ loading:before {
   border-radius: 0.5em;
   -webkit-box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1.1em 0 0, rgba(255,255,255, 0.75) 0 1.5em 0 0, rgba(255,255,255, 0.75) -1.1em 1.1em 0 0, rgba(255,255,255, 0.75) -1.5em 0 0 0, rgba(255,255,255, 0.75) -1.1em -1.1em 0 0, rgba(255,255,255, 0.75) 0 -1.5em 0 0, rgba(255,255,255, 0.75) 1.1em -1.1em 0 0;
 box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1.1em 0 0, rgba(255,255,255, 0.75) 0 1.5em 0 0, rgba(255,255,255, 0.75) -1.1em 1.1em 0 0, rgba(255,255,255, 0.75) -1.5em 0 0 0, rgba(255,255,255, 0.75) -1.1em -1.1em 0 0, rgba(255,255,255, 0.75) 0 -1.5em 0 0, rgba(255,255,255, 0.75) 1.1em -1.1em 0 0;
-}
+}*/
 
 /* Animation */
 
@@ -368,7 +368,7 @@ ul.tab1 li:before {
     flex-direction: row-reverse;
 }
 
-p.dir {
+/*p.dir {
     display: inline-block;
     padding: 7px 12px;
     background: #6483e9;
@@ -378,7 +378,7 @@ p.dir {
     text-align: left !important;
   
     font-size: 15px;
-}
+}*/
 a.btn.btn-light {
     border-radius: 100px;
     border: 1px solid #ddd;

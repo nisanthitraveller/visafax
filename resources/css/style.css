@@ -2205,14 +2205,14 @@ span.sm-desc {
 
 
 
-.dashboard-wrap .doc-list:hover {
+/*.dashboard-wrap .doc-list:hover {
     box-shadow: 1px 1px 16px 1px #e1e1e1;
     border-radius: 8px;
     padding: 13px 32px 13px;
     border: 0;
     z-index: 2;
     margin-top: -4px;
-}
+}*/
 
 .dos-name a:hover {
     text-decoration: none;
