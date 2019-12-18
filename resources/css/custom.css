@@ -33,7 +33,7 @@ img.media-object {
 }
 
 /* Transparent Overlay */
-loading:before {
+.loading:before {
   content: '';
   display: block;
   position: fixed;
