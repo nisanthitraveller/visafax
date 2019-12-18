@@ -63,7 +63,7 @@
     });
     
     $('#visa-change').change(function () {
-        location.href = '/dashboard1?bookingID=' + $(this).val();
+        location.href = '/dashboard?bookingID=' + $(this).val();
     });
     
     $('a[href^="#"]').click(function(){
