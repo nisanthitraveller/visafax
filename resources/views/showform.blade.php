@@ -46,7 +46,7 @@
                             $calClass2 = (in_array($key, ['DOB'])) ? 'datepicker' : null;
                             $data = (in_array($key, ['PassportDOI', 'PassportDOE', 'DOB'])) ? date('d/m/Y', strtotime($data)) : $data;
                         ?>
-                        <input type="text" value="{{$data}}" placeholder="Enter {{preg_replace('/(?<!\ )[A-Z]/', ' $0', $key)}}" name="user[{{$key}}]" class="form-control {{$calClass}} {{$calClass2}}" id="form{{$key}}">
+                        <input type="text" value="{{$data}}" placeholder="Enter{{preg_replace('/(?<!\ )[A-Z]/', ' $0', $key)}}" name="user[{{$key}}]" class="form-control {{$calClass}} {{$calClass2}}" id="form{{$key}}">
                     </div>
                 </div>
                 @endforeach
@@ -77,7 +77,7 @@
                                 $calClass = (in_array($key1, ['JoiningDate', 'payment_date'])) ? 'datepicker2' : null;
                                 $data1 = (in_array($key, ['JoiningDate', 'payment_date'])) ? date('d/m/Y', strtotime($data1)) : $data1;
                             ?>
-                            <input type="{{$type}}" value="{{$data1}}" placeholder="Enter {{preg_replace('/(?<!\ )[A-Z]/', ' $0', $key1)}}" name="booking[{{$key1}}]" class="form-control {{$calClass}}" id="form{{$key1}}">
+                            <input type="{{$type}}" value="{{$data1}}" placeholder="Enter{{preg_replace('/(?<!\ )[A-Z]/', ' $0', $key1)}}" name="booking[{{$key1}}]" class="form-control {{$calClass}}" id="form{{$key1}}">
 
                         </div>
                     </div>
