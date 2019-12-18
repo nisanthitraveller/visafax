@@ -33,7 +33,7 @@ img.media-object {
 }
 
 /* Transparent Overlay */
-/*.loading:before {
+loading:before {
   content: '';
   display: block;
   position: fixed;
@@ -46,7 +46,7 @@ img.media-object {
   background: -webkit-radial-gradient(rgba(20, 20, 20,.8), rgba(0, 0, 0,.8));
 }
 
- :not(:required) hides these rules from IE9 and below 
+ /*.:not(:required) hides these rules from IE9 and below 
 .loading:not(:required) {
   font: 0/0 a;
   color: transparent;
@@ -142,14 +142,19 @@ box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1
 .progress {
     display: flex;
     height: .8rem;
-  
     width: 21%;
     z-index: 99;
     position: fixed;
     left: 0;
     right: 0;
     margin: 0 auto;
+    border-radius: 100px;
 }
+
+.loading:not(:required):after{
+display:none;
+}
+
 .progress-bar {
     
     background-color: #5fd055;
