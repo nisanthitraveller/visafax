@@ -328,10 +328,12 @@ class VisaController extends Controller
             $countryDocs[] = $countryDoc['document_type'];
         }
         $arrayDiff = array_values(array_diff($countryDocs, $uploadedDocs));
+        $concat = (strpos( $request->getRequestUri(), '?' ) !== false) ? '&' : '?';
+        
         if(!empty($arrayDiff) && !isset($request['uploadType']) && $booking['status'] == 0) {
-            return redirect('/dashboard?uploadType=' . $arrayDiff[0]);
+            return redirect($request->getRequestUri() . $concat . 'uploadType=' . $arrayDiff[0]);
         } else if(empty($arrayDiff) && !isset($request['uploadType']) && $booking['status'] == 0 && !isset($request['form'])) {
-            return redirect('/dashboard?form=1');
+            return redirect($request->getRequestUri() . $concat . 'form=1');
         } else {
             return view('dashboard-new')->with(['allVisa' => $allVisa, 'visaDetails' => $booking, 'documents' => $documents, 'response' => $response, 'request' => $request, 'mobile' => $mobile, 'countryDocuments' => $countryDocuments, 'arrayDiff' => $arrayDiff]);
         }
