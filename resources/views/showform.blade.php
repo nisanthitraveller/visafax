@@ -36,7 +36,7 @@
         <div class="card-body">
             <h5 class="card-title text-center"><strong style="color: #282828">Verify and confirm your visa details</strong></h5>
             <div class="table-responsive-sm">   
-                <label class="col-sm-10 col-form-label">User Info</label>
+                <label class="col-sm-10 col-form-label" style="font-weight: bold; padding-left: 0; text-decoration: underline;">User Info</label>
                 @foreach($user as $key => $data)
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="form{{$key}}">{{preg_replace('/(?<!\ )[A-Z]/', ' $0', $key)}}</label>
@@ -64,6 +64,7 @@
 
                         </div>
                     </div>
+                    <label class="col-sm-10 col-form-label" style="font-weight: bold; padding-left: 0; text-decoration: underline;">Other Info</label>
                     @foreach($booking as $key1 => $data1)
                     <div class="form-group row display0" style="display: none">
                         <label class="col-sm-4 col-form-label" for="form{{$key1}}">{{preg_replace('/(?<!\ )[A-Z]/', ' $0', $key1)}}</label>

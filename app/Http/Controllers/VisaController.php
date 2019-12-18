@@ -212,6 +212,11 @@ class VisaController extends Controller
                 $data['approval_at'] = date('Y-m-d');
             }
             $data['status'] = 1;
+            foreach ($data as $k => $d) {
+                if(empty($d)) {
+                    $data[$k] = 'Enter' . preg_replace('/(?<!\ )[A-Z]/', ' $0', $k);
+                }
+            }
             $model->fill($data);
             $model->save();
         }
@@ -222,6 +227,11 @@ class VisaController extends Controller
             $dataUser['PassportDOI'] = implode("-", array_reverse(explode("/", $dataUser['PassportDOI'])));
             $dataUser['PassportDOE'] = implode("-", array_reverse(explode("/", $dataUser['PassportDOE'])));
             $dataUser['DOB'] = implode("-", array_reverse(explode("/", $dataUser['DOB'])));
+            foreach ($dataUser as $k1 => $d1) {
+                if(empty($d1)) {
+                    $dataUser[$k1] = 'Enter' . preg_replace('/(?<!\ )[A-Z]/', ' $0', $k1);
+                }
+            }
             $modelUser->fill($dataUser);
             $modelUser->save();
         }
