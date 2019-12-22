@@ -23,7 +23,7 @@ class VisaController extends Controller
     public function __construct()
     {
         //$this->middleware('auth');
-        $this->middleware('auth', ['except' => 'countrydashboard']);
+        $this->middleware('auth', ['except' => ['countrydashboard', 'startvisa']]);
     }
     
     public function payment($bookingId)
@@ -349,10 +349,56 @@ class VisaController extends Controller
     }
     
     public function countrydashboard($visaUrl, Request $request) {
+        $visaUrl = str_replace('-visa', '', $visaUrl);
         $country = Country::where("countryName", str_replace('-', ' ', $visaUrl))->first()->toArray();
         
         $countryDocuments = \App\Models\Document::where('country_id', $country['id'])->with('documenttype')->select('document_type', 'document_id', 'pdf', 'body_business as tooltip', 'display')->orderBy('display', 'DESC')->get()->toArray();
         return view('dashboard-country')->with(['countryDocuments' => $countryDocuments, 'request' => $request, 'country' => $country]);
+        
+    }
+    
+    public function startvisa($visaUrl, Request $request) {
+        $visaUrl = str_replace('-visa', '', $visaUrl);
+        $country = Country::where("countryName", str_replace('-', ' ', $visaUrl))->first()->toArray();
+        if(!empty($request['PassportNo'])) {
+            
+            $dataUser = $request->toArray();
+            unset($dataUser['visaType']);
+            unset($dataUser['persons']);
+            unset($dataUser['vistingCountry']);
+            unset($dataUser['residenceCountry']);
+            $newUser = \App\User::create([
+                'name' => $dataUser['Surname'],
+                'first_name' => $dataUser['FirstName'],
+                'last_name' => $dataUser['Surname'],
+                'email' => $dataUser['EmailID'],
+                'provider' => 'google-test',
+                'provider_id' => 0,
+                'password' => \Illuminate\Support\Facades\Hash::make('123456'),
+                'avatar' => 'https://visabadge.com/images/avat.svg',
+            ]);
+            
+            $dataUser['user_id'] = $newUser->id;
+            $dataUser['PassportDOI'] = implode("-", array_reverse(explode("/", $dataUser['PassportDOI'])));
+            $dataUser['PassportDOE'] = implode("-", array_reverse(explode("/", $dataUser['PassportDOE'])));
+            $dataUser['DOB'] = implode("-", array_reverse(explode("/", $dataUser['DOB'])));
+            $modelUser = \App\Models\UserInfo::create($dataUser);
+            
+            $bookingID = (strlen($modelUser->id + 1) < 3) ? 'VB' . '000' . ($modelUser->id + 1) . '-' . $request['persons'] : 'VB' . ($modelUser->id + 1) . '-' . $request['persons'];
+            \App\Models\Bookings::create(
+                    [
+                        'user_id' => $modelUser->id,
+                        'BookingID' => $bookingID,
+                        'ParentID' => 0,
+                        'VisitingCountry' => $request['vistingCountry'],
+                        'VisaType' => $request['visaType'],
+                    ]
+            );
+            return view('thankyou')->with(['country' => $country, 'request' => $request]);
+            
+        } else {
+            return view('startvisa')->with(['country' => $country, 'request' => $request]);
+        }
         
     }
     

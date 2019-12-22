@@ -20,6 +20,7 @@ $requests = explode('/', Request::path());
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         @include('ga')
         @if((isset($requests[1]) && $requests[1] == 'dashboard'))
         <script>
@@ -44,6 +45,7 @@ $requests = explode('/', Request::path());
         <script src="{{ asset('js/slick.min.js') }}" type="text/javascript"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="{{ asset(mix('js/visabadge.js')) }}" defer></script>
         <script type="text/javascript">
             var path = "{{ route('autocomplete') }}";

@@ -24,7 +24,7 @@ Route::get('/googledoc', 'GoogleController@googledoc');
 
 Route::get('/autocomplete', 'HomeController@autocomplete')->name('autocomplete');
 
-Route::any('/visa/{visaUrl}', 'HomeController@visa');
+Route::any('/visa/{visaUrl}', 'HomeController@visaold');
 Route::any('/visa-application/{visaUrl}', 'HomeController@visa');
 Route::any('/visa1/{visaUrl}', 'HomeController@visa');
 Route::any('/applyvisa/payment/{bookingId}', 'VisaController@payment');
@@ -36,6 +36,7 @@ Route::any('/testvisa', 'VisaController@testvisa');
 Route::any('/payusubmit', 'VisaController@payusubmit');
 Route::any('/dashboard', 'VisaController@dashboard')->name('my-visas');
 Route::any('/visadetails/{visaUrl}', 'VisaController@countrydashboard');
+Route::any('/visa-details/{visaUrl}', 'VisaController@startvisa');
 Route::any('/dashboard1', 'VisaController@dashboard')->name('my-visas1');
 Route::any('/showform', 'VisaController@showform')->name('show-form');
 

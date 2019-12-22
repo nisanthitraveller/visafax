@@ -95,6 +95,19 @@ class HomeController extends Controller
         }
     }
     
+    public function visaold($visaUrl, Request $request)
+    {
+        $path = $request->path();
+        $blogObj = new \App\Models\Blog();
+        $country = Country::where("countryName", str_replace('-', ' ', $visaUrl))->first()->toArray();
+        $feeds = $blogObj->getFeeds();
+        if(strpos($path, 'visa1') !== false) {
+            return view('visa')->with(['country' => $country, 'feeds' => $feeds]);
+        } else {
+            return view('visaold')->with(['country' => $country, 'feeds' => $feeds]);
+        }
+    }
+    
     public function index()
     {
         return view('home');
