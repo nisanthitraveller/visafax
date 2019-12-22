@@ -39,11 +39,11 @@ Visa {{$country['countryName']}}
             </li>
             <li class="active">
                 <a>
-                    <span class="tb-name" style="top: -50px; width: 105px">Upload passport & payslip</span>
+                    <span class="tb-name" style="top: -50px; width: 105px">Update passport Information</span>
                     <span class="tb-year">{{date('d M, y')}}</span>
                 </a>
             </li>
-            <li class="active">
+            <li>
                 <a>
                     <span class="tb-name" style="top: -50px; width: 105px">Save my information</span>
                     <span class="tb-year">{{date('d M, y')}}</span>
@@ -63,46 +63,25 @@ Visa {{$country['countryName']}}
         </ul>
     </div>
     <div class="container">
-        <div class="card pt-1 mt-4">
+        <div class="card pt-1 m-4">
             <div class="card-body">
-                <h5 class="card-title text-center"><strong style="color: #282828">Passport Information</strong></h5>
+                <h3 class="card-title"><strong style="color: #282828">Passport Information</strong></h3>
                 <p class="card-text">Please enter the data exactly as per passport</p>
-                <form method="post">
+                <form method="post" id="comment">
                     @csrf
-                    <div class="form-group">
-                        <label for="inputPassport">Passport No.</label>
-                        <input type="text" class="form-control" name="PassportNo" id="inputPassport" required="" placeholder="N12345">
-                    </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputEmail">Email ID</label>
-                            <input type="email" class="form-control" name="EmailID" id="inputEmail" required="" placeholder="Email ID">
+                            <label for="inputGiven">First Name</label>
+                            <input type="text" class="form-control" name="FirstName" id="inputGiven" required="" placeholder="Eg: Rahul">
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputPhone">Phone No</label>
-                            <input type="text" class="form-control" name="PhoneNo" id="inputPhone" required="" placeholder="Mobile No.">
-                        </div>
-                    </div>
-                    <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputSurname">Surname</label>
-                            <input type="text" class="form-control" name="Surname" id="inputSurname" required="" placeholder="Surname">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputGiven">Given Name(s)</label>
-                            <input type="text" class="form-control" name="FirstName" id="inputGiven" required="" placeholder="Given name">
+                            <input type="text" class="form-control" name="Surname" id="inputSurname" required="" placeholder="Eg: Sharma">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="inputAddress">Address</label>
-                        <textarea class="form-control" id="inputAddress" name="Address" required="" placeholder="1234 Main St"></textarea>
-                    </div>
+                    
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputNation">Nationality</label>
-                            <input type="text" class="form-control" name="CountryOfBirth" required="" id="inputNation" placeholder="Indian">
-                        </div>
-                        <div class="form-group col-md-4">
                             <label for="inputSex">Sex</label>
                             <select id="inputSex" name="Sex" required="" class="form-control">
                                 <option selected value="M">Male</option>
@@ -110,37 +89,45 @@ Visa {{$country['countryName']}}
                                 <option value="T">Transgender</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-6">
                             <label for="inputDOB">Date of birth</label>
-                            <input type="text" name="DOB" class="form-control datepicker" required="" id="inputDOB" placeholder="01/01/2000">
+                            <input type="text" name="DOB" class="form-control datepicker" required="" id="inputDOB" placeholder="Select Date">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputPOB">Place of Birth</label>
-                            <input type="text" name="PlaceOfBirth" class="form-control" required="" id="inputPOB" placeholder="Bangalore, Karnataka">
+                        <div class="form-group col-md-4">
+                            <label for="inputPassport">Passport No.</label>
+                            <input type="text" class="form-control" name="PassportNo" id="inputPassport" required="" placeholder="Eg: J1498476">
                         </div>
-<!--                        <div class="form-group col-md-6">
-                            <label for="inputPOI">Place of Issue</label>
-                            <input type="text" class="form-control" required="" id="inputPOI" placeholder="Bangalore">
-                        </div>-->
+                        <div class="form-group col-md-4">
+                            <label for="inputNation">Nationality</label>
+                            <input type="text" class="form-control" name="CountryOfBirth" required="" id="inputNation" placeholder="Indian">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputDOE">Passport Expiry</label>
+                            <input type="text" name="PassportDOE" class="form-control datepicker" required="" id="inputDOE" placeholder="Select Date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Address</label>
+                        <input type="text" class="form-control" id="inputAddress" name="Address" required="" placeholder="Enter your address exactly as per your passport" />
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputDOI">Date of Issue</label>
-                            <input type="text" name="PassportDOI" class="form-control datepicker" required="" id="inputDOI" placeholder="01/01/2005">
+                            <label for="inputEmail">Email ID</label>
+                            <input type="email" class="form-control" name="EmailID" id="inputEmail" required="" placeholder="email@example.com">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputDOE">Date of Expiry</label>
-                            <input type="text" name="PassportDOE" class="form-control datepicker" required="" id="inputDOE" placeholder="01/01/2020">
+                            <label for="inputPhone">Phone No</label>
+                            <input type="text" class="form-control" name="PhoneNo" id="inputPhone" required="" placeholder="Your 10 digit phone number">
                         </div>
                     </div>
-                    <div class="form-row pull-right">
+                    <div class="text-right">
                         <input name="visaType" value="{{$request['visaType']}}" type="hidden">
                         <input type="hidden" name="persons" value="{{$request['persons']}}" />
                         <input type="hidden" value="{{$request['vistingCountry']}}" name="vistingCountry">
                         <input type="hidden" value="{{$request['residenceCountry']}}" name="residenceCountry">
-                        <button type="submit" class="btn btn-warning">Submit</button>
+                        <button type="submit" class="btn btn-warning" style="background-color: #ffdf00; color: #000;">Confirm & Proceed</button>
                     </div>
                 </form>
             </div>
@@ -174,6 +161,19 @@ Visa {{$country['countryName']}}
         $('.datepicker').datepicker();
         $('.datepicker').datepicker("option", "dateFormat", 'dd/mm/yy');
         //mixpanel.track('Page_2_Load');
+        
+        $('#comment').on('submit', function(e) {
+            e.preventDefault(); 
+            $.ajax({
+                type: "POST",
+                url: '/visa/<?=str_replace('', '-', strtolower($country['countryName']))?>',
+                data: $(this).serialize(),
+                success: function(msg) {
+                    $('#connect-modal').modal('show');
+                }
+            });
+        });
+        
     });
 </script>
 @endsection
