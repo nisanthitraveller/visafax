@@ -224,6 +224,7 @@ Visa {{$country['countryName']}}
 <script type="text/javascript">
     $(window).on('load', function () {
         console.log('Event');
+        mixpanel.track('Page_2_Google_Load');
     });
 </script>
 @endsection
