@@ -108,7 +108,7 @@ Visa {{$country['countryName']}}
                     </form>
 
                     <div class="col-sm-12 text-center down-bnch  mb-5">
-                        <a href="javascript:void(0)" onclick="mixpanel.track('Start_My_Visa'); $('#visaForm').submit()" class="cntue" style="background-color: #ffdf00; color: #000;">Show More Details</a>
+                        <a href="javascript:void(0)" onclick="mixpanel.track('Show_More_Details'); $('#visaForm').submit()" class="cntue" style="background-color: #ffdf00; color: #000; font-weight: bold">Show More Details</a>
                     </div>
                     <div class="sm-sections">
                         <h2>A quick guide about {{$country['countryName']}} visa process</h2>
@@ -224,7 +224,6 @@ Visa {{$country['countryName']}}
 <script type="text/javascript">
     $(window).on('load', function () {
         console.log('Event');
-        mixpanel.track('Page_2_Load');
     });
 </script>
 @endsection

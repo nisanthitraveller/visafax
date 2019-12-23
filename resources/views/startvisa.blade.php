@@ -65,7 +65,7 @@ Visa {{$country['countryName']}}
     <div class="container">
         <div class="card pt-1 m-4">
             <div class="card-body">
-                <h3 class="card-title"><strong style="color: #282828">Passport Information</strong></h3>
+                <h4 class="card-title m-0" style="font-size: 20px;"><strong style="color: #282828">Passport Information</strong></h4>
                 <p class="card-text">Please enter the data exactly as per passport</p>
                 <form method="post" id="comment">
                     @csrf
@@ -82,12 +82,16 @@ Visa {{$country['countryName']}}
                     
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputSex">Sex</label>
-                            <select id="inputSex" name="Sex" required="" class="form-control">
-                                <option selected value="M">Male</option>
-                                <option value="F">Female</option>
-                                <option value="T">Transgender</option>
-                            </select>
+                            <label for="inputSex" style="display: block">Gender</label>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="defaultInline1" name="Sex" value="M" checked="">
+                                <label class="custom-control-label" for="defaultInline1">Male</label>
+                            </div>
+
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="defaultInline2" name="Sex" value="F">
+                                <label class="custom-control-label" for="defaultInline2">Female</label>
+                            </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputDOB">Date of birth</label>
@@ -127,7 +131,7 @@ Visa {{$country['countryName']}}
                         <input type="hidden" name="persons" value="{{$request['persons']}}" />
                         <input type="hidden" value="{{$request['vistingCountry']}}" name="vistingCountry">
                         <input type="hidden" value="{{$request['residenceCountry']}}" name="residenceCountry">
-                        <button type="submit" class="btn btn-warning" style="background-color: #ffdf00; color: #000;">Confirm & Proceed</button>
+                        <button type="submit" class="btn btn-warning" style="background-color: #ffdf00; color: #000; font-weight: bold">Confirm & Proceed</button>
                     </div>
                 </form>
             </div>
@@ -160,9 +164,8 @@ Visa {{$country['countryName']}}
         console.log('Event');
         $('.datepicker').datepicker();
         $('.datepicker').datepicker("option", "dateFormat", 'dd/mm/yy');
-        //mixpanel.track('Page_2_Load');
-        
         $('#comment').on('submit', function(e) {
+            mixpanel.track('Confirm_Proceed')
             e.preventDefault(); 
             $.ajax({
                 type: "POST",

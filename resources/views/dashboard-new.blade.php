@@ -8,7 +8,7 @@ Visa Documents
 
     <div class="container">
         <div class="row align-items-center justify-content-center pt-4">
-            @if(!isset($request['uploadType']))
+            @if(!isset($request['uploadType']) && $request['uploadType'] != 0)
                 <h1>My Visa Documents</h1>
             @else
                 <h1 class="uploadTitle">Upload your {{$documents[$request['uploadType']][0]['documenttype']['type']}}</h1>
