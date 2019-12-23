@@ -60,7 +60,7 @@ if ($visaDetails['status'] == 3) {
 <div class="dasboard-detail-wrap">
     <form id="wizard" class="pt-2 acts wizard clearfix" role="application" method="post" enctype="multipart/form-data">
         @csrf
-        @if(!isset($request['uploadType']) && !isset($request['form']))
+        @if(!isset($request['uploadType']) || (isset($request['uploadType']) && $request['uploadType'] == 0) && !isset($request['form']))
         <div class="container">
             <ul class="tablist tab1">
                 <li class="active">
@@ -283,7 +283,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                     </div>
                     @if(!empty($visaDetails))
                     <div class="col-xl-12 col-md-12 col-sm-12 mt-4 p-47 dashboard-wrap right-sidebar" id="file-upload" style="margin-top: 0 !important; display: none">
-                        @if(!isset($request['uploadType']))
+                        @if(!isset($request['uploadType']) || (isset($request['uploadType']) && $request['uploadType'] == 0))
                         <div class="container mb-4 dash-titles">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 row-bg">
@@ -310,7 +310,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                             </div>
                         </div>
                         @endif
-                        @if(!isset($request['uploadType']))
+                        @if(!isset($request['uploadType']) || (isset($request['uploadType']) && $request['uploadType'] == 0))
                         <div class="col-sm-12 mb-2 ">
                             <div class="row mb-2 ">
                                 <a href="javascript:void(0)" class="back-btn" onclick="$('.right-sidebar').toggle()">Back</a>
@@ -365,7 +365,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                         @endif
                         <div class="row mb-2 file-show">
                             <div class="col-md-12 col-sm-10 col-9">
-                                @if(!isset($request['uploadType']))
+                                @if(!isset($request['uploadType']) || (isset($request['uploadType']) && $request['uploadType'] == 0))
                                     <h2 class="uploadTitle" style="color: #282828">Upload your documents</h2>
                                 @else
                                     @if(stripos($documents[$request['uploadType']][0]['documenttype']['type'], 'passport') !== false)
