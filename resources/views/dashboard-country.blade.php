@@ -127,9 +127,9 @@ Visa Documents
         <input type="hidden" value="{{$request['vistingCountry']}}" name="vistingCountry">
         <input type="hidden" value="{{$request['residenceCountry']}}" name="residenceCountry">
         @if(isset($countryDocuments[0]))
-        <input type="hidden" value="{{$countryDocuments[0]['documenttype']['id']}}" name="uploadType" id="uploadType">
+            <input type="hidden" value="{{$countryDocuments[0]['documenttype']['id']}}" name="uploadType" id="uploadType">
         @else
-        <input type="hidden" value="{{$countryDocuments[0]['documenttype']['id']}}" name="uploadType" id="uploadType">
+            <input type="hidden" value="" name="uploadType" id="uploadType">
         @endif
     </form>
 </div>

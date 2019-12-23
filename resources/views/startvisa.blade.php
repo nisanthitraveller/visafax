@@ -165,13 +165,15 @@ Visa {{$country['countryName']}}
         $('.datepicker').datepicker();
         $('.datepicker').datepicker("option", "dateFormat", 'dd/mm/yy');
         $('#comment').on('submit', function(e) {
-            mixpanel.track('Confirm_Proceed')
-            e.preventDefault(); 
+            mixpanel.track('Confirm_Proceed');
+            e.preventDefault();
+            openModal();
             $.ajax({
                 type: "POST",
                 url: '/visa/<?=str_replace('', '-', strtolower($country['countryName']))?>',
                 data: $(this).serialize(),
                 success: function(msg) {
+                    closeModal();
                     $('#connect-modal').modal('show');
                 }
             });
