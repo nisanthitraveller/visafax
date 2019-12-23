@@ -67,7 +67,7 @@ Visa {{$country['countryName']}}
             <div class="card-body">
                 <h4 class="card-title m-0" style="font-size: 20px;"><strong style="color: #282828">Passport Information</strong></h4>
                 <p class="card-text">Please enter the data exactly as per passport</p>
-                <form method="post" id="comment">
+                <form method="post" id="comment" autocomplete="off">
                     @csrf
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -95,21 +95,17 @@ Visa {{$country['countryName']}}
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputDOB">Date of birth</label>
-                            <input type="text" name="DOB" class="form-control datepicker" style="box-shadow:none;" required="" id="inputDOB" placeholder="Select Date">
+                            <input type="text" name="DOB" class="form-control dob" style="box-shadow:none;" required="" id="inputDOB" placeholder="Select Date">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label for="inputPassport">Passport No.</label>
                             <input type="text" class="form-control" name="PassportNo" id="inputPassport" required="" placeholder="Eg: J1498476">
                         </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputNation">Nationality</label>
-                            <input type="text" class="form-control" name="CountryOfBirth" required="" id="inputNation" placeholder="Indian">
-                        </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label for="inputDOE">Passport Expiry</label>
-                            <input type="text" name="PassportDOE" class="form-control datepicker" style="box-shadow:none;" required="" id="inputDOE" placeholder="Select Date">
+                            <input type="text" name="PassportDOE" class="form-control doe" style="box-shadow:none;" required="" id="inputDOE" placeholder="Select Date">
                         </div>
                     </div>
                     <div class="form-group">
@@ -162,8 +158,20 @@ Visa {{$country['countryName']}}
 <script type="text/javascript">
     $(window).on('load', function () {
         console.log('Event');
-        $('.datepicker').datepicker();
-        $('.datepicker').datepicker("option", "dateFormat", 'dd/mm/yy');
+        $(".dob").datepicker({
+            dateFormat: 'dd/mm/yy',
+            changeMonth: true,
+            changeYear: true,
+            maxDate: "-1d",
+            yearRange: "-100:+0"
+        });
+
+        $(".doe").datepicker({
+            dateFormat: 'dd/mm/yy',
+            changeMonth: true,
+            changeYear: true,
+            minDate: "+1d"
+        });
         $('#comment').on('submit', function(e) {
             mixpanel.track('Confirm_Proceed');
             e.preventDefault();
