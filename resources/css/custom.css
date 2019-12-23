@@ -472,3 +472,12 @@ div#file-upload .doc-list.add-file.file-show.mt-2 .col-8 {
 .dasboard-detail-wrap {
     min-height: 400px;
 }
+
+#comment .form-group {
+    margin-bottom: 1.5rem !important;
+}
+
+#comment label {
+    margin-bottom: 0 !important;
+    font-size: .8rem !important;
+}
