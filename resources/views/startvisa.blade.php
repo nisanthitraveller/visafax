@@ -95,7 +95,7 @@ Visa {{$country['countryName']}}
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputDOB">Date of birth</label>
-                            <input type="text" name="DOB" class="form-control datepicker" required="" id="inputDOB" placeholder="Select Date">
+                            <input type="text" name="DOB" class="form-control datepicker" style="box-shadow:none;" required="" id="inputDOB" placeholder="Select Date">
                         </div>
                     </div>
                     <div class="form-row">
@@ -109,7 +109,7 @@ Visa {{$country['countryName']}}
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputDOE">Passport Expiry</label>
-                            <input type="text" name="PassportDOE" class="form-control datepicker" required="" id="inputDOE" placeholder="Select Date">
+                            <input type="text" name="PassportDOE" class="form-control datepicker" style="box-shadow:none;" required="" id="inputDOE" placeholder="Select Date">
                         </div>
                     </div>
                     <div class="form-group">
