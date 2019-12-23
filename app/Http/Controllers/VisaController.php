@@ -318,9 +318,11 @@ class VisaController extends Controller
         //} else {
         $uploadedDocs = [];
         $countryDocs = [];
-        foreach($booking['documents'] as $doc) {
-            if(!empty($doc['pdf'])) {
-                $uploadedDocs[] = $doc['DocumentID'];
+        if(isset($booking['documents'])) {
+            foreach($booking['documents'] as $doc) {
+                if(!empty($doc['pdf'])) {
+                    $uploadedDocs[] = $doc['DocumentID'];
+                }
             }
         }
         $countryDocuments = \App\Models\Document::where('country_id', $booking['VisitingCountry'])->where('display', 1)->with('documenttype')->select('document_type', 'document_id', 'pdf', 'body_business as tooltip', 'display')->orderBy('display', 'DESC')->get()->toArray();
@@ -379,7 +381,6 @@ class VisaController extends Controller
             ]);
             
             $dataUser['user_id'] = $newUser->id;
-            $dataUser['PassportDOI'] = implode("-", array_reverse(explode("/", $dataUser['PassportDOI'])));
             $dataUser['PassportDOE'] = implode("-", array_reverse(explode("/", $dataUser['PassportDOE'])));
             $dataUser['DOB'] = implode("-", array_reverse(explode("/", $dataUser['DOB'])));
             $modelUser = \App\Models\UserInfo::create($dataUser);
