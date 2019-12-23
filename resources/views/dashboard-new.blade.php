@@ -386,7 +386,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                                             <input type="file" onclick="mixpanel.track('Browse_Passport');" accept="application/pdf" name="booking_documents[]" />
                                         @else
                                             <input type="file" accept="application/pdf" name="booking_documents[]" />
-                                        @endf
+                                        @endif
                                     @else
                                         <input type="file" accept="application/pdf" name="booking_documents[]" />
                                     @endif
