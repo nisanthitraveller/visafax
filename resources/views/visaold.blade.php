@@ -108,7 +108,7 @@ Visa {{$country['countryName']}}
                     </form>
 
                     <div class="col-sm-12 text-center down-bnch  mb-5">
-                        <a href="javascript:void(0)" onclick="mixpanel.track('Show_More_Details'); $('#visaForm').submit()" class="cntue" style="background-color: #ffdf00; color: #000; font-weight: bold">Start FREE Visa Processing</a>
+                        <a href="javascript:void(0)" onclick="mixpanel.track('Show_More_Details'); $('#visaForm').submit()" class="cntue" style="background-color: #ffdf00; color: #000; font-weight: bold">Get My Visa Docs FREE</a>
                     </div>
                     <div class="sm-sections">
                         <h2>A quick guide about {{$country['countryName']}} visa process</h2>
