@@ -381,7 +381,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                         <div class="doc-list up-doc-file file-show mt-2">
                             <div class="row">
                                 <div class="col-md-3 col-sm-4 col-4">
-                                    @if((isset($request['uploadType']) && $request['uploadType'] == 0))
+                                    @if((isset($request['uploadType']) && $request['uploadType'] != 0))
                                         @if(stripos($documents[$request['uploadType']][0]['documenttype']['type'], 'passport') !== false)
                                             <input type="file" onclick="mixpanel.track('Browse_Passport');" accept="application/pdf" name="booking_documents[]" />
                                         @else
