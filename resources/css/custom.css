@@ -359,10 +359,10 @@ button.btn.btn-primary.dropdown-toggle img {
    display: none;
 }
 .tab1 li {
-    width: 18% !important;
+    width: 25% !important;
 }
 ul.tab1 li:before {
-    left: 58px !important;
+    left: 90px !important;
 }
 .dashboard-wrap .doc-col-2 {
     flex-direction: row-reverse;

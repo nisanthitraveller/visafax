@@ -65,32 +65,18 @@ if ($visaDetails['status'] == 3) {
             <ul class="tablist tab1">
                 <li class="active">
                     <a>
-                        <span class="tb-name" style="top: -50px; width: 105px">Start my application</span>
+                        <span class="tb-name" style="top: -50px;">Start</span>
                         <span class="tb-year">{{date('d M, y', strtotime($visaDetails['created_at']))}}</span>
                     </a>
                 </li>
                 <li class="active">
                     <a>
-                        <span class="tb-name" style="top: -50px; width: 105px">Upload passport & payslip</span>
-                        <span class="tb-year">{{date('d M, y', strtotime($visaDetails['created_at']))}}</span>
+                        <span class="tb-name" style="top: -50px;">Upload Docs</span>
                     </a>
                 </li>
-                <li class="active">
-                    <a>
-                        <span class="tb-name" style="top: -50px; width: 105px">Save my information</span>
-                        <span class="tb-year">{{date('d M, y', strtotime($visaDetails['created_at']))}}</span>
-                    </a>
-                </li>
-
                 <li>
                     <a>
-                        <span class="tb-name" style="top: -50px; width: 105px">View my documents</span>
-                        <span class="tb-year">{{date('d M, y')}}</span>
-                    </a>
-                </li>
-                <li class="last">
-                    <a>
-                        <span class="tb-name" style="top: -50px; width: 105px">Verification by VisaBadge</span>
+                        <span class="tb-name" style="top: -50px;">VisaBadge Verification</span>
                     </a>
                 </li>
             </ul>

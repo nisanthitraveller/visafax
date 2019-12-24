@@ -31,31 +31,19 @@ Visa {{$country['countryName']}}
 <div class="dasboard-detail-wrap">
     <div class="container">
             <ul class="tablist tab1">
-                <li>
+                <li class="active">
                     <a>
-                        <span class="tb-name" style="top: -50px; width: 105px">Start my application</span>
+                        <span class="tb-name" style="top: -50px;">Start</span>
                     </a>
                 </li>
                 <li>
                     <a>
-                        <span class="tb-name" style="top: -50px; width: 105px">Update passport Information</span>
+                        <span class="tb-name" style="top: -50px;">Upload Docs</span>
                     </a>
                 </li>
                 <li>
                     <a>
-                        <span class="tb-name" style="top: -50px; width: 105px">Save my information</span>
-                        <span class="tb-year"></span>
-                    </a>
-                </li>
-
-                <li>
-                    <a>
-                        <span class="tb-name" style="top: -50px; width: 105px">View my documents</span>
-                    </a>
-                </li>
-                <li class="last">
-                    <a>
-                        <span class="tb-name" style="top: -50px; width: 105px">Verify by VisaBadge</span>
+                        <span class="tb-name" style="top: -50px;">VisaBadge Verification</span>
                     </a>
                 </li>
             </ul>
