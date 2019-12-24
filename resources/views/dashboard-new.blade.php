@@ -162,15 +162,15 @@ if ($visaDetails['status'] == 3) {
                         @foreach($documents as $k => $document1)
 <?php
 $document = $document1[0];
-$toolTip = App\Models\Document::where('country_id', $visaDetails['VisitingCountry'])->where('document_type', $document['DocumentID'])->select('body_business as tooltip')->first()->toArray();
+$toolTip = App\Models\Document::where('country_id', $visaDetails['VisitingCountry'])->where('document_type', $document['DocumentID'])->select('body_business as tooltip', 'document_id as docId')->first()->toArray();
 $out = strlen($document['documenttype']['type']) > 27 ? substr($document['documenttype']['type'], 0, 27) . "..." : $document['documenttype']['type'];
 ?>
                         <div class="doc-list" data-toggle="tooltip" data-placement="top">
                             <div class="row">
                                 <div class="col-md-8 col-sm-7 col-12 doc-cols">
-                                    @if($document['DriveId'] != '')
+                                    @if($toolTip['docId'] != '')
                                     <div class="dos-name">
-                                        <a target="_blank" href="{{'https://docs.google.com/document/d/' . $document['DriveId']}}">{{$out}}</a>
+                                        <a target="_blank" href="{{'https://docs.google.com/document/d/' . $toolTip['docId']}}">{{$out}}</a>
                                         <span class="sm-desc">{{$toolTip['tooltip']}}</span>
                                     </div>
                                     @elseif($document['DriveId'] == '' && count($document1) == 1)
@@ -205,7 +205,7 @@ $out = strlen($document['documenttype']['type']) > 27 ? substr($document['docume
 
                                 </div>
                                 <div class="col-md-3 col-sm-3 col-4 doc-col-2">
-                                    @if($document['DriveId'] == '')
+                                    @if($toolTip['docId'] == '')
                                     <?php $text = (count($document1) >= 1 && $document['pdf'] != '') ? 'Uploaded' : 'Upload'; ?>
                                     <div class="up-btn {{$text}}">
                                         <img src="{{url('/')}}/images/upload-active.png">
