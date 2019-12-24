@@ -262,9 +262,9 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                                 <div class="col-md-4 pay-dets-in text-right">
                                     <p>
                                         @if($visaDetails['ParentID'] == 0)
-                                        <a class="btn btn-outline-primary" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}">Show Details</a>
+                                        <a class="btn btn-outline-primary" onclick="mixpanel.track('Payment_Link');" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}">Show Details</a>
                                         @else
-                                        <a class="btn btn-outline-primary" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['ParentID'] . '?paylater=' . md5($visaDetails['BookingID'])}}">Show Details</a>
+                                        <a class="btn btn-outline-primary" onclick="mixpanel.track('Payment_Link');" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['ParentID'] . '?paylater=' . md5($visaDetails['BookingID'])}}">Show Details</a>
                                         @endif
                                     </p>
                                 </div>
@@ -473,6 +473,11 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
 @endif
 @endsection
 @section('scripts')
+<script type="text/javascript">
+    $(window).on('load', function () {
+        mixpanel.track('Dashboard_2');
+    });
+</script>
 <script>
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip()

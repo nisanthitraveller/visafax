@@ -109,7 +109,7 @@ Visa {{$country['countryName']}}
 
                     <div class="col-sm-12 text-center down-bnch  mb-5">
                         @guest
-                        <a href="javascript:void(0)" onclick="$('#connect-modal').modal('show'); mixpanel.track('Start_My_Visa');" class="cntue cntuemargin" style="background-color: #ffdf00; color: #000; font-weight: bold">Get My Visa Docs FREE</a>
+                        <a href="javascript:void(0)" onclick="$('#connect-modal').modal('show'); mixpanel.track('Get My Visa Docs FREE');" class="cntue cntuemargin" style="background-color: #ffdf00; color: #000; font-weight: bold">Get My Visa Docs FREE</a>
                         @else
                         <a href="javascript:void(0)" id="create-visa" class="cntue cntuemargin" style="background-color: #ffdf00; color: #000; font-weight: bold">Get My Visa Docs FREE</a>
                         @endguest
