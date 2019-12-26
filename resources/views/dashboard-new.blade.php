@@ -127,7 +127,7 @@ if ($visaDetails['status'] == 3) {
                                     @endif
                                 </p>
                                 <p>
-                                    Remember, a little care now can get your visa processing hassle-free & guaranteed!
+                                    Use below docs for your visa application completely free. Yes, they are free, if you want to manage your visas yourself. But remember, a little care now can get your visa documentation hassle & error free - so, hire one of our experts for a guaranteed visa approval!
                                 </p>
                                 @else
                                 <b>Upload below travel documents to initiate visa processing.</b>

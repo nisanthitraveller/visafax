@@ -54,7 +54,7 @@ Visa Documents
                                     <a href="javascript:void(0)" onclick="$('#connect-modal').modal('show');" class="cntue m-0" style="background-color: #ffdf00; color: #000; font-weight: bold; border-radius: 6px">PAY NOW</a>
                                 </p>
                                 <p>
-                                    Remember, a little care now can get your visa processing hassle-free & guaranteed!
+                                    Use below docs for your visa application completely free. Yes, they are free, if you want to manage your visas yourself. But remember, a little care now can get your visa documentation hassle & error free - so, hire one of our experts for a guaranteed visa approval!
                                 </p>
                             </div>
                         </div>
