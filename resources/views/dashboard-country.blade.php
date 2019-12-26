@@ -23,18 +23,18 @@ Visa Documents
             <ul class="tablist tab1">
                 <li class="active">
                     <a>
-                        <span class="tb-name" style="top: -50px;">Start Visa Application</span>
+                        <span class="tb-name" style="top: -50px;">Start Visa<br /> Application</span>
                         <span class="tb-year">{{date('d M, y', strtotime($visaDetails['created_at']))}}</span>
                     </a>
                 </li>
                 <li class="active">
                     <a>
-                        <span class="tb-name" style="top: -50px;">Upload Visa Documents</span>
+                        <span class="tb-name" style="top: -50px;">Upload Visa<br /> Documents</span>
                     </a>
                 </li>
                 <li>
                     <a>
-                        <span class="tb-name" style="top: -50px;">VisaBadge Verification</span>
+                        <span class="tb-name" style="top: -50px;">VisaBadge<br /> Verification</span>
                     </a>
                 </li>
             </ul>
@@ -45,13 +45,13 @@ Visa Documents
                     <div class="col-xl-12 col-md-12 col-sm-12 mt-4 p-47 dashboard-wrap right-sidebar"id="document-listing">
                         <div class="row mb-2 ">
                             <div class="col-md-12 col-sm-12 col-12 doc-block">
-                                <h3>Warning!</h3>
+                                <h3><b>Warning!</b></h3>
                                 <h5><b>21% of visa applications are rejected by Embassies!</b></h5>
                                 <p style="text-align: justify">
                                     Yes, 21% of the visa applications are rejected for 3 reasons - missing documents, incomplete applications & simple data errors! Do you really want to be one of those 21% applicants? If not, hire one of our visa experts at just <b>Rs 1999/-</b>
                                 </p>
                                 <p>
-                                    <a href="javascript:void(0)" onclick="$('#connect-modal').modal('show');" class="cntue m-0" style="background-color: #ffdf00; color: #000; font-weight: bold">PAY NOW</a>
+                                    <a href="javascript:void(0)" onclick="$('#connect-modal').modal('show');" class="cntue m-0" style="background-color: #ffdf00; color: #000; font-weight: bold; border-radius: 6px">PAY NOW</a>
                                 </p>
                                 <p>
                                     Remember, a little care now can get your visa processing hassle-free & guaranteed!

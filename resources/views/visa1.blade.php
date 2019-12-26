@@ -60,7 +60,7 @@ Visa {{$country['countryName']}}
                         </div>
                     </div>
 
-                    <form class="your-dts page-detail" method="post" id="visaForm" action="{{url('/')}}/visadetails/{{str_replace('', '-', strtolower($country['countryName']))}}">
+                    <form class="your-dts page-detail" method="post" id="visaForm" action="{{url('/')}}/visadetails/{{str_replace('', '-', strtolower($country['countryName']))}}-visa">
                         @csrf
                         <div class="row">
                             <div class="col-xl-5 col-md-5 col-sm-4 col-6 data-colt ">
