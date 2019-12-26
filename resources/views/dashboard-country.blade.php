@@ -51,9 +51,9 @@ Visa Documents
                                     Yes, 21% of the visa applications are rejected for 3 reasons - missing documents, incomplete applications & simple data errors! Do you really want to be one of those 21% applicants? If not, hire one of our visa experts at just <b>Rs 1999/-</b>
                                 </p>
                                 <p>
-                                    <a href="javascript:void(0)" onclick="$('#connect-modal').modal('show');" class="cntue m-0" style="background-color: #ffdf00; color: #000; font-weight: bold; border-radius: 6px">PAY NOW</a>
+                                    <a href="javascript:void(0)" onclick="mixpanel.track('Paynow_Before_Login'); $('#connect-modal').modal('show');" class="cntue m-0" style="background-color: #ffdf00; color: #000; font-weight: bold; border-radius: 6px; padding: 6px 12px">PAY NOW</a>
                                 </p>
-                                <p>
+                                <p style="text-align: justify">
                                     Use below docs for your visa application completely free. Yes, they are free, if you want to manage your visas yourself. But remember, a little care now can get your visa documentation hassle & error free - so, hire one of our experts for a guaranteed visa approval!
                                 </p>
                             </div>
@@ -97,25 +97,16 @@ Visa Documents
                             <div class="row">
                                 <div class="col-md-9 col-sm-7 col-12 doc-cols">
                                     <div class="dos-name">
-                                        @guest
-                                            <a style="padding-left: 0; color: #282828" target="_blank" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> onclick="$('#connect-modal').modal('show');" <?php } ?>>{{$out}}</a>
-                                        @else
-                                            <a style="padding-left: 0; color: #282828" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> href="{{url('/')}}/dashboard?uploadType={{$document['documenttype']['id']}}" <?php } ?>>{{$out}}</a>
-                                        @endguest
+                                        <a style="padding-left: 0; color: #282828" target="_blank" class="{{$class}}" onclick="$('#connect-modal').modal('show');">{{$out}}</a>
                                         <span class="sm-desc" style="color: #606060">{{$document['tooltip']}}</span>
                                     </div>
                                     
 
                                 </div>
                                 <div class="col-md-3 col-sm-3 col-4 doc-col-2">
-                                    @guest
                                         <div class="up-btn" onclick="$('#connect-modal').modal('show')">
-                                    @else
-                                        <div class="up-btn" onclick="location.href='{{url('/')}}/dashboard'">
-                                    @endguest
-
                                         <img src="{{url('/')}}/images/upload-active.png">
-                                        <label for="file" class="up-doc">Upload</label>
+                                        <label for="file" class="up-doc">VIEW</label>
                                     </div>
                                 </div>
                             </div>

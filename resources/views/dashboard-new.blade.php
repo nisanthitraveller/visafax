@@ -121,12 +121,12 @@ if ($visaDetails['status'] == 3) {
                                 </p>
                                 <p>
                                     @if($visaDetails['ParentID'] == 0)
-                                        <a class="cntue m-0" style="background-color: #ffdf00; color: #000; font-weight: bold; border-radius: 6px" onclick="mixpanel.track('Payment_Link');" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}">PAY NOW</a>
+                                        <a class="cntue m-0" style="background-color: #ffdf00; color: #000; font-weight: bold; border-radius: 6px; padding: 6px 12px" onclick="mixpanel.track('Paynow_After_Login');" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}">PAY NOW</a>
                                     @else
-                                        <a class="cntue m-0" style="background-color: #ffdf00; color: #000; font-weight: bold; border-radius: 6px" onclick="mixpanel.track('Payment_Link');" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['ParentID'] . '?paylater=' . md5($visaDetails['BookingID'])}}">PAY NOW</a>
+                                        <a class="cntue m-0" style="background-color: #ffdf00; color: #000; font-weight: bold; border-radius: 6px; padding: 6px 12px" onclick="mixpanel.track('Paynow_After_Login');" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['ParentID'] . '?paylater=' . md5($visaDetails['BookingID'])}}">PAY NOW</a>
                                     @endif
                                 </p>
-                                <p>
+                                <p style="text-align: justify">
                                     Use below docs for your visa application completely free. Yes, they are free, if you want to manage your visas yourself. But remember, a little care now can get your visa documentation hassle & error free - so, hire one of our experts for a guaranteed visa approval!
                                 </p>
                                 @else
