@@ -30,23 +30,23 @@ Visa {{$country['countryName']}}
 </section>
 <div class="dasboard-detail-wrap">
     <div class="container">
-            <ul class="tablist tab1">
-                <li class="active">
-                    <a>
-                        <span class="tb-name" style="top: -50px;">Start</span>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <span class="tb-name" style="top: -50px;">Upload Docs</span>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <span class="tb-name" style="top: -50px;">VisaBadge Verification</span>
-                    </a>
-                </li>
-            </ul>
+        <ul class="tablist tab1">
+            <li class="active">
+                <a>
+                    <span class="tb-name" style="top: -50px;">Start</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <span class="tb-name" style="top: -50px;">Upload Docs</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <span class="tb-name" style="top: -50px;">VisaBadge Verification</span>
+                </a>
+            </li>
+        </ul>
     </div>
 
     <div class="inner">
@@ -60,7 +60,7 @@ Visa {{$country['countryName']}}
                         </div>
                     </div>
 
-                    <form class="your-dts page-detail" method="post" id="visaForm" action="{{url('/')}}/visa-details/{{str_replace('', '-', strtolower($country['countryName']))}}-visa">
+                    <form class="your-dts page-detail" method="post" id="visaForm" action="{{url('/')}}/visadetails/{{str_replace('', '-', strtolower($country['countryName']))}}-visa">
                         @csrf
                         <div class="row">
                             <div class="col-xl-5 col-md-5 col-sm-4 col-6 data-colt ">
@@ -96,11 +96,7 @@ Visa {{$country['countryName']}}
                     </form>
 
                     <div class="col-sm-12 text-center down-bnch  mb-5">
-                        @guest
-                        <a href="javascript:void(0)" onclick="$('#connect-modal').modal('show'); mixpanel.track('Get My Visa Docs FREE');" class="cntue cntuemargin" style="background-color: #ffdf00; color: #000; font-weight: bold">Get My Visa Docs FREE</a>
-                        @else
-                        <a href="javascript:void(0)" id="create-visa" class="cntue cntuemargin" style="background-color: #ffdf00; color: #000; font-weight: bold">Get My Visa Docs FREE</a>
-                        @endguest
+                        <a href="javascript:void(0)" onclick="mixpanel.track('Get My Visa Docs FREE'); $('#visaForm').submit();" class="cntue cntuemargin" style="background-color: #ffdf00; color: #000; font-weight: bold">Get My Visa Docs FREE</a>
                     </div>
                     <div class="sm-sections">
                         <h2>A quick guide about {{$country['countryName']}} visa process</h2>

@@ -195,7 +195,7 @@ $out = strlen($document['documenttype']['type']) > 27 ? substr($document['docume
                                     <?php $text = (count($document1) >= 1 && $document['pdf'] != '') ? 'Uploaded' : 'Upload'; ?>
                                     <div class="up-btn {{$text}}">
                                         <img src="{{url('/')}}/images/upload-active.png">
-                                        <label for="file" class="up-doc" onclick="$('#docTYpe').val({{$k}}); $('.right-sidebar').toggle()">{{$text}}</label>
+                                        <label for="file" class="up-doc" onclick="$('.uploadTitle').html('Upload your <?=$out?>'); $('#docTYpe').val({{$k}}); $('.right-sidebar').toggle()">{{$text}}</label>
                                     </div>
                                     @endif
                                 </div>
@@ -297,11 +297,11 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                         </div>
                         @endif
                         @if(!isset($request['uploadType']) || (isset($request['uploadType']) && $request['uploadType'] == 0))
-                        <div class="col-sm-12 mb-2 ">
+<!--                        <div class="col-sm-12 mb-2 ">
                             <div class="row mb-2 ">
                                 <a href="javascript:void(0)" class="back-btn" onclick="$('.right-sidebar').toggle()">Back</a>
                             </div>
-                        </div>
+                        </div>-->
                         @endif
                         <div class="col-sm-12 mb-2 " style="padding-left: 0">
                             <div class="alert" id="message" style="display: none"></div>
@@ -398,7 +398,7 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
                                     <button type='button' class="btn btn-link pull-right add_more" disabled>Add More Files</button>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-8 doc-cols text-right">
-                                    <a href="javascript:void(0)" onclick="showForm({{$visaDetails['id']}})" class="btn btn-light">Cancel</a>
+                                    <a href="javascript:void(0)" onclick="$('.right-sidebar').toggle()" class="btn btn-light">Cancel</a>
                                     <input onclick="mixpanel.track('Confirm_Upload');" type="submit" name="upload" id="upload" class="btn btn-success" disabled value="Confirm Upload">
                                 </div>
                             </div>

@@ -30,35 +30,23 @@ Visa {{$country['countryName']}}
 </section>
 <div class="dasboard-detail-wrap">
     <div class="container">
-            <ul class="tablist tab1">
-                <li>
-                    <a>
-                        <span class="tb-name" style="top: -50px; width: 105px">Start my application</span>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <span class="tb-name" style="top: -50px; width: 105px">Upload passport & payslip</span>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <span class="tb-name" style="top: -50px; width: 105px">Save my information</span>
-                        <span class="tb-year"></span>
-                    </a>
-                </li>
-
-                <li>
-                    <a>
-                        <span class="tb-name" style="top: -50px; width: 105px">View my documents</span>
-                    </a>
-                </li>
-                <li class="last">
-                    <a>
-                        <span class="tb-name" style="top: -50px; width: 105px">Verify by VisaBadge</span>
-                    </a>
-                </li>
-            </ul>
+        <ul class="tablist tab1">
+            <li class="active">
+                <a>
+                    <span class="tb-name" style="top: -50px;">Start</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <span class="tb-name" style="top: -50px;">Upload Docs</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <span class="tb-name" style="top: -50px;">VisaBadge Verification</span>
+                </a>
+            </li>
+        </ul>
     </div>
 
     <div class="inner">
@@ -108,7 +96,7 @@ Visa {{$country['countryName']}}
                     </form>
 
                     <div class="col-sm-12 text-center down-bnch  mb-5">
-                        <a href="javascript:void(0)" onclick="mixpanel.track('Start_My_Visa'); $('#visaForm').submit()" class="cntue">Start My Visa Application</a>
+                        <a href="javascript:void(0)" onclick="mixpanel.track('Get My Visa Docs FREE'); $('#visaForm').submit();" class="cntue cntuemargin" style="background-color: #ffdf00; color: #000; font-weight: bold">Get My Visa Docs FREE</a>
                     </div>
                     <div class="sm-sections">
                         <h2>A quick guide about {{$country['countryName']}} visa process</h2>

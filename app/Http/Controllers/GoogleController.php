@@ -299,7 +299,7 @@ class GoogleController extends Controller {
         } else {
             $return['status'] = false;
         }
-        $return['uploadType'] = isset($input['uploadType']) ? $input['uploadType'] : 0;
+        $return['uploadType'] = 0;
         return json_encode($return);
     }
     
