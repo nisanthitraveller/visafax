@@ -33,17 +33,18 @@ Visa {{$country['countryName']}}
         <ul class="tablist tab1">
             <li class="active">
                 <a>
-                    <span class="tb-name" style="top: -50px;">Start</span>
+                    <span class="tb-name" style="top: -50px;">Start Visa<br /> Application</span>
+                    <span class="tb-year">{{date('d M, y'))}}</span>
+                </a>
+            </li>
+            <li class="active">
+                <a>
+                    <span class="tb-name" style="top: -50px;">Upload Visa<br /> Documents</span>
                 </a>
             </li>
             <li>
                 <a>
-                    <span class="tb-name" style="top: -50px;">Upload Docs</span>
-                </a>
-            </li>
-            <li>
-                <a>
-                    <span class="tb-name" style="top: -50px;">VisaBadge Verification</span>
+                    <span class="tb-name" style="top: -50px;">VisaBadge<br /> Verification</span>
                 </a>
             </li>
         </ul>

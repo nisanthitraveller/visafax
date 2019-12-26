@@ -24,7 +24,7 @@ Visa Documents
                 <li class="active">
                     <a>
                         <span class="tb-name" style="top: -50px;">Start Visa<br /> Application</span>
-                        <span class="tb-year">{{date('d M, y', strtotime($visaDetails['created_at']))}}</span>
+                        <span class="tb-year">{{date('d M, y'))}}</span>
                     </a>
                 </li>
                 <li class="active">
