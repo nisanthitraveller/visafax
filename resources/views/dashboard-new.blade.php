@@ -65,13 +65,13 @@ if ($visaDetails['status'] == 3) {
             <ul class="tablist tab1">
                 <li class="active">
                     <a>
-                        <span class="tb-name" style="top: -50px;">Start</span>
+                        <span class="tb-name" style="top: -50px;">Start Visa Application</span>
                         <span class="tb-year">{{date('d M, y', strtotime($visaDetails['created_at']))}}</span>
                     </a>
                 </li>
                 <li class="active">
                     <a>
-                        <span class="tb-name" style="top: -50px;">Upload Docs</span>
+                        <span class="tb-name" style="top: -50px;">Upload Visa Documents</span>
                     </a>
                 </li>
                 <li>
@@ -113,10 +113,28 @@ if ($visaDetails['status'] == 3) {
                         @if($count1 == 0)
                         <div class="row mb-2 ">
                             <div class="col-md-12 col-sm-12 col-12 doc-block">
+                                @if($visaDetails['paid'] != 1)
+                                <h3>Warning!</h3>
+                                <h5><b>21% of visa applications are rejected by Embassies!</b></h5>
+                                <p style="text-align: justify">
+                                    Yes, 21% of the visa applications are rejected for 3 reasons - missing documents, incomplete applications & simple data errors! Do you really want to be one of those 21% applicants? If not, hire one of our visa experts at just <b>Rs 1999/-</b>
+                                </p>
+                                <p>
+                                    @if($visaDetails['ParentID'] == 0)
+                                        <a class="cntue m-0" style="background-color: #ffdf00; color: #000; font-weight: bold" onclick="mixpanel.track('Payment_Link');" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}">PAY NOW</a>
+                                    @else
+                                        <a class="cntue m-0" style="background-color: #ffdf00; color: #000; font-weight: bold" onclick="mixpanel.track('Payment_Link');" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['ParentID'] . '?paylater=' . md5($visaDetails['BookingID'])}}">PAY NOW</a>
+                                    @endif
+                                </p>
+                                <p>
+                                    Remember, a little care now can get your visa processing hassle-free & guaranteed!
+                                </p>
+                                @else
                                 <b>Upload below travel documents to initiate visa processing.</b>
                                 <p style="text-align: justify">
                                     The below is a list of mandatory documents that you will have to share with us to initiate your visa application. You can upload them here, by clicking on the UPLOAD button. More details are available below each item. Once you share them, leave the rest of the hassles to us - we will get your complete bunch of visa documents ready and quickly share them here for you to review (usually in less than a couple of hours).
                                 </p>
+                                @endif
                             </div>
                         </div>
                         @endif

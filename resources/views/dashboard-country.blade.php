@@ -23,12 +23,13 @@ Visa Documents
             <ul class="tablist tab1">
                 <li class="active">
                     <a>
-                        <span class="tb-name" style="top: -50px;">Start</span>
+                        <span class="tb-name" style="top: -50px;">Start Visa Application</span>
+                        <span class="tb-year">{{date('d M, y', strtotime($visaDetails['created_at']))}}</span>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a>
-                        <span class="tb-name" style="top: -50px;">Upload Docs</span>
+                        <span class="tb-name" style="top: -50px;">Upload Visa Documents</span>
                     </a>
                 </li>
                 <li>
@@ -42,6 +43,44 @@ Visa Documents
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12 col-md-12 col-sm-12 mt-4 p-47 dashboard-wrap right-sidebar"id="document-listing">
+                        <div class="row mb-2 ">
+                            <div class="col-md-12 col-sm-12 col-12 doc-block">
+                                <h3>Warning!</h3>
+                                <h5><b>21% of visa applications are rejected by Embassies!</b></h5>
+                                <p style="text-align: justify">
+                                    Yes, 21% of the visa applications are rejected for 3 reasons - missing documents, incomplete applications & simple data errors! Do you really want to be one of those 21% applicants? If not, hire one of our visa experts at just <b>Rs 1999/-</b>
+                                </p>
+                                <p>
+                                    <a href="javascript:void(0)" onclick="$('#connect-modal').modal('show');" class="cntue m-0" style="background-color: #ffdf00; color: #000; font-weight: bold">PAY NOW</a>
+                                </p>
+                                <p>
+                                    Remember, a little care now can get your visa processing hassle-free & guaranteed!
+                                </p>
+                            </div>
+                        </div>
+                        <div class="container mb-4 dash-titles">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 row-bg">
+
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-12  row-dta">
+                                        <div class="do-ic"><img src="{{url('/')}}/images/doc2.png">{{$request['persons']}} traveller(s)</div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6  row-dta">
+                                        <div class="do-ic"><img src="{{url('/')}}/images/doc3.png">{{$request['visaType']}} Visa</div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6 row-dta">
+                                        <div class="do-ic"><img src="{{url('/')}}/images/doc1.png">{{date('d.m.y')}}</div>
+                                    </div>
+                                </div>
+
+
+                                <!--<div class="col-lg-3 col-md-3 col-sm-3 row-bgd">
+                                    <div class="col-md-12 col-12 row-dta">
+                                        <div class="do-ic"><img src="images/track.png"> Track status</div>
+                                    </div>
+                                </div>-->
+                            </div>
+                        </div>
                         <?php $count = 1 ?>
                         <?php $display = 0 ?>
                         @foreach($countryDocuments as $k => $document)
@@ -59,7 +98,7 @@ Visa Documents
                                 <div class="col-md-9 col-sm-7 col-12 doc-cols">
                                     <div class="dos-name">
                                         @guest
-                                            <a style="padding-left: 0; color: #282828" target="_blank" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> onclick="mixpanel.track('D1_Upload_Passport'); $('#connect-modal').modal('show');" <?php } ?>>{{$out}}</a>
+                                            <a style="padding-left: 0; color: #282828" target="_blank" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> onclick="$('#connect-modal').modal('show');" <?php } ?>>{{$out}}</a>
                                         @else
                                             <a style="padding-left: 0; color: #282828" class="{{$class}}" <?php if(empty($document['document_id']) && $document['display'] == 1) { ?> href="{{url('/')}}/dashboard?uploadType={{$document['documenttype']['id']}}" <?php } ?>>{{$out}}</a>
                                         @endguest
