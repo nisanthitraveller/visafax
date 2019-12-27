@@ -114,16 +114,15 @@ if ($visaDetails['status'] == 3) {
                         <div class="row mb-2 ">
                             <div class="col-md-12 col-sm-12 col-12 doc-block">
                                 @if($visaDetails['paid'] != 1)
-                                <h3><b>Warning!</b></h3>
                                 <h5><b>21% of visa applications are rejected by Embassies!</b></h5>
                                 <p style="text-align: justify">
-                                    Yes, 21% of the visa applications are rejected for 3 reasons - missing documents, incomplete applications & simple data errors! Do you really want to be one of those 21% applicants? If not, hire one of our visa experts at just <b>Rs 1999/-</b>
+                                    Yes, 21% of the visa applications are rejected for 3 reasons - missing documents, incomplete applications & simple data errors! Do you really want to be one of those 21% applicants? If not, hire one of our visa experts at just <b>Rs 999/-</b>
                                 </p>
                                 <p>
                                     @if($visaDetails['ParentID'] == 0)
-                                        <a class="cntue m-0" style="background-color: #ffdf00; color: #000; font-weight: bold; border-radius: 6px; padding: 6px 12px" onclick="mixpanel.track('Paynow_After_Login');" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['id'] . '?paylater=' . md5($visaDetails['BookingID'])}}">PAY NOW</a>
+                                        <a class="cntue m-0" style="background-color: #ffdf00; color: #000; font-weight: bold; border-radius: 6px; padding: 6px 12px" href="javascript:;" id="pay-button" onclick="mixpanel.track('Paynow_After_Login');">PAY NOW</a>
                                     @else
-                                        <a class="cntue m-0" style="background-color: #ffdf00; color: #000; font-weight: bold; border-radius: 6px; padding: 6px 12px" onclick="mixpanel.track('Paynow_After_Login');" href="{{url('/') . '/applyvisa/payment/' . $visaDetails['ParentID'] . '?paylater=' . md5($visaDetails['BookingID'])}}">PAY NOW</a>
+                                        <a class="cntue m-0" style="background-color: #ffdf00; color: #000; font-weight: bold; border-radius: 6px; padding: 6px 12px" href="javascript:;" id="pay-button" onclick="mixpanel.track('Paynow_After_Login');">PAY NOW</a>
                                     @endif
                                 </p>
                                 <p style="text-align: justify">
@@ -134,6 +133,7 @@ if ($visaDetails['status'] == 3) {
                                 <p style="text-align: justify">
                                     The below is a list of mandatory documents that you will have to share with us to initiate your visa application. You can upload them here, by clicking on the UPLOAD button. More details are available below each item. Once you share them, leave the rest of the hassles to us - we will get your complete bunch of visa documents ready and quickly share them here for you to review (usually in less than a couple of hours).
                                 </p>
+                                
                                 @endif
                             </div>
                         </div>
@@ -431,8 +431,24 @@ $countryPrices = \App\Models\Pricing::where('country_id', $booking['VisitingCoun
         <input type="hidden" value="0" id="uploadType" name="uploadType" />
         <input type="hidden" value="{{count($uploadTypes)}}" name="totaluploadType" id="totaluploadType" />
     </form>
+    <form  method="post" name="PayUTransaction" id="PayUTransaction" class="formPay">
+        <input name="amount" type="hidden" id="amount" value="999"/>
+        <input name="amount1" type="hidden" id="amount1" value="1"/>
+        <input name="persons" type="hidden" id="persons" value="{{count($visaDetails['child']) + 1}}"/>
+        <input name="udf1" type="hidden" id="udf1" value=""/>
+        <input name="udf2" type="hidden" id="udf2" value="false"/>
+        <input name="txnid" type="hidden" id="reference_no" value="{{$visaDetails['BookingID']}}"/>
+        <input name="key" type="hidden" id="description" value="kjLO4t"/>
+        <input type="hidden" name="firstname" value="{{ Auth::user()->name }}">
+        <input type="hidden" name="email" value="{{ Auth::user()->email }}">
+        <input type="hidden" name="phone" value="{{ Auth::user()->phone }}">
+        <input type="hidden" name="productinfo" value="VB Payment" >
+        <input type="hidden" name="surl" value="{{url('/')}}/applyvisa/step1/{{$visaDetails['id']}}">
+        <input type="hidden" name="furl" value="{{url('/')}}/applyvisa/step1/{{$visaDetails['id']}}">
+    </form>
 </div>
 <div style="clear: both"></div>
+<div id="submitpayment" style="display: none"></div>
 @if(isset($request['popup']) && $request['popup'] == 1)
 <div class="modal fade popus" id="connect-modal-signup" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
