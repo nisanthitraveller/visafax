@@ -47,7 +47,7 @@ Visa Documents
                             <div class="col-md-12 col-sm-12 col-12 doc-block">
                                 <h5><b>21% of visa applications are rejected by Embassies!</b></h5>
                                 <p style="text-align: justify">
-                                    Yes, 21% of the visa applications are rejected for 3 reasons - missing documents, incomplete applications & simple data errors! Do you really want to be one of those 21% applicants? If not, hire one of our visa experts at just <b>Rs 1999/-</b>
+                                    Yes, 21% of the visa applications are rejected for 3 reasons - missing documents, incomplete applications & simple data errors! Do you really want to be one of those 21% applicants? If not, hire one of our visa experts at just <b>Rs 999/-</b>
                                 </p>
                                 <p>
                                     <a href="javascript:void(0)" onclick="mixpanel.track('Paynow_Before_Login'); $('#connect-modal').modal('show');" class="cntue m-0" style="background-color: #ffdf00; color: #000; font-weight: bold; border-radius: 6px; padding: 6px 12px">PAY NOW</a>
