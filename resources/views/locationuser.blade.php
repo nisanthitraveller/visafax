@@ -1,6 +1,28 @@
-<p><button class="w3-btn w3-blue" onclick="getLocation()">Try It</button></p>
-<div id="mapholder"></div>
-<script src="https://maps.google.com/maps/api/js?key=AIzaSyBmLkJ0sHCn9LSra5yPnXDYBIyoh4aX5nE"></script>
+@extends('layouts.app')
+@section('title')
+My location
+@endsection
+@section('content')
+<div class="container">
+    <div class="card pt-1 m-4">
+        <div class="card-body">
+            <div id="mapholder"></div>
+        </div>
+        <div class="card-footer">
+            <a href="#" class="btn btn-warning btn-block">Request Parking</a>
+            <div class="md-col-12"><i class="fa fa-map-marker" aria-hidden="true"></i> 3 Drivers available</div>
+            <div class="md-col-12"><i class="fa fa-inr" aria-hidden="true"></i> Only 60/- per hour</div>
+        </div>
+    </div>
+</div>
+
+@endsection
+@section('scripts')
+<script type="text/javascript">
+    $(window).on('load', function () {
+        getLocation();
+    });
+</script>
 <script>
     var x = document.getElementById("demo");
     function getLocation()
@@ -52,3 +74,4 @@
         }
     }
 </script>
+@endsection

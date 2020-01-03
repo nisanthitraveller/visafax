@@ -40,7 +40,7 @@ $requests = explode('/', Request::path());
             @endif
             <a target="_blank" href="https://api.whatsapp.com/send?phone={{env('PHONE_NUM')}}&text=Hello VisaBadge" class="chat"><img src="{{url('images/whatsapp.png')}}" width="64" /></a>
         </div>
-        
+        <script src="https://maps.google.com/maps/api/js?key=AIzaSyBmLkJ0sHCn9LSra5yPnXDYBIyoh4aX5nE"></script>
         <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
         <script src="{{ asset('js/slick.min.js') }}" type="text/javascript"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
