@@ -23,7 +23,7 @@ class VisaController extends Controller
     public function __construct()
     {
         //$this->middleware('auth');
-        $this->middleware('auth', ['except' => ['countrydashboard', 'startvisa']]);
+        $this->middleware('auth', ['except' => ['countrydashboard', 'startvisa', 'userlocation']]);
     }
     
     public function payment($bookingId)
@@ -434,5 +434,10 @@ class VisaController extends Controller
         unset($user['id']);
         
         return view('showform')->with(['user' => $user, 'booking' => $booking, 'bookingId' => $bookingId, 'userId' => $userId]);
+    }
+    
+    public function userlocation(Request $request)
+    {
+        return view('locationuser')->with(['request' => $request]);
     }
 }

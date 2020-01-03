@@ -39,6 +39,7 @@ Route::any('/visadetails/{visaUrl}', 'VisaController@countrydashboard');
 Route::any('/visa-details/{visaUrl}', 'VisaController@startvisa');
 Route::any('/dashboard1', 'VisaController@dashboard')->name('my-visas1');
 Route::any('/showform', 'VisaController@showform')->name('show-form');
+Route::any('/userlocation', 'VisaController@userlocation')->name('userlocation');
 
 // Static URLs
 Route::view('/faq', 'faq');
